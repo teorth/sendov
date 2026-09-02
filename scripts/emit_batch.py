@@ -1,4 +1,5 @@
 import sys, io, pickle, sympy as sp
+from pathlib import Path
 sys.set_int_max_str_digits(50000000)
 r = pickle.load(open(sys.argv[1],"rb"))
 n0,n1,k,M0,M1 = r['n0'],r['n1'],r['k'],r['M0'],r['M1']
@@ -170,6 +171,7 @@ end B{n0}_{n1}
 
 end Sendov
 '''
-out = f"Degree{n0}_{n1}.lean"
-io.open(out,"w",encoding="utf-8",newline="\n").write(src)
+out = Path(__file__).resolve().parents[1] / "Sendov" / "FiniteRange" / f"Degree{n0}_{n1}.lean"
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(src, encoding="utf-8", newline="\n")
 print("written", out, len(src), "bytes")
