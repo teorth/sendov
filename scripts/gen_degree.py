@@ -95,132 +95,132 @@ if __name__ == "__main__":
     import sys
     if "--check" in sys.argv: _check()
     n = int(sys.argv[1]); M = n-1
-cf, L, pole = Ppoly(n); d = len(cf)-1
-U = F(17) if F(17) <= F(M,2) else F(M,2); p,q = U.numerator, U.denominator
-G = [sum(cf[i]*q**(j-i)*comb(d-i,j-i)*p**i for i in range(j+1)) for j in range(d+1)]
-assert all(g>0 for g in G)
-even = (n%2==0); k = (n-4)//2 if even else (n-5)//2
-NAMES={5:"five",6:"six",7:"seven",8:"eight",20:"twenty"}
-nm = NAMES.get(n, "d%d"%n)
-def wrap(body, indent, width=96):
-    out=[]; cur=indent
-    for w in body.split(" "):
-        if len(cur)+1+len(w) > width and cur.strip():
-            out.append(cur.rstrip()); cur = indent+"  "+w
-        else: cur = (cur+" "+w) if cur.strip() else cur+w
-    out.append(cur.rstrip()); return "\n".join(out).lstrip()
-def poly(cs, var="α"):
-    ts=[]
-    for i,v in enumerate(cs):
-        if v==0: continue
-        s=("+ " if v>0 else "- ")+str(abs(v))
-        if i==1: s+=" * "+var
-        elif i>1: s+=f" * {var} ^ {i}"
-        ts.append(s)
-    r=" ".join(ts); return r[2:] if r.startswith("+ ") else "-"+r[2:]
-P = poly(cf)
-lin = f"({p} - {q} * α)" if q!=1 else f"({p} - α)"
-def bterm(j):
-    if j==0: return f"{G[0]} * {lin} ^ {d}"
-    if j==d: return f"{G[d]} * α ^ {d}"
-    return f"{G[j]} * α ^ {j} * {lin} ^ {d-j}"
-bern = " + ".join(bterm(j) for j in range(d+1))
-haves = "\n".join(f"  have h{j} : (0:ℝ) ≤ {bterm(j)} :=\n"
-                  f"    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα {j})) (pow_nonneg hu {d-j})"
-                  if 0<j<d else
-                  (f"  have h{j} : (0:ℝ) ≤ {bterm(j)} := by positivity")
-                  for j in range(d+1))
-Uc = f"{p}/{q}" if q!=1 else f"{p}"
-pref = F(n*M*(n-2),4)
-if even:
-    hk = f"(((({n} : ℕ) : ℝ) - 4) / 2) = (({k} : ℕ) : ℝ)"
-    getJ = f"(le_of_eq (integral_eq_mom {k} hk))"; Jtxt = f"mom {n} α {k}"
-else:
-    hk = f"(((({n} : ℕ) : ℝ) - 4) / 2) = (({k} : ℕ) : ℝ) + 1 / 2"
-    getJ = f"(integral_le_mom hfeas {k} hk one_pos)"
-    Jtxt = f"(mom {n} α {k+1} / (2 * 1) + 1 / 2 * mom {n} α {k})"
-alphyp = "(hα' : α ≤ 17) " if U==17 else ""
-ubound = "hα'" if U==17 else "h"
-src = f'''/-
-Copyright (c) 2026 Terence Tao. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Terence Tao
--/
-import Sendov.FiniteRange.Reduce
+    cf, L, pole = Ppoly(n); d = len(cf)-1
+    U = F(17) if F(17) <= F(M,2) else F(M,2); p,q = U.numerator, U.denominator
+    G = [sum(cf[i]*q**(j-i)*comb(d-i,j-i)*p**i for i in range(j+1)) for j in range(d+1)]
+    assert all(g>0 for g in G)
+    even = (n%2==0); k = (n-4)//2 if even else (n-5)//2
+    NAMES={5:"five",6:"six",7:"seven",8:"eight",20:"twenty"}
+    nm = NAMES.get(n, "d%d"%n)
+    def wrap(body, indent, width=96):
+        out=[]; cur=indent
+        for w in body.split(" "):
+            if len(cur)+1+len(w) > width and cur.strip():
+                out.append(cur.rstrip()); cur = indent+"  "+w
+            else: cur = (cur+" "+w) if cur.strip() else cur+w
+        out.append(cur.rstrip()); return "\n".join(out).lstrip()
+    def poly(cs, var="α"):
+        ts=[]
+        for i,v in enumerate(cs):
+            if v==0: continue
+            s=("+ " if v>0 else "- ")+str(abs(v))
+            if i==1: s+=" * "+var
+            elif i>1: s+=f" * {var} ^ {i}"
+            ts.append(s)
+        r=" ".join(ts); return r[2:] if r.startswith("+ ") else "-"+r[2:]
+    P = poly(cf)
+    lin = f"({p} - {q} * α)" if q!=1 else f"({p} - α)"
+    def bterm(j):
+        if j==0: return f"{G[0]} * {lin} ^ {d}"
+        if j==d: return f"{G[d]} * α ^ {d}"
+        return f"{G[j]} * α ^ {j} * {lin} ^ {d-j}"
+    bern = " + ".join(bterm(j) for j in range(d+1))
+    haves = "\n".join(f"  have h{j} : (0:ℝ) ≤ {bterm(j)} :=\n"
+                      f"    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα {j})) (pow_nonneg hu {d-j})"
+                      if 0<j<d else
+                      (f"  have h{j} : (0:ℝ) ≤ {bterm(j)} := by positivity")
+                      for j in range(d+1))
+    Uc = f"{p}/{q}" if q!=1 else f"{p}"
+    pref = F(n*M*(n-2),4)
+    if even:
+        hk = f"(((({n} : ℕ) : ℝ) - 4) / 2) = (({k} : ℕ) : ℝ)"
+        getJ = f"(le_of_eq (integral_eq_mom {k} hk))"; Jtxt = f"mom {n} α {k}"
+    else:
+        hk = f"(((({n} : ℕ) : ℝ) - 4) / 2) = (({k} : ℕ) : ℝ) + 1 / 2"
+        getJ = f"(integral_le_mom hfeas {k} hk one_pos)"
+        Jtxt = f"(mom {n} α {k+1} / (2 * 1) + 1 / 2 * mom {n} α {k})"
+    alphyp = "(hα' : α ≤ 17) " if U==17 else ""
+    ubound = "hα'" if U==17 else "h"
+    src = f'''/-
+    Copyright (c) 2026 Terence Tao. All rights reserved.
+    Released under Apache 2.0 license as described in the file LICENSE.
+    Authors: Terence Tao
+    -/
+    import Sendov.FiniteRange.Reduce
 
-/-!
-# The finite-range claim in degree {n}
+    /-!
+    # The finite-range claim in degree {n}
 
-Generated from the certificate generator; see `Sendov.FiniteRange.Degree20` for the shape
-of the argument.  Here `k = {k}`, `deg P = {d}`, and the Bernstein certificate on `[0, {Uc}]`
-has {d+1} positive coefficients.
--/
+    Generated from the certificate generator; see `Sendov.FiniteRange.Degree20` for the shape
+    of the argument.  Here `k = {k}`, `deg P = {d}`, and the Bernstein certificate on `[0, {Uc}]`
+    has {d+1} positive coefficients.
+    -/
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 2000000
+    set_option maxRecDepth 100000
+    set_option maxHeartbeats 2000000
 
-namespace Sendov
+    namespace Sendov
 
-open MeasureTheory
+    open MeasureTheory
 
-variable {{α : ℝ}}
+    variable {{α : ℝ}}
 
-lemma M_{nm} : M {n} = {M} := by norm_num [M]
+    lemma M_{nm} : M {n} = {M} := by norm_num [M]
 
-lemma A_{nm} (α : ℝ) : A {n} α = 1 - 2 * α / {M} := by
-  rw [A, M]; push_cast; ring
+    lemma A_{nm} (α : ℝ) : A {n} α = 1 - 2 * α / {M} := by
+      rw [A, M]; push_cast; ring
 
-lemma c_{nm} (α : ℝ) : c {n} α = 1 - α / {M} - α / (2 * (3 + α)) := by
-  rw [c, M]; push_cast; ring
+    lemma c_{nm} (α : ℝ) : c {n} α = 1 - α / {M} - α / (2 * (3 + α)) := by
+      rw [c, M]; push_cast; ring
 
-lemma c_{nm}' (hα : 0 ≤ α) :
-    c {n} α = ({6*M} + {M-6} * α - 2 * α ^ 2) / ({2*M} * (3 + α)) := by
-  have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
-  rw [c_{nm}]; field_simp; ring
+    lemma c_{nm}' (hα : 0 ≤ α) :
+        c {n} α = ({6*M} + {M-6} * α - 2 * α ^ 2) / ({2*M} * (3 + α)) := by
+      have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
+      rw [c_{nm}]; field_simp; ring
 
-/-- Bernstein certificate for the degree-{n} numerator on `[0, {Uc}]`. -/
-lemma P_{nm}_pos (hα : 0 ≤ α) (hle : α ≤ {Uc}) :
-    0 < {wrap(P, "    ")} := by
-  have hu : (0 : ℝ) ≤ {lin[1:-1]} := by linarith
-{haves}
-  have hid : ({p} : ℝ) ^ {d} * ({wrap(P, "      ")})
-      = {wrap(bern, "        ")} := by
-    ring
-  rcases le_total α ({Uc} / 2) with h | h
-  · have hpos : (0 : ℝ) < {G[0]} * {lin} ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
-  · have hpos : (0 : ℝ) < {G[d]} * α ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
+    /-- Bernstein certificate for the degree-{n} numerator on `[0, {Uc}]`. -/
+    lemma P_{nm}_pos (hα : 0 ≤ α) (hle : α ≤ {Uc}) :
+        0 < {wrap(P, "    ")} := by
+      have hu : (0 : ℝ) ≤ {lin[1:-1]} := by linarith
+    {haves}
+      have hid : ({p} : ℝ) ^ {d} * ({wrap(P, "      ")})
+          = {wrap(bern, "        ")} := by
+        ring
+      rcases le_total α ({Uc} / 2) with h | h
+      · have hpos : (0 : ℝ) < {G[0]} * {lin} ^ {d} :=
+          mul_pos (by norm_num) (pow_pos (by linarith) {d})
+        linarith
+      · have hpos : (0 : ℝ) < {G[d]} * α ^ {d} :=
+          mul_pos (by norm_num) (pow_pos (by linarith) {d})
+        linarith
 
-/-- **The finite-range claim in degree {n}.** -/
-theorem finite_range_{nm} (hα : 0 ≤ α) {alphyp}(hfeas : c {n} α ^ 2 ≤ A {n} α) :
-    R {n} α < 1 := by
-  have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
-  have hMle : α ≤ M {n} / 2 := alpha_le_half_M (n := {n}) (by norm_num) hfeas
-  rw [M_{nm}] at hMle
-  have hle : α ≤ {Uc} := by linarith [{ubound}]
-  have hk : {hk} := by norm_num
-  have hR := R_le_of_integral_le (n := {n}) (by norm_num) hα {getJ}
-  rw [M_{nm}] at hR
-  push_cast at hR
-  have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * {M}) + 1 / (4 * {M} * (3 + α))
-      + A {n} α ^ 2 * {n} * {M} * ({n} - 2) / (4 * (3 + α)) * {Jtxt}
-      = 1 - ({wrap(P, "        ")})
-          / ({L} * (3 + α) ^ {pole}) := by
-    rw [mom, mom, A_{nm}, c_{nm}' hα] <;> try rw [mom]
-    simp only [Finset.sum_range_succ, Finset.sum_range_zero, Nat.choose, Nat.cast_one]
-    norm_num
-    field_simp
-    ring
-  rw [hid] at hR
-  have hP := P_{nm}_pos hα hle
-  have hq : 0 < ({wrap(P, "      ")})
-      / ({L} * (3 + α) ^ {pole}) := div_pos hP (by positivity)
-  linarith
+    /-- **The finite-range claim in degree {n}.** -/
+    theorem finite_range_{nm} (hα : 0 ≤ α) {alphyp}(hfeas : c {n} α ^ 2 ≤ A {n} α) :
+        R {n} α < 1 := by
+      have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
+      have hMle : α ≤ M {n} / 2 := alpha_le_half_M (n := {n}) (by norm_num) hfeas
+      rw [M_{nm}] at hMle
+      have hle : α ≤ {Uc} := by linarith [{ubound}]
+      have hk : {hk} := by norm_num
+      have hR := R_le_of_integral_le (n := {n}) (by norm_num) hα {getJ}
+      rw [M_{nm}] at hR
+      push_cast at hR
+      have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * {M}) + 1 / (4 * {M} * (3 + α))
+          + A {n} α ^ 2 * {n} * {M} * ({n} - 2) / (4 * (3 + α)) * {Jtxt}
+          = 1 - ({wrap(P, "        ")})
+              / ({L} * (3 + α) ^ {pole}) := by
+        rw [mom, mom, A_{nm}, c_{nm}' hα] <;> try rw [mom]
+        simp only [Finset.sum_range_succ, Finset.sum_range_zero, Nat.choose, Nat.cast_one]
+        norm_num
+        field_simp
+        ring
+      rw [hid] at hR
+      have hP := P_{nm}_pos hα hle
+      have hq : 0 < ({wrap(P, "      ")})
+          / ({L} * (3 + α) ^ {pole}) := div_pos hP (by positivity)
+      linarith
 
-end Sendov
-'''
-io.open(f"Degree{n}.lean","w",encoding="utf-8").write(src)
-print(f"n={n} deg={d} bytes={len(src)} maxGammaDigits={max(len(str(g)) for g in G)}")
+    end Sendov
+    '''
+    io.open(f"Degree{n}.lean","w",encoding="utf-8").write(src)
+    print(f"n={n} deg={d} bytes={len(src)} maxGammaDigits={max(len(str(g)) for g in G)}")
