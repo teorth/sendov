@@ -1,4 +1,5 @@
 import sympy as sp, io
+from pathlib import Path
 
 a = sp.symbols('a')
 g = 300 + 47*a - a**2
@@ -238,6 +239,6 @@ theorem large_degree {{n : ℕ}} (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α �
 
 end Sendov
 '''
-io.open(r"c:/Users/teort/Github/sendov/Sendov/LargeDegree/Endgame.lean", "w",
+io.open(Path(__file__).resolve().parents[1] / "Sendov" / "LargeDegree" / "Endgame.lean", "w",
         encoding="utf-8", newline="\n").write(src)
 print(f"written Endgame.lean, {len(src)} bytes")

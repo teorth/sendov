@@ -1,4 +1,5 @@
 import sympy as sp, io
+from pathlib import Path
 
 y = sp.symbols('y', real=True)
 U = y**3 - 10*y**2 + 36*y - 36
@@ -260,8 +261,7 @@ end Sendov
 '''
 # The analytic tail carries no generated data, and contains brace characters that an
 # f-string would swallow, so it is kept beside this script rather than inlined.
-src = src.replace("\nend Sendov\n", "\n") + io.open(
-    "sinh_tail.lean.txt", encoding="utf-8").read()
-io.open(r"c:/Users/teort/Github/sendov/Sendov/Common/Sinh.lean", "w",
+src = src.replace("\nend Sendov\n", "\n") + io.open(Path(__file__).resolve().with_name("sinh_tail.lean.txt"), encoding="utf-8").read()
+io.open(Path(__file__).resolve().parents[1] / "Sendov" / "Common" / "Sinh.lean", "w",
         encoding="utf-8", newline="\n").write(src)
 print(f"written Sinh.lean, {len(src)} bytes")
