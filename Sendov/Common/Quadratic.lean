@@ -56,18 +56,18 @@ lemma QQ_one (c A : ℝ) : QQ c A 1 = 1 - 2 * c + A := by simp [QQ]
 /-- Feasibility `c² ≤ A` says exactly that `QQ` is a sum of squares. -/
 lemma QQ_nonneg (hfeas : c ^ 2 ≤ A) (t : ℝ) : 0 ≤ QQ c A t := by
   rw [QQ_eq]
-  exact add_nonneg (sq_nonneg _) (mul_nonneg (by linarith) (sq_nonneg _))
+  exact add_nonneg (sq_nonneg _) (mul_nonneg (sub_nonneg.2 hfeas) (sq_nonneg _))
 
 /-- `QQ ≤ 1` on `[0,1]`, from `QQ 1 ≤ 1` and `0 ≤ c` alone. -/
 lemma QQ_le_one (hc : 0 ≤ c) (hB : QQ c A 1 ≤ 1) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     QQ c A t ≤ 1 := by
   have hAc : A - 2 * c ≤ 0 := by rw [QQ_one] at hB; linarith
-  have h5 : A * t - 2 * c ≤ 0 := by
+  have hAt : A * t ≤ 2 * c := by
     rcases le_total 0 A with h | h
-    · nlinarith [mul_le_of_le_one_right h ht1]
-    · nlinarith [mul_nonneg ht0 (neg_nonneg.2 h)]
+    · exact (mul_le_of_le_one_right h ht1).trans (sub_nonpos.1 hAc)
+    · exact (mul_nonpos_of_nonpos_of_nonneg h ht0).trans (by positivity)
   simp only [QQ]
-  nlinarith [mul_nonneg ht0 (neg_nonneg.2 h5)]
+  nlinarith [mul_nonneg ht0 (sub_nonneg.2 hAt)]
 
 /-- Below the vertex, `QQ` lies under the chord `1 - ct`. -/
 lemma QQ_le_chord (ht0 : 0 ≤ t) (ht : A * t ≤ c) : QQ c A t ≤ 1 - c * t := by

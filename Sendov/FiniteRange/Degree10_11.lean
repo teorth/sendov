@@ -5,6 +5,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch 10 to 11
@@ -90,14 +91,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 5) :
   have hu : (0 : ℝ) ≤ 5 - α := by linarith
   have hid : (5 : ℝ) ^ 8 * (32349375 + 39180105 * α + 10086687 * α ^ 2 - 24445935 * α ^ 3 + 11871036 * α ^ 4 - 351846 * α ^ 5 - 81598 * α ^ 6 - 4664 * α ^ 7 - 88 * α ^ 8) = 32349375 * (5 - α) ^ 8 + 454695525 * α ^ 1 * (5 - α) ^ 7 + 2529253350 * α ^ 2 * (5 - α) ^ 6 + 4382737200 * α ^ 3 * (5 - α) ^ 5 + 5044170375 * α ^ 4 * (5 - α) ^ 4 + 11732079375 * α ^ 5 * (5 - α) ^ 3 + 18187642400 * α ^ 6 * (5 - α) ^ 2 + 11329113600 * α ^ 7 * (5 - α) ^ 1 + 2070835200 * α ^ 8 := by
     ring
-  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (5 : ℝ) ^ 8)).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < 5 - α := by linarith
-    positivity
+  bernstein_cert α (5 - α) using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -128,8 +124,7 @@ theorem finite_range {n : ℕ} (h0 : 10 ≤ n) (h1 : n ≤ 11) {α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < (32349375 + 39180105 * α + 10086687 * α ^ 2 - 24445935 * α ^ 3 + 11871036 * α ^ 4 - 351846 * α ^ 5 - 81598 * α ^ 6 - 4664 * α ^ 7 - 88 * α ^ 8) / (680400 * (3 + α) ^ 4) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B10_11
 

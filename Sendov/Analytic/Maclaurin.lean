@@ -152,15 +152,10 @@ lemma esymm_card_cons (a : ℝ) (t : Multiset ℝ) (ht : t ≠ 0) :
     omega⟩
   rw [hm]
   simp only [Multiset.esymm, Multiset.powersetCard_cons, Multiset.map_add, Multiset.sum_add,
-    Multiset.map_map, Nat.add_sub_cancel]
-  congr 1
-  · rw [← hm, Multiset.powersetCard_self]
-    simp
-  · rw [← Multiset.sum_map_mul_left]
-    congr 1
-    apply Multiset.map_congr rfl
-    intro u _
-    simp
+    Multiset.map_map, Nat.add_sub_cancel, Function.comp_def, Multiset.prod_cons,
+    Multiset.sum_map_mul_left]
+  rw [← hm, Multiset.powersetCard_self]
+  simp
 
 /-- **Maclaurin's inequality, top case.**  `e_{N-1}(s) ≤ N (mean s)^{N-1}`. -/
 theorem Multiset.esymm_card_pred_le : ∀ (s : Multiset ℝ), (∀ x ∈ s, 0 ≤ x) → s ≠ 0 →
@@ -213,9 +208,7 @@ theorem Multiset.esymm_card_pred_le : ∀ (s : Multiset ℝ), (∀ x ∈ s, 0 �
       · have hstep := maclaurin_step (a := a) t.card hc hupos ha
         calc t.prod + a * t.esymm (t.card - 1)
             ≤ u ^ t.card + a * ((t.card : ℝ) * u ^ (t.card - 1)) := by
-              have h2 : a * t.esymm (t.card - 1) ≤ a * ((t.card : ℝ) * u ^ (t.card - 1)) :=
-                mul_le_mul_of_nonneg_left hIH ha
-              linarith [hamgm]
+              exact add_le_add hamgm (mul_le_mul_of_nonneg_left hIH ha)
           _ = u ^ t.card + (t.card : ℝ) * a * u ^ (t.card - 1) := by ring
           _ ≤ ((t.card : ℝ) + 1) * ((a + t.card * u) / (t.card + 1)) ^ t.card := hstep
           _ = ((t.card : ℝ) + 1) * ((a + t.sum) / ((t.card : ℝ) + 1)) ^ t.card := by rw [hsum]

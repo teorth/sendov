@@ -5,6 +5,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch 14 to 15
@@ -90,14 +91,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 7) :
   have hu : (0 : ℝ) ≤ 7 - α := by linarith
   have hid : (7 : ℝ) ^ 12 * (4540012290450 + 9000770719122 * α + 7217967952260 * α ^ 2 + 2789503991820 * α ^ 3 + 226924812075 * α ^ 4 - 867448623285 * α ^ 5 + 235182487819 * α ^ 6 + 1315276135 * α ^ 7 - 765536900 * α ^ 8 - 78585080 * α ^ 9 - 3463520 * α ^ 10 - 74480 * α ^ 11 - 640 * α ^ 12) = 4540012290450 * (7 - α) ^ 12 + 117485542519254 * α ^ 1 * (7 - α) ^ 11 + 1346380586202834 * α ^ 2 * (7 - α) ^ 10 + 8957703596562630 * α ^ 3 * (7 - α) ^ 9 + 37714860895632375 * α ^ 4 * (7 - α) ^ 8 + 91053479724275985 * α ^ 5 * (7 - α) ^ 7 + 128817765797828254 * α ^ 6 * (7 - α) ^ 6 + 133833540832996984 * α ^ 7 * (7 - α) ^ 5 + 161773229978174745 * α ^ 8 * (7 - α) ^ 4 + 197834312331965435 * α ^ 9 * (7 - α) ^ 3 + 152113356071582990 * α ^ 10 * (7 - α) ^ 2 + 57359456154000000 * α ^ 11 * (7 - α) ^ 1 + 7376986416800000 * α ^ 12 := by
     ring
-  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (7 : ℝ) ^ 12)).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < 7 - α := by linarith
-    positivity
+  bernstein_cert α (7 - α) using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -128,8 +124,7 @@ theorem finite_range {n : ℕ} (h0 : 14 ≤ n) (h1 : n ≤ 15) {α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < (4540012290450 + 9000770719122 * α + 7217967952260 * α ^ 2 + 2789503991820 * α ^ 3 + 226924812075 * α ^ 4 - 867448623285 * α ^ 5 + 235182487819 * α ^ 6 + 1315276135 * α ^ 7 - 765536900 * α ^ 8 - 78585080 * α ^ 9 - 3463520 * α ^ 10 - 74480 * α ^ 11 - 640 * α ^ 12) / (9606092496 * (3 + α) ^ 6) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B14_15
 

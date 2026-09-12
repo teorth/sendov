@@ -46,27 +46,6 @@ lemma integral_exp_mul (hc : c ≠ 0) (a b : ℝ) :
   simp only [smul_eq_mul]
   field_simp
 
-/-- The closed form of the integral in `(lt)`. -/
-lemma integral_exp_eq (hα : 0 < α) (hB : B < 2) :
-    (∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t)))
-      = exp (-(α * B / 2)) * (sinh (α * (2 - B) / 2) / (α * (2 - B) / 2)) := by
-  have hkpos : 0 < α * (2 - B) := by
-    have : 0 < 2 - B := by linarith
-    positivity
-  have hrw : ∀ t : ℝ, α * (-1 + (2 - B) * t) = -α + α * (2 - B) * t := by
-    intro t; ring
-  simp only [hrw, Real.exp_add]
-  rw [intervalIntegral.integral_const_mul, integral_exp_mul hkpos.ne' 0 1]
-  simp only [mul_zero, Real.exp_zero]
-  have hEF : exp (-(α * B / 2)) = exp (-α) * exp (α * (2 - B) / 2) := by
-    rw [← Real.exp_add]; congr 1; ring
-  have hsq : exp (α * (2 - B) * 1) = exp (α * (2 - B) / 2) * exp (α * (2 - B) / 2) := by
-    rw [← Real.exp_add]; congr 1; ring
-  have hneg : exp (-(α * (2 - B) / 2)) = (exp (α * (2 - B) / 2))⁻¹ := Real.exp_neg _
-  have hF : exp (α * (2 - B) / 2) ≠ 0 := (Real.exp_pos _).ne'
-  rw [Real.sinh_eq, hEF, hsq, hneg]
-  field_simp
-
 /-- The same integral, in the form the logarithmic half of `(beta-bound)` uses. -/
 lemma integral_exp_eq' (hα : 0 < α) (hB : B < 2) :
     (∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t)))
@@ -82,6 +61,21 @@ lemma integral_exp_eq' (hα : 0 < α) (hB : B < 2) :
   have hsum : exp (-α) * exp (α * (2 - B) * 1) = exp (α * (1 - B)) := by
     rw [← Real.exp_add]; congr 1; ring
   rw [← hsum]
+  field_simp
+
+/-- The closed form of the integral in `(lt)`. -/
+lemma integral_exp_eq (hα : 0 < α) (hB : B < 2) :
+    (∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t)))
+      = exp (-(α * B / 2)) * (sinh (α * (2 - B) / 2) / (α * (2 - B) / 2)) := by
+  -- Evaluate once in endpoint form, then center the two exponentials for `sinh`.
+  rw [integral_exp_eq' hα hB, Real.sinh_eq]
+  have hplus : exp (α * (1 - B)) =
+      exp (-(α * B / 2)) * exp (α * (2 - B) / 2) := by
+    rw [← Real.exp_add]; congr 1; ring
+  have hminus : exp (-α) =
+      exp (-(α * B / 2)) / exp (α * (2 - B) / 2) := by
+    rw [← Real.exp_sub]; congr 1; ring
+  rw [hplus, hminus, Real.exp_neg (α * (2 - B) / 2)]
   field_simp
 
 /-- `(lt)` forces `B < 2`: otherwise the integrand never exceeds `e^{-α} < 1`. -/

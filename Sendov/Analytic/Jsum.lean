@@ -39,44 +39,24 @@ namespace Sendov
 
 lemma sum_map_sub (s : Multiset ℂ) (f g : ℂ → ℂ) :
     (s.map (fun v => f v - g v)).sum = (s.map f).sum - (s.map g).sum := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, ih]
-    ring
+  exact Multiset.sum_map_sub
 
 lemma sum_map_const_sub (s : Multiset ℂ) (c : ℂ) (g : ℂ → ℂ) :
     (s.map (fun v => c - g v)).sum = (s.card : ℂ) * c - (s.map g).sum := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons, ih]
-    push_cast
-    ring
+  rw [sum_map_sub]
+  simp
 
 lemma sum_map_re (s : Multiset ℂ) : (s.map (fun v => v.re)).sum = s.sum.re := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih => simp only [Multiset.map_cons, Multiset.sum_cons, Complex.add_re, ih]
+  exact (map_multiset_sum Complex.reAddGroupHom s).symm
 
 lemma norm_sum_map_le (s : Multiset ℂ) (f : ℂ → ℂ) :
     ‖(s.map f).sum‖ ≤ (s.map (fun w => ‖f w‖)).sum := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons]
-    linarith [norm_add_le (f v) ((t.map f).sum), ih]
+  simpa only [Multiset.map_map, Function.comp_def] using norm_multiset_sum_le (s.map f)
 
 lemma norm_prod_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ ≤ 1) → ‖s.prod‖ ≤ 1 := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v t ih =>
-    intro hs
-    have hv := hs v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖u‖ ≤ 1 := fun u hu => hs u (Multiset.mem_cons_of_mem hu)
-    rw [Multiset.prod_cons, norm_mul]
-    nlinarith [ih ht, norm_nonneg v, norm_nonneg t.prod]
+  intro s hs
+  rw [norm_multiset_prod]
+  exact prod_norm_le_one s hs
 
 /-- `(∏ s) ∑ⱼ 1/sⱼ = ∑ⱼ ∏_{k≠j} sₖ`, the clearing of denominators that is valid exactly when
 no `sⱼ` vanishes. -/

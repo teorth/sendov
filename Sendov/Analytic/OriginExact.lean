@@ -42,25 +42,17 @@ open Complex (I)
 
 lemma sum_norm_le_card : ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →
     (q.map (fun v => ‖v‖)).sum ≤ (q.card : ℝ) := by
-  intro q
-  induction q using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v t ih =>
-    intro hq
-    have hv := hq v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖u‖ ≤ 1 := fun u hu => hq u (Multiset.mem_cons_of_mem hu)
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    linarith [ih ht]
+  intro q hq
+  simpa using Multiset.sum_map_le_sum_map (fun v : ℂ => ‖v‖) (fun _ => (1 : ℝ)) hq
 
 /-- `|s + it| ≤ s + t²/(2s)` for `s > 0`, in cleared form.  Squaring both sides leaves
-`t⁴ ≥ 0`. -/
+`t⁴ ≥ 0`; directly, the cleared inequality is `(‖w‖ - w.re)² ≥ 0`. -/
 lemma norm_mul_two_re_le {w : ℂ} (_hs : 0 < w.re) :
     ‖w‖ * (2 * w.re) ≤ 2 * w.re ^ 2 + w.im ^ 2 := by
   have h1 : ‖w‖ ^ 2 = w.re ^ 2 + w.im ^ 2 := by
     rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply]
     ring
-  nlinarith [norm_nonneg w, h1, sq_nonneg (w.im ^ 2), sq_nonneg (w.re * w.im)]
+  nlinarith only [h1, sq_nonneg (‖w‖ - w.re)]
 
 /-! ### The quantity `W`, the growth bound `(grow)`, and the two real-arithmetic steps -/
 
@@ -77,14 +69,13 @@ lemma Worigin_eq (n : ℕ) (a x y : ℝ) :
 
 lemma Worigin_re (n : ℕ) (a x y : ℝ) :
     (Worigin n a x y).re = a ^ 2 * ((n : ℝ) - 1) + 1 - a * x := by
-  rw [Worigin_eq, Complex.add_re, Complex.ofReal_re, Complex.mul_re, Complex.ofReal_re,
-    Complex.ofReal_im, Complex.I_re, Complex.I_im]
-  ring
+  rw [Worigin_eq]
+  simp only [Complex.add_re, Complex.ofReal_re, Complex.mul_I_re, Complex.ofReal_im,
+    neg_zero, add_zero]
 
 lemma Worigin_im (n : ℕ) (a x y : ℝ) : (Worigin n a x y).im = -(a * y) := by
-  rw [Worigin_eq, Complex.add_im, Complex.ofReal_im, Complex.mul_im, Complex.ofReal_re,
-    Complex.ofReal_im, Complex.I_re, Complex.I_im]
-  ring
+  rw [Worigin_eq]
+  simp only [Complex.add_im, Complex.ofReal_im, Complex.mul_I_im, Complex.ofReal_re, zero_add]
 
 /-- **(grow).**  `‖W‖ ≥ 2an/(n-1)`.  Bounding `‖W‖` below by its real part reduces this to
 `(n-1)²a² - (3n-1)a + (n-1) > 0`; completing the square turns that into

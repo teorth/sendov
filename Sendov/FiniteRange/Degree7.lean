@@ -101,12 +101,10 @@ theorem finite_range_seven (hα : 0 ≤ α) (hfeas : c 7 α ^ 2 ≤ A 7 α) : R 
   rw [hid] at hR
   have hP : 0 < -5 * α ^ 6 - 222 * α ^ 5 - 2619 * α ^ 4 + 17388 * α ^ 3 + 19413 * α ^ 2
       - 5022 * α + 33291 := by
-    nlinarith [mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
+    nlinarith only [hα, pow_nonneg hα 3, mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
       mul_nonneg (pow_nonneg hα 4) (sub_nonneg.2 hle),
       mul_nonneg (pow_nonneg hα 5) (sub_nonneg.2 hle),
       sq_nonneg (19413 * α - 2511)]
-  have : 0 < (-5 * α ^ 6 - 222 * α ^ 5 - 2619 * α ^ 4 + 17388 * α ^ 3 + 19413 * α ^ 2
-      - 5022 * α + 33291) / (2592 * (3 + α) ^ 3) := div_pos hP (by positivity)
-  linarith
+  exact hR.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end Sendov

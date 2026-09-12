@@ -141,9 +141,12 @@ lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 
       ((hc2.add hc3).intervalIntegrable _ _) ?_
     intro u hu
     have h := beta_split hn ha ha1 hx hu.1 hu.2
-    have hu0 : (0 : ℝ) ≤ u := hu.1
-    nlinarith [h, hu0, Real.rpow_nonneg (QQ_nonneg (by nlinarith [sq_nonneg a] :
-      (a * x) ^ 2 ≤ a ^ 2) u) (((n : ℝ) - 4) / 2)]
+    -- Multiply the pointwise split by the nonnegative integration weight.
+    calc _ ≤ u * ((1 - a * x * u) ^ ((n : ℝ) - 2)
+          + ((n : ℝ) - 2) / 2 * (a ^ 2 * u ^ 2 * (1 - x ^ 2))
+            * QQ (a * x) (a ^ 2) u ^ (((n : ℝ) - 4) / 2)) :=
+          mul_le_mul_of_nonneg_left h hu.1
+      _ = _ := by ring
   refine hstep.trans ?_
   rw [intervalIntegral.integral_const_mul]
   gcongr
@@ -245,23 +248,13 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
     linarith [horigin, hkey, hinv', hfirst, hlast, hax_eq]
   -- divide by `2α`
   have h2α : (0 : ℝ) < 2 * α := by linarith
+  -- Divide the assembled inequality once; normalize all five terms together.
+  have hscaled := div_le_div_of_nonneg_right hmain h2α.le
   have hne : (1 : ℝ) - B1 ≠ 0 := by linarith
-  have h1 : 2 * α * (B1 / (2 * α * (1 - B1))) = B1 / (1 - B1) := by
-    field_simp
-  have h2 : 2 * α * (B1 / (4 * α)) = B1 / 2 := by
-    field_simp
+  convert hscaled using 1
+  · rfl
+  · exact (div_self h2α.ne').symm
+  · field_simp
     ring
-  have h3 : 2 * α * (1 / (2 * M n)) = α / M n := by
-    field_simp
-  have h4 : 2 * α * (B1 / (4 * α * M n)) = B1 / (2 * M n) := by
-    field_simp
-    ring
-  have h5 : 2 * α * ((a ^ 2) ^ 2 * (n : ℝ) * M n * ((n : ℝ) - 2) * B1 / (4 * α) * I3)
-      = (a ^ 2) ^ 2 * (n : ℝ) * M n * ((n : ℝ) - 2) * B1 / 2 * I3 := by
-    field_simp
-    ring
-  refine le_of_mul_le_mul_left ?_ h2α
-  rw [mul_one, mul_add, mul_add, mul_add, mul_add, h1, h2, h3, h4, h5]
-  exact hmain
 
 end Sendov

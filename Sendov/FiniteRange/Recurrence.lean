@@ -135,8 +135,8 @@ lemma rev_rscale (g : List ℤ) (r : List (List ℤ)) (α t : ℝ) :
   induction r with
   | nil => simp [rscale]
   | cons p r ih =>
-    simp only [rscale, List.map_cons, rev_cons, pev_pmul] at *
-    rw [ih]
+    change rev (pmul g p :: rscale g r) α t = _
+    rw [rev_cons, pev_pmul, ih, rev_cons]
     ring
 
 lemma rev_shift (r : List (List ℤ)) (α t : ℝ) :
@@ -240,10 +240,7 @@ def gg2 (n : ℕ) : List ℤ := [6 * ((n : ℤ) - 1), 2 * ((n : ℤ) - 1) - 12, 
 lemma DQ_eq (n : ℕ) (hn : 2 ≤ n) (α t : ℝ) (hα : 0 ≤ α) :
     (2 * M n * (3 + α)) * Q n α t
       = pev (gg0 n) α + pev (gg1 n) α * t + pev (gg2 n) α * t ^ 2 := by
-  have hM : ((n : ℝ) - 1) ≠ 0 := by
-    have h := M_pos hn
-    simp only [M] at h
-    linarith
+  have hM : ((n : ℝ) - 1) ≠ 0 := (M_pos hn).ne'
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   simp only [gg0, gg1, gg2, pev_cons, pev_nil, Q, c, A, M]
   push_cast

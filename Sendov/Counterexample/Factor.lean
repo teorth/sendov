@@ -108,12 +108,7 @@ theorem exists_crit_multiset {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.nat
     linarith
   obtain ⟨q, hq⟩ : ∃ q : Multiset ℂ, q = W.map (fun w => (a - w)⁻¹) := ⟨_, rfl⟩
   have hback : q.map (fun v => a - v⁻¹) = W := by
-    rw [hq, Multiset.map_map]
-    have hid : ∀ w ∈ W, ((fun v => a - v⁻¹) ∘ (fun w => (a - w)⁻¹)) w = w := by
-      intro w hw
-      simp only [Function.comp_apply, inv_inv]
-      ring
-    rw [Multiset.map_congr rfl hid, Multiset.map_id']
+    simp [hq, Multiset.map_map]
   refine ⟨q, ?_, ?_, ?_, ?_⟩
   · rw [hq, Multiset.card_map, hcard]
   · intro v hv

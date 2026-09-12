@@ -73,24 +73,11 @@ lemma norm_sub_le_norm_one_sub_mul {a : ℝ} (ha : |a| ≤ 1) {z : ℂ} (hz : �
 /-! ### Products of norms over a multiset -/
 
 lemma norm_multiset_prod (s : Multiset ℂ) : ‖s.prod‖ = (s.map (fun w => ‖w‖)).prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons w t ih => simp [ih]
+  exact map_multiset_prod (normHom : ℂ →*₀ ℝ) s
 
 lemma prod_map_le_of_le {s : Multiset ℂ} {f g : ℂ → ℂ} (h : ∀ w ∈ s, ‖f w‖ ≤ ‖g w‖) :
     (s.map (fun w => ‖f w‖)).prod ≤ (s.map (fun w => ‖g w‖)).prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons w t ih =>
-    have hw := h w (Multiset.mem_cons_self w t)
-    have ht : ∀ u ∈ t, ‖f u‖ ≤ ‖g u‖ := fun u hu => h u (Multiset.mem_cons_of_mem hu)
-    have hnn : (0 : ℝ) ≤ (t.map (fun u => ‖f u‖)).prod :=
-      Multiset.prod_nonneg (by
-        intro y hy
-        obtain ⟨u, _, rfl⟩ := Multiset.mem_map.1 hy
-        exact norm_nonneg _)
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    exact mul_le_mul hw (ih ht) hnn (norm_nonneg _)
+  exact Multiset.prod_map_le_prod_map₀ _ _ (fun _ _ => norm_nonneg _) h
 
 /-! ### The branch point -/
 
@@ -102,10 +89,7 @@ lemma norm_prod_map (s : Multiset ℂ) (f : ℂ → ℂ) :
 
 lemma prod_map_norm_nonneg (s : Multiset ℂ) (f : ℂ → ℂ) :
     0 ≤ (s.map (fun w => ‖f w‖)).prod := by
-  refine Multiset.prod_nonneg ?_
-  intro y hy
-  obtain ⟨u, _, rfl⟩ := Multiset.mem_map.1 hy
-  exact norm_nonneg _
+  exact Multiset.prod_map_nonneg (fun _ _ => norm_nonneg _)
 
 /-- **The branch point `(⋆)`.**  `1 ≤ ∫₀¹ ∏ⱼ |a + t(1-a²)qⱼ| dt`.
 
@@ -164,11 +148,7 @@ lemma norm_sq_add_real_mul (a s : ℝ) (v : ℂ) :
 
 lemma prod_map_sq (s : Multiset ℂ) (f : ℂ → ℝ) :
     (s.map (fun v => f v ^ 2)).prod = ((s.map f).prod) ^ 2 := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.prod_cons, ih]
-    ring
+  exact Multiset.prod_map_pow
 
 /-- Splitting `∑ⱼ ‖a + s qⱼ‖²` into its three pieces. -/
 lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
@@ -185,14 +165,8 @@ lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
 
 lemma sum_norm_sq_le_card (q : Multiset ℂ) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) :
     (q.map (fun v => ‖v‖ ^ 2)).sum ≤ (q.card : ℝ) := by
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    have hv := hq1 v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖u‖ ≤ 1 := fun u hu => hq1 u (Multiset.mem_cons_of_mem hu)
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    nlinarith [ih ht, norm_nonneg v]
+  simpa using Multiset.sum_map_le_sum_map (fun v : ℂ => ‖v‖ ^ 2) (fun _ => (1 : ℝ))
+    (fun v hv => pow_le_one₀ (norm_nonneg v) (hq1 v hv))
 
 lemma continuous_prod_norm (a : ℝ) (q : Multiset ℂ) :
     Continuous fun t : ℝ =>

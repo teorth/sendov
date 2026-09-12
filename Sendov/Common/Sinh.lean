@@ -75,13 +75,8 @@ private lemma nonneg_of_deriv {f g : ℝ → ℝ} (hd : ∀ z, HasDerivAt f (g z
   simpa [h0] using hmono (mem_Ici.2 le_rfl) (mem_Ici.2 hy) hy
 
 /-- `1 + y + y²/2 ≤ exp y` for `y ≥ 0`: three terms of the exponential series. -/
-private lemma quad_le_exp {y : ℝ} (hy : 0 ≤ y) : 1 + y + y ^ 2 / 2 ≤ exp y := by
-  suffices 0 ≤ exp y - 1 - y - y ^ 2 / 2 by linarith
-  refine nonneg_of_deriv (f := fun t => exp t - 1 - t - t ^ 2 / 2)
-    (g := fun t => exp t - 1 - t) (fun t => ?_) (by norm_num) (fun t ht => ?_) hy
-  · exact ((((hasDerivAt_exp t).sub_const 1).sub (hasDerivAt_id' t)).sub
-      ((hasDerivAt_pow 2 t).div_const 2)).congr_deriv (by norm_num)
-  · linarith [add_one_le_exp t]
+private lemma quad_le_exp {y : ℝ} (hy : 0 ≤ y) : 1 + y + y ^ 2 / 2 ≤ exp y :=
+  Real.quadratic_le_exp_of_nonneg hy
 
 /-- The family closed under differentiation: `e^{2y} u(y) - e^y v(y) - w(y)` with `u`, `w`
 cubic and `v` quartic. -/

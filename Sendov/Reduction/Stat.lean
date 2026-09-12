@@ -95,8 +95,9 @@ theorem stat_of_one_le (hn : 5 ≤ n) (hx : x ^ 2 ≤ 1)
     rw [div_le_div_iff₀ (by linarith) (by linarith)]
     nlinarith [hkey]
   have t4 : B1 / (4 * α * M n) ≤ 1 / (4 * M n * (3 + α)) := by
-    rw [div_le_div_iff₀ (by positivity) (by positivity)]
-    nlinarith [hkey, hM]
+    -- This is the same scalar bound as `t2`, divided by the positive `M`.
+    simpa only [div_div, mul_assoc, mul_comm, mul_left_comm] using
+      div_le_div_of_nonneg_right t2 hM.le
   -- the integral term
   have hcle : c n α ≤ a * x := c_le_mul hn2 hα hα0 hbeta
   have hr : (0 : ℝ) ≤ ((n : ℝ) - 4) / 2 := by
@@ -119,17 +120,12 @@ theorem stat_of_one_le (hn : 5 ≤ n) (hx : x ^ 2 ≤ 1)
         * ∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2) := by
     have hcoef : (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * B1 / (4 * α)
         ≤ A n α ^ 2 * n * M n * ((n : ℝ) - 2) / (4 * (3 + α)) := by
-      rw [hA, div_le_div_iff₀ (by linarith) (by linarith)]
-      nlinarith [hkey, hpre]
-    have hstep1 : (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * B1 / (4 * α)
-          * (∫ t in (0 : ℝ)..1, t ^ 3 * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 4) / 2))
-        ≤ A n α ^ 2 * n * M n * ((n : ℝ) - 2) / (4 * (3 + α))
-          * (∫ t in (0 : ℝ)..1, t ^ 3 * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 4) / 2)) :=
-      mul_le_mul_of_nonneg_right hcoef hInn
-    refine hstep1.trans ?_
+      rw [hA]
+      simpa only [← mul_div_assoc, mul_one] using mul_le_mul_of_nonneg_left t2 hpre
     have hcnn : (0 : ℝ) ≤ A n α ^ 2 * n * M n * ((n : ℝ) - 2) / (4 * (3 + α)) := by
       rw [hA]; positivity
-    refine mul_le_mul_of_nonneg_left ?_ hcnn
+    -- Both the coefficient and the integral increase under the substitution.
+    apply mul_le_mul hcoef ?_ hInn hcnn
     simpa only [Q_eq_QQ, hA] using hI
   rw [R]
   linarith

@@ -36,24 +36,25 @@ def Nmom97_46 : List ℤ :=
 theorem pev_Nmom97_46 (α : ℝ) :
     pev Nmom97_46 α = pev (wsum L97_46 0 (qrow (gg0 97) (gg1 97) (gg2 97) 46)) α := by
   refine pev_wsum_eq_of_packed (gg0 97) (gg1 97) (gg2 97) 46 139 L97_46 beta97_46 tau97_46
-    Nmom97_46 (by norm_num [beta97_46]) (by norm_num [tau97_46]) ?_ ?_ ?_ ?_ ?_ ?_ α
+    Nmom97_46 (by decide) (by decide) ?_ ?_ ?_ ?_ ?_ ?_ α
+  -- Bound the packed row structurally, without expanding qrow.
   · refine rowZ_bound (gg0 97) (gg1 97) (gg2 97) 46 3 beta97_46 tau97_46
-      (by norm_num [beta97_46]) (by decide) (by decide) (by decide) ?_
+      (by decide) (by decide) (by decide) (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, beta97_46, tau97_46]
-  · decide
+  · decide -- Every supplied numerator coefficient fits in β.
   · refine wsum_bound (gg0 97) (gg1 97) (gg2 97) 46 L97_46 beta97_46
-      (by norm_num [L97_46]) ?_
+      (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, L97_46, beta97_46]
-  · decide
+  · decide -- The supplied list satisfies the promised length bound.
   · exact wsum_length_le L97_46 _ 0
       (qrow_entry_length_le (gg0 97) (gg1 97) (gg2 97) 3 (by decide) (by decide) (by decide) 46)
-  · rfl
+  · rfl -- The remaining check is the exact packed integer equality.
 
 /-- The degree-97 moment at `k = 46`. -/
 theorem integral_ninetyseven_46 (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 97 α t ^ 46)
       = pev Nmom97_46 α / ((L97_46 : ℝ) * (2 * M 97 * (3 + α)) ^ 46) :=
-  integral_moment_packed 97 46 (by norm_num) α hα L97_46 (by norm_num [L97_46]) Nmom97_46
+  integral_moment_packed 97 46 (by norm_num) α hα L97_46 (by decide) Nmom97_46
     (by decide) (pev_Nmom97_46 α)
 
 /-- `lcm (4 .. 98)`. -/
@@ -72,24 +73,25 @@ def Nmom97_47 : List ℤ :=
 theorem pev_Nmom97_47 (α : ℝ) :
     pev Nmom97_47 α = pev (wsum L97_47 0 (qrow (gg0 97) (gg1 97) (gg2 97) 47)) α := by
   refine pev_wsum_eq_of_packed (gg0 97) (gg1 97) (gg2 97) 47 142 L97_47 beta97_47 tau97_47
-    Nmom97_47 (by norm_num [beta97_47]) (by norm_num [tau97_47]) ?_ ?_ ?_ ?_ ?_ ?_ α
+    Nmom97_47 (by decide) (by decide) ?_ ?_ ?_ ?_ ?_ ?_ α
+  -- Bound the packed row structurally, without expanding qrow.
   · refine rowZ_bound (gg0 97) (gg1 97) (gg2 97) 47 3 beta97_47 tau97_47
-      (by norm_num [beta97_47]) (by decide) (by decide) (by decide) ?_
+      (by decide) (by decide) (by decide) (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, beta97_47, tau97_47]
-  · decide
+  · decide -- Every supplied numerator coefficient fits in β.
   · refine wsum_bound (gg0 97) (gg1 97) (gg2 97) 47 L97_47 beta97_47
-      (by norm_num [L97_47]) ?_
+      (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, L97_47, beta97_47]
-  · decide
+  · decide -- The supplied list satisfies the promised length bound.
   · exact wsum_length_le L97_47 _ 0
       (qrow_entry_length_le (gg0 97) (gg1 97) (gg2 97) 3 (by decide) (by decide) (by decide) 47)
-  · rfl
+  · rfl -- The remaining check is the exact packed integer equality.
 
 /-- The degree-97 moment at `k = 47`. -/
 theorem integral_ninetyseven_47 (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 97 α t ^ 47)
       = pev Nmom97_47 α / ((L97_47 : ℝ) * (2 * M 97 * (3 + α)) ^ 47) :=
-  integral_moment_packed 97 47 (by norm_num) α hα L97_47 (by norm_num [L97_47]) Nmom97_47
+  integral_moment_packed 97 47 (by norm_num) α hα L97_47 (by decide) Nmom97_47
     (by decide) (pev_Nmom97_47 α)
 
 end Sendov

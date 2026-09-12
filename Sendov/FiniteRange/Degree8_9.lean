@@ -5,6 +5,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch 8 to 9
@@ -92,12 +93,7 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 4) :
     ring
   -- The Bernstein summands are nonnegative. If α > 0 the last one is positive;
   -- at α = 0 the first one is positive. No per-coefficient hypotheses are needed.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (4 : ℝ) ^ 6)).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < 4 - α := by linarith
-    positivity
+  bernstein_cert α (4 - α) using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -128,8 +124,7 @@ theorem finite_range {n : ℕ} (h0 : 8 ≤ n) (h1 : n ≤ 9) {α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < (656208 + 407736 * α - 877827 * α ^ 2 + 621074 * α ^ 3 - 39267 * α ^ 4 - 5436 * α ^ 5 - 180 * α ^ 6) / (47040 * (3 + α) ^ 3) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B8_9
 

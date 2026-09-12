@@ -85,14 +85,7 @@ P = poly(cf)
 bern = " + ".join((f"{G[0]} * (17 - α) ^ {d}" if m == 0 else
                    f"{G[d]} * α ^ {d}" if m == d else
                    f"{G[m]} * α ^ {m} * (17 - α) ^ {d-m}") for m in range(d+1))
-haves = "\n".join(
-    (f"  have h{m} : (0:ℝ) ≤ {G[0]} * (17 - α) ^ {d} :=\n"
-     f"    mul_nonneg (by norm_num) (pow_nonneg hu {d})" if m == 0 else
-     f"  have h{m} : (0:ℝ) ≤ {G[d]} * α ^ {d} :=\n"
-     f"    mul_nonneg (by norm_num) (pow_nonneg hα {d})" if m == d else
-     f"  have h{m} : (0:ℝ) ≤ {G[m]} * α ^ {m} * (17 - α) ^ {d-m} :=\n"
-     f"    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα {m})) (pow_nonneg hu {d-m})")
-    for m in range(d+1))
+
 
 src = f'''/-
 Copyright (c) 2026 Terence Tao. All rights reserved.
@@ -100,6 +93,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Terence Tao
 -/
 import Sendov.LargeDegree.Monotone
+import Sendov.Common.BernsteinCert
 
 /-!
 # The large-degree claim
@@ -149,16 +143,9 @@ set_option maxHeartbeats 4000000 in
 lemma F_pos (hα : 0 ≤ α) (hα' : α ≤ 17) :
     0 < {P} := by
   have hu : (0 : ℝ) ≤ 17 - α := by linarith
-{haves}
   have hid : (17 : ℝ) ^ {d} * ({P}) = {bern} := by
     ring
-  rcases le_total α (17 / 2) with h | h
-  · have hpos : (0 : ℝ) < {G[0]} * (17 - α) ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
-  · have hpos : (0 : ℝ) < {G[d]} * α ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
+  bernstein_cert α (17 - α) using hid
 
 set_option maxHeartbeats 4000000 in
 /-- **The bound in `α` alone is below `1`.** -/

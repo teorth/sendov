@@ -5,6 +5,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch 12 to 13
@@ -90,14 +91,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 6) :
   have hu : (0 : ℝ) ≤ 6 - α := by linarith
   have hid : (6 : ℝ) ^ 10 * (67214552328 + 108758874312 * α + 64248083658 * α ^ 2 + 8893434528 * α ^ 3 - 26471207052 * α ^ 4 + 9402730740 * α ^ 5 - 77587159 * α ^ 6 - 46242248 * α ^ 7 - 3634800 * α ^ 8 - 118976 * α ^ 9 - 1456 * α ^ 10) = 67214552328 * (6 - α) ^ 10 + 1324698769152 * α ^ 1 * (6 - α) ^ 9 + 11210565079296 * α ^ 2 * (6 - α) ^ 8 + 51982093082304 * α ^ 3 * (6 - α) ^ 7 + 112831785636336 * α ^ 4 * (6 - α) ^ 6 + 136300060037952 * α ^ 5 * (6 - α) ^ 5 + 172834300408608 * α ^ 6 * (6 - α) ^ 4 + 277236880276032 * α ^ 7 * (6 - α) ^ 3 + 281516219316936 * α ^ 8 * (6 - α) ^ 2 + 131510134768320 * α ^ 9 * (6 - α) ^ 1 + 19805743188000 * α ^ 10 := by
     ring
-  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (6 : ℝ) ^ 10)).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < 6 - α := by linarith
-    positivity
+  bernstein_cert α (6 - α) using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -128,8 +124,7 @@ theorem finite_range {n : ℕ} (h0 : 12 ≤ n) (h1 : n ≤ 13) {α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < (67214552328 + 108758874312 * α + 64248083658 * α ^ 2 + 8893434528 * α ^ 3 - 26471207052 * α ^ 4 + 9402730740 * α ^ 5 - 77587159 * α ^ 6 - 46242248 * α ^ 7 - 3634800 * α ^ 8 - 118976 * α ^ 9 - 1456 * α ^ 10) / (442743840 * (3 + α) ^ 5) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B12_13
 

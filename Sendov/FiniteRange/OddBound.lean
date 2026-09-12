@@ -44,15 +44,9 @@ lemma sqrt_le_tangent (hq : 0 ≤ q) (hw : 0 < w) : Real.sqrt q ≤ q / (2 * w) 
 /-- The half-integer power bound `q ^ (k + 1/2) ≤ q ^ k * (q/(2w) + w/2)`. -/
 lemma rpow_add_half_le (hq : 0 ≤ q) (k : ℕ) (hw : 0 < w) :
     q ^ ((k : ℝ) + 1 / 2) ≤ q ^ k * (q / (2 * w) + w / 2) := by
-  rcases hq.lt_or_eq with h | h
-  · have he : q ^ ((k : ℝ) + 1 / 2) = q ^ k * Real.sqrt q := by
-      rw [Real.rpow_add h, Real.rpow_natCast, Real.sqrt_eq_rpow]
-    rw [he]
-    exact mul_le_mul_of_nonneg_left (sqrt_le_tangent hq hw) (pow_nonneg hq k)
-  · rw [← h, Real.zero_rpow (by positivity)]
-    refine mul_nonneg (pow_nonneg le_rfl k) ?_
-    rw [zero_div]
-    linarith
+  rw [Real.rpow_add_of_nonneg hq (Nat.cast_nonneg k) (by positivity),
+    Real.rpow_natCast, ← Real.sqrt_eq_rpow]
+  exact mul_le_mul_of_nonneg_left (sqrt_le_tangent hq hw) (pow_nonneg hq k)
 
 /-- **The odd-degree bound.**  The square root is eliminated in favour of polynomial
 moments, at the cost of a free parameter `w > 0`. -/

@@ -330,32 +330,22 @@ zero-padded. -/
 theorem unpackZ_pevZ_le (β : ℤ) (hβ : 0 < β) :
     ∀ (m : ℕ) (p : List ℤ), p.length ≤ m → (∀ a ∈ p, 2 * |a| < β) →
       unpackZ β m (pevZ p β) = p ++ List.replicate (m - p.length) 0 := by
-  intro m
-  induction m with
-  | zero =>
-    intro p hlen _
-    simp [List.length_eq_zero_iff.1 (Nat.le_zero.1 hlen)]
-  | succ m ih =>
-    intro p hlen hb
-    cases p with
-    | nil =>
-      have h0 : bdig β 0 = 0 := by
-        have : (0 : ℤ) % β = 0 := Int.zero_emod β
-        simp only [bdig, this]
-        split_ifs <;> omega
-      simp only [pevZ_nil, unpackZ_succ, h0, List.nil_append, List.length_nil,
-        Nat.sub_zero, List.replicate_succ]
-      have := ih [] (Nat.zero_le m) (by simp)
-      simpa using this
-    | cons a p =>
-      have ha : 2 * |a| < β := hb a (List.mem_cons_self ..)
-      have hp : ∀ x ∈ p, 2 * |x| < β := fun x hx => hb x (List.mem_cons_of_mem _ hx)
-      have hd : bdig β (a + β * pevZ p β) = a := bdig_add_mul β a _ hβ ha
-      have hq : (a + β * pevZ p β - a) / β = pevZ p β := by
-        rw [add_sub_cancel_left, Int.mul_ediv_cancel_left _ hβ.ne']
-      simp only [pevZ_cons, unpackZ_succ, hd, hq, List.length_cons]
-      rw [ih p (by simpa using Nat.le_of_succ_le_succ hlen) hp]
-      simp
+  intro m p hlen hb
+  -- Apply the exact round trip to the padded list, rather than repeat digit extraction.
+  have hlen' : (p ++ List.replicate (m - p.length) 0).length = m := by
+    simp only [List.length_append, List.length_replicate]
+    omega
+  have heval : pevZ (p ++ List.replicate (m - p.length) 0) β = pevZ p β := by
+    have h := pev_append_zeros p (m - p.length) (β : ℝ)
+    simp only [pev_intCast] at h
+    exact_mod_cast h
+  have hround := unpackZ_pevZ β hβ (p ++ List.replicate (m - p.length) 0) (by
+    intro a ha
+    rcases List.mem_append.1 ha with ha | ha
+    · exact hb a ha
+    · have ha0 : a = 0 := (List.mem_replicate.1 ha).2
+      simpa [ha0] using hβ)
+  simpa only [hlen', heval] using hround
 
 /-- The weighted sum computed directly on the α-packed row. -/
 def wsumZ (L : ℤ) : ℕ → List ℤ → ℤ
@@ -368,18 +358,15 @@ def wsumZ (L : ℤ) : ℕ → List ℤ → ℤ
     wsumZ L i (a :: s) = (L / ((i : ℤ) + 4)) * a + wsumZ L (i + 1) s := rfl
 
 lemma pevZ_padd (p q : List ℤ) (b : ℤ) : pevZ (padd p q) b = pevZ p b + pevZ q b := by
-  induction p generalizing q with
-  | nil => simp [padd]
-  | cons a p ih =>
-    cases q with
-    | nil => simp [padd]
-    | cons c q => simp only [padd, pevZ_cons, ih]; ring
+  have h := pev_padd p q (b : ℝ)
+  simp only [pev_intCast] at h
+  exact_mod_cast h
 
 lemma pevZ_map_mul (c : ℤ) (q : List ℤ) (b : ℤ) :
     pevZ (q.map (fun x => c * x)) b = c * pevZ q b := by
-  induction q with
-  | nil => simp
-  | cons x q ih => simp only [List.map_cons, pevZ_cons, ih]; ring
+  have h := pev_map_mul c q (b : ℝ)
+  simp only [pev_intCast] at h
+  exact_mod_cast h
 
 /-- The packed weighted sum agrees with packing the weighted sum: this is what makes the
 check a single integer comparison. -/
@@ -620,20 +607,7 @@ theorem integral_moment_packed (n k : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 �
 
 /-- Every coefficient of every entry of a row is bounded by the row's `L¹` norm. -/
 lemma abs_le_l1row : ∀ (r : List (List ℤ)) (p : List ℤ), p ∈ r → ∀ a ∈ p, |a| ≤ l1row r := by
-  intro r
-  induction r with
-  | nil => intro p hp; cases hp
-  | cons q r ih =>
-    intro p hp a ha
-    rcases List.mem_cons.1 hp with h | h
-    · subst h
-      have := abs_le_l1 p a ha
-      have := l1row_nonneg r
-      simp only [l1row_cons]
-      omega
-    · have := ih p h a ha
-      have := l1_nonneg q
-      simp only [l1row_cons]
-      omega
+  intro r p hp a ha
+  exact (abs_le_l1 p a ha).trans (l1_le_l1row r p hp)
 
 end Sendov

@@ -50,11 +50,8 @@ lemma integral_lin_mul_rpow {s : ℝ} (hs : 0 < s) :
       (1 - x) * x ^ s = x ^ s - x ^ (s + (1 : ℕ)) := by
     intro x hx
     rw [Set.uIcc_of_le (by norm_num : (0 : ℝ) ≤ 1)] at hx
-    rcases eq_or_lt_of_le hx.1 with h | h
-    · rw [← h, Real.zero_rpow (by positivity), Real.zero_rpow (by push_cast; linarith)]
-      ring
-    · rw [rpow_add_nat_pos h]
-      ring
+    rw [Real.rpow_add_natCast' hx.1 (by positivity : s + (1 : ℕ) ≠ 0)]
+    ring
   rw [hrefl, intervalIntegral.integral_congr hcongr]
   have hi' : IntervalIntegrable (fun x : ℝ => x ^ s) volume 0 1 :=
     intervalIntegral.intervalIntegrable_rpow' (by linarith)
@@ -83,13 +80,10 @@ lemma integral_cube_mul_rpow {s : ℝ} (hs : 0 < s) :
         = x ^ s - 3 * x ^ (s + (1 : ℕ)) + 3 * x ^ (s + (2 : ℕ)) - x ^ (s + (3 : ℕ)) := by
     intro x hx
     rw [Set.uIcc_of_le (by norm_num : (0 : ℝ) ≤ 1)] at hx
-    rcases eq_or_lt_of_le hx.1 with h | h
-    · rw [← h]
-      rw [Real.zero_rpow (by positivity), Real.zero_rpow (by push_cast; linarith),
-        Real.zero_rpow (by push_cast; linarith), Real.zero_rpow (by push_cast; linarith)]
-      ring
-    · rw [rpow_add_nat_pos h, rpow_add_nat_pos h, rpow_add_nat_pos h]
-      ring
+    rw [Real.rpow_add_natCast' hx.1 (by positivity : s + (1 : ℕ) ≠ 0),
+      Real.rpow_add_natCast' hx.1 (by positivity : s + (2 : ℕ) ≠ 0),
+      Real.rpow_add_natCast' hx.1 (by positivity : s + (3 : ℕ) ≠ 0)]
+    ring
   rw [hrefl, intervalIntegral.integral_congr hcongr]
   have hi' : IntervalIntegrable (fun x : ℝ => x ^ s) volume 0 1 :=
     intervalIntegral.intervalIntegrable_rpow' (by linarith)

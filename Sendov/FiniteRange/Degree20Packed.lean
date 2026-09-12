@@ -40,24 +40,24 @@ integer exponentiation and seventeen digit extractions. -/
 theorem Nmom20_eq :
     Nmom20 = wsum L20 0 (qrow (gg0 20) (gg1 20) (gg2 20) 8) := by
   refine wsum_eq_of_packed (gg0 20) (gg1 20) (gg2 20) 8 L20 beta20 tau20 Nmom20
-    (by norm_num [beta20]) (by norm_num [tau20]) ?_ ?_ ?_ ?_ ?_
-  · decide
-  · decide
-  · decide
-  · rfl
-  · rfl
+    (by decide) (by decide) ?_ ?_ ?_ ?_ ?_
+  · decide -- No overflow when packing the row in τ.
+  · decide -- The supplied numerator coefficients fit in β.
+  · decide -- The computed weighted sum also fits in β.
+  · rfl -- The two coefficient lists have the same length.
+  · rfl -- Exact packed integer equality.
 
 /-- The degree-twenty moment, via the packed route. -/
 theorem integral_twenty_packed (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 20 α t ^ 8)
       = pev Nmom20 α / ((L20 : ℝ) * (2 * M 20 * (3 + α)) ^ 8) :=
-  integral_moment_packed 20 8 (by norm_num) α hα L20 (by norm_num [L20]) Nmom20
+  integral_moment_packed 20 8 (by norm_num) α hα L20 (by decide) Nmom20
     (by decide) (by rw [Nmom20_eq])
 
 /-- **The cross-check.**  The multinomial formula and the packed recurrence agree.  Neither
 side is expanded: both compute the same integral, so they are equal by transitivity. -/
 theorem packed_agrees_twenty (α : ℝ) (hα : 0 ≤ α) :
     pev Nmom20 α / ((L20 : ℝ) * (2 * M 20 * (3 + α)) ^ 8) = mom 20 α 8 := by
-  rw [← integral_twenty_packed α hα, integral_moment]
+  exact (integral_twenty_packed α hα).symm.trans (integral_moment 20 α 8)
 
 end Sendov

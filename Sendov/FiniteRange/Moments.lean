@@ -67,14 +67,8 @@ lemma t3_mul_Q_pow (n : ℕ) (α t : ℝ) (k : ℕ) :
   rw [hQ, quad_pow, mul_sum]
   refine sum_congr rfl fun i _ => ?_
   rw [mul_sum]
-  refine sum_congr rfl fun l hl => ?_
-  have hl' : l ≤ i := Nat.lt_succ_iff.1 (mem_range.1 hl)
-  have hexp : 3 + (2 * i - l) = 2 * i - l + 3 := by omega
-  calc t ^ 3 * (((k.choose i : ℝ) * (i.choose l) * (-2 * c n α) ^ l * A n α ^ (i - l))
-        * t ^ (2 * i - l))
-      = ((k.choose i : ℝ) * (i.choose l) * (-2 * c n α) ^ l * A n α ^ (i - l))
-          * (t ^ 3 * t ^ (2 * i - l)) := by ring
-    _ = _ := by rw [← pow_add, hexp]
+  refine sum_congr rfl fun l _ => ?_
+  rw [mul_left_comm, ← pow_add, Nat.add_comm 3]
 
 /-- The `k`-th moment `∫ t in 0..1, t ^ 3 * Q ^ k`, as an explicit finite double sum.  This
 is `(M)` of the informal plan. -/

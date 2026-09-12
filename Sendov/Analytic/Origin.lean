@@ -89,22 +89,13 @@ theorem sumEraseProdMap_eq_esymm {α : Type*} : ∀ (s : Multiset α) (f : α �
 /-- `‖1 + s v‖² = 1 + 2 s Re v + s² ‖v‖²` for real `s`. -/
 lemma norm_sq_one_add_real_mul (s : ℝ) (v : ℂ) :
     ‖1 + (s : ℂ) * v‖ ^ 2 = 1 + 2 * s * v.re + s ^ 2 * ‖v‖ ^ 2 := by
-  rw [← Complex.normSq_eq_norm_sq, ← Complex.normSq_eq_norm_sq]
-  simp only [Complex.normSq_apply, Complex.add_re, Complex.add_im, Complex.mul_re,
-    Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, Complex.one_re, Complex.one_im]
-  ring
+  simpa using norm_sq_add_real_mul 1 s v
 
 lemma sum_norm_sq_one_sub_split (s : ℝ) (q : Multiset ℂ) :
     (q.map (fun v => ‖1 + (s : ℂ) * v‖ ^ 2)).sum
       = (q.card : ℝ) + 2 * s * ((q.map (fun v => v.re)).sum)
         + s ^ 2 * ((q.map (fun v => ‖v‖ ^ 2)).sum) := by
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    rw [ih, norm_sq_one_add_real_mul]
-    push_cast
-    ring
+  simpa using sum_norm_sq_split 1 s q
 
 /-- `∑ⱼ ‖1 - a t qⱼ‖² ≤ (n-1) β(t)`, where `β(t) = 1 - 2 a x t + a² t²`. -/
 theorem sum_norm_sq_one_sub_le {n : ℕ} {a x t : ℝ} {q : Multiset ℂ}

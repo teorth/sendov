@@ -32,6 +32,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch {n0} to {n1}
@@ -117,14 +118,9 @@ lemma P_pos {{α : ℝ}} (hα : 0 ≤ α) (hα' : α ≤ {Us}) :
   have hu : (0 : ℝ) ≤ {LIN0} := by linarith
   have hid : ({up} : ℝ) ^ {d} * ({P}) = {bern} := by
     ring
-  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < ({up} : ℝ) ^ {d})).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < {LIN0} := by linarith
-    positivity
+  bernstein_cert α {LIN} using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -155,8 +151,7 @@ theorem finite_range {{n : ℕ}} (h0 : {n0} ≤ n) (h1 : n ≤ {n1}) {{α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < ({P}) / ({const} * (3 + α) ^ {p}) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B{n0}_{n1}
 

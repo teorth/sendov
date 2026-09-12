@@ -41,9 +41,7 @@ namespace Sendov
 variable {α t : ℝ}
 
 lemma M_mono {m n : ℕ} (h : m ≤ n) : M m ≤ M n := by
-  simp only [M]
-  have : (m : ℝ) ≤ (n : ℝ) := by exact_mod_cast h
-  linarith
+  exact sub_le_sub_right (Nat.cast_le.2 h) 1
 
 /-- `A` increases with `n`: raising the degree moves `a²` towards `1`. -/
 lemma A_mono {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α) : A m α ≤ A n α := by
@@ -97,9 +95,7 @@ open MeasureTheory
 /-- `x ^ y ≤ x ^ z` for `0 ≤ x ≤ 1` and `0 < z ≤ y`, allowing `x = 0`. -/
 lemma rpow_le_rpow_exponent_ge' {x y z : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hz : 0 < z)
     (hzy : z ≤ y) : x ^ y ≤ x ^ z := by
-  rcases eq_or_lt_of_le hx0 with h | h
-  · rw [← h, Real.zero_rpow (by linarith), Real.zero_rpow (by linarith)]
-  · exact Real.rpow_le_rpow_of_exponent_ge h hx1 hzy
+  exact Real.rpow_le_rpow_of_exponent_ge' hx0 hx1 hz.le hzy
 
 /-- The moment decreases with the degree: `Q` falls and the exponent rises. -/
 theorem integral_anti {m n : ℕ} (hm : 5 ≤ m) (h : m ≤ n) (hα : 0 ≤ α)

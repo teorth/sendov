@@ -98,50 +98,21 @@ lemma eq_one_of_re_eq_one_of_norm_le_one {v : ℂ} (hre : v.re = 1) (hv : ‖v�
 /-- A multiset of nonnegative reals summing to zero is all zeroes. -/
 lemma eq_zero_of_sum_eq_zero {s : Multiset ℝ} (hs : ∀ x ∈ s, 0 ≤ x) (h : s.sum = 0) :
     ∀ x ∈ s, x = 0 := by
-  intro x hx
-  have hsplit : s.sum = x + (s.erase x).sum := by
-    conv_lhs => rw [← Multiset.cons_erase hx]
-    rw [Multiset.sum_cons]
-  have hrest : 0 ≤ (s.erase x).sum :=
-    Multiset.sum_nonneg fun y hy => hs y (Multiset.mem_of_mem_erase hy)
-  rw [hsplit] at h
-  have := hs x hx
-  linarith
+  exact Multiset.all_zero_of_le_zero_le_of_sum_eq_zero hs h
 
 lemma sum_le_card_mul (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, x ≤ c) →
     s.sum ≤ (s.card : ℝ) * c := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v t ih =>
-    intro h
-    have hv := h v (Multiset.mem_cons_self v t)
-    have ht : ∀ x ∈ t, x ≤ c := fun x hx => h x (Multiset.mem_cons_of_mem hx)
-    simp only [Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    linarith [ih ht]
+  intro s h
+  simpa only [nsmul_eq_mul] using Multiset.sum_le_card_nsmul s c h
 
 lemma card_mul_le_sum (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, c ≤ x) →
     (s.card : ℝ) * c ≤ s.sum := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v t ih =>
-    intro h
-    have hv := h v (Multiset.mem_cons_self v t)
-    have ht : ∀ x ∈ t, c ≤ x := fun x hx => h x (Multiset.mem_cons_of_mem hx)
-    simp only [Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    linarith [ih ht]
+  intro s h
+  simpa only [nsmul_eq_mul] using Multiset.card_nsmul_le_sum h
 
 lemma sum_map_one_sub_re (s : Multiset ℂ) :
     (s.map (fun v => 1 - v.re)).sum = (s.card : ℝ) - (s.map (fun v => v.re)).sum := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons, ih]
-    push_cast
-    ring
+  simp [Multiset.sum_map_sub, Multiset.map_const', Multiset.sum_replicate]
 
 /-! ### The boundary reciprocal identity -/
 

@@ -65,7 +65,7 @@ lemma alpha_le_half_M (hn : 2 ≤ n) (hfeas : c n α ^ 2 ≤ A n α) : α ≤ M 
 
 lemma Q_nonneg (hfeas : c n α ^ 2 ≤ A n α) (t : ℝ) : 0 ≤ Q n α t := by
   rw [Q_eq]
-  exact add_nonneg (sq_nonneg _) (mul_nonneg (by linarith) (sq_nonneg _))
+  exact add_nonneg (sq_nonneg _) (mul_nonneg (sub_nonneg.2 hfeas) (sq_nonneg _))
 
 /-- `Q n α 1 = B = α / (3 + α)`: the substituted quadratic takes at `t = 1` the value that
 the simplified polar inequality `β(1) < α / (3 + α)` prescribes. -/
@@ -125,7 +125,6 @@ lemma R_le_of_integral_le (hn : 2 ≤ n) (hα : 0 ≤ α) {J : ℝ}
     div_nonneg (mul_nonneg (mul_nonneg (mul_nonneg (sq_nonneg _) (Nat.cast_nonneg n))
       (M_pos hn).le) hn2) (by linarith)
   rw [R]
-  have := mul_le_mul_of_nonneg_left hJ hcoef
-  linarith
+  exact add_le_add_right (mul_le_mul_of_nonneg_left hJ hcoef) _
 
 end Sendov

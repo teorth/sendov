@@ -106,10 +106,8 @@ theorem finite_range_five (hα : 0 ≤ α) (hfeas : c 5 α ^ 2 ≤ A 5 α) : R 5
     ring
   rw [hid] at hR
   have hP : 0 < -9 * α ^ 4 - 123 * α ^ 3 + 596 * α ^ 2 + 30 * α + 234 := by
-    nlinarith [mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
-      mul_nonneg (pow_nonneg hα 2) (sub_nonneg.2 hle), sq_nonneg α, hα]
-  have : 0 < (-9 * α ^ 4 - 123 * α ^ 3 + 596 * α ^ 2 + 30 * α + 234) / (96 * (3 + α) ^ 2) :=
-    div_pos hP (by positivity)
-  linarith
+    nlinarith only [hα, mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
+      mul_nonneg (pow_nonneg hα 2) (sub_nonneg.2 hle), sq_nonneg α]
+  exact hR.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end Sendov

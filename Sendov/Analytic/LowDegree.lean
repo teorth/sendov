@@ -72,22 +72,11 @@ lemma prod_norm_le_lowX_pow {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0
     ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →
       (q.map (fun v => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)).prod
         ≤ lowX a t ^ q.card := by
-  intro q
-  induction q using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v s ih =>
-    intro hq
-    have hv := hq v (Multiset.mem_cons_self v s)
-    have hs : ∀ u ∈ s, ‖u‖ ≤ 1 := fun u hu => hq u (Multiset.mem_cons_of_mem hu)
-    have hX0 : 0 ≤ lowX a t := lowX_nonneg ha0 ha1 ht0
-    have h3 : 0 ≤ (s.map (fun v => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)).prod :=
-      prod_map_norm_nonneg s _
-    simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, pow_succ]
-    calc ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖
-          * (s.map (fun v => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)).prod
-        ≤ lowX a t * lowX a t ^ s.card :=
-          mul_le_mul (norm_le_lowX ha0 ha1 ht0 hv) (ih hs) h3 hX0
-      _ = lowX a t ^ s.card * lowX a t := by ring
+  intro q hq
+  simpa using Multiset.prod_map_le_prod_map₀
+    (fun v : ℂ => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)
+    (fun _ => lowX a t) (fun _ _ => norm_nonneg _)
+    (fun v hv => norm_le_lowX ha0 ha1 ht0 (hq v hv))
 
 /-- The branch point `(⋆)`, with every factor replaced by the scalar `X(t)`. -/
 theorem one_le_lowJ {n : ℕ} {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1)

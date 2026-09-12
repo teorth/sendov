@@ -19,9 +19,10 @@ In particular:
 * the finite range uses `Sendov.continuous_integrand` to compare integrals in
   `Sendov.integral_rpow_le`, and the large-degree argument needs the same fact to split
   `∫₀¹` at the vertex of `Q`;
-* `Sendov.rpow_add_nat_pos` is used by the Beta integral, and the same splitting of a real
-  power into a real and a natural part is what turns `B ^ ((n-4)/2)` into `B ^ k * √B` in
-  the large-degree reduction.
+* `Sendov.rpow_add_nat_pos` remains a compatibility wrapper for positive bases. The Beta
+  integrals use Mathlib’s zero-compatible splitting directly; splitting a real power into
+  a real and a natural part also turns `B ^ ((n-4)/2)` into `B ^ k * √B` in the large-degree
+  reduction.
 -/
 
 namespace Sendov
@@ -36,13 +37,13 @@ lemma integral_rpow_zero_one {s : ℝ} (hs : -1 < s) :
 
 /-- `x ^ (s + m) = x ^ s * x ^ m` for positive `x` and a natural `m`. -/
 lemma rpow_add_nat_pos {x : ℝ} (hx : 0 < x) (s : ℝ) (m : ℕ) :
-    x ^ (s + (m : ℝ)) = x ^ s * x ^ m := by
-  rw [Real.rpow_add hx, Real.rpow_natCast]
+    x ^ (s + (m : ℝ)) = x ^ s * x ^ m :=
+  Real.rpow_add_natCast hx.ne' s m
 
 /-- `fun x ↦ x ^ e` is continuous on all of `ℝ` for a nonnegative real exponent `e`.  The
 exponent must be nonnegative: at `e < 0` the function blows up at the origin. -/
 lemma continuous_rpow_const {e : ℝ} (he : 0 ≤ e) : Continuous fun x : ℝ => x ^ e :=
-  continuous_iff_continuousAt.2 fun x => Real.continuousAt_rpow_const x e (Or.inr he)
+  Real.continuous_rpow_const he
 
 /-- The integrand of `Sendov.R` is continuous, hence interval integrable.  Needed wherever an
 integral involving `Q ^ e` is split or compared. -/

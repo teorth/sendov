@@ -5,6 +5,7 @@ Authors: Terence Tao
 -/
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
+import Sendov.Common.BernsteinCert
 
 /-!
 # The batch 6 to 6
@@ -90,14 +91,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 5 / 2) :
   have hu : (0 : ℝ) ≤ 5 - 2 * α := by linarith
   have hid : (5 : ℝ) ^ 4 * (1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4) = 1575 * (5 - 2 * α) ^ 4 + 8100 * α ^ 1 * (5 - 2 * α) ^ 3 + 69425 * α ^ 2 * (5 - 2 * α) ^ 2 + 188150 * α ^ 3 * (5 - 2 * α) ^ 1 + 123200 * α ^ 4 := by
     ring
-  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
-  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (5 : ℝ) ^ 4)).mp
-  rw [hid]
-  rcases lt_or_eq_of_le hα with hpos | hzero
-  · positivity
-  · have hu_pos : (0 : ℝ) < 5 - 2 * α := by linarith
-    positivity
+  bernstein_cert α (5 - 2 * α) using hid
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
@@ -128,8 +124,7 @@ theorem finite_range {n : ℕ} (h0 : 6 ≤ n) (h1 : n ≤ 6) {α : ℝ}
     ring
   rw [hid] at hb
   have hP := P_pos hα hUn
-  have hq : 0 < (1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4) / (375 * (3 + α) ^ 2) := div_pos hP (by positivity)
-  linarith
+  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end B6_6
 

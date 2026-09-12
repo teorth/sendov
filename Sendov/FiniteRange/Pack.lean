@@ -137,7 +137,7 @@ lemma npev_pmulN (p q : List ℕ) (b : ℕ) :
 lemma npev_ppowN (p : List ℕ) (b k : ℕ) : npev (ppowN p k) b = npev p b ^ k := by
   induction k with
   | zero => simp [ppowN]
-  | succ k ih => simp only [ppowN, npev_pmulN, ih, pow_succ]; ring
+  | succ k ih => simp only [ppowN, npev_pmulN, ih, pow_succ']
 
 /-! ### The overflow bound -/
 
@@ -165,9 +165,7 @@ theorem unpackN_pow (b : ℕ) (hb : 0 < b) (p : List ℕ) (k : ℕ)
     unpackN b (ppowN p k).length (npev p b ^ k) = ppowN p k := by
   rw [← npev_ppowN p b k]
   refine unpackN_npev b hb _ fun a ha => ?_
-  have h1 : a ≤ npev (ppowN p k) 1 := mem_le_npev_one _ a ha
-  rw [npev_ppowN] at h1
-  omega
+  exact lt_of_le_of_lt (by simpa [npev_ppowN] using mem_le_npev_one (ppowN p k) a ha) hbound
 
 /-! ### Signed coefficients
 

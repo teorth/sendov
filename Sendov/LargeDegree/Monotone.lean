@@ -195,16 +195,14 @@ lemma T1_le (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) :
   have hN : (0 : ℝ) < (n : ℝ) - 1 := by linarith
   have hN2 : (0 : ℝ) < (n : ℝ) + 2 := by linarith
   have hN4 : (0 : ℝ) < (n : ℝ) + 4 := by linarith
-  have hprod : (0 : ℝ) ≤ ((n : ℝ) - 1) * ((n : ℝ) + 2) * ((n : ℝ) + 4) :=
-    mul_nonneg (mul_nonneg hN.le hN2.le) hN4.le
   have hD1 : (0 : ℝ) < (3 + α) * c 101 α ^ 4 * ((n : ℝ) - 1) * ((n : ℝ) + 2) * ((n : ℝ) + 4) :=
     mul_pos (mul_pos (mul_pos (mul_pos h3 (pow_pos hc1 4)) hN) hN2) hN4
   have hDle : (3 + α) * c 101 α ^ 4 * ((n : ℝ) - 1) * ((n : ℝ) + 2) * ((n : ℝ) + 4)
       ≤ (3 + α) * c n α ^ 4 * ((n : ℝ) - 1) * ((n : ℝ) + 2) * ((n : ℝ) + 4) := by
-    have hd : (0 : ℝ) ≤ (3 + α) * (c n α ^ 4 - c 101 α ^ 4) *
-        (((n : ℝ) - 1) * ((n : ℝ) + 2) * ((n : ℝ) + 4)) :=
-      mul_nonneg (mul_nonneg h3.le (by linarith)) hprod
-    nlinarith [hd]
+    exact mul_le_mul_of_nonneg_right
+      (mul_le_mul_of_nonneg_right
+        (mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hc4 h3.le) hN.le)
+        hN2.le) hN4.le
   -- step A: enlarge the denominator's `c` from `c n` down to `c 101`
   have stepA : T1 n α
       ≤ 24 * ((n : ℝ) - 1 - 2 * α) ^ 2 /
@@ -340,7 +338,7 @@ theorem U_le_Ut (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : U n α �
         = (α / (3 + α)) ^ 48 * Real.sqrt (α / (3 + α)) := by
       rw [show (101 : ℕ) - 4 = 2 * 48 + 1 by norm_num, pow_succ, pow_mul, Real.sq_sqrt hB]
     rw [h97]
-    nlinarith [pow_nonneg hB 48]
+    exact mul_le_of_le_one_right (pow_nonneg hB 48) hb1
   have e4 : T2 101 α
       ≤ (100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) * (α / (3 + α)) ^ 48 := by
     have hA101 : A 101 α = (100 - 2 * α) / 100 := by

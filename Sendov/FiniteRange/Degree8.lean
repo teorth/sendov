@@ -78,12 +78,10 @@ theorem finite_range_eight (hα : 0 ≤ α) (hfeas : c 8 α ^ 2 ≤ A 8 α) : R 
   rw [hid] at hR
   have hP : 0 < -240 * α ^ 6 - 7488 * α ^ 5 - 60624 * α ^ 4 + 747712 * α ^ 3 - 700161 * α ^ 2
       + 882882 * α + 1102059 := by
-    nlinarith [mul_nonneg (pow_nonneg hα 5) (sub_nonneg.2 hle),
+    nlinarith only [hα, mul_nonneg (pow_nonneg hα 5) (sub_nonneg.2 hle),
       mul_nonneg (pow_nonneg hα 4) (sub_nonneg.2 hle),
       mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
-      mul_nonneg hα (sq_nonneg (867020 * α - 700161)), hα, sq_nonneg α]
-  have : 0 < (-240 * α ^ 6 - 7488 * α ^ 5 - 60624 * α ^ 4 + 747712 * α ^ 3 - 700161 * α ^ 2
-      + 882882 * α + 1102059) / (72030 * (3 + α) ^ 3) := div_pos hP (by positivity)
-  linarith
+      mul_nonneg hα (sq_nonneg (867020 * α - 700161)), sq_nonneg α]
+  exact hR.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
 
 end Sendov

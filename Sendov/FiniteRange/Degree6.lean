@@ -76,11 +76,10 @@ theorem finite_range_six (hα : 0 ≤ α) (hfeas : c 6 α ^ 2 ≤ A 6 α) : R 6 
     rw [M_six] at h
     linarith
   have hP : 0 < -24 * α ^ 4 - 342 * α ^ 3 + 2345 * α ^ 2 - 900 * α + 1575 := by
-    nlinarith [mul_nonneg (mul_nonneg (mul_nonneg hα hα) hα) (sub_nonneg.2 hle),
-      mul_nonneg (mul_nonneg hα hα) (sub_nonneg.2 hle), sq_nonneg (1103 * α - 450)]
-  have hpos : 0 < 1 - R 6 α := by
-    rw [one_sub_R_six hα]
-    exact div_pos hP (by positivity)
-  linarith
+    nlinarith only [hα, mul_nonneg (pow_nonneg hα 3) (sub_nonneg.2 hle),
+      mul_nonneg (pow_nonneg hα 2) (sub_nonneg.2 hle), sq_nonneg (1103 * α - 450)]
+  apply sub_pos.mp
+  rw [one_sub_R_six hα]
+  exact div_pos hP (by positivity)
 
 end Sendov

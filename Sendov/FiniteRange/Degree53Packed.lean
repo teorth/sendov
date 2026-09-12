@@ -41,23 +41,24 @@ def Nmom53 : List ℤ :=
 theorem pev_Nmom53 (α : ℝ) :
     pev Nmom53 α = pev (wsum L53 0 (qrow (gg0 53) (gg1 53) (gg2 53) 24)) α := by
   refine pev_wsum_eq_of_packed (gg0 53) (gg1 53) (gg2 53) 24 73 L53 beta53 tau53 Nmom53
-    (by norm_num [beta53]) (by norm_num [tau53]) ?_ ?_ ?_ ?_ ?_ ?_ α
-  · refine rowZ_bound (gg0 53) (gg1 53) (gg2 53) 24 3 beta53 tau53 (by norm_num [beta53])
+    (by decide) (by decide) ?_ ?_ ?_ ?_ ?_ ?_ α
+  -- Bound the packed row structurally, without expanding qrow.
+  · refine rowZ_bound (gg0 53) (gg1 53) (gg2 53) 24 3 beta53 tau53 (by decide)
       (by decide) (by decide) (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, beta53, tau53]
-  · decide
-  · refine wsum_bound (gg0 53) (gg1 53) (gg2 53) 24 L53 beta53 (by norm_num [L53]) ?_
+  · decide -- Every supplied numerator coefficient fits in β.
+  · refine wsum_bound (gg0 53) (gg1 53) (gg2 53) 24 L53 beta53 (by decide) ?_
     norm_num [gg0, gg1, gg2, l1, L53, beta53]
-  · decide
+  · decide -- The supplied list satisfies the promised length bound.
   · exact wsum_length_le L53 _ 0
       (qrow_entry_length_le (gg0 53) (gg1 53) (gg2 53) 3 (by decide) (by decide) (by decide) 24)
-  · rfl
+  · rfl -- The remaining check is the exact packed integer equality.
 
 /-- The degree-53 moment. -/
 theorem integral_fiftythree (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 53 α t ^ 24)
       = pev Nmom53 α / ((L53 : ℝ) * (2 * M 53 * (3 + α)) ^ 24) :=
-  integral_moment_packed 53 24 (by norm_num) α hα L53 (by norm_num [L53]) Nmom53
+  integral_moment_packed 53 24 (by norm_num) α hα L53 (by decide) Nmom53
     (by decide) (pev_Nmom53 α)
 
 end Sendov
