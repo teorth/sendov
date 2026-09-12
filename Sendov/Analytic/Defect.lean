@@ -47,24 +47,14 @@ open Multiset
 /-! ### Products of norms -/
 
 lemma prod_norm_nonneg (s : Multiset ℂ) : 0 ≤ (s.map (fun z => ‖z‖)).prod := by
-  refine Multiset.prod_nonneg ?_
-  intro y hy
-  obtain ⟨z, _, rfl⟩ := Multiset.mem_map.1 hy
-  exact norm_nonneg z
+  exact Multiset.prod_map_nonneg (fun z _ => norm_nonneg z)
 
 lemma prod_norm_le_one : ∀ (s : Multiset ℂ), (∀ z ∈ s, ‖z‖ ≤ 1) →
     (s.map (fun z => ‖z‖)).prod ≤ 1 := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons w t ih =>
-    intro hs
-    have hw : ‖w‖ ≤ 1 := hs w (mem_cons_self w t)
-    have ht : ∀ z ∈ t, ‖z‖ ≤ 1 := fun z hz => hs z (mem_cons_of_mem hz)
-    have hIH := ih ht
-    have hP0 : 0 ≤ (t.map (fun z => ‖z‖)).prod := prod_norm_nonneg t
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    nlinarith [norm_nonneg w]
+  intro s hs
+  simpa [normHom] using
+    (Multiset.prod_map_le_pow_card (f := (normHom : ℂ →*₀ ℝ))
+      (fun z _ => norm_nonneg z) hs)
 
 /-! ### The pointwise fact -/
 

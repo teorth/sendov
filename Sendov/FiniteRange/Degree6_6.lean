@@ -88,25 +88,16 @@ set_option maxHeartbeats 2000000 in
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 5 / 2) :
     0 < 1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4 := by
   have hu : (0 : ℝ) ≤ 5 - 2 * α := by linarith
-  have h0 : (0:ℝ) ≤ 1575 * (5 - 2 * α) ^ 4 :=
-    mul_nonneg (by norm_num) (pow_nonneg hu 4)
-  have h1 : (0:ℝ) ≤ 8100 * α ^ 1 * (5 - 2 * α) ^ 3 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 1)) (pow_nonneg hu 3)
-  have h2 : (0:ℝ) ≤ 69425 * α ^ 2 * (5 - 2 * α) ^ 2 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 2)) (pow_nonneg hu 2)
-  have h3 : (0:ℝ) ≤ 188150 * α ^ 3 * (5 - 2 * α) ^ 1 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 3)) (pow_nonneg hu 1)
-  have h4 : (0:ℝ) ≤ 123200 * α ^ 4 :=
-    mul_nonneg (by norm_num) (pow_nonneg hα 4)
   have hid : (5 : ℝ) ^ 4 * (1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4) = 1575 * (5 - 2 * α) ^ 4 + 8100 * α ^ 1 * (5 - 2 * α) ^ 3 + 69425 * α ^ 2 * (5 - 2 * α) ^ 2 + 188150 * α ^ 3 * (5 - 2 * α) ^ 1 + 123200 * α ^ 4 := by
     ring
-  rcases le_total α (5 / (2 * 2)) with h | h
-  · have hpos : (0 : ℝ) < 1575 * (5 - 2 * α) ^ 4 :=
-      mul_pos (by norm_num) (pow_pos (by linarith) 4)
-    linarith
-  · have hpos : (0 : ℝ) < 123200 * α ^ 4 :=
-      mul_pos (by norm_num) (pow_pos (by linarith) 4)
-    linarith
+  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- at α = 0 the first summand is positive. The identity above checks every coefficient.
+  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (5 : ℝ) ^ 4)).mp
+  rw [hid]
+  rcases lt_or_eq_of_le hα with hpos | hzero
+  · positivity
+  · have hu_pos : (0 : ℝ) < 5 - 2 * α := by linarith
+    positivity
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget

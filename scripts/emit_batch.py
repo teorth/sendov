@@ -25,14 +25,6 @@ P = poly(cf); FE = poly(feas); CN = poly(cnum)
 bern = " + ".join((f"{G[0]} * {LIN} ^ {d}" if j==0 else
                    f"{G[d]} * α ^ {d}" if j==d else
                    f"{G[j]} * α ^ {j} * {LIN} ^ {d-j}") for j in range(d+1))
-haves = "\n".join(
-  (f"  have h{j} : (0:ℝ) ≤ {G[0]} * {LIN} ^ {d} :=\n"
-   f"    mul_nonneg (by norm_num) (pow_nonneg hu {d})" if j==0 else
-   f"  have h{j} : (0:ℝ) ≤ {G[d]} * α ^ {d} :=\n"
-   f"    mul_nonneg (by norm_num) (pow_nonneg hα {d})" if j==d else
-   f"  have h{j} : (0:ℝ) ≤ {G[j]} * α ^ {j} * {LIN} ^ {d-j} :=\n"
-   f"    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα {j})) (pow_nonneg hu {d-j})")
-  for j in range(d+1))
 src = f'''/-
 Copyright (c) 2026 Terence Tao. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -123,16 +115,16 @@ set_option maxHeartbeats 2000000 in
 lemma P_pos {{α : ℝ}} (hα : 0 ≤ α) (hα' : α ≤ {Us}) :
     0 < {P} := by
   have hu : (0 : ℝ) ≤ {LIN0} := by linarith
-{haves}
   have hid : ({up} : ℝ) ^ {d} * ({P}) = {bern} := by
     ring
-  rcases le_total α ({up} / (2 * {uq})) with h | h
-  · have hpos : (0 : ℝ) < {G[0]} * {LIN} ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
-  · have hpos : (0 : ℝ) < {G[d]} * α ^ {d} :=
-      mul_pos (by norm_num) (pow_pos (by linarith) {d})
-    linarith
+  -- All coefficients are checked by positivity. The last summand is positive for α > 0;
+  -- at α = 0 the first summand is positive. The identity above checks every coefficient.
+  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < ({up} : ℝ) ^ {d})).mp
+  rw [hid]
+  rcases lt_or_eq_of_le hα with hpos | hzero
+  · positivity
+  · have hu_pos : (0 : ℝ) < {LIN0} := by linarith
+    positivity
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
