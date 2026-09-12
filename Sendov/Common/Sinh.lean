@@ -123,6 +123,20 @@ private lemma hasDerivAt_Sf (u₃ u₂ u₁ u₀ v₄ v₃ v₂ v₁ v₀ w₃ w
     ring
   exact (((he2.mul hu).sub (he1.mul hv)).sub hw).congr_deriv (by ring)
 
+/-- One step of the derivative descent for `Sf`: its value at zero is `u₀ - v₀ - w₀`,
+and its derivative stays in the same family.  This packages the analytic argument once;
+the numbered steps below only check the coefficient recurrence. -/
+private lemma nonneg_Sf_of_deriv
+    {u₃ u₂ u₁ u₀ v₄ v₃ v₂ v₁ v₀ w₃ w₂ w₁ w₀ : ℝ}
+    (h0 : u₀ - v₀ - w₀ = 0)
+    (hd : ∀ z, 0 ≤ z →
+      0 ≤ Sf (2 * u₃) (2 * u₂ + 3 * u₃) (2 * u₁ + 2 * u₂) (2 * u₀ + u₁)
+        v₄ (v₃ + 4 * v₄) (v₂ + 3 * v₃) (v₁ + 2 * v₂) (v₀ + v₁)
+        0 (3 * w₃) (2 * w₂) w₁ z)
+    {y : ℝ} (hy : 0 ≤ y) : 0 ≤ Sf u₃ u₂ u₁ u₀ v₄ v₃ v₂ v₁ v₀ w₃ w₂ w₁ w₀ y := by
+  exact nonneg_of_deriv (hasDerivAt_Sf u₃ u₂ u₁ u₀ v₄ v₃ v₂ v₁ v₀ w₃ w₂ w₁ w₀)
+    (by simpa [Sf] using h0) hd hy
+
 /-- The base of the induction, `Φ⁽⁸⁾ ≥ 0`.  Three terms of the exponential series leave a
 polynomial with every coefficient positive. -/
 private lemma step8 (y : ℝ) (hy : 0 ≤ y) :
@@ -143,61 +157,52 @@ private lemma step8 (y : ℝ) (hy : 0 ≤ y) :
 
 private lemma step7 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 128 64 (-320) 1440 1 28 268 1064 1440 0 0 0 0 y := by
-  refine nonneg_of_deriv (g := Sf 256 512 (-512) 2560 1 32 352 1600 2504 0 0 0 0)
-    (fun z => ?_) ?_ step8 hy
-  · exact (hasDerivAt_Sf 128 64 (-320) 1440 1 28 268 1064 1440 0 0 0 0 z).congr_deriv
-      (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step8 z hz using 1
+  norm_num
 private lemma step6 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 64 (-64) (-96) 768 1 24 196 672 768 0 0 0 0 y := by
-  refine nonneg_of_deriv (g := Sf 128 64 (-320) 1440 1 28 268 1064 1440 0 0 0 0)
-    (fun z => ?_) ?_ step7 hy
-  · exact (hasDerivAt_Sf 64 (-64) (-96) 768 1 24 196 672 768 0 0 0 0 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step7 z hz using 1
+  norm_num
 private lemma step5 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 32 (-80) 32 368 1 20 136 400 368 0 0 0 0 y := by
-  refine nonneg_of_deriv (g := Sf 64 (-64) (-96) 768 1 24 196 672 768 0 0 0 0)
-    (fun z => ?_) ?_ step6 hy
-  · exact (hasDerivAt_Sf 32 (-80) 32 368 1 20 136 400 368 0 0 0 0 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step6 z hz using 1
+  norm_num
 private lemma step4 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 16 (-64) 80 144 1 16 88 224 144 0 0 0 0 y := by
-  refine nonneg_of_deriv (g := Sf 32 (-80) 32 368 1 20 136 400 368 0 0 0 0)
-    (fun z => ?_) ?_ step5 hy
-  · exact (hasDerivAt_Sf 16 (-64) 80 144 1 16 88 224 144 0 0 0 0 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step5 z hz using 1
+  norm_num
 private lemma step3 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 8 (-44) 84 30 1 12 52 120 24 0 0 0 6 y := by
-  refine nonneg_of_deriv (g := Sf 16 (-64) 80 144 1 16 88 224 144 0 0 0 0)
-    (fun z => ?_) ?_ step4 hy
-  · exact (hasDerivAt_Sf 8 (-44) 84 30 1 12 52 120 24 0 0 0 6 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step4 z hz using 1
+  norm_num
 private lemma step2 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 4 (-28) 70 (-20) 1 8 28 64 (-40) 0 0 6 20 y := by
-  refine nonneg_of_deriv (g := Sf 8 (-44) 84 30 1 12 52 120 24 0 0 0 6)
-    (fun z => ?_) ?_ step3 hy
-  · exact (hasDerivAt_Sf 4 (-28) 70 (-20) 1 8 28 64 (-40) 0 0 6 20 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step3 z hz using 1
+  norm_num
 private lemma step1 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 2 (-17) 52 (-36) 1 4 16 32 (-72) 0 3 20 36 y := by
-  refine nonneg_of_deriv (g := Sf 4 (-28) 70 (-20) 1 8 28 64 (-40) 0 0 6 20)
-    (fun z => ?_) ?_ step2 hy
-  · exact (hasDerivAt_Sf 2 (-17) 52 (-36) 1 4 16 32 (-72) 0 3 20 36 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step2 z hz using 1
+  norm_num
 private lemma step0 (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf 1 (-10) 36 (-36) 1 0 16 0 (-72) 1 10 36 36 y := by
-  refine nonneg_of_deriv (g := Sf 2 (-17) 52 (-36) 1 4 16 32 (-72) 0 3 20 36)
-    (fun z => ?_) ?_ step1 hy
-  · exact (hasDerivAt_Sf 1 (-10) 36 (-36) 1 0 16 0 (-72) 1 10 36 36 z).congr_deriv (by grind [Sf])
-  · simp only [Sf]
-    norm_num
+  refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
+  intro z hz
+  convert step1 z hz using 1
+  norm_num
 
 /-- The algebraic bridge: `Φ(2h) = 16 e^{2h} G(h)`. -/
 private lemma Sf_eq (h : ℝ) :

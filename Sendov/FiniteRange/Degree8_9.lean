@@ -88,29 +88,16 @@ set_option maxHeartbeats 2000000 in
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 4) :
     0 < 656208 + 407736 * α - 877827 * α ^ 2 + 621074 * α ^ 3 - 39267 * α ^ 4 - 5436 * α ^ 5 - 180 * α ^ 6 := by
   have hu : (0 : ℝ) ≤ 4 - α := by linarith
-  have h0 : (0:ℝ) ≤ 656208 * (4 - α) ^ 6 :=
-    mul_nonneg (by norm_num) (pow_nonneg hu 6)
-  have h1 : (0:ℝ) ≤ 5568192 * α ^ 1 * (4 - α) ^ 5 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 1)) (pow_nonneg hu 5)
-  have h2 : (0:ℝ) ≤ 3952608 * α ^ 2 * (4 - α) ^ 4 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 2)) (pow_nonneg hu 4)
-  have h3 : (0:ℝ) ≤ 13001408 * α ^ 3 * (4 - α) ^ 3 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 3)) (pow_nonneg hu 3)
-  have h4 : (0:ℝ) ≤ 51075024 * α ^ 4 * (4 - α) ^ 2 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 4)) (pow_nonneg hu 2)
-  have h5 : (0:ℝ) ≤ 49486080 * α ^ 5 * (4 - α) ^ 1 :=
-    mul_nonneg (mul_nonneg (by norm_num) (pow_nonneg hα 5)) (pow_nonneg hu 1)
-  have h6 : (0:ℝ) ≤ 11634560 * α ^ 6 :=
-    mul_nonneg (by norm_num) (pow_nonneg hα 6)
   have hid : (4 : ℝ) ^ 6 * (656208 + 407736 * α - 877827 * α ^ 2 + 621074 * α ^ 3 - 39267 * α ^ 4 - 5436 * α ^ 5 - 180 * α ^ 6) = 656208 * (4 - α) ^ 6 + 5568192 * α ^ 1 * (4 - α) ^ 5 + 3952608 * α ^ 2 * (4 - α) ^ 4 + 13001408 * α ^ 3 * (4 - α) ^ 3 + 51075024 * α ^ 4 * (4 - α) ^ 2 + 49486080 * α ^ 5 * (4 - α) ^ 1 + 11634560 * α ^ 6 := by
     ring
-  rcases le_total α (4 / (2 * 1)) with h | h
-  · have hpos : (0 : ℝ) < 656208 * (4 - α) ^ 6 :=
-      mul_pos (by norm_num) (pow_pos (by linarith) 6)
-    linarith
-  · have hpos : (0 : ℝ) < 11634560 * α ^ 6 :=
-      mul_pos (by norm_num) (pow_pos (by linarith) 6)
-    linarith
+  -- The Bernstein summands are nonnegative. If α > 0 the last one is positive;
+  -- at α = 0 the first one is positive. No per-coefficient hypotheses are needed.
+  apply (mul_pos_iff_of_pos_left (by norm_num : (0 : ℝ) < (4 : ℝ) ^ 6)).mp
+  rw [hid]
+  rcases lt_or_eq_of_le hα with hpos | hzero
+  · positivity
+  · have hu_pos : (0 : ℝ) < 4 - α := by linarith
+    positivity
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
