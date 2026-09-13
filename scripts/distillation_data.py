@@ -10,9 +10,9 @@ from fractions import Fraction as F
 import json
 from pathlib import Path
 
-# Paired with distillComponents_lt_199_200: real m >= 64 uses the row-64 base.
+# Paired with distillComponents_lt_199_200: real m >= 61 uses the row-61 base.
 # Never derive an allowed lower tail threshold from the supplied table.
-TAIL_START = 64
+TAIL_START = 61
 ROWS = tuple(range(5, TAIL_START + 1))
 FINITE_ROWS = ROWS[:-1]
 
@@ -71,11 +71,11 @@ def candidate_squared(m, j, lo, hi):
 def load_table(path, coefficients):
     rows = json.loads(Path(path).read_text(encoding='utf-8'),
                       object_pairs_hook=object_pairs, parse_constant=reject_constant)
-    require(type(rows) is list and len(rows) == len(ROWS), 'exactly 60 rows required')
+    require(type(rows) is list and len(rows) == len(ROWS), 'exactly 57 rows required')
     for m, row in zip(ROWS, rows):
         fields(row, 'm e components total', f'row {m}')
         require(type(row['m']) is int and row['m'] == m,
-                'rows must be m=5..64 exactly once in order')
+                'rows must be m=5..61 exactly once in order')
         e = rational(row['e'])
         require(e == F(1, 4) + F(7, 12*m), f'E budget mismatch at {m}')
         parts = row['components']

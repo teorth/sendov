@@ -12,9 +12,9 @@ python3 -B -m unittest discover -s tests -v
 ```
 
 The finite output directory must be new or empty. The generator emits all
-`m = 5,...,64`, components `0,1,2`, with the unchanged selected table records.
-Rows are grouped in batches of eight, ending in `Rows61_64`. The finite
-aggregate covers 5–63; the real tail starts at 64 and uses the original row-64
+`m = 5,...,61`, components `0,1,2`, with the unchanged selected table records.
+Rows are grouped in batches of eight, ending in `Rows61_61`. The finite
+aggregate covers 5–60; the real tail starts at 61 and uses the original row-61
 `<199/200` budget from that same group. The output contains exactly these
 eight row modules and `Sendov/Common/DistillationFinite.lean`. No second per-row
 source tree is published. `bundle_rows.py` is the source-packaging helper, not a
@@ -28,7 +28,7 @@ bracket, sign, squared-envelope and budget checks apply. Editing that input
 changes a proposed certificate, not the proof trust base. Keep the shipped table
 unchanged to reproduce the selected source. `distillation_data.py` is the explicit
 range authority, paired with `distillComponents_lt_199_200`; truncated inputs
-cannot select a different cutoff. In particular, missing64, extra65, duplicate
+cannot select a different cutoff. In particular, missing61, extra62, duplicate
 or reordered rows, and duplicate/reordered/mismatched components are rejected.
 
 All data validation and exact row rendering finish before staging. The complete

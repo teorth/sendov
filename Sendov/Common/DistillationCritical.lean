@@ -95,8 +95,7 @@ lemma distillNode_compact {m α : ℝ} (hm : 0 < m) (hα : 0 ≤ α) :
 lemma distillD_eq {m α : ℝ} (hm : 0 < m) (hα : 0 ≤ α) :
     distillD m α = 50 * m * (α + 3) ^ 3 * (1 - distillNode m α) := by
   rw [distillNode_compact hm hα, distillD]
-  have ht : α + 3 ≠ 0 := by linarith
-  field_simp [ht, hm.ne']
+  rw [mul_one_sub, mul_div_cancel₀ _ (by positivity)]
 
 lemma distillN_pos {α : ℝ} (hα : 0 ≤ α) : 0 < distillN α := by
   unfold distillN

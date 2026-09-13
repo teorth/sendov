@@ -39,7 +39,7 @@ class GeneratorTests(unittest.TestCase):
     def test_retained_table_matches_pinned_original_subset(self):
         table = ROOT / 'data/paper_certificate_table.json'
         self.assertEqual(digest(table), EXPECTED['table_sha256'])
-        self.assertEqual([r['m'] for r in json.loads(table.read_text())], list(range(5, 65)))
+        self.assertEqual([r['m'] for r in json.loads(table.read_text())], list(range(5, 62)))
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -68,9 +68,9 @@ class GeneratorTests(unittest.TestCase):
         actual = {str(p.relative_to(output)): digest(p) for p in output.rglob('*') if p.is_file()}
         self.assertEqual(actual, EXPECTED['distillation'])
         aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
-        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 59)
-        self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_64.lean').is_file())
-        self.assertFalse((output / 'Sendov/DistillationFinite/Row64.lean').exists())
+        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 56)
+        self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_61.lean').is_file())
+        self.assertFalse((output / 'Sendov/DistillationFinite/Row61.lean').exists())
         self.assertFalse((output / 'Sendov/DistillationFinite/Row5.lean').exists())
 
     def test_complete_cli_regeneration_from_all_cwds(self):
@@ -98,8 +98,8 @@ class GeneratorTests(unittest.TestCase):
     def test_bad_data_is_rejected_before_any_publication(self):
         original = json.loads((self.repo / 'data/paper_certificate_table.json').read_text())
         mutations = {
-            'missing64': lambda r: r.pop(),
-            'extra65': lambda r: r.append(dict(r[-1], m=65)),
+            'missing61': lambda r: r.pop(),
+            'extra62': lambda r: r.append(dict(r[-1], m=62)),
             'duplicate row': lambda r: r.__setitem__(1, r[0]),
             'row order': lambda r: r.reverse(),
             'missing component': lambda r: r[0]['components'].pop(),

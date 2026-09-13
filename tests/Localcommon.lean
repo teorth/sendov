@@ -95,14 +95,14 @@ example : Real.log (Real.sinh 10 / 10) ≤
     (7 / 8 : ℝ) * (Real.sqrt (9 + (8 / 7 : ℝ) * 10 ^ 2) - 3) :=
   DistillationHyperbolic.log_sinh_div_le (by norm_num) le_rfl
 
-example {m : ℝ} (hm : 64 ≤ m) : distillT2 m 0 = 0 := distillT2_zero hm
+example {m : ℝ} (hm : 61 ≤ m) : distillT2 m 0 = 0 := distillT2_zero hm
 
-example {m : ℝ} (hm : 64 ≤ m) :
+example {m : ℝ} (hm : 61 ≤ m) :
     distillEBudget m + distillT0 m 0 + distillT1 m 0 + distillT2 m 0 ≤
-      distillEBudget 64 + distillT0 64 0 + distillT1 64 0 + distillT2 64 0 :=
-  distillComponents_le_64 hm le_rfl (by norm_num)
+      distillEBudget 61 + distillT0 61 0 + distillT1 61 0 + distillT2 61 0 :=
+  distillComponents_le_61 hm le_rfl (by norm_num)
 
-example {m : ℝ} (hm : 64 ≤ m) :
+example {m : ℝ} (hm : 61 ≤ m) :
     scalarObstruction m 17 (cubicPolarEnvelope 17) < 199 / 200 :=
   distillScalar_lt_199_200 hm (by norm_num) le_rfl
 

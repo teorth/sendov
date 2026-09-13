@@ -1,16 +1,16 @@
 {
   "distillation": {
-    "Sendov/Common/DistillationFinite.lean": "4b5a88e50e801126c2de6127142a8a346182e6a7258fb7af1d8497c60ccef11f",
-    "Sendov/DistillationFinite/Rows13_20.lean": "7cfbd3aac6f3639f5e8d0ecd9773386c000aa27479d2c75a5d196e252e812110",
-    "Sendov/DistillationFinite/Rows21_28.lean": "4259d6f25898cdee240186ef412cc47881909fe1d91ff613f46e116a642edd68",
-    "Sendov/DistillationFinite/Rows29_36.lean": "f3dfd178a770b4e1101f54f9bd1e82f9ed3e36cedc2960adc676a71b8d680a49",
-    "Sendov/DistillationFinite/Rows37_44.lean": "5b4a6770bf94696e2e9a9db986af37273eaaea6da3f3297756a51fa7378f81c1",
-    "Sendov/DistillationFinite/Rows45_52.lean": "0b6b601e18f4369f0faa0a2f15f3c59975efe564ebbf3bfafb938e4b48e2bd5f",
-    "Sendov/DistillationFinite/Rows53_60.lean": "ad156609407557c02747118bfd833813835fa781507df406e1707523d33d5ee5",
-    "Sendov/DistillationFinite/Rows5_12.lean": "f783474650bc285a809277a6998cb9c3767e143497271c596a686c7bbba3af24",
-    "Sendov/DistillationFinite/Rows61_64.lean": "0725e96ed60c19486537a16b1a2d370ae20c887754edbb25b611249b4a899113"
+    "Sendov/Common/DistillationFinite.lean": "08ecbb1e3d2d571718579467ac752a4a4b944973c02a1fa355eec785360e0ab6",
+    "Sendov/DistillationFinite/Rows13_20.lean": "d4797d14dc0932db445dd421d8117b84b3748ea98160b105fa296af07a7de0b7",
+    "Sendov/DistillationFinite/Rows21_28.lean": "c8eae11289b2d45e244ee083da84418babdc395af0ee05454cc711b085e1d318",
+    "Sendov/DistillationFinite/Rows29_36.lean": "60ef832981cf7f3c6056d079e0abcfc663a3a4f53523b690f3cf21f82132517b",
+    "Sendov/DistillationFinite/Rows37_44.lean": "cacca609ff5a960d97220629eea75c087c2f7971395d0280b1a770ad1eeffa84",
+    "Sendov/DistillationFinite/Rows45_52.lean": "21ef52d413d69addc9916ebab6830f75c18a213e82d91ba32b702a0874383c25",
+    "Sendov/DistillationFinite/Rows53_60.lean": "4e09662cc6311402ac606523821bb139f89fb877a782c438484136e824744217",
+    "Sendov/DistillationFinite/Rows5_12.lean": "6c2058e9eb2c6b9f73daa869e699640492cfd8f1df5412ebf1fe467bdecdbfc5",
+    "Sendov/DistillationFinite/Rows61_61.lean": "12914a847c6360f43e32fe9ecdfbc2ca5a098388cef6f41a973cf34dca8bc08d"
   },
-  "table_sha256": "3cc794c71cb0eb7f052f8623016da364cf5ed18f18be29599092111bfb451964",
+  "table_sha256": "e29363bce9ae130a080e1b02ccbbfddbb5e63a31a769900ab08d389c519cd528",
   "sinh": {
     "sha256": "d04df2219415aa8e4f838c9c1b246b35af087e4ba41d4c449f95fe0f436c4acb",
     "bytes": 15024

@@ -333,9 +333,9 @@ theorem pade_nonneg {x : ℝ} (hx : 0 ≤ x) :
   have he : exp x ≠ 0 := (exp_pos x).ne'
   have hid : f0 x = 2 * exp x *
       (x ^ 2 * A x * sinh x - D x * (x * cosh x - sinh x)) := by
-    simp only [f0, A, D, sinh_eq, cosh_eq, exp_neg,
-      show exp (2 * x) = exp x ^ 2 by simp [← exp_nat_mul]]
+    simp only [sinh_eq, cosh_eq, exp_neg]
     field_simp
+    simp only [f0, A, D, show exp (2 * x) = exp x ^ 2 by simp [← exp_nat_mul]]
     ring
   rw [hid] at h
   exact nonneg_of_mul_nonneg_right h (by positivity)
@@ -390,11 +390,16 @@ theorem sqrt_mul_sub_le {x : ℝ} (hx : 0 ≤ x) (hx10 : x ≤ 10) :
     exact le_of_sq_le_sq (by rwa [heq]) hD.le
   have hp := pade_nonneg hx
   have hsinh : 0 ≤ sinh x := sinh_nonneg_iff.mpr hx
-  have hmul := mul_le_mul_of_nonneg_left hroot (mul_nonneg (sq_nonneg x) hsinh)
-  have hmul2 := mul_nonneg (sqrt_nonneg (9 + (8 / 7 : ℝ) * x ^ 2)) hp
+  have hmul := mul_le_mul_of_nonneg_right hroot (mul_nonneg (sq_nonneg x) hsinh)
+  have hmul2 := mul_le_mul_of_nonneg_left (sub_nonneg.mp hp)
+    (sqrt_nonneg (9 + (8 / 7 : ℝ) * x ^ 2))
   have hh : D x * (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) *
       (x * cosh x - sinh x)) ≤ D x * (x ^ 2 * sinh x) := by
-    nlinarith only [hmul, hmul2]
+    calc
+      _ = sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * (D x * (x * cosh x - sinh x)) := by ring
+      _ ≤ sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * (x ^ 2 * A x * sinh x) := hmul2
+      _ = (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * A x) * (x ^ 2 * sinh x) := by ring
+      _ ≤ _ := hmul
   exact (mul_le_mul_iff_right₀ hD).mp hh
 
 /-- Strong SJanPerth bound on `(0,10]`; both rational scale factors are retained. -/

@@ -216,8 +216,8 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
       * (1 / ((a * x) ^ 2 * (((n : ℝ) - 1) * (n : ℝ)))) = 1 / x ^ 2 := by
     have hane : (a : ℝ) ≠ 0 := ha.ne'
     have hxne : (x : ℝ) ≠ 0 := hxpos.ne'
-    have hn1 : ((n : ℝ) - 1) ≠ 0 := by linarith
-    have hn0 : (n : ℝ) ≠ 0 := by linarith
+    have hn1 : ((n : ℝ) - 1) ≠ 0 := by linarith only [hnR]
+    have hn0 : (n : ℝ) ≠ 0 := by linarith only [hnR]
     rw [hMn]
     field_simp
   have hkey : a ^ 2 * n * M n
@@ -234,13 +234,13 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
     have hlast : (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * (1 - x ^ 2) / 2 * I3
         ≤ (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * B1 / 2 * I3 := by
       have hc : (0 : ℝ) ≤ (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) / 2 := by
-        have : (0 : ℝ) ≤ (n : ℝ) - 2 := by linarith
+        have : (0 : ℝ) ≤ (n : ℝ) - 2 := by linarith only [hnR]
         positivity
       simpa only [mul_div_right_comm] using
         mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hone_sub hc) hI3nn
     have hfirst : (1 - x ^ 2) / (2 * M n) ≤ B1 / (2 * M n) := by
       apply div_le_div_of_nonneg_right hone_sub (by positivity)
-    have hne1 : (1 : ℝ) - B1 ≠ 0 := by linarith
+    have hne1 : (1 : ℝ) - B1 ≠ 0 := (sub_pos.mpr hB1lt).ne'
     have hrec : 1 / (1 - B1) = 1 + B1 / (1 - B1) := by
       field_simp
       ring
@@ -249,10 +249,10 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
     -- integral, and the resulting atom would no longer match `hkey`
     linarith only [horigin, hkey, hinv', hfirst, hlast, hax_eq]
   -- divide by `2α`
-  have h2α : (0 : ℝ) < 2 * α := by linarith
+  have h2α : (0 : ℝ) < 2 * α := by positivity
   -- Divide the assembled inequality once; normalize all five terms together.
   have hscaled := div_le_div_of_nonneg_right hmain h2α.le
-  have hne : (1 : ℝ) - B1 ≠ 0 := by linarith
+  have hne : (1 : ℝ) - B1 ≠ 0 := (sub_pos.mpr hB1lt).ne'
   convert hscaled using 1
   · rfl
   · exact (div_self h2α.ne').symm

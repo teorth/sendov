@@ -88,7 +88,7 @@ lemma tail_poly_bound {v : ℝ} (hv : 0 ≤ v) :
   have hneg : exp (-(2.83 * v)) = (exp (2.83 * v))⁻¹ := Real.exp_neg _
   rw [hneg, mul_inv_le_iff₀ hpos]
   refine le_trans ?_ (mul_le_mul_of_nonneg_left hexp (by norm_num : (0:ℝ) ≤ 0.4118))
-  nlinarith [hv, sq_nonneg v, sq_nonneg (v - 1 / 2), pow_nonneg hv 3]
+  nlinarith only [hv, sq_nonneg v, sq_nonneg (v - 1 / 2), pow_nonneg hv 3]
 
 /-! ### The bound -/
 
@@ -130,11 +130,11 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
     calc a * x ≤ a * 1 := mul_le_mul_of_nonneg_left hxle ha.le
       _ ≤ 1 := by simpa only [mul_one] using ha1.le
   have hxpos : 0 < x := (mul_pos_iff_of_pos_left ha).mp hax
-  have hr : (0 : ℝ) < r := by rw [hrdef]; rw [hMn] at hM34; linarith
+  have hr : (0 : ℝ) < r := by rw [hrdef]; rw [hMn] at hM34; linarith only [hM34]
   -- `log α ≥ 2.83`
   have hlog17 : (2.83 : ℝ) ≤ Real.log α :=
     le_trans log_seventeen_ge (Real.log_le_log (by norm_num) hcon.le)
-  have hlogpos : (0 : ℝ) < Real.log α := by linarith
+  have hlogpos : (0 : ℝ) < Real.log α := lt_of_lt_of_le (by norm_num) hlog17
   -- `x² ≥ 1 - β(1) ≥ log α / α`
   have hxsq : Real.log α / α ≤ x ^ 2 := by
     have h1 : 1 - B1 ≤ x ^ 2 := by
@@ -149,12 +149,12 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   have hprod : (r + 1) * (r + 2) = (n : ℝ) * ((n : ℝ) + 2) / 4 := by rw [hrdef]; ring
   have hane : (a : ℝ) ≠ 0 := ha.ne'
   have hxne : (x : ℝ) ≠ 0 := hxpos.ne'
-  have hnpos : (0 : ℝ) < (n : ℝ) := by rw [hMn] at hM34; linarith
+  have hnpos : (0 : ℝ) < (n : ℝ) := by rw [hMn] at hM34; linarith only [hM34]
   have hbeta_term : a ^ 2 * n * M n * (1 / ((a * x) ^ 2 * ((r + 1) * (r + 2))))
       = 4 * M n / (x ^ 2 * ((n : ℝ) + 2)) := by
     rw [hprod]
     have hn0 : (n : ℝ) ≠ 0 := hnpos.ne'
-    have hn2' : (n : ℝ) + 2 ≠ 0 := by linarith
+    have hn2' : (n : ℝ) + 2 ≠ 0 := by positivity
     field_simp
   have hcoefnn : (0 : ℝ) ≤ a ^ 2 * n * M n := by positivity
   have hstep : a ^ 2 * n * M n * I1
@@ -177,7 +177,7 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
       linarith only [hlogx]
     exact h1.trans h2
   have hfirst : (1 - x ^ 2) / (2 * M n) ≤ 1 / (2 * M n) := by
-    have hD : (0 : ℝ) < 2 * M n := by linarith
+    have hD : (0 : ℝ) < 2 * M n := by positivity
     exact div_le_div_of_nonneg_right (sub_le_self 1 (sq_nonneg x)) hD.le
   have hmain : 2 * α ≤ 1 / (2 * M n) + 4 * α / Real.log α + a ^ 2 * n * M n * (B1 ^ r / 2) := by
     linarith only [horigin, hstep, hfourx, hfirst, hax]
@@ -185,21 +185,19 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   -- `obtain` rather than `set`: a `set` binding is a local *definition*, which `linarith`
   -- zeta-reduces back into `M n / (2 * α) - 1`, making its goals nonlinear in `α`
   obtain ⟨v, hvdef⟩ : ∃ w : ℝ, w = M n / (2 * α) - 1 := ⟨_, rfl⟩
-  have h2α : (0 : ℝ) < 2 * α := by linarith
+  have h2α : (0 : ℝ) < 2 * α := by positivity
   have hv0 : 0 ≤ v := by
     rw [hvdef, sub_nonneg, le_div_iff₀ h2α, one_mul]
     exact hMge
   have hMv : M n = 2 * α * (v + 1) := by
-    rw [hvdef]
-    field_simp
-    ring
+    rw [hvdef, sub_add_cancel, mul_div_cancel₀ _ h2α.ne']
   have ha2 : a ^ 2 = 1 - 2 * α / M n := by
     rw [hα]
     field_simp
     ring
   have hav : a ^ 2 * M n / (2 * α) = v := by
-    rw [ha2, hvdef]
-    field_simp
+    rw [ha2, sub_mul, one_mul, div_mul_cancel₀ _ hM.ne', sub_div,
+      div_self h2α.ne', hvdef]
   -- `β(1) ≤ exp(-log α/α)`, hence `β(1)^r ≤ exp(-(v+1)log α) exp(log α/(2α))`
   have hB1exp : B1 ≤ exp (-(Real.log α / α)) := by
     have h1 : B1 ≤ exp (B1 - 1) := by
@@ -228,7 +226,7 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   have hvexp : exp (-(v * Real.log α)) ≤ exp (-(2.83 * v)) :=
     Real.exp_le_exp.2 (by
       simpa only [mul_comm] using neg_le_neg (mul_le_mul_of_nonneg_right hlog17 hv0))
-  have he1 : (2.7 : ℝ) < exp 1 := by linarith [Real.exp_one_gt_d9]
+  have he1 : (2.7 : ℝ) < exp 1 := lt_trans (by norm_num) Real.exp_one_gt_d9
   have hsecexp : exp (Real.log α / (2 * α)) ≤ 1 / (1 - 0.1852) := by
     refine le_trans (Real.exp_le_exp.2 ?_) (exp_le_one_div_one_sub (by norm_num))
     have h := log_le_div_exp_one hα0

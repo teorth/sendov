@@ -5,9 +5,9 @@ import Sendov.LargeDegree.DistillationTailBound
 # The complete scalar upper bound
 
 The original degree is `n`; the scalar parameter is `m = n - 1`.
-The scalar consumer uses finite rows for `5 ≤ m ≤ 63` and the real-degree
-tail based on the existing row 64 for `m ≥ 64`. These disjoint ranges cover
-every natural `m ≥ 5`; exactly the 60 records from 5 through 64 are retained.
+The scalar consumer uses finite rows for `5 ≤ m ≤ 60` and the real-degree
+tail based on the existing row 61 for `m ≥ 61`. These disjoint ranges cover
+every natural `m ≥ 5`; exactly the 57 records from 5 through 61 are retained.
 -/
 namespace Sendov
 
@@ -22,9 +22,9 @@ theorem distillScalar_lt_one {n : ℕ} (hn : 6 ≤ n) {α : ℝ}
     simp [M]
   have hm : 5 ≤ n - 1 := by omega
   rw [← hM] at hhalf ⊢
-  by_cases hfinite : n - 1 < 64
+  by_cases hfinite : n - 1 < 61
   · exact (distillFinite_scalar hm (by omega) hα (by linarith) h17).trans (by norm_num)
-  · have hlarge : (64 : ℝ) ≤ (n - 1 : ℕ) := by exact_mod_cast (show 64 ≤ n - 1 by omega)
+  · have hlarge : (61 : ℝ) ≤ (n - 1 : ℕ) := by exact_mod_cast (show 61 ≤ n - 1 by omega)
     exact (distillScalar_lt_199_200 hlarge hα h17).trans (by norm_num)
 
 end Sendov

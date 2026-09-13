@@ -15,16 +15,16 @@ import generator_output
 
 
 class ExactCoreTests(unittest.TestCase):
-    def test_k64_exact_allowed_domain_and_components(self):
-        selected = [r for r in json.loads(g.TABLE.read_text()) if 5 <= r['m'] <= 64]
-        self.assertEqual([r['m'] for r in selected], list(range(5, 65)))
+    def test_k61_exact_allowed_domain_and_components(self):
+        selected = [r for r in json.loads(g.TABLE.read_text()) if 5 <= r['m'] <= 61]
+        self.assertEqual([r['m'] for r in selected], list(range(5, 62)))
         with tempfile.TemporaryDirectory() as temporary:
             table = Path(temporary) / 'table.json'
             table.write_text(json.dumps(selected))
             self.assertEqual(load_table(table, g.coefficients), selected)
             mutations = {
-                'missing64': lambda r: r.pop(),
-                'extra65': lambda r: r.append(dict(r[-1], m=65)),
+                'missing61': lambda r: r.pop(),
+                'extra62': lambda r: r.append(dict(r[-1], m=62)),
                 'duplicate': lambda r: r.__setitem__(1, r[0]),
                 'reordered': lambda r: r.reverse(),
                 'duplicate component': lambda r: r[0]['components'].__setitem__(
@@ -41,23 +41,23 @@ class ExactCoreTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         load_table(table, g.coefficients)
 
-    def test_k64_generator_covers_59_finite_cases_and_one_shared_base(self):
+    def test_k61_generator_covers_56_finite_cases_and_one_shared_base(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / 'output'
             result = g.generate(output)
-            self.assertEqual(result['rows'], list(range(5, 65)))
-            self.assertEqual(result['groups'][-1]['rows'], [61, 62, 63, 64])
+            self.assertEqual(result['rows'], list(range(5, 62)))
+            self.assertEqual(result['groups'][-1]['rows'], [61])
             self.assertEqual(len(result['groups']), 8)
-            self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_64.lean').is_file())
-            self.assertFalse((output / 'Sendov/DistillationFinite/Row64.lean').exists())
+            self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_61.lean').is_file())
+            self.assertFalse((output / 'Sendov/DistillationFinite/Row61.lean').exists())
             aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
             cases = [f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt '
                      f'distillFiniteBound_{m}' for m in range(5, 34)]
             cases += [f'  · exact (distillFinite_{m} α hα h17).trans_lt '
-                      f'distillFiniteBound_{m}' for m in range(34, 64)]
+                      f'distillFiniteBound_{m}' for m in range(34, 61)]
             self.assertEqual([line for line in aggregate.splitlines()
                               if line.startswith('  · exact (distillFinite_')], cases)
-            self.assertIn('(hm63 : m ≤ 63)', aggregate)
+            self.assertIn('(hm60 : m ≤ 60)', aggregate)
             for path in output.rglob('*.lean'):
                 self.assertNotIn('two_thirds', path.read_text())
                 self.assertNotIn('distillFiniteTailBase', path.read_text())
@@ -68,6 +68,42 @@ class ExactCoreTests(unittest.TestCase):
         self.assertIn('BernsteinCert.coeffs_pos', text)
         self.assertNotIn('have hid', text)
         self.assertNotIn('sign_0_left_0', text)
+
+    def test_every_flank_keeps_the_complete_original_identity(self):
+        identities = empty = 0
+        for row in g.load_table(g.TABLE, g.coefficients):
+            m = row['m']
+            for component in row['components']:
+                j = component['index']
+                for side, a, b in [('left', F(0), F(component['lo'])),
+                                   ('right', F(component['hi']), min(F(17), F(m, 2)))]:
+                    with self.subTest(m=m, component=j, side=side):
+                        text, count = g.sign_source(m, j, side, a, b)
+                        self.assertIn(f'0 ≤ {g.signed(j, m, side)}', text)
+                        if a == b:
+                            empty += 1
+                            self.assertEqual(count, 0)
+                            self.assertIn('False.elim', text)
+                            self.assertNotIn('coeffs_pos', text)
+                            continue
+                        identities += 1
+                        self.assertEqual(count, 1)
+                        p = g.coefficients(m, j)
+                        if (j == 0) != (side == 'left'):
+                            p = [-c for c in p]
+                        scale, cs = g.certificate(p, a, b)
+                        compact = ''.join(text.split())
+                        self.assertIn('BernsteinCert.coeffs_pos[' +
+                                      ','.join(map(str, cs)) + ']', compact)
+                        self.assertIn(f'(lo:={g.rat(a)})(hi:={g.rat(b)})(s:={scale})'
+                                      .replace(' ', ''), compact)
+                        self.assertIn(f'unfold distillCritical{j}', text)
+                        self.assertIn('simp only [BernsteinCert.coeffTree_eval_cons,', text)
+                        self.assertIn('BernsteinCert.coeffTree_eval_nil', text)
+                        self.assertEqual(text.count('  ring1\n'), 1)
+                        self.assertNotIn('norm_num only', text)
+                        self.assertNotIn('bernstein_ring', text)
+        self.assertEqual((identities, empty), (307, 35))
 
     def test_empty_polynomial_and_bad_interval_are_rejected(self):
         with self.assertRaisesRegex(ValueError, 'empty'):

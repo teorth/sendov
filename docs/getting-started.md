@@ -55,9 +55,9 @@ diff -u Sendov/Common/DistillationFinite.lean "$out/generated/Sendov/Common/Dist
 python3 -m unittest discover -s tests
 ```
 
-The output contains all 60 retained records (`m = 5..64`) in eight groups.
-The finite aggregate consumes `m = 5..63`; the tail shares row 64 in the final
-`Rows61_64` group. Use a fresh output root; generation must not replace a
+The output contains all 57 retained records (`m = 5..61`) in eight groups.
+The finite aggregate consumes `m = 5..60`; the tail shares row 61 in the final
+`Rows61_61` group. Use a fresh output root; generation must not replace a
 nonempty directory. See [`scripts/GENERATORS.md`](../scripts/GENERATORS.md) for
 the retained global `sinh` generator and its SymPy dependency.
 

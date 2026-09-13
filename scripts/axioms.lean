@@ -38,9 +38,9 @@ end SendovAudit
 #sendov_axioms SendovConjecture.phelps_rodriguez
 #sendov_axioms Sendov.distillFinite_components
 #sendov_axioms Sendov.distillFinite_scalar
-#sendov_axioms Sendov.distillFinite_64
-#sendov_axioms Sendov.distillFiniteBound_64
-#sendov_axioms Sendov.distillComponents_le_64
+#sendov_axioms Sendov.distillFinite_61
+#sendov_axioms Sendov.distillFiniteBound_61
+#sendov_axioms Sendov.distillComponents_le_61
 #sendov_axioms Sendov.distillT2_zero
 #sendov_axioms Sendov.distillComponents_lt_199_200
 #sendov_axioms Sendov.distillScalar_lt_199_200

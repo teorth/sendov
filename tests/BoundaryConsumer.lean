@@ -10,11 +10,20 @@ theorem raw_zero (m : ℝ) :
   Sendov.scalarObstruction_zero m
 
 /-- The tail component vanishes at the closed left endpoint. -/
-theorem tail_zero {m : ℝ} (hm : 64 ≤ m) : Sendov.distillT2 m 0 = 0 :=
+theorem tail_zero {m : ℝ} (hm : 61 ≤ m) : Sendov.distillT2 m 0 = 0 :=
   Sendov.distillT2_zero hm
 
 /-- Both boundary identities are consumed together at the real tail threshold. -/
 theorem threshold_boundary :
+    Sendov.scalarObstruction 61 0 (Sendov.cubicPolarEnvelope 0) = 1 / 122 ∧
+      Sendov.distillT2 61 0 = 0 := by
+  constructor
+  · convert raw_zero 61 using 1
+    norm_num
+  · exact tail_zero (by norm_num)
+
+/-- The former threshold remains covered by the stronger tail interface. -/
+theorem former_threshold_boundary :
     Sendov.scalarObstruction 64 0 (Sendov.cubicPolarEnvelope 0) = 1 / 128 ∧
       Sendov.distillT2 64 0 = 0 := by
   constructor
@@ -22,7 +31,7 @@ theorem threshold_boundary :
     norm_num
   · exact tail_zero (by norm_num)
 
-theorem closed_tail {m α : ℝ} (hm : 64 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
+theorem closed_tail {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
     Sendov.distillEBudget m + Sendov.distillT0 m α +
       Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
   Sendov.distillComponents_lt_199_200 hm hα h17

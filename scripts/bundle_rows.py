@@ -1,7 +1,7 @@
 """Bundle this generator's self-contained RowN modules, preserving each body.
 
 This is source packaging, not a certificate checker or a general Lean parser.
-The last group includes the row-64 base shared with the infinite tail.
+The last group includes the row-61 base shared with the infinite tail.
 """
 from pathlib import Path
 import argparse
@@ -26,7 +26,7 @@ def bundle(source, output, size=8):
     rows_dir = source / 'Sendov/DistillationFinite'
     expected = {f'Row{m}.lean' for m in ROWS}
     if {p.name for p in rows_dir.glob('Row*.lean')} != expected:
-        raise ValueError('rows must be exactly Row5 through Row64')
+        raise ValueError('rows must be exactly Row5 through Row61')
     rows = {m: split_row((rows_dir / f'Row{m}.lean').read_text()) for m in ROWS}
     aggregate = (source / 'Sendov/Common/DistillationFinite.lean').read_text()
     row_imports = [line for line in aggregate.splitlines() if line.startswith(f'import {PREFIX}Row')]

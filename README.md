@@ -35,13 +35,15 @@ trusted facts.[2]
 | Complete contradiction | [`DistillationBounds`](Sendov/Common/DistillationBounds.lean), [`Reduction/Main`](Sendov/Reduction/Main.lean) |
 
 The convention is **`m = n - 1`**. The final degree split now uses the finite
-proof for `5 ≤ m ≤ 63` (through `n=64`), then the real-parameter tail for
-`m ≥ 64` (from `n=65`). The latter reuses the existing row-64 certificate
+proof for `5 ≤ m ≤ 60` (through `n=61`), then the real-parameter tail for
+`m ≥ 61` (from `n=62`). The latter reuses the existing row-61 certificate
 to prove a bound of `<199/200`, which is sufficient for the scalar `<1`.
-Exactly 60 unchanged certificate records, `5 ≤ m ≤ 64`, are retained. The finite
-aggregate consumes 59 cases; the tail consumes row 64 from the shared final
-group `Rows61_64`. Rows 65–81 and the old `<2/3` tail interfaces are retired.
-There is no separate duplicate row-64 module or second certificate representation.
+Exactly 57 unchanged certificate records, `5 ≤ m ≤ 61`, are retained. The finite
+aggregate consumes 56 cases; the tail consumes row 61 from the shared final
+group `Rows61_61`. Rows 62–81 and the old `<2/3` tail interfaces are retired.
+There is no separate duplicate row-61 module or second certificate representation.
+The earlier tail uses the rational fourth-power envelope cap `(21/22)^4`
+to retain stronger logarithmic decay, with the same rational-component alpha split.
 
 Each finite case uses the complete critical polynomials of degrees **7, 7, 4**.
 Exact Bernstein identities prove derivative signs on the full outer intervals;

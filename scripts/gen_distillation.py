@@ -101,9 +101,9 @@ def sign_source(m,j,side,a,b):
     (lo := {rat(lo)}) (hi := {rat(hi)}) (s := {scale})
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical{j}
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - {rat(lo)}) ({rat(hi)} - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 ''', 1
 
@@ -149,7 +149,7 @@ def aggregate_source():
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
 namespace Sendov
 
-theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINITE_ROWS[-1]})
+theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm60 : m ≤ {FINITE_ROWS[-1]})
     {{α : ℝ}} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
   interval_cases m
@@ -158,12 +158,12 @@ theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINIT
         bound = 'h17' if F(m, 2) >= 17 else '(by linarith)'
         s+=f'  · exact (distillFinite_{m} α hα {bound}).trans_lt distillFiniteBound_{m}\n'
     s+=f'''
-theorem distillFinite_scalar {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINITE_ROWS[-1]})
+theorem distillFinite_scalar {{m : ℕ}} (hm : 5 ≤ m) (hm60 : m ≤ {FINITE_ROWS[-1]})
     {{α : ℝ}} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     scalarObstruction m α (cubicPolarEnvelope α) < 199 / 200 := by
   have hmR : (5 : ℝ) ≤ m := by exact_mod_cast hm
   exact (distillScalar_le_majorant hmR hα (by linarith)).trans_lt
-    (distillFinite_components hm hm63 hα.le hαm h17)
+    (distillFinite_components hm hm60 hα.le hαm h17)
 
 end Sendov
 '''

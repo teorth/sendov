@@ -17,9 +17,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (1 / 2)) :
     (lo := 0) (hi := (1 / 2)) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((1 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) (5 / 2)) :
     0 ≤ -distillCritical0 5 x := by
@@ -29,9 +29,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) (5 / 2)) :
     (lo := (3 / 4)) (hi := (5 / 2)) (s := 117649)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (3 / 4)) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (5 / 2)) :
     distillT0 5 α ≤ (101 / 500) := by
@@ -52,9 +52,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (1 / 4) (5 / 2)) :
     (lo := (1 / 4)) (hi := (5 / 2)) (s := 4782969)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (1 / 4)) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (5 / 2)) :
     distillT1 5 α ≤ (191 / 1000) := by
@@ -71,9 +71,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (1 / 2)) :
     (lo := 0) (hi := (1 / 2)) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((1 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) (5 / 2)) :
     0 ≤ distillCritical2 5 x := by
@@ -82,9 +82,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) (5 / 2)) :
     (lo := (3 / 4)) (hi := (5 / 2)) (s := 343)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (3 / 4)) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (5 / 2)) :
     distillT2 5 α ≤ (37 / 250) := by
@@ -125,9 +125,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 1) :
     (lo := 0) (hi := 1) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) (1 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 4) 3) :
     0 ≤ -distillCritical0 6 x := by
@@ -137,9 +137,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 4) 3) :
     (lo := (5 / 4)) (hi := 3) (s := 117649)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (5 / 4)) (3 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 3) :
     distillT0 6 α ≤ (207 / 1000) := by
@@ -156,9 +156,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (1 / 2)) :
     (lo := 0) (hi := (1 / 2)) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((1 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) 3) :
     0 ≤ distillCritical1 6 x := by
@@ -168,9 +168,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 4) 3) :
     (lo := (3 / 4)) (hi := 3) (s := 243)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (3 / 4)) (3 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 3) :
     distillT1 6 α ≤ (171 / 1000) := by
@@ -187,9 +187,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (3 / 4)) :
     (lo := 0) (hi := (3 / 4)) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((3 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 1 3) :
     0 ≤ distillCritical2 6 x := by
@@ -198,9 +198,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 1 3) :
     (lo := 1) (hi := 3) (s := 4)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 1) (3 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 3) :
     distillT2 6 α ≤ (133 / 1000) := by
@@ -242,9 +242,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (5 / 4)) :
     (lo := 0) (hi := (5 / 4)) (s := 15625)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((5 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 2) (7 / 2)) :
     0 ≤ -distillCritical0 7 x := by
@@ -254,9 +254,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 2) (7 / 2)) :
     (lo := (3 / 2)) (hi := (7 / 2)) (s := 2048)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (3 / 2)) ((7 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (7 / 2)) :
     distillT0 7 α ≤ (211 / 1000) := by
@@ -273,9 +273,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (3 / 4)) :
     (lo := 0) (hi := (3 / 4)) (s := 9)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((3 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo 1 (7 / 2)) :
     0 ≤ distillCritical1 7 x := by
@@ -285,9 +285,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo 1 (7 / 2)) :
     (lo := 1) (hi := (7 / 2)) (s := 78125)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 1) ((7 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (7 / 2)) :
     distillT1 7 α ≤ (41 / 250) := by
@@ -304,9 +304,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 1) :
     (lo := 0) (hi := 1) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) (1 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 4) (7 / 2)) :
     0 ≤ distillCritical2 7 x := by
@@ -315,9 +315,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 4) (7 / 2)) :
     (lo := (5 / 4)) (hi := (7 / 2)) (s := 6561)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (5 / 4)) ((7 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (7 / 2)) :
     distillT2 7 α ≤ (31 / 250) := by
@@ -358,9 +358,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (3 / 2)) :
     (lo := 0) (hi := (3 / 2)) (s := 9)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((3 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) 4) :
     0 ≤ -distillCritical0 8 x := by
@@ -370,9 +370,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) 4) :
     (lo := (7 / 4)) (hi := 4) (s := 4782969)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (7 / 4)) (4 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 4) :
     distillT0 8 α ≤ (43 / 200) := by
@@ -389,9 +389,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (5 / 4)) :
     (lo := 0) (hi := (5 / 4)) (s := 15625)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((5 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 2) 4) :
     0 ≤ distillCritical1 8 x := by
@@ -401,9 +401,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (3 / 2) 4) :
     (lo := (3 / 2)) (hi := 4) (s := 78125)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (3 / 2)) (4 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 4) :
     distillT1 8 α ≤ (157 / 1000) := by
@@ -420,9 +420,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (3 / 2)) :
     (lo := 0) (hi := (3 / 2)) (s := 3)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((3 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) 4) :
     0 ≤ distillCritical2 8 x := by
@@ -431,9 +431,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) 4) :
     (lo := (7 / 4)) (hi := 4) (s := 6561)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (7 / 4)) (4 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 4) :
     distillT2 8 α ≤ (3 / 25) := by
@@ -474,9 +474,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 2) :
     (lo := 0) (hi := 2) (s := 32)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) (2 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (9 / 4) (9 / 2)) :
     0 ≤ -distillCritical0 9 x := by
@@ -486,9 +486,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (9 / 4) (9 / 2)) :
     (lo := (9 / 4)) (hi := (9 / 2)) (s := 81)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (9 / 4)) ((9 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (9 / 2)) :
     distillT0 9 α ≤ (11 / 50) := by
@@ -504,9 +504,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (3 / 2)) :
     (lo := 0) (hi := (3 / 2)) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((3 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) (9 / 2)) :
     0 ≤ distillCritical1 9 x := by
@@ -516,9 +516,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (7 / 4) (9 / 2)) :
     (lo := (7 / 4)) (hi := (9 / 2)) (s := 19487171)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (7 / 4)) ((9 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (9 / 2)) :
     distillT1 9 α ≤ (39 / 250) := by
@@ -535,9 +535,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (7 / 4)) :
     (lo := 0) (hi := (7 / 4)) (s := 2401)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((7 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 2 (9 / 2)) :
     0 ≤ distillCritical2 9 x := by
@@ -546,9 +546,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 2 (9 / 2)) :
     (lo := 2) (hi := (9 / 2)) (s := 125)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 2) ((9 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (9 / 2)) :
     distillT2 9 α ≤ (3 / 25) := by
@@ -590,9 +590,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (9 / 4)) :
     (lo := 0) (hi := (9 / 4)) (s := 2187)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((9 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 2) 5) :
     0 ≤ -distillCritical0 10 x := by
@@ -602,9 +602,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 2) 5) :
     (lo := (5 / 2)) (hi := 5) (s := 3125)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (5 / 2)) (5 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 5) :
     distillT0 10 α ≤ (9 / 40) := by
@@ -621,9 +621,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (7 / 4)) :
     (lo := 0) (hi := (7 / 4)) (s := 823543)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((7 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo 2 5) :
     0 ≤ distillCritical1 10 x := by
@@ -633,9 +633,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo 2 5) :
     (lo := 2) (hi := 5) (s := 2187)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 2) (5 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 5) :
     distillT1 10 α ≤ (31 / 200) := by
@@ -652,9 +652,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 2) :
     (lo := 0) (hi := 2) (s := 4)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) (2 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (9 / 4) 5) :
     0 ≤ distillCritical2 10 x := by
@@ -663,9 +663,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (9 / 4) 5) :
     (lo := (9 / 4)) (hi := 5) (s := 14641)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (9 / 4)) (5 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 5) :
     distillT2 10 α ≤ (121 / 1000) := by
@@ -707,9 +707,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (5 / 2)) :
     (lo := 0) (hi := (5 / 2)) (s := 15625)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) (11 / 2)) :
     0 ≤ -distillCritical0 11 x := by
@@ -719,9 +719,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) (11 / 2)) :
     (lo := (11 / 4)) (hi := (11 / 2)) (s := 1771561)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (11 / 4)) ((11 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (11 / 2)) :
     distillT0 11 α ≤ (229 / 1000) := by
@@ -738,9 +738,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (9 / 4)) :
     (lo := 0) (hi := (9 / 4)) (s := 6561)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((9 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 2) (11 / 2)) :
     0 ≤ distillCritical1 11 x := by
@@ -750,9 +750,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (5 / 2) (11 / 2)) :
     (lo := (5 / 2)) (hi := (11 / 2)) (s := 17496)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (5 / 2)) ((11 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (11 / 2)) :
     distillT1 11 α ≤ (77 / 500) := by
@@ -769,9 +769,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (5 / 2)) :
     (lo := 0) (hi := (5 / 2)) (s := 125)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) (11 / 2)) :
     0 ≤ distillCritical2 11 x := by
@@ -780,9 +780,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) (11 / 2)) :
     (lo := (11 / 4)) (hi := (11 / 2)) (s := 1331)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (11 / 4)) ((11 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (11 / 2)) :
     distillT2 11 α ≤ (61 / 500) := by
@@ -823,9 +823,9 @@ private lemma sign_0_left (x : ℝ) (hx : x ∈ Set.Ioo 0 3) :
     (lo := 0) (hi := 3) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) (3 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (13 / 4) 6) :
     0 ≤ -distillCritical0 12 x := by
@@ -835,9 +835,9 @@ private lemma sign_0_right (x : ℝ) (hx : x ∈ Set.Ioo (13 / 4) 6) :
     (lo := (13 / 4)) (hi := 6) (s := 19487171)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical0
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (13 / 4)) (6 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 6) :
     distillT0 12 α ≤ (47 / 200) := by
@@ -854,9 +854,9 @@ private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (5 / 2)) :
     (lo := 0) (hi := (5 / 2)) (s := 15625)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((5 / 2) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) 6) :
     0 ≤ distillCritical1 12 x := by
@@ -866,9 +866,9 @@ private lemma sign_1_right (x : ℝ) (hx : x ∈ Set.Ioo (11 / 4) 6) :
     (lo := (11 / 4)) (hi := 6) (s := 62748517)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical1
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - (11 / 4)) (6 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 6) :
     distillT1 12 α ≤ (31 / 200) := by
@@ -885,9 +885,9 @@ private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (11 / 4)) :
     (lo := 0) (hi := (11 / 4)) (s := 14641)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 0) ((11 / 4) - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 3 6) :
     0 ≤ distillCritical2 12 x := by
@@ -896,9 +896,9 @@ private lemma sign_2_right (x : ℝ) (hx : x ∈ Set.Ioo 3 6) :
     (lo := 3) (hi := 6) (s := 1)
     (by norm_num) (by norm_num) ⟨hx.1.le, hx.2.le⟩ (by decide) (by decide) ?_).le
   unfold distillCritical2
-  norm_num only [BernsteinCert.coeffTree, BernsteinCert.Cert.eval,
-    List.length_cons, List.length_nil]
-  bernstein_ring (x - 3) (6 - x)
+  simp only [BernsteinCert.coeffTree_eval_cons, BernsteinCert.coeffTree_eval_nil,
+    List.length_cons, List.length_nil, Nat.cast_ofNat]
+  ring1
 
 theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 6) :
     distillT2 12 α ≤ (1 / 8) := by

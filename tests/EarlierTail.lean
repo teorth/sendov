@@ -5,32 +5,32 @@ open Sendov
 
 namespace EarlierTailTest
 
-example {m : ℕ} (hm : 5 ≤ m) : (5 ≤ m ∧ m ≤ 63) ∨ 64 ≤ m := by omega
+example {m : ℕ} (hm : 5 ≤ m) : (5 ≤ m ∧ m ≤ 60) ∨ 61 ≤ m := by omega
 
-example {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63) :
+example {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60) :
     distillEBudget m + distillT0 m 0 + distillT1 m 0 + distillT2 m 0 < 199 / 200 :=
-  distillFinite_components hm hm63 (by norm_num) (by positivity) (by norm_num)
+  distillFinite_components hm hm60 (by norm_num) (by positivity) (by norm_num)
 
-example {m α : ℝ} (hm : 64 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
+example {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 :=
   distillComponents_lt_199_200 hm hα h17
 
-example {m α : ℝ} (hm : 64 ≤ m) (hα : 0 < α) (h17 : α ≤ 17) :
+example {m α : ℝ} (hm : 61 ≤ m) (hα : 0 < α) (h17 : α ≤ 17) :
     scalarObstruction m α (cubicPolarEnvelope α) < 1 :=
   (distillScalar_lt_199_200 hm hα h17).trans (by norm_num)
 
 example :
-    distillEBudget 64 + distillT0 64 0 + distillT1 64 0 + distillT2 64 0 < 199 / 200 :=
+    distillEBudget 61 + distillT0 61 0 + distillT1 61 0 + distillT2 61 0 < 199 / 200 :=
   distillComponents_lt_199_200 (by norm_num) (by norm_num) (by norm_num)
 
 example :
-    scalarObstruction 64 0 (cubicPolarEnvelope 0) = 1 / 128 := by
+    scalarObstruction 61 0 (cubicPolarEnvelope 0) = 1 / 122 := by
   rw [scalarObstruction_zero]
   norm_num
 
 example :
-    distillEBudget (129 / 2) + distillT0 (129 / 2) 17 +
-      distillT1 (129 / 2) 17 + distillT2 (129 / 2) 17 < 199 / 200 :=
+    distillEBudget (123 / 2) + distillT0 (123 / 2) 17 +
+      distillT1 (123 / 2) 17 + distillT2 (123 / 2) 17 < 199 / 200 :=
   distillComponents_lt_199_200 (by norm_num) (by norm_num) (by norm_num)
 
 example {n : ℕ} (hn : 6 ≤ n) {α : ℝ}
@@ -39,6 +39,12 @@ example {n : ℕ} (hn : 6 ≤ n) {α : ℝ}
   distillScalar_lt_one hn hα h17 hhalf
 
 example : scalarObstruction (M 6) (5 / 2) (cubicPolarEnvelope (5 / 2)) < 1 :=
+  distillScalar_lt_one (by norm_num) (by norm_num) (by norm_num) (by norm_num [M])
+
+example : scalarObstruction (M 61) 17 (cubicPolarEnvelope 17) < 1 :=
+  distillScalar_lt_one (by norm_num) (by norm_num) (by norm_num) (by norm_num [M])
+
+example : scalarObstruction (M 62) 17 (cubicPolarEnvelope 17) < 1 :=
   distillScalar_lt_one (by norm_num) (by norm_num) (by norm_num) (by norm_num [M])
 
 example : scalarObstruction (M 64) 17 (cubicPolarEnvelope 17) < 1 :=
@@ -68,8 +74,8 @@ run_cmd do
   let env := (← getEnv).setExporting false
   for (consumer, targets) in #[
       (`Sendov.distillComponents_lt_199_200,
-        #[`Sendov.distillComponents_le_64, `Sendov.distillFinite_64,
-          `Sendov.distillFiniteBound_64]),
+        #[`Sendov.distillComponents_le_61, `Sendov.distillFinite_61,
+          `Sendov.distillFiniteBound_61]),
       (`Sendov.distillScalar_lt_199_200,
         #[`Sendov.distillScalar_le_majorant, `Sendov.distillComponents_lt_199_200]),
       (`Sendov.distillScalar_lt_one,
@@ -102,13 +108,14 @@ run_cmd do
     `Sendov.distillFiniteTailBase, `Sendov.distillComponents_lt_two_thirds,
     `Sendov.distillScalar_lt_two_thirds, `Sendov.distillComponents_lt_two_thirds_of_base,
     `Sendov.distillEBudget_le_81, `Sendov.distillT0_le_81, `Sendov.distillT1_le_81,
-    `Sendov.distillT2_le_81, `Sendov.distillComponents_le_81, `Sendov.distillTail_polynomial_pos]
+    `Sendov.distillT2_le_81, `Sendov.distillComponents_le_81, `Sendov.distillTail_polynomial_pos,
+    `Sendov.distillComponents_le_64]
   for name in retired do
     if env.contains name then throwError "retired declaration still imported: {name}"
   -- Only project values can reference project cases: earlier imported libraries
   -- cannot depend on declarations introduced later by Sendov.
-  for (root, upper) in #[(`Sendov.distillFinite_components, 63),
-      (`SendovConjecture.sendov, 64), (`SendovConjecture.phelps_rodriguez, 64)] do
+  for (root, upper) in #[(`Sendov.distillFinite_components, 60),
+      (`SendovConjecture.sendov, 61), (`SendovConjecture.phelps_rodriguez, 61)] do
     let mut pending := [root]
     let mut visited : Std.HashSet Name := {}
     while !pending.isEmpty do
@@ -128,17 +135,17 @@ run_cmd do
         let name := Name.str `Sendov s!"{stem}{m}"
         unless visited.contains name == (m ≤ upper) do
           throwError "wrong actual case closure: {root}, {name}"
-        if 65 ≤ m && env.contains name then
+        if 62 ≤ m && env.contains name then
           throwError "retired case still imported: {name}"
       for j in [0:3] do
         let name := Name.str (Name.str `Sendov s!"CriticalRow{m}") s!"component{j}"
         unless visited.contains name == (m ≤ upper) do
           throwError "wrong actual component closure: {root}, {name}"
-        if 65 ≤ m && env.contains name then
+        if 62 ≤ m && env.contains name then
           throwError "retired component still imported: {name}"
     for name in visited do
       let text := name.toString
       if retired.contains name || (text.splitOn "two_thirds").length > 1 ||
           (text.splitOn "_le_81").length > 1 then
         throwError "retired tail in actual value closure: {root}, {name}"
-    logInfo m!"K64_VALUE_CLOSURE {root}: 5..{upper}, three components, no retired names"
+    logInfo m!"K61_VALUE_CLOSURE {root}: 5..{upper}, three components, no retired names"

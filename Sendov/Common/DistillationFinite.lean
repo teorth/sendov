@@ -5,13 +5,13 @@ import Sendov.DistillationFinite.Rows29_36
 import Sendov.DistillationFinite.Rows37_44
 import Sendov.DistillationFinite.Rows45_52
 import Sendov.DistillationFinite.Rows53_60
-import Sendov.DistillationFinite.Rows61_64
+import Sendov.DistillationFinite.Rows61_61
 
 /-! Exact finite-domain critical-bracket closure. Fixed original paper budgets;
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
 namespace Sendov
 
-theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
+theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60)
     {α : ℝ} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
   interval_cases m
@@ -71,15 +71,12 @@ theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
   · exact (distillFinite_58 α hα h17).trans_lt distillFiniteBound_58
   · exact (distillFinite_59 α hα h17).trans_lt distillFiniteBound_59
   · exact (distillFinite_60 α hα h17).trans_lt distillFiniteBound_60
-  · exact (distillFinite_61 α hα h17).trans_lt distillFiniteBound_61
-  · exact (distillFinite_62 α hα h17).trans_lt distillFiniteBound_62
-  · exact (distillFinite_63 α hα h17).trans_lt distillFiniteBound_63
 
-theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
+theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60)
     {α : ℝ} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     scalarObstruction m α (cubicPolarEnvelope α) < 199 / 200 := by
   have hmR : (5 : ℝ) ≤ m := by exact_mod_cast hm
   exact (distillScalar_le_majorant hmR hα (by linarith)).trans_lt
-    (distillFinite_components hm hm63 hα.le hαm h17)
+    (distillFinite_components hm hm60 hα.le hαm h17)
 
 end Sendov

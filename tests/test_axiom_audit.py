@@ -18,9 +18,9 @@ TARGETS = [
     'SendovConjecture.phelps_rodriguez',
     'Sendov.distillFinite_components',
     'Sendov.distillFinite_scalar',
-    'Sendov.distillFinite_64',
-    'Sendov.distillFiniteBound_64',
-    'Sendov.distillComponents_le_64',
+    'Sendov.distillFinite_61',
+    'Sendov.distillFiniteBound_61',
+    'Sendov.distillComponents_le_61',
     'Sendov.distillT2_zero',
     'Sendov.distillComponents_lt_199_200',
     'Sendov.distillScalar_lt_199_200',
@@ -29,7 +29,7 @@ TARGETS = [
 ]
 
 MODULES = {
-    'Sendov.DistillationFinite.Rows61_64': TARGETS[4:6],
+    'Sendov.DistillationFinite.Rows61_61': TARGETS[4:6],
     'Sendov.Common.DistillationFinite': TARGETS[2:4],
     'Sendov.LargeDegree.DistillationTail': TARGETS[6:8],
     'Sendov.LargeDegree.DistillationTailBound': TARGETS[8:10],
