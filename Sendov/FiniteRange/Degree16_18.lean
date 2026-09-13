@@ -6,6 +6,9 @@ Authors: Terence Tao
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
 import Sendov.Common.BernsteinCert
+import Sendov.FiniteRange.BatchCertificate
+import Sendov.FiniteRange.PackedMomentCertificate
+import Sendov.Common.BernsteinRing
 
 /-!
 # The batch 16 to 18
@@ -63,19 +66,11 @@ def Nmomc : List ℤ :=
 
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 16) (gg1 16) (gg2 16) 6)) α := by
-  refine pev_wsum_eq_of_packed (gg0 16) (gg1 16) (gg2 16) 6 19 Lc betac
-    tauc Nmomc (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_ ?_ ?_ ?_ ?_ α
-  · refine rowZ_bound (gg0 16) (gg1 16) (gg2 16) 6 3 betac tauc
-      (by norm_num [betac]) (by simp) (by simp) (by simp) ?_
-    norm_num [gg0, gg1, gg2, l1, betac, tauc]
-  · decide
-  · refine wsum_bound (gg0 16) (gg1 16) (gg2 16) 6 Lc betac
-      (by norm_num [Lc]) ?_
-    norm_num [gg0, gg1, gg2, l1, Lc, betac]
-  · decide
-  · exact wsum_length_le Lc _ 0
-      (qrow_entry_length_le (gg0 16) (gg1 16) (gg2 16) 3 (by simp) (by simp) (by simp) 6)
-  · rfl
+  refine pev_moment_eq_of_packed_bounds 16 6 Lc betac tauc Nmomc
+    (by norm_num [Lc]) (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_
+    (by decide) (by decide) (by rfl) α
+  · norm_num [gg0, gg1, gg2, l1, betac, tauc]
+  · norm_num [gg0, gg1, gg2, l1, Lc, betac]
 
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 16 α t ^ 6)
@@ -90,7 +85,7 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 17 / 2) :
     0 < 308547940078125 + 716274580556250 * α + 701075142421875 * α ^ 2 + 366034929547500 * α ^ 3 + 98713082723625 * α ^ 4 - 785317395690 * α ^ 5 - 34202916258669 * α ^ 6 + 6366700041480 * α ^ 7 + 121732471512 * α ^ 8 - 9494954208 * α ^ 9 - 1551607200 * α ^ 10 - 87661568 * α ^ 11 - 2586240 * α ^ 12 - 39936 * α ^ 13 - 256 * α ^ 14 := by
   have hu : (0 : ℝ) ≤ 17 - 2 * α := by linarith
   have hid : (17 : ℝ) ^ 14 * (308547940078125 + 716274580556250 * α + 701075142421875 * α ^ 2 + 366034929547500 * α ^ 3 + 98713082723625 * α ^ 4 - 785317395690 * α ^ 5 - 34202916258669 * α ^ 6 + 6366700041480 * α ^ 7 + 121732471512 * α ^ 8 - 9494954208 * α ^ 9 - 1551607200 * α ^ 10 - 87661568 * α ^ 11 - 2586240 * α ^ 12 - 39936 * α ^ 13 - 256 * α ^ 14) = 308547940078125 * (17 - 2 * α) ^ 14 + 20816010191643750 * α ^ 1 * (17 - 2 * α) ^ 13 + 631515530954221875 * α ^ 2 * (17 - 2 * α) ^ 12 + 11358598773482842500 * α ^ 3 * (17 - 2 * α) ^ 11 + 134099015737057493625 * α ^ 4 * (17 - 2 * α) ^ 10 + 1075072539293623306170 * α ^ 5 * (17 - 2 * α) ^ 9 + 5177641117293101872899 * α ^ 6 * (17 - 2 * α) ^ 8 + 13260545037504883513944 * α ^ 7 * (17 - 2 * α) ^ 7 + 13392270163441462237560 * α ^ 8 * (17 - 2 * α) ^ 6 + 934363054464939802080 * α ^ 9 * (17 - 2 * α) ^ 5 + 56141276222621229749280 * α ^ 10 * (17 - 2 * α) ^ 4 + 269593608305522330908544 * α ^ 11 * (17 - 2 * α) ^ 3 + 451523429099140347738624 * α ^ 12 * (17 - 2 * α) ^ 2 + 320966535936278232000000 * α ^ 13 * (17 - 2 * α) ^ 1 + 72913603873782672000000 * α ^ 14 := by
-    ring
+    bernstein_ring α (17 - 2 * α)
   -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
   bernstein_cert α (17 - 2 * α) using hid
@@ -107,13 +102,6 @@ theorem finite_range {n : ℕ} (h0 : 16 ≤ n) (h1 : n ≤ 18) {α : ℝ}
     have hcast : ((n : ℕ) : ℝ) ≤ (18 : ℝ) := by exact_mod_cast h1
     have hMle : M n ≤ (18 : ℝ) - 1 := by simp only [M]; linarith
     linarith [_hα']
-  have hb := R_le_batch (n₀ := 16) (n := n) (n₁ := 18) (by norm_num) h0 h1 hα
-    (c_lo_nonneg hα hUn) hfeas
-  rw [show ((16 : ℕ) : ℝ) - 4 = 12 by norm_num] at hb
-  rw [show (12 : ℝ) / 2 = ((6 : ℕ) : ℝ) by norm_num] at hb
-  simp only [Real.rpow_natCast] at hb
-  rw [integral_lo α hα, M_lo, M_hi, A_hi] at hb
-  push_cast at hb
   have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * 15) + 1 / (4 * 15 * (3 + α))
       + (1 - 2 * α / 17) ^ 2 * 18 * 17 * (18 - 2) / (4 * (3 + α))
         * (pev Nmomc α / ((Lc : ℝ) * (2 * 15 * (3 + α)) ^ 6))
@@ -122,9 +110,10 @@ theorem finite_range {n : ℕ} (h0 : 16 ≤ n) (h1 : n ≤ 18) {α : ℝ}
     push_cast
     field_simp
     ring
-  rw [hid] at hb
-  have hP := P_pos hα hUn
-  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
+  exact R_lt_one_of_batch_certificate (n₀ := 16) (n₁ := 18) (k := 6)
+    (by norm_num) h0 h1 hα (c_lo_nonneg hα hUn) hfeas
+    (by norm_num) M_lo M_hi (by simpa only [M_lo] using integral_lo α hα)
+    hid (P_pos hα hUn) (by positivity)
 
 end B16_18
 

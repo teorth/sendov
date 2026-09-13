@@ -6,6 +6,9 @@ Authors: Terence Tao
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
 import Sendov.Common.BernsteinCert
+import Sendov.FiniteRange.BatchCertificate
+import Sendov.FiniteRange.PackedMomentCertificate
+import Sendov.Common.BernsteinRing
 
 /-!
 # The batch 24 to 26
@@ -63,19 +66,11 @@ def Nmomc : List ℤ :=
 
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 24) (gg1 24) (gg2 24) 10)) α := by
-  refine pev_wsum_eq_of_packed (gg0 24) (gg1 24) (gg2 24) 10 31 Lc betac
-    tauc Nmomc (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_ ?_ ?_ ?_ ?_ α
-  · refine rowZ_bound (gg0 24) (gg1 24) (gg2 24) 10 3 betac tauc
-      (by norm_num [betac]) (by simp) (by simp) (by simp) ?_
-    norm_num [gg0, gg1, gg2, l1, betac, tauc]
-  · decide
-  · refine wsum_bound (gg0 24) (gg1 24) (gg2 24) 10 Lc betac
-      (by norm_num [Lc]) ?_
-    norm_num [gg0, gg1, gg2, l1, Lc, betac]
-  · decide
-  · exact wsum_length_le Lc _ 0
-      (qrow_entry_length_le (gg0 24) (gg1 24) (gg2 24) 3 (by simp) (by simp) (by simp) 10)
-  · rfl
+  refine pev_moment_eq_of_packed_bounds 24 10 Lc betac tauc Nmomc
+    (by norm_num [Lc]) (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_
+    (by decide) (by decide) (by rfl) α
+  · norm_num [gg0, gg1, gg2, l1, betac, tauc]
+  · norm_num [gg0, gg1, gg2, l1, Lc, betac]
 
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 24 α t ^ 10)
@@ -90,7 +85,7 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 25 / 2) :
     0 < 874071004010582953643568750 + 3221297610086019399669004500 * α + 5386914463346812349691460974 * α ^ 2 + 5391225879978445091101054368 * α ^ 3 + 3582299145670361769507272658 * α ^ 4 + 1654127651781089540379647100 * α ^ 5 + 537462463626302644652842710 * α ^ 6 + 120043033655516749475390448 * α ^ 7 + 16184849120135434020794931 * α ^ 8 - 222784389930881498880726 * α ^ 9 - 2725770297915674501126913 * α ^ 10 + 248640476833385673099320 * α ^ 11 + 6386094327528944247792 * α ^ 12 + 230085309479261626272 * α ^ 13 - 10099884196228450032 * α ^ 14 - 1569527054513950464 * α ^ 15 - 87896838917715456 * α ^ 16 - 2989402709094912 * α ^ 17 - 67703370254592 * α ^ 18 - 1033617561600 * α ^ 19 - 10281172992 * α ^ 20 - 60432384 * α ^ 21 - 159744 * α ^ 22 := by
   have hu : (0 : ℝ) ≤ 25 - 2 * α := by linarith
   have hid : (25 : ℝ) ^ 22 * (874071004010582953643568750 + 3221297610086019399669004500 * α + 5386914463346812349691460974 * α ^ 2 + 5391225879978445091101054368 * α ^ 3 + 3582299145670361769507272658 * α ^ 4 + 1654127651781089540379647100 * α ^ 5 + 537462463626302644652842710 * α ^ 6 + 120043033655516749475390448 * α ^ 7 + 16184849120135434020794931 * α ^ 8 - 222784389930881498880726 * α ^ 9 - 2725770297915674501126913 * α ^ 10 + 248640476833385673099320 * α ^ 11 + 6386094327528944247792 * α ^ 12 + 230085309479261626272 * α ^ 13 - 10099884196228450032 * α ^ 14 - 1569527054513950464 * α ^ 15 - 87896838917715456 * α ^ 16 - 2989402709094912 * α ^ 17 - 67703370254592 * α ^ 18 - 1033617561600 * α ^ 19 - 10281172992 * α ^ 20 - 60432384 * α ^ 21 - 159744 * α ^ 22) = 874071004010582953643568750 * (25 - 2 * α) ^ 22 + 118991564428616134952042137500 * α ^ 1 * (25 - 2 * α) ^ 21 + 7556825637887856737376275358750 * α ^ 2 * (25 - 2 * α) ^ 20 + 297326570539550302672678360350000 * α ^ 3 * (25 - 2 * α) ^ 19 + 8118326774696702494364871859181250 * α ^ 4 * (25 - 2 * α) ^ 18 + 163302166743534227801697447509662500 * α ^ 5 * (25 - 2 * α) ^ 17 + 2507454163520304052153861436880993750 * α ^ 6 * (25 - 2 * α) ^ 16 + 30047259752690844282111594563558670000 * α ^ 7 * (25 - 2 * α) ^ 15 + 284787676890052141286070572033915521875 * α ^ 8 * (25 - 2 * α) ^ 14 + 2146769361227978442422195176181338368750 * α ^ 9 * (25 - 2 * α) ^ 13 + 12630679896438305929175193655858187184375 * α ^ 10 * (25 - 2 * α) ^ 12 + 56067735566028501096437207497525020350000 * α ^ 11 * (25 - 2 * α) ^ 11 + 180631480948809558078622444236010586285000 * α ^ 12 * (25 - 2 * α) ^ 10 + 400779538225462244119560623305257108200000 * α ^ 13 * (25 - 2 * α) ^ 9 + 552145957044674175745646853887912448300000 * α ^ 14 * (25 - 2 * α) ^ 8 + 348851941562555217823842842079415684800000 * α ^ 15 * (25 - 2 * α) ^ 7 + 38623525300380552283361811907759716000000 * α ^ 16 * (25 - 2 * α) ^ 6 + 822237191651812497627267691867773310080000 * α ^ 17 * (25 - 2 * α) ^ 5 + 3269244329154715153428677298597459316800000 * α ^ 18 * (25 - 2 * α) ^ 4 + 5333912969812883272270527401813990707200000 * α ^ 19 * (25 - 2 * α) ^ 3 + 4537960847197188659144322307990683712000000 * α ^ 20 * (25 - 2 * α) ^ 2 + 1927546466544754214336332480358954905600000 * α ^ 21 * (25 - 2 * α) ^ 1 + 294013599962108674661431900766763888640000 * α ^ 22 := by
-    ring
+    bernstein_ring α (25 - 2 * α)
   -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
   bernstein_cert α (25 - 2 * α) using hid
@@ -107,13 +102,6 @@ theorem finite_range {n : ℕ} (h0 : 24 ≤ n) (h1 : n ≤ 26) {α : ℝ}
     have hcast : ((n : ℕ) : ℝ) ≤ (26 : ℝ) := by exact_mod_cast h1
     have hMle : M n ≤ (26 : ℝ) - 1 := by simp only [M]; linarith
     linarith [_hα']
-  have hb := R_le_batch (n₀ := 24) (n := n) (n₁ := 26) (by norm_num) h0 h1 hα
-    (c_lo_nonneg hα hUn) hfeas
-  rw [show ((24 : ℕ) : ℝ) - 4 = 20 by norm_num] at hb
-  rw [show (20 : ℝ) / 2 = ((10 : ℕ) : ℝ) by norm_num] at hb
-  simp only [Real.rpow_natCast] at hb
-  rw [integral_lo α hα, M_lo, M_hi, A_hi] at hb
-  push_cast at hb
   have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * 23) + 1 / (4 * 23 * (3 + α))
       + (1 - 2 * α / 25) ^ 2 * 26 * 25 * (26 - 2) / (4 * (3 + α))
         * (pev Nmomc α / ((Lc : ℝ) * (2 * 23 * (3 + α)) ^ 10))
@@ -122,9 +110,10 @@ theorem finite_range {n : ℕ} (h0 : 24 ≤ n) (h1 : n ≤ 26) {α : ℝ}
     push_cast
     field_simp
     ring
-  rw [hid] at hb
-  have hP := P_pos hα hUn
-  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
+  exact R_lt_one_of_batch_certificate (n₀ := 24) (n₁ := 26) (k := 10)
+    (by norm_num) h0 h1 hα (c_lo_nonneg hα hUn) hfeas
+    (by norm_num) M_lo M_hi (by simpa only [M_lo] using integral_lo α hα)
+    hid (P_pos hα hUn) (by positivity)
 
 end B24_26
 

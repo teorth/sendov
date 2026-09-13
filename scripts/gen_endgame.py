@@ -1,4 +1,4 @@
-import sympy as sp, io
+import sympy as sp
 
 a = sp.symbols('a')
 g = 300 + 47*a - a**2
@@ -94,6 +94,7 @@ Authors: Terence Tao
 -/
 import Sendov.LargeDegree.Monotone
 import Sendov.Common.BernsteinCert
+import Sendov.Common.BernsteinRing
 
 /-!
 # The large-degree claim
@@ -144,7 +145,7 @@ lemma F_pos (hα : 0 ≤ α) (hα' : α ≤ 17) :
     0 < {P} := by
   have hu : (0 : ℝ) ≤ 17 - α := by linarith
   have hid : (17 : ℝ) ^ {d} * ({P}) = {bern} := by
-    ring
+    bernstein_ring α (17 - α)
   bernstein_cert α (17 - α) using hid
 
 set_option maxHeartbeats 4000000 in
@@ -166,39 +167,51 @@ theorem Ut_lt_one (hα : 0 ≤ α) (hα' : α ≤ 17) : Ut α < 1 := by
     ring
   -- `(α/(3+α)) ^ 48` cancels against `(3+α) ^ 49` without expanding either
   have h48 : (α / (3 + α)) ^ 48 * (3 + α) ^ 49 = α ^ 48 * (3 + α) := by
-    rw [div_pow, show (3 + α) ^ 49 = (3 + α) ^ 48 * (3 + α) from by ring, ← mul_assoc,
+    rw [div_pow, pow_succ (3 + α) 48, ← mul_assoc,
       div_mul_cancel₀ _ (pow_ne_zero 48 h3.ne')]
-  -- the six terms of `Ut`, each multiplied by `D`
+  -- The six terms of `Ut`, each multiplied by `D`. Composite powers are kept
+  -- as scalar factors: cancel denominators first, then normalize only the coefficients.
   have t1 : (1 / 6 : ℝ) * ({DD}) = {k16} * (3 + α) ^ 49 * {G4} := by
-    ring
+    norm_num [← mul_assoc]
   have t2 : 1 / (4 * (3 + α)) * ({DD}) = {k4} * (3 + α) ^ 48 * {G4} := by
+    rw [pow_succ (3 + α) 48]
+    -- Remove the single factor `3 + α`; the remaining powers stay opaque.
+    generalize (3 + α) ^ 48 = p, {G4} = g
     field_simp
     ring
   have t3 : (1 / 200 : ℝ) * ({DD}) = {k200} * (3 + α) ^ 49 * {G4} := by
-    ring
+    norm_num [← mul_assoc]
   have t4 : 1 / (400 * (3 + α)) * ({DD}) = {k400} * (3 + α) ^ 48 * {G4} := by
+    rw [pow_succ (3 + α) 48]
+    -- Remove the single factor `3 + α`; the remaining powers stay opaque.
+    generalize (3 + α) ^ 48 = p, {G4} = g
     field_simp
     ring
   have t5 : 101 / 100 * (1600000 * (100 - 2 * α) ^ 2 * (3 + α) ^ 3
-        / (721 * (300 + 47 * α - α ^ 2) ^ 4)) * ({DD})
+        / (721 * {G4})) * ({DD})
       = {kT1} * (100 - 2 * α) ^ 2 * (3 + α) ^ 52 := by
-    -- cancel the γ⁴ syntactically; `field_simp` leaves a stray γ⁻¹ here
-    have hne : (721 : ℝ) * (300 + 47 * α - α ^ 2) ^ 4 ≠ 0 :=
-      mul_ne_zero (by norm_num) (pow_ne_zero 4 hg.ne')
-    rw [show 101 / 100 * (1600000 * (100 - 2 * α) ^ 2 * (3 + α) ^ 3
-            / (721 * (300 + 47 * α - α ^ 2) ^ 4)) * ({DD})
-          = 1600000 * (100 - 2 * α) ^ 2 * (3 + α) ^ 3
-              / (721 * (300 + 47 * α - α ^ 2) ^ 4) * (721 * (300 + 47 * α - α ^ 2) ^ 4)
-              * ({kT1div} * (3 + α) ^ 49) from by ring,
-      div_mul_cancel₀ _ hne]
+    -- Combine exponents by `pow_add`, and cancel only the scalar denominator γ⁴.
+    rw [show (3 + α) ^ 52 = (3 + α) ^ 3 * (3 + α) ^ 49 from pow_add _ 3 49]
+    have hg4 := pow_ne_zero 4 hgne
+    generalize (100 - 2 * α) ^ 2 = a, (3 + α) ^ 3 = b, (3 + α) ^ 49 = p
+    generalize {G4} = g at hg4 ⊢
+    field_simp
     ring
   have t6 : (100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) * (α / (3 + α)) ^ 48
         * ({DD})
       = {kT2} * (100 - 2 * α) ^ 2 * α ^ 48 * {G4} := by
+    -- First expose the paired powers so that `h48` cancels 48 denominator factors.
     rw [show (100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) * (α / (3 + α)) ^ 48
           * ({DD})
         = ((100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) * ({Lp} * {G4}))
-          * ((α / (3 + α)) ^ 48 * (3 + α) ^ 49) from by ring, h48]
+          * ((α / (3 + α)) ^ 48 * (3 + α) ^ 49) from by
+            -- This is only reassociation of scalar factors, not a polynomial identity.
+            generalize (100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) = a,
+              (α / (3 + α)) ^ 48 = b, (3 + α) ^ 49 = p,
+              {G4} = g
+            ring, h48]
+    -- Only one factor `3 + α` remains to cancel; do not expand α⁴⁸ or γ⁴.
+    generalize (100 - 2 * α) ^ 2 = a, α ^ 48 = p, {G4} = g
     field_simp
     ring
   have hD : (0 : ℝ) < {DD} := by
@@ -225,6 +238,15 @@ theorem large_degree {{n : ℕ}} (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α �
 
 end Sendov
 '''
-io.open(r"c:/Users/teort/Github/sendov/Sendov/LargeDegree/Endgame.lean", "w",
-        encoding="utf-8", newline="\n").write(src)
-print(f"written Endgame.lean, {len(src)} bytes")
+# Resolve relative to this checkout; --output supports isolated regeneration checks.
+import argparse
+from pathlib import Path
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", type=Path,
+                    default=Path(__file__).resolve().parents[1] / "Sendov/LargeDegree/Endgame.lean",
+                    help="Output Lean file; overwrites it if present. Default: this checkout's Endgame.lean.")
+output = parser.parse_args().output
+output.parent.mkdir(parents=True, exist_ok=True)
+with output.open("w", encoding="utf-8", newline="\n") as stream:
+    stream.write(src)
+print(f"written Endgame.lean, {len(src.encode('utf-8'))} bytes")

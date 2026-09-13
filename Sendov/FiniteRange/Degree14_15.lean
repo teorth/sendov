@@ -6,6 +6,9 @@ Authors: Terence Tao
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
 import Sendov.Common.BernsteinCert
+import Sendov.FiniteRange.BatchCertificate
+import Sendov.FiniteRange.PackedMomentCertificate
+import Sendov.Common.BernsteinRing
 
 /-!
 # The batch 14 to 15
@@ -63,19 +66,11 @@ def Nmomc : List ℤ :=
 
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 14) (gg1 14) (gg2 14) 5)) α := by
-  refine pev_wsum_eq_of_packed (gg0 14) (gg1 14) (gg2 14) 5 16 Lc betac
-    tauc Nmomc (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_ ?_ ?_ ?_ ?_ α
-  · refine rowZ_bound (gg0 14) (gg1 14) (gg2 14) 5 3 betac tauc
-      (by norm_num [betac]) (by simp) (by simp) (by simp) ?_
-    norm_num [gg0, gg1, gg2, l1, betac, tauc]
-  · decide
-  · refine wsum_bound (gg0 14) (gg1 14) (gg2 14) 5 Lc betac
-      (by norm_num [Lc]) ?_
-    norm_num [gg0, gg1, gg2, l1, Lc, betac]
-  · decide
-  · exact wsum_length_le Lc _ 0
-      (qrow_entry_length_le (gg0 14) (gg1 14) (gg2 14) 3 (by simp) (by simp) (by simp) 5)
-  · rfl
+  refine pev_moment_eq_of_packed_bounds 14 5 Lc betac tauc Nmomc
+    (by norm_num [Lc]) (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_
+    (by decide) (by decide) (by rfl) α
+  · norm_num [gg0, gg1, gg2, l1, betac, tauc]
+  · norm_num [gg0, gg1, gg2, l1, Lc, betac]
 
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 14 α t ^ 5)
@@ -90,7 +85,7 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 7) :
     0 < 4540012290450 + 9000770719122 * α + 7217967952260 * α ^ 2 + 2789503991820 * α ^ 3 + 226924812075 * α ^ 4 - 867448623285 * α ^ 5 + 235182487819 * α ^ 6 + 1315276135 * α ^ 7 - 765536900 * α ^ 8 - 78585080 * α ^ 9 - 3463520 * α ^ 10 - 74480 * α ^ 11 - 640 * α ^ 12 := by
   have hu : (0 : ℝ) ≤ 7 - α := by linarith
   have hid : (7 : ℝ) ^ 12 * (4540012290450 + 9000770719122 * α + 7217967952260 * α ^ 2 + 2789503991820 * α ^ 3 + 226924812075 * α ^ 4 - 867448623285 * α ^ 5 + 235182487819 * α ^ 6 + 1315276135 * α ^ 7 - 765536900 * α ^ 8 - 78585080 * α ^ 9 - 3463520 * α ^ 10 - 74480 * α ^ 11 - 640 * α ^ 12) = 4540012290450 * (7 - α) ^ 12 + 117485542519254 * α ^ 1 * (7 - α) ^ 11 + 1346380586202834 * α ^ 2 * (7 - α) ^ 10 + 8957703596562630 * α ^ 3 * (7 - α) ^ 9 + 37714860895632375 * α ^ 4 * (7 - α) ^ 8 + 91053479724275985 * α ^ 5 * (7 - α) ^ 7 + 128817765797828254 * α ^ 6 * (7 - α) ^ 6 + 133833540832996984 * α ^ 7 * (7 - α) ^ 5 + 161773229978174745 * α ^ 8 * (7 - α) ^ 4 + 197834312331965435 * α ^ 9 * (7 - α) ^ 3 + 152113356071582990 * α ^ 10 * (7 - α) ^ 2 + 57359456154000000 * α ^ 11 * (7 - α) ^ 1 + 7376986416800000 * α ^ 12 := by
-    ring
+    bernstein_ring α (7 - α)
   -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
   bernstein_cert α (7 - α) using hid
@@ -107,13 +102,6 @@ theorem finite_range {n : ℕ} (h0 : 14 ≤ n) (h1 : n ≤ 15) {α : ℝ}
     have hcast : ((n : ℕ) : ℝ) ≤ (15 : ℝ) := by exact_mod_cast h1
     have hMle : M n ≤ (15 : ℝ) - 1 := by simp only [M]; linarith
     linarith [_hα']
-  have hb := R_le_batch (n₀ := 14) (n := n) (n₁ := 15) (by norm_num) h0 h1 hα
-    (c_lo_nonneg hα hUn) hfeas
-  rw [show ((14 : ℕ) : ℝ) - 4 = 10 by norm_num] at hb
-  rw [show (10 : ℝ) / 2 = ((5 : ℕ) : ℝ) by norm_num] at hb
-  simp only [Real.rpow_natCast] at hb
-  rw [integral_lo α hα, M_lo, M_hi, A_hi] at hb
-  push_cast at hb
   have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * 13) + 1 / (4 * 13 * (3 + α))
       + (1 - 2 * α / 14) ^ 2 * 15 * 14 * (15 - 2) / (4 * (3 + α))
         * (pev Nmomc α / ((Lc : ℝ) * (2 * 13 * (3 + α)) ^ 5))
@@ -122,9 +110,10 @@ theorem finite_range {n : ℕ} (h0 : 14 ≤ n) (h1 : n ≤ 15) {α : ℝ}
     push_cast
     field_simp
     ring
-  rw [hid] at hb
-  have hP := P_pos hα hUn
-  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
+  exact R_lt_one_of_batch_certificate (n₀ := 14) (n₁ := 15) (k := 5)
+    (by norm_num) h0 h1 hα (c_lo_nonneg hα hUn) hfeas
+    (by norm_num) M_lo M_hi (by simpa only [M_lo] using integral_lo α hα)
+    hid (P_pos hα hUn) (by positivity)
 
 end B14_15
 

@@ -6,6 +6,9 @@ Authors: Terence Tao
 import Sendov.FiniteRange.Batch
 import Sendov.FiniteRange.PackBridge
 import Sendov.Common.BernsteinCert
+import Sendov.FiniteRange.BatchCertificate
+import Sendov.FiniteRange.PackedMomentCertificate
+import Sendov.Common.BernsteinRing
 
 /-!
 # The batch 6 to 6
@@ -63,19 +66,11 @@ def Nmomc : List ℤ :=
 
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 6) (gg1 6) (gg2 6) 1)) α := by
-  refine pev_wsum_eq_of_packed (gg0 6) (gg1 6) (gg2 6) 1 4 Lc betac
-    tauc Nmomc (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_ ?_ ?_ ?_ ?_ α
-  · refine rowZ_bound (gg0 6) (gg1 6) (gg2 6) 1 3 betac tauc
-      (by norm_num [betac]) (by simp) (by simp) (by simp) ?_
-    norm_num [gg0, gg1, gg2, l1, betac, tauc]
-  · decide
-  · refine wsum_bound (gg0 6) (gg1 6) (gg2 6) 1 Lc betac
-      (by norm_num [Lc]) ?_
-    norm_num [gg0, gg1, gg2, l1, Lc, betac]
-  · decide
-  · exact wsum_length_le Lc _ 0
-      (qrow_entry_length_le (gg0 6) (gg1 6) (gg2 6) 3 (by simp) (by simp) (by simp) 1)
-  · rfl
+  refine pev_moment_eq_of_packed_bounds 6 1 Lc betac tauc Nmomc
+    (by norm_num [Lc]) (by norm_num [betac]) (by norm_num [tauc]) ?_ ?_
+    (by decide) (by decide) (by rfl) α
+  · norm_num [gg0, gg1, gg2, l1, betac, tauc]
+  · norm_num [gg0, gg1, gg2, l1, Lc, betac]
 
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 6 α t ^ 1)
@@ -90,7 +85,7 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 5 / 2) :
     0 < 1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4 := by
   have hu : (0 : ℝ) ≤ 5 - 2 * α := by linarith
   have hid : (5 : ℝ) ^ 4 * (1575 - 900 * α + 2345 * α ^ 2 - 342 * α ^ 3 - 24 * α ^ 4) = 1575 * (5 - 2 * α) ^ 4 + 8100 * α ^ 1 * (5 - 2 * α) ^ 3 + 69425 * α ^ 2 * (5 - 2 * α) ^ 2 + 188150 * α ^ 3 * (5 - 2 * α) ^ 1 + 123200 * α ^ 4 := by
-    ring
+    bernstein_ring α (5 - 2 * α)
   -- The certificate checks coefficient signs. The last summand is positive for α > 0;
   -- at α = 0 the first summand is positive. The identity above checks every coefficient.
   bernstein_cert α (5 - 2 * α) using hid
@@ -107,13 +102,6 @@ theorem finite_range {n : ℕ} (h0 : 6 ≤ n) (h1 : n ≤ 6) {α : ℝ}
     have hcast : ((n : ℕ) : ℝ) ≤ (6 : ℝ) := by exact_mod_cast h1
     have hMle : M n ≤ (6 : ℝ) - 1 := by simp only [M]; linarith
     linarith [_hα']
-  have hb := R_le_batch (n₀ := 6) (n := n) (n₁ := 6) (by norm_num) h0 h1 hα
-    (c_lo_nonneg hα hUn) hfeas
-  rw [show ((6 : ℕ) : ℝ) - 4 = 2 by norm_num] at hb
-  rw [show (2 : ℝ) / 2 = ((1 : ℕ) : ℝ) by norm_num] at hb
-  simp only [Real.rpow_natCast] at hb
-  rw [integral_lo α hα, M_lo, A_hi] at hb
-  push_cast at hb
   have hid : (1 : ℝ) / 6 + 1 / (4 * (3 + α)) + 1 / (2 * 5) + 1 / (4 * 5 * (3 + α))
       + (1 - 2 * α / 5) ^ 2 * 6 * 5 * (6 - 2) / (4 * (3 + α))
         * (pev Nmomc α / ((Lc : ℝ) * (2 * 5 * (3 + α)) ^ 1))
@@ -122,9 +110,10 @@ theorem finite_range {n : ℕ} (h0 : 6 ≤ n) (h1 : n ≤ 6) {α : ℝ}
     push_cast
     field_simp
     ring
-  rw [hid] at hb
-  have hP := P_pos hα hUn
-  exact hb.trans_lt (sub_lt_self _ (div_pos hP (by positivity)))
+  exact R_lt_one_of_batch_certificate (n₀ := 6) (n₁ := 6) (k := 1)
+    (by norm_num) h0 h1 hα (c_lo_nonneg hα hUn) hfeas
+    (by norm_num) M_lo M_hi (by simpa only [M_lo] using integral_lo α hα)
+    hid (P_pos hα hUn) (by positivity)
 
 end B6_6
 
