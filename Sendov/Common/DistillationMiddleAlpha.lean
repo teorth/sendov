@@ -41,13 +41,10 @@ private lemma middle_T0_lower_polynomial {m : ℝ} (hm : 5 ≤ m) :
         5752975708450 * (m - 5) ^ 4 + 13287198225360 * (m - 5) ^ 3 +
         48679218659063 * (m - 5) ^ 2 + 207466884835694 * (m - 5) +
         297259523310640 := by ring
-  have hpos : 0 <
-      82539689375 * (m - 5) ^ 6 + 1183226670250 * (m - 5) ^ 5 +
-        5752975708450 * (m - 5) ^ 4 + 13287198225360 * (m - 5) ^ 3 +
-        48679218659063 * (m - 5) ^ 2 + 207466884835694 * (m - 5) +
-        297259523310640 := by positivity
-  rw [← hid] at hpos
-  linarith only [hpos]
+  apply sub_pos.mp
+  apply pos_of_mul_pos_right (a := (2148437500000 : ℝ)) _ (by norm_num)
+  rw [hid]
+  positivity
 
 private lemma middle_T0_upper_polynomial {m : ℝ} (hm : 5 ≤ m) :
     24 * (3 / 5 : ℝ) ^ 4 * (10 / 47) * m ^ 3 * (m - 2 * (17 / 10)) ^ 2 <
@@ -60,12 +57,10 @@ private lemma middle_T0_upper_polynomial {m : ℝ} (hm : 5 ≤ m) :
       30931875 * (m - 5) ^ 6 + 369947250 * (m - 5) ^ 5 +
         1135607850 * (m - 5) ^ 4 + 856992960 * (m - 5) ^ 3 +
         18236567691 * (m - 5) ^ 2 + 103802533398 * (m - 5) + 136283024880 := by ring
-  have hpos : 0 <
-      30931875 * (m - 5) ^ 6 + 369947250 * (m - 5) ^ 5 +
-        1135607850 * (m - 5) ^ 4 + 856992960 * (m - 5) ^ 3 +
-        18236567691 * (m - 5) ^ 2 + 103802533398 * (m - 5) + 136283024880 := by positivity
-  rw [← hid] at hpos
-  linarith only [hpos]
+  apply sub_pos.mp
+  apply pos_of_mul_pos_right (a := (917968750 : ℝ)) _ (by norm_num)
+  rw [hid]
+  positivity
 
 lemma distillT0_le_middle {m α : ℝ} (hm : 5 ≤ m)
     (hα : 7 / 5 ≤ α) (hα2 : α ≤ 2) : distillT0 m α ≤ 13 / 50 := by

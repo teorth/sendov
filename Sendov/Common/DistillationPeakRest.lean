@@ -1,4 +1,5 @@
-import Sendov.Common.DistillationPeakFirst
+import Sendov.Common.DistillationPeakAlgebra
+import Sendov.Common.BernsteinList
 
 /-!
 # Joint elementary, zeroth and second peak budget

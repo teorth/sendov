@@ -14,6 +14,9 @@ nonnegative Taylor terms.
 
 namespace Sendov.PeakClosure
 
+/-- Shared affine budget; neither complementary certificate depends on the other. -/
+noncomputable def budget1 (a : ℝ) : ℝ := (431 - 3 * a) / 2500
+
 def S (a : ℝ) : ℝ := a + 3
 def N (a : ℝ) : ℝ := 29 * a ^ 2 + 180 * a + 270
 def P (a : ℝ) : ℝ := 5 * a ^ 3 + 36 * a ^ 2 + 78 * a + 48
@@ -39,7 +42,7 @@ noncomputable def taylor4 (x : ℝ) : ℝ :=
   1 + x + x ^ 2 / 2 + x ^ 3 / 6 + x ^ 4 / 24
 
 lemma S_pos {a : ℝ} (ha : 0 ≤ a) : 0 < S a := by unfold S; positivity
-lemma N_pos {a : ℝ} (ha : 0 ≤ a) : 0 < N a := by unfold N; positivity
+lemma N_pos {a : ℝ} (ha : 0 ≤ a) : 0 < N a := distillN_pos ha
 lemma P_pos {a : ℝ} (ha : 0 ≤ a) : 0 < P a := by unfold P; positivity
 lemma W_pos {a : ℝ} (ha : 0 ≤ a) : 0 < W a := by unfold W; positivity
 lemma V_pos {a : ℝ} (ha : 0 ≤ a) : 0 < V a := by
@@ -49,11 +52,8 @@ lemma F_pos {a : ℝ} (ha : 0 ≤ a) : 0 < F a := by unfold F; positivity
 lemma G_pos {a : ℝ} (ha : 0 ≤ a) : 0 < G a := by unfold G; positivity
 lemma D_pos {a : ℝ} (ha : 0 ≤ a) : 0 < D a := by unfold D; positivity
 
-lemma ratio_eq {a : ℝ} (ha : 0 ≤ a) : distillRatio a = N a / (30 * S a ^ 3) := by
-  have hs := (S_pos ha).ne'
-  unfold distillRatio N S at *
-  field_simp
-  ring
+lemma ratio_eq {a : ℝ} (ha : 0 ≤ a) : distillRatio a = N a / (30 * S a ^ 3) :=
+  distillRatio_compact ha
 
 lemma envelope_gap_eq {a : ℝ} (ha : 0 ≤ a) :
     1 - cubicPolarEnvelope a = F a / (30 * S a ^ 3) := by

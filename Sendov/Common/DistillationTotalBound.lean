@@ -35,27 +35,22 @@ lemma distillScalar_eq_loss_integral {m α : ℝ} (hm : 0 < m) (hα : 0 < α) :
         cubicPolarEnvelope α / (4 * α) + 1 / (2 * m) +
         cubicPolarEnvelope α / (4 * α * m) =
       distillEBudget m - distillElementaryLoss m α := by
-    have hrat :
-        cubicPolarEnvelope α / (2 * α * (1 - cubicPolarEnvelope α)) +
-          cubicPolarEnvelope α / (4 * α) + 1 / (2 * m) +
-          cubicPolarEnvelope α / (4 * α * m) =
-        distillRatio α / (2 * (1 - cubicPolarEnvelope α)) +
-          distillRatio α / 4 + 1 / (2 * m) + distillRatio α / (4 * m) := by
-      rw [distillRatio_eq hα]
+    trans distillRatio α / (2 * (1 - cubicPolarEnvelope α)) +
+      distillRatio α / 4 + 1 / (2 * m) + distillRatio α / (4 * m)
+    · rw [distillRatio_eq hα]
       field_simp [hα.ne', hm.ne', he]
-    rw [hrat]
-    simp only [distillElementaryLoss, distillEBudget]
-    have hr : distillRatio α =
-        (1 - α / (α + 3)) * (1 - (α / (α + 3)) ^ 2 / 30) / 3 := rfl
-    rw [hr]
-    generalize hu : α / (α + 3) = u
-    have heq : cubicPolarEnvelope α = u - u ^ 3 / 30 := by
-      simp only [cubicPolarEnvelope, hu]
-    rw [heq] at he ⊢
-    generalize hd : 1 - (u - u ^ 3 / 30) = d at he ⊢
-    field_simp [hm.ne', he]
-    rw [← hd]
-    ring
+    · simp only [distillElementaryLoss, distillEBudget]
+      have hr : distillRatio α =
+          (1 - α / (α + 3)) * (1 - (α / (α + 3)) ^ 2 / 30) / 3 := rfl
+      rw [hr]
+      generalize hu : α / (α + 3) = u
+      have heq : cubicPolarEnvelope α = u - u ^ 3 / 30 := by
+        simp only [cubicPolarEnvelope, hu]
+      rw [heq] at he ⊢
+      generalize hd : 1 - (u - u ^ 3 / 30) = d at he ⊢
+      field_simp [hm.ne', he]
+      rw [← hd]
+      ring
   unfold scalarObstruction
   rw [← distillKappa_eq hα, hE]
 
@@ -202,15 +197,12 @@ private lemma chord_total_polynomial_pos {m α : ℝ} (hm : 5 ≤ m)
       p4 * α ^ 4 * (7 - 5 * α) + p5 * α ^ 5 := by
     dsimp [p0, p1, p2, p3, p4, p5, x]
     ring
-  have hpos : 0 < p0 * (7 - 5 * α) ^ 5 + p1 * α * (7 - 5 * α) ^ 4 +
-      p2 * α ^ 2 * (7 - 5 * α) ^ 3 + p3 * α ^ 3 * (7 - 5 * α) ^ 2 +
-      p4 * α ^ 4 * (7 - 5 * α) + p5 * α ^ 5 := by
-    rcases eq_or_lt_of_le hα with heq | hpos
-    · rw [← heq]
-      positivity
-    · positivity
-  rw [← hid] at hpos
-  exact pos_of_mul_pos_right hpos (by norm_num)
+  apply pos_of_mul_pos_right (a := (7 : ℝ) ^ 5) _ (by norm_num)
+  rw [hid]
+  rcases eq_or_lt_of_le hα with heq | hpos
+  · rw [← heq]
+    positivity
+  · positivity
 
 theorem distillChordTotal_lt_one {m α : ℝ} (hm : 5 ≤ m)
     (hα : 0 ≤ α) (hα1 : α ≤ 7 / 5) : distillChordTotal m α < 1 := by

@@ -12,8 +12,6 @@ Long literals use hexadecimal only where decimal would exceed the line limit.
 
 namespace Sendov.PeakClosure
 
-noncomputable def budget1 (a : ℝ) : ℝ := (431 - 3 * a) / 2500
-
 def gap1 (a : ℝ) : ℝ :=
   31250 * (431 - 3 * a) * S a ^ 3 * C a ^ 3 * t4 (X a) (V a) - numerator1 a
 

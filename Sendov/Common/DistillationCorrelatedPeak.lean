@@ -346,19 +346,13 @@ theorem distillScalar_le_elementary_components {m α : ℝ} (hm : 5 ≤ m)
     have hid := distillScalar_eq_loss_integral (by linarith : 0 < m) hα
     unfold scalarObstruction at hid
     rw [← distillKappa_eq hα] at hid
+    rw [← add_right_cancel hid]
     unfold distillElementary
     rw [distillRatio_eq hα]
     have he := (sub_pos.mpr (cubicPolarEnvelope_lt_one hα.le)).ne'
     have hm0 : m ≠ 0 := by linarith
-    have halg :
-        cubicPolarEnvelope α / (2 * α * (1 - cubicPolarEnvelope α)) +
-          cubicPolarEnvelope α / (4 * α) + 1 / (2 * m) +
-          cubicPolarEnvelope α / (4 * α * m) =
-        cubicPolarEnvelope α / α / (2 * (1 - cubicPolarEnvelope α)) +
-          cubicPolarEnvelope α / α / 4 + (1 / 2 + cubicPolarEnvelope α / α / 4) / m := by
-      field_simp
-      ring
-    linarith
+    field_simp
+    ring
   unfold distillTotal at h
   linarith only [h, hE]
 
