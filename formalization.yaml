@@ -5,8 +5,9 @@ project:
   description: 'Local Lean development of both complete conjectures, retaining the original polynomial,
     analytic and boundary arguments and replacing the old scalar endgame by a proved cubic polar envelope
     and exact critical-point certificates. Degrees 2 through 5 use the elementary analytic proof.
-    For n >= 6, m = n - 1: the finite range 5 <= m <= 81 is fully certified, and a real-parameter
-    tail uses the actual m=81 base. Final statements are unchanged; no numerical bound is assumed.'
+    For n >= 6, m = n - 1: the finite range 5 <= m <= 63 is fully certified, and the real-parameter
+    tail for m >= 64 uses the actual m=64 base. Exactly 60 unchanged records, m=5 through 64,
+    remain. Final statements are unchanged; no numerical bound is assumed.'
   authors:
   - Terence Tao
   license: Apache-2.0
@@ -186,9 +187,10 @@ automation:
       Generator output is rechecked by Lean; compiler and kernel acceptance are separate.
 review:
   status: self-assessed
-  notes: The local variant has independent agent source review and Lean kernel replay, with exact
-    final-theorem type comparison and actual dependency audits. These are not claims of independent
-    human mathematical review or endorsement by the upstream authors.
+  notes: The K64 pruning candidate has local exact-source compilation, kernel replay, original-contract
+    and actual proof-value dependency probes. Parent independent review and final whole-library gates
+    remain pending. These are not claims of independent human mathematical review or endorsement by
+    the upstream authors.
 known_gaps: []
 limitations:
 - The two deliberate placeholders in Challenge.lean are specifications, not imported proof premises.
@@ -220,9 +222,9 @@ alignment:
     lean: Sendov.distillFinite_scalar
     module: Sendov.Common.DistillationFinite
     status: proved
-    note: All integer m from 5 through 81; entire alpha domain, not samples.
+    note: All integer m from 5 through 63; entire alpha domain, not samples.
   - source: Real-parameter infinite tail
-    lean: Sendov.distillScalar_lt_two_thirds
+    lean: Sendov.distillScalar_lt_199_200
     module: Sendov.LargeDegree.DistillationTailBound
     status: proved
-    note: All real m >= 81 and positive alpha <= 17; the actual m=81 base is discharged.
+    note: All real m >= 64 and positive alpha <= 17; the actual m=64 base is discharged.

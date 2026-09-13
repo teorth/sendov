@@ -1,7 +1,7 @@
 """Portable active-route generator tests. Run with unittest, using Python with SymPy.
 
-The digest fixture pins the accepted mathematical source (only the generator-path
-comment changed). It is shipped here; no workspace report or external fixture is read.
+The digest fixture pins the selected mathematical source. It is shipped here;
+no workspace report or external fixture is read.
 These are Python regressions, not Lean acceptance tests.
 """
 import hashlib
@@ -36,6 +36,11 @@ def inventory(root):
 
 
 class GeneratorTests(unittest.TestCase):
+    def test_retained_table_matches_pinned_original_subset(self):
+        table = ROOT / 'data/paper_certificate_table.json'
+        self.assertEqual(digest(table), EXPECTED['table_sha256'])
+        self.assertEqual([r['m'] for r in json.loads(table.read_text())], list(range(5, 65)))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -63,8 +68,9 @@ class GeneratorTests(unittest.TestCase):
         actual = {str(p.relative_to(output)): digest(p) for p in output.rglob('*') if p.is_file()}
         self.assertEqual(actual, EXPECTED['distillation'])
         aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
-        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 77)
-        self.assertTrue((output / 'Sendov/DistillationFinite/Row81.lean').is_file())
+        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 59)
+        self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_64.lean').is_file())
+        self.assertFalse((output / 'Sendov/DistillationFinite/Row64.lean').exists())
         self.assertFalse((output / 'Sendov/DistillationFinite/Row5.lean').exists())
 
     def test_complete_cli_regeneration_from_all_cwds(self):
@@ -92,11 +98,16 @@ class GeneratorTests(unittest.TestCase):
     def test_bad_data_is_rejected_before_any_publication(self):
         original = json.loads((self.repo / 'data/paper_certificate_table.json').read_text())
         mutations = {
-            'missing row': lambda r: r.pop(),
+            'missing64': lambda r: r.pop(),
+            'extra65': lambda r: r.append(dict(r[-1], m=65)),
             'duplicate row': lambda r: r.__setitem__(1, r[0]),
             'row order': lambda r: r.reverse(),
             'missing component': lambda r: r[0]['components'].pop(),
             'component order': lambda r: r[0]['components'].reverse(),
+            'duplicate component': lambda r: r[0]['components'].__setitem__(
+                1, r[0]['components'][0]),
+            'mismatched components': lambda r: r[0].__setitem__(
+                'components', r[1]['components']),
             'boolean index': lambda r: r[0]['components'][0].__setitem__('index', False),
             'boolean degree': lambda r: r[0].__setitem__('m', True),
             'float degree': lambda r: r[0].__setitem__('m', 5.0),

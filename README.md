@@ -34,10 +34,14 @@ trusted facts.[2]
 | Real-parameter tail using the actual base certificate | [`DistillationTailBound`](Sendov/LargeDegree/DistillationTailBound.lean) |
 | Complete contradiction | [`DistillationBounds`](Sendov/Common/DistillationBounds.lean), [`Reduction/Main`](Sendov/Reduction/Main.lean) |
 
-The convention is **`m = n - 1`**. The finite proof covers all `5 ≤ m ≤ 81`;
-the tail is proved for every real `m ≥ 81` and uses the certified `m=81` case.
-The final degree split uses the finite proof through `n=82`, then the tail.
-Both are parts of the same scalar argument.
+The convention is **`m = n - 1`**. The final degree split now uses the finite
+proof for `5 ≤ m ≤ 63` (through `n=64`), then the real-parameter tail for
+`m ≥ 64` (from `n=65`). The latter reuses the existing row-64 certificate
+to prove a bound of `<199/200`, which is sufficient for the scalar `<1`.
+Exactly 60 unchanged certificate records, `5 ≤ m ≤ 64`, are retained. The finite
+aggregate consumes 59 cases; the tail consumes row 64 from the shared final
+group `Rows61_64`. Rows 65–81 and the old `<2/3` tail interfaces are retired.
+There is no separate duplicate row-64 module or second certificate representation.
 
 Each finite case uses the complete critical polynomials of degrees **7, 7, 4**.
 Exact Bernstein identities prove derivative signs on the full outer intervals;
@@ -70,7 +74,7 @@ is not reported as all of them.
 
 See [`docs/getting-started.md`](docs/getting-started.md) for verification and
 [`scripts/GENERATORS.md`](scripts/GENERATORS.md) for reproducible generation.
-The finite generator emits the entire table in one command to a fresh output
+The finite generator emits the entire selected table in one command to a fresh output
 root. Python prepares exact data; Lean verifies the complete identities and
 inequalities. A successful generator run is **not** a completed proof check.
 

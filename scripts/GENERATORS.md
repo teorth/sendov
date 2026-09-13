@@ -12,10 +12,11 @@ python3 -B -m unittest discover -s tests -v
 ```
 
 The finite output directory must be new or empty. The generator emits all
-`m = 5,...,81`, components `0,1,2`, with the unchanged table brackets/budgets.
-Rows 5–80 are grouped in batches of eight (last batch 77–80); Row81 is separate
-because it supplies the infinite-tail base. The output contains exactly these
-11 row modules and `Sendov/Common/DistillationFinite.lean`. No second per-row
+`m = 5,...,64`, components `0,1,2`, with the unchanged selected table records.
+Rows are grouped in batches of eight, ending in `Rows61_64`. The finite
+aggregate covers 5–63; the real tail starts at 64 and uses the original row-64
+`<199/200` budget from that same group. The output contains exactly these
+eight row modules and `Sendov/Common/DistillationFinite.lean`. No second per-row
 source tree is published. `bundle_rows.py` is the source-packaging helper, not a
 certificate checker or an alternative proof route.
 
@@ -25,7 +26,10 @@ workspace restriction. Paths can be absolute or relative to the caller's cwd.
 `data/paper_certificate_table.json`; the same exact schema, ordered coverage,
 bracket, sign, squared-envelope and budget checks apply. Editing that input
 changes a proposed certificate, not the proof trust base. Keep the shipped table
-unchanged to reproduce the accepted source.
+unchanged to reproduce the selected source. `distillation_data.py` is the explicit
+range authority, paired with `distillComponents_lt_199_200`; truncated inputs
+cannot select a different cutoff. In particular, missing64, extra65, duplicate
+or reordered rows, and duplicate/reordered/mismatched components are rejected.
 
 All data validation and exact row rendering finish before staging. The complete
 grouped snapshot is then staged beside the target and committed by one directory
@@ -60,7 +64,8 @@ build/kernel replay and the two headline type contracts remain separate gates.
   Tao's Sendov development (Apache-2.0); original notices are preserved.
 - Mathematical table/route: Senjian An, *Proof Distillation for Sendov's
   Conjecture*, [fixed revision e8ae601491ec171ab4f7f8456113dd6a047aa85d](https://github.com/SJanPerth/Sendov-Proof-Distillation/tree/e8ae601491ec171ab4f7f8456113dd6a047aa85d).
-  The table is unchanged; see `../data/README.md` for CC BY 4.0 attribution.
+  Retained records are an unchanged ordered subset, not the full donor table;
+  see `../data/README.md` for CC BY 4.0 attribution.
 - The rational envelope checks in `distillation_data.py` adapt that revision's
   explicitly MIT-licensed `verification/verify_paper.py`; the original Senjian An
   copyright/permission notice is retained in `LICENSE-DISTILLATION-MIT.txt`.

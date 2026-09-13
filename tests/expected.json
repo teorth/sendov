@@ -1,7 +1,6 @@
 {
   "distillation": {
-    "Sendov/Common/DistillationFinite.lean": "97670634929b5a00e89af11202a4c86b2b5c17b2b7f858ef73fcee19df353ac2",
-    "Sendov/DistillationFinite/Row81.lean": "7f0565233bdc4eef09a2b63c6bcfa57dafee71958f25bc65fe62bcdb8fa15431",
+    "Sendov/Common/DistillationFinite.lean": "e5ae2b52fbda2e65368248e34647d4c9516036a9ab1f2e7c0443f045fc4e0cd2",
     "Sendov/DistillationFinite/Rows13_20.lean": "7cfbd3aac6f3639f5e8d0ecd9773386c000aa27479d2c75a5d196e252e812110",
     "Sendov/DistillationFinite/Rows21_28.lean": "4259d6f25898cdee240186ef412cc47881909fe1d91ff613f46e116a642edd68",
     "Sendov/DistillationFinite/Rows29_36.lean": "f3dfd178a770b4e1101f54f9bd1e82f9ed3e36cedc2960adc676a71b8d680a49",
@@ -9,10 +8,9 @@
     "Sendov/DistillationFinite/Rows45_52.lean": "0b6b601e18f4369f0faa0a2f15f3c59975efe564ebbf3bfafb938e4b48e2bd5f",
     "Sendov/DistillationFinite/Rows53_60.lean": "ad156609407557c02747118bfd833813835fa781507df406e1707523d33d5ee5",
     "Sendov/DistillationFinite/Rows5_12.lean": "f783474650bc285a809277a6998cb9c3767e143497271c596a686c7bbba3af24",
-    "Sendov/DistillationFinite/Rows61_68.lean": "05c54742bd3642cab76e77cfa0dafc4d98305ee5a98c5c5626c2e72e21bf4e9b",
-    "Sendov/DistillationFinite/Rows69_76.lean": "e4458cf4b612829411e207e52c649252bbc602a0c69b4505eb4e2a163e127333",
-    "Sendov/DistillationFinite/Rows77_80.lean": "bd82f21e648d564fc16f8146502258da08f1847734b8b7e014f8e49ca6af3bbd"
+    "Sendov/DistillationFinite/Rows61_64.lean": "0725e96ed60c19486537a16b1a2d370ae20c887754edbb25b611249b4a899113"
   },
+  "table_sha256": "3cc794c71cb0eb7f052f8623016da364cf5ed18f18be29599092111bfb451964",
   "sinh": {
     "sha256": "d04df2219415aa8e4f838c9c1b246b35af087e4ba41d4c449f95fe0f436c4acb",
     "bytes": 15024

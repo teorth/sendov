@@ -1,6 +1,6 @@
 import Lean
 import Sendov.Common.DistillationCritical
-import Sendov.LargeDegree.DistillationTail
+import Sendov.LargeDegree.DistillationTailBound
 
 namespace MathPolishBoundary
 
@@ -10,17 +10,22 @@ theorem raw_zero (m : ℝ) :
   Sendov.scalarObstruction_zero m
 
 /-- The tail component vanishes at the closed left endpoint. -/
-theorem tail_zero {m : ℝ} (hm : 81 ≤ m) : Sendov.distillT2 m 0 = 0 :=
+theorem tail_zero {m : ℝ} (hm : 64 ≤ m) : Sendov.distillT2 m 0 = 0 :=
   Sendov.distillT2_zero hm
 
 /-- Both boundary identities are consumed together at the real tail threshold. -/
 theorem threshold_boundary :
-    Sendov.scalarObstruction 81 0 (Sendov.cubicPolarEnvelope 0) = 1 / 162 ∧
-      Sendov.distillT2 81 0 = 0 := by
+    Sendov.scalarObstruction 64 0 (Sendov.cubicPolarEnvelope 0) = 1 / 128 ∧
+      Sendov.distillT2 64 0 = 0 := by
   constructor
-  · convert raw_zero 81 using 1
+  · convert raw_zero 64 using 1
     norm_num
   · exact tail_zero (by norm_num)
+
+theorem closed_tail {m α : ℝ} (hm : 64 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
+    Sendov.distillEBudget m + Sendov.distillT0 m α +
+      Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
+  Sendov.distillComponents_lt_199_200 hm hα h17
 
 end MathPolishBoundary
 
@@ -29,7 +34,8 @@ run_cmd do
   let env := (← getEnv).setExporting false
   for (consumer, target) in #[
       (`MathPolishBoundary.raw_zero, `Sendov.scalarObstruction_zero),
-      (`MathPolishBoundary.tail_zero, `Sendov.distillT2_zero)] do
+      (`MathPolishBoundary.tail_zero, `Sendov.distillT2_zero),
+      (`MathPolishBoundary.closed_tail, `Sendov.distillComponents_lt_199_200)] do
     let some info := env.find? consumer | throwError "missing consumer {consumer}"
     let some value := info.value? (allowOpaque := true) | throwError "missing proof value"
     unless value.getUsedConstants.contains target do

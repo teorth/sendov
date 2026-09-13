@@ -1,9 +1,11 @@
 from pathlib import Path
 import importlib.util
+import sys
 import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1] / 'scripts'
+sys.path.insert(0, str(ROOT))
 spec = importlib.util.spec_from_file_location('bundle_rows', ROOT / 'bundle_rows.py')
 bundle_rows = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bundle_rows)
@@ -14,26 +16,27 @@ class Bundling(unittest.TestCase):
         rows = source / 'Sendov/DistillationFinite'
         rows.mkdir(parents=True)
         (source / 'Sendov/Common').mkdir()
-        for m in range(5, 82):
+        for m in range(5, 65):
             (rows / f'Row{m}.lean').write_text(
                 'import Mathlib.Data.Nat.Basic\n\n'
                 f'namespace FixtureRow{m}\ntheorem value : (1 : Nat) = 1 := rfl\nend FixtureRow{m}\n')
         (source / 'Sendov/Common/DistillationFinite.lean').write_text(''.join(
-            f'import Sendov.DistillationFinite.Row{m}\n' for m in range(5, 82)) + '\n-- aggregate body\n')
+            f'import Sendov.DistillationFinite.Row{m}\n' for m in range(5, 65)) + '\n-- aggregate body\n')
         return source
 
     def test_all_rows_once_in_original_order_and_bodies_preserved(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source = self.fixture(root)
             result = bundle_rows.bundle(source, root / 'out', size=8)
-            self.assertEqual([m for group in result['groups'] for m in group['rows']], list(range(5, 82)))
+            self.assertEqual([m for group in result['groups'] for m in group['rows']], list(range(5, 65)))
             for group in result['groups']:
                 text = (root / 'out' / group['path']).read_text()
                 for m in group['rows']:
                     original = (source / f'Sendov/DistillationFinite/Row{m}.lean').read_text()
                     body = ''.join(x for x in original.splitlines(keepends=True) if not x.startswith('import '))
                     self.assertIn(body, text)
-            self.assertTrue((root / 'out/Sendov/DistillationFinite/Row81.lean').is_file())
+            self.assertEqual(result['groups'][-1]['module'], 'Sendov.DistillationFinite.Rows61_64')
+            self.assertFalse((root / 'out/Sendov/DistillationFinite/Row64.lean').exists())
             self.assertFalse((root / 'out/Sendov/DistillationFinite/Row46.lean').exists())
             aggregate = (root / 'out/Sendov/Common/DistillationFinite.lean').read_text()
             self.assertNotIn('import Sendov.DistillationFinite.Row46\n', aggregate)
@@ -42,7 +45,16 @@ class Bundling(unittest.TestCase):
     def test_missing_row_fails_before_output(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source = self.fixture(root)
-            (source / 'Sendov/DistillationFinite/Row6.lean').unlink()
+            (source / 'Sendov/DistillationFinite/Row64.lean').unlink()
+            with self.assertRaisesRegex(ValueError, 'rows'):
+                bundle_rows.bundle(source, root / 'out')
+            self.assertFalse((root / 'out').exists())
+
+    def test_extra_row65_fails_before_output(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); source = self.fixture(root)
+            (source / 'Sendov/DistillationFinite/Row65.lean').write_text(
+                'import Mathlib.Data.Nat.Basic\n')
             with self.assertRaisesRegex(ValueError, 'rows'):
                 bundle_rows.bundle(source, root / 'out')
             self.assertFalse((root / 'out').exists())

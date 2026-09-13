@@ -1,13 +1,13 @@
 """Bundle this generator's self-contained RowN modules, preserving each body.
 
 This is source packaging, not a certificate checker or a general Lean parser.
-Row81 remains separate because it is the independently used infinite-tail base.
+The last group includes the row-64 base shared with the infinite tail.
 """
 from pathlib import Path
 import argparse
 import json
+from distillation_data import ROWS
 
-ROWS = tuple(range(5, 82))
 PREFIX = 'Sendov.DistillationFinite.'
 
 
@@ -26,23 +26,20 @@ def bundle(source, output, size=8):
     rows_dir = source / 'Sendov/DistillationFinite'
     expected = {f'Row{m}.lean' for m in ROWS}
     if {p.name for p in rows_dir.glob('Row*.lean')} != expected:
-        raise ValueError('rows must be exactly Row5 through Row81')
+        raise ValueError('rows must be exactly Row5 through Row64')
     rows = {m: split_row((rows_dir / f'Row{m}.lean').read_text()) for m in ROWS}
     aggregate = (source / 'Sendov/Common/DistillationFinite.lean').read_text()
     row_imports = [line for line in aggregate.splitlines() if line.startswith(f'import {PREFIX}Row')]
     if row_imports != [f'import {PREFIX}Row{m}' for m in ROWS]:
         raise ValueError('aggregate must import each row exactly once in original order')
-    groups = [list(range(start, min(start + size, 81))) for start in range(5, 81, size)] + [[81]]
+    groups = [list(ROWS[start:start + size]) for start in range(0, len(ROWS), size)]
     rendered, manifest = {}, []
     for group in groups:
-        name = 'Row81' if group == [81] else f'Rows{group[0]}_{group[-1]}'
+        name = f'Rows{group[0]}_{group[-1]}'
         path = f'Sendov/DistillationFinite/{name}.lean'
-        if group == [81]:
-            text = (rows_dir / 'Row81.lean').read_text()
-        else:
-            imports = list(dict.fromkeys(line for m in group for line in rows[m][0]))
-            text = '\n'.join(imports) + '\n\n'
-            text += '\n'.join('section\n' + rows[m][1] + '\nend\n' for m in group)
+        imports = list(dict.fromkeys(line for m in group for line in rows[m][0]))
+        text = '\n'.join(imports) + '\n\n'
+        text += '\n'.join('section\n' + rows[m][1] + '\nend\n' for m in group)
         rendered[path] = text
         manifest.append({'module': PREFIX + name, 'path': path, 'rows': group})
     replacements = ''.join(f"import {group['module']}\n" for group in manifest)

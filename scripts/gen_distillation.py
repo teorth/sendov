@@ -13,7 +13,7 @@ import textwrap
 import os
 import tempfile
 from bundle_rows import bundle
-from distillation_data import load_table
+from distillation_data import FINITE_ROWS, ROWS, load_table
 from fractions import Fraction as F
 from math import comb, gcd, lcm
 from pathlib import Path
@@ -139,36 +139,30 @@ def row_source(row):
 theorem distillFiniteBound_{m} : ({total} : ℝ) < 199 / 200 := by norm_num
 
 '''
-    if m==81:
-        s+='''theorem distillFiniteTailBase {α : ℝ} (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    distillEBudget 81 + distillT0 81 α + distillT1 81 α + distillT2 81 α < 2 / 3 := by
-  exact (distillFinite_81 α hα h17).trans_lt (by norm_num)
-
-'''
     s+='end Sendov\n'
     return s
 
 def aggregate_source():
-    s=''.join(f'import Sendov.DistillationFinite.Row{m}\n' for m in range(5,82))
-    s+='''
+    s=''.join(f'import Sendov.DistillationFinite.Row{m}\n' for m in ROWS)
+    s+=f'''
 /-! Exact finite-domain critical-bracket closure. Fixed original paper budgets;
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
 namespace Sendov
 
-theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm81 : m ≤ 81)
-    {α : ℝ} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
+theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINITE_ROWS[-1]})
+    {{α : ℝ}} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
   interval_cases m
 '''
-    for m in range(5,82):
+    for m in FINITE_ROWS:
         s+=f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt distillFiniteBound_{m}\n'
-    s+='''
-theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm81 : m ≤ 81)
-    {α : ℝ} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
+    s+=f'''
+theorem distillFinite_scalar {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINITE_ROWS[-1]})
+    {{α : ℝ}} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     scalarObstruction m α (cubicPolarEnvelope α) < 199 / 200 := by
   have hmR : (5 : ℝ) ≤ m := by exact_mod_cast hm
   exact (distillScalar_le_majorant hmR hα (by linarith)).trans_lt
-    (distillFinite_components hm hm81 hα.le hαm h17)
+    (distillFinite_components hm hm63 hα.le hαm h17)
 
 end Sendov
 '''

@@ -1,4 +1,5 @@
 """Real offline Lean fixtures for the auditor, not proofs of Sendov."""
+import json
 import os
 from pathlib import Path
 import re
@@ -11,7 +12,31 @@ REPO = Path(__file__).resolve().parents[1]
 TOOLCHAIN = (REPO / 'lean-toolchain').read_text().strip()
 ENV = dict(os.environ, ELAN_TOOLCHAIN=TOOLCHAIN)
 ENV['PATH'] = str(Path.home() / '.elan/bin') + os.pathsep + ENV['PATH']
-TARGETS = ['SendovConjecture.sendov', 'SendovConjecture.phelps_rodriguez', 'Sendov.distillFinite_components', 'Sendov.distillFinite_scalar', 'Sendov.distillFiniteTailBase', 'Sendov.distillComponents_lt_two_thirds', 'Sendov.distillScalar_lt_two_thirds', 'Sendov.polar_origin_incompatible']
+# Independent expected audit surface: do not derive this from scripts/axioms.lean.
+TARGETS = [
+    'SendovConjecture.sendov',
+    'SendovConjecture.phelps_rodriguez',
+    'Sendov.distillFinite_components',
+    'Sendov.distillFinite_scalar',
+    'Sendov.distillFinite_64',
+    'Sendov.distillFiniteBound_64',
+    'Sendov.distillComponents_le_64',
+    'Sendov.distillT2_zero',
+    'Sendov.distillComponents_lt_199_200',
+    'Sendov.distillScalar_lt_199_200',
+    'Sendov.distillScalar_lt_one',
+    'Sendov.polar_origin_incompatible',
+]
+
+MODULES = {
+    'Sendov.DistillationFinite.Rows61_64': TARGETS[4:6],
+    'Sendov.Common.DistillationFinite': TARGETS[2:4],
+    'Sendov.LargeDegree.DistillationTail': TARGETS[6:8],
+    'Sendov.LargeDegree.DistillationTailBound': TARGETS[8:10],
+    'Sendov.Common.DistillationBounds': TARGETS[10:11],
+    'Sendov.Reduction.Main': TARGETS[11:],
+    'Solution': TARGETS[:2],
+}
 
 
 def put(path, text):
@@ -31,11 +56,11 @@ def fixture(name, mode, script_root, bad_target=None):
         shutil.rmtree(project)
     project.mkdir(parents=True)
     put(project / 'lean-toolchain', TOOLCHAIN + '\n')
-    put(project / 'lakefile.toml', '''name = "audit_fixture"
+    put(project / 'lakefile.toml', f'''name = "audit_fixture"
 version = "0.0.0"
 [[lean_lib]]
 name = "Fixture"
-roots = ["Dependency", "Solution", "Sendov.Common.DistillationFinite", "Sendov.LargeDegree.DistillationTailBound"]
+roots = {json.dumps(['Dependency', *MODULES])}
 ''')
     dependency = 'theorem dependencyBridge : True := True.intro\n'
     if mode == 'external':
@@ -49,18 +74,19 @@ roots = ["Dependency", "Solution", "Sendov.Common.DistillationFinite", "Sendov.L
       (Classical.choice (α := True) ⟨True.intro⟩))
 '''
     put(project / 'Dependency.lean', dependency)
-    modules = { 'Solution.lean': TARGETS[:2],
-                'Sendov/Common/DistillationFinite.lean': TARGETS[2:4],
-                'Sendov/LargeDegree/DistillationTailBound.lean': TARGETS[4:] }
-    for module, targets in modules.items():
-        text = 'import Dependency\n\n'
+    # A dependency chain keeps the tiny fixture compilers serial. These are
+    # auditor fixtures, not replacements for the real mathematical modules.
+    previous = 'Dependency'
+    for module, targets in MODULES.items():
+        text = f'import {previous}\n\n'
         for target in targets:
             if mode == 'missing' and target == bad_target:
                 continue
             proof = ('dependencyBridge' if bad_target is None or target == bad_target
                      else 'True.intro')
             text += f'theorem {target} : True := {proof}\n'
-        put(project / module, text)
+        put(project / (module.replace('.', '/') + '.lean'), text)
+        previous = module
     # Deliberate statement-only holes required by audit.sh step 2, not imported.
     put(project / 'Challenge.lean', 'theorem challengeA : True := by sorry\n'
                                   'theorem challengeB : True := by sorry\n')
@@ -89,7 +115,17 @@ class AxiomAuditTests(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        if destination := os.environ.get('SENDOV_AUDIT_LOG_DIR'):
+            shutil.copytree(LOGS, destination, dirs_exist_ok=True)
         cls.temporary.cleanup()
+
+    def test_query_targets_match_independent_fixture_targets(self):
+        queries = re.findall(r'^#sendov_axioms[ \t]+(\S+)',
+                             (REPO / 'scripts/axioms.lean').read_text(), re.M)
+        self.assertEqual(len(TARGETS), len(set(TARGETS)), 'duplicate fixture target')
+        self.assertCountEqual(queries, TARGETS)
+        self.assertCountEqual([target for targets in MODULES.values() for target in targets],
+                              TARGETS)
 
     def test_empty_and_standard_axioms_pass(self):
         for mode in ['empty', 'standard']:

@@ -5,16 +5,13 @@ import Sendov.DistillationFinite.Rows29_36
 import Sendov.DistillationFinite.Rows37_44
 import Sendov.DistillationFinite.Rows45_52
 import Sendov.DistillationFinite.Rows53_60
-import Sendov.DistillationFinite.Rows61_68
-import Sendov.DistillationFinite.Rows69_76
-import Sendov.DistillationFinite.Rows77_80
-import Sendov.DistillationFinite.Row81
+import Sendov.DistillationFinite.Rows61_64
 
 /-! Exact finite-domain critical-bracket closure. Fixed original paper budgets;
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
 namespace Sendov
 
-theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm81 : m ≤ 81)
+theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
     {α : ℝ} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
   interval_cases m
@@ -77,30 +74,12 @@ theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm81 : m ≤ 81)
   · exact (distillFinite_61 α hα (by linarith)).trans_lt distillFiniteBound_61
   · exact (distillFinite_62 α hα (by linarith)).trans_lt distillFiniteBound_62
   · exact (distillFinite_63 α hα (by linarith)).trans_lt distillFiniteBound_63
-  · exact (distillFinite_64 α hα (by linarith)).trans_lt distillFiniteBound_64
-  · exact (distillFinite_65 α hα (by linarith)).trans_lt distillFiniteBound_65
-  · exact (distillFinite_66 α hα (by linarith)).trans_lt distillFiniteBound_66
-  · exact (distillFinite_67 α hα (by linarith)).trans_lt distillFiniteBound_67
-  · exact (distillFinite_68 α hα (by linarith)).trans_lt distillFiniteBound_68
-  · exact (distillFinite_69 α hα (by linarith)).trans_lt distillFiniteBound_69
-  · exact (distillFinite_70 α hα (by linarith)).trans_lt distillFiniteBound_70
-  · exact (distillFinite_71 α hα (by linarith)).trans_lt distillFiniteBound_71
-  · exact (distillFinite_72 α hα (by linarith)).trans_lt distillFiniteBound_72
-  · exact (distillFinite_73 α hα (by linarith)).trans_lt distillFiniteBound_73
-  · exact (distillFinite_74 α hα (by linarith)).trans_lt distillFiniteBound_74
-  · exact (distillFinite_75 α hα (by linarith)).trans_lt distillFiniteBound_75
-  · exact (distillFinite_76 α hα (by linarith)).trans_lt distillFiniteBound_76
-  · exact (distillFinite_77 α hα (by linarith)).trans_lt distillFiniteBound_77
-  · exact (distillFinite_78 α hα (by linarith)).trans_lt distillFiniteBound_78
-  · exact (distillFinite_79 α hα (by linarith)).trans_lt distillFiniteBound_79
-  · exact (distillFinite_80 α hα (by linarith)).trans_lt distillFiniteBound_80
-  · exact (distillFinite_81 α hα (by linarith)).trans_lt distillFiniteBound_81
 
-theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm81 : m ≤ 81)
+theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
     {α : ℝ} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     scalarObstruction m α (cubicPolarEnvelope α) < 199 / 200 := by
   have hmR : (5 : ℝ) ≤ m := by exact_mod_cast hm
   exact (distillScalar_le_majorant hmR hα (by linarith)).trans_lt
-    (distillFinite_components hm hm81 hα.le hαm h17)
+    (distillFinite_components hm hm63 hα.le hαm h17)
 
 end Sendov

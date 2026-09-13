@@ -5,8 +5,9 @@ import Sendov.LargeDegree.DistillationTailBound
 # The complete scalar upper bound
 
 The original degree is `n`; the scalar parameter is `m = n - 1`.
-The certified finite range covers `5 ≤ m ≤ 81`. Above it, the proved
-real-degree tail uses the same degree-81 critical-point certificate.
+The scalar consumer uses finite rows for `5 ≤ m ≤ 63` and the real-degree
+tail based on the existing row 64 for `m ≥ 64`. These disjoint ranges cover
+every natural `m ≥ 5`; exactly the 60 records from 5 through 64 are retained.
 -/
 namespace Sendov
 
@@ -21,9 +22,9 @@ theorem distillScalar_lt_one {n : ℕ} (hn : 6 ≤ n) {α : ℝ}
     simp [M]
   have hm : 5 ≤ n - 1 := by omega
   rw [← hM] at hhalf ⊢
-  by_cases hfinite : n - 1 ≤ 81
-  · exact (distillFinite_scalar hm hfinite hα (by linarith) h17).trans (by norm_num)
-  · have hlarge : (81 : ℝ) ≤ (n - 1 : ℕ) := by exact_mod_cast (show 81 ≤ n - 1 by omega)
-    exact (distillScalar_lt_two_thirds hlarge hα h17).trans (by norm_num)
+  by_cases hfinite : n - 1 < 64
+  · exact (distillFinite_scalar hm (by omega) hα (by linarith) h17).trans (by norm_num)
+  · have hlarge : (64 : ℝ) ≤ (n - 1 : ℕ) := by exact_mod_cast (show 64 ≤ n - 1 by omega)
+    exact (distillScalar_lt_199_200 hlarge hα h17).trans (by norm_num)
 
 end Sendov

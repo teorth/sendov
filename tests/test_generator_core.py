@@ -10,10 +10,56 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import gen_distillation as g
+from distillation_data import load_table
 import generator_output
 
 
 class ExactCoreTests(unittest.TestCase):
+    def test_k64_exact_allowed_domain_and_components(self):
+        selected = [r for r in json.loads(g.TABLE.read_text()) if 5 <= r['m'] <= 64]
+        self.assertEqual([r['m'] for r in selected], list(range(5, 65)))
+        with tempfile.TemporaryDirectory() as temporary:
+            table = Path(temporary) / 'table.json'
+            table.write_text(json.dumps(selected))
+            self.assertEqual(load_table(table, g.coefficients), selected)
+            mutations = {
+                'missing64': lambda r: r.pop(),
+                'extra65': lambda r: r.append(dict(r[-1], m=65)),
+                'duplicate': lambda r: r.__setitem__(1, r[0]),
+                'reordered': lambda r: r.reverse(),
+                'duplicate component': lambda r: r[0]['components'].__setitem__(
+                    1, r[0]['components'][0]),
+                'reordered components': lambda r: r[0]['components'].reverse(),
+                'mismatched components': lambda r: r[0].__setitem__(
+                    'components', r[1]['components']),
+            }
+            for name, mutate in mutations.items():
+                with self.subTest(mutation=name):
+                    rows = json.loads(json.dumps(selected))
+                    mutate(rows)
+                    table.write_text(json.dumps(rows))
+                    with self.assertRaises(ValueError):
+                        load_table(table, g.coefficients)
+
+    def test_k64_generator_covers_59_finite_cases_and_one_shared_base(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / 'output'
+            result = g.generate(output)
+            self.assertEqual(result['rows'], list(range(5, 65)))
+            self.assertEqual(result['groups'][-1]['rows'], [61, 62, 63, 64])
+            self.assertEqual(len(result['groups']), 8)
+            self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_64.lean').is_file())
+            self.assertFalse((output / 'Sendov/DistillationFinite/Row64.lean').exists())
+            aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
+            cases = [f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt '
+                     f'distillFiniteBound_{m}' for m in range(5, 64)]
+            self.assertEqual([line for line in aggregate.splitlines()
+                              if line.startswith('  · exact (distillFinite_')], cases)
+            self.assertIn('(hm63 : m ≤ 63)', aggregate)
+            for path in output.rglob('*.lean'):
+                self.assertNotIn('two_thirds', path.read_text())
+                self.assertNotIn('distillFiniteTailBase', path.read_text())
+
     def test_real_pilot_uses_raw_coefficient_list(self):
         row = next(r for r in json.loads(g.TABLE.read_text()) if r['m'] == 46)
         text = g.row_source(row)

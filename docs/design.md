@@ -34,8 +34,9 @@ The two-chord integral theorem gives
 raw cubic scalar obstruction ≤ E_budget(m) + T0(m,α) + T1(m,α) + T2(m,α).
 ```
 
-For `5 ≤ m ≤ 81`, fixed rational budgets and critical brackets are checked for
-every integer parameter. The complete critical expressions are tied to the
+For `5 ≤ m ≤ 63`, fixed rational budgets and critical brackets are checked for
+every integer parameter; the same existing row-64 certificate supplies the tail
+base. The complete critical expressions are tied to the
 actual derivatives of `T0`, `T1`, and `T2`. Their polynomial signs are certified
 on entire outer intervals, while the middle interval uses monotone factors at
 opposite endpoints. This establishes the bound without trusting a sampled
@@ -46,9 +47,20 @@ Scale positivity, interval membership, both endpoint supports and the complete
 polynomial equality remain explicit Lean obligations. The Python coefficient
 calculation is not in the trusted base.
 
-For all real `m ≥ 81`, proved parameter antitonicity reduces the four-component
-bound to the actual finite `m=81` certificate. `DistillationTailBound` discharges
-that base; it is not left as a hypothesis of the final upper bound.
+For all real `m ≥ 64`, proved parameter antitonicity reduces the four-component
+bound to the existing finite `m=64` certificate. `DistillationTailBound` discharges
+that base with its already-certified `<199/200` budget; no base or monotonicity
+premise is left to the final caller. The rational component uses the actual
+envelope-dependent denominator, with a split at `α=12`, rather than the old
+independent worst-case bounds that required 81.
+
+The natural-number split `m < 64` versus `64 ≤ m` has no gap. The finite
+aggregate proves exactly 5 through 63, and both it and the tail import the final
+group `Rows61_64`; row 64 is emitted only once. The generator and validator share
+an explicit 5-through-64 range, paired with the real tail theorem. They reject
+missing64, extra65, duplicated/reordered rows and mismatched components rather
+than inferring a smaller cutoff from truncated data. Rows 65 through 81 and all
+old row-81-only/two-thirds interfaces have been retired.
 
 ## Endpoints and definitions
 
@@ -74,9 +86,13 @@ Acceptance distinguishes:
 - original final-theorem type preservation;
 - actual value and type/value dependency checks for both final theorems.
 
-Those dependency checks require all finite cases, the real tail base, the
-geometric reduction and the certificate core, and reject the retired scalar
-route. They do not equate a module import with proof consumption.
+The earlier-tail consumer test checks actual proof-value edges from both final
+theorems through the geometric reduction and the tail to row 64. Its recursive
+project-value audit requires exactly cases 5 through 63 in the finite aggregate
+and all 60 cases, including each of their three components and strict budgets,
+in each final theorem. Retired cases and tail interfaces must be absent from
+both the imported environment and the actual value closure. Dependency checks
+do not equate a module import with proof consumption.
 
 Readability is the first selection criterion, measured compilation cost second,
 and line count third. Source counts include the shared certificate frontend;
