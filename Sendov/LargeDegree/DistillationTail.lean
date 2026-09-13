@@ -43,12 +43,10 @@ private lemma slope_linear (x c : ℝ) (h : x + c ≠ 0) :
 private lemma tail_antitone {f f' : ℝ → ℝ} {K : ℝ}
     (hf : ∀ x : ℝ, K ≤ x → HasDerivAt f (f' x) x)
     (hn : ∀ x : ℝ, K ≤ x → f' x ≤ 0) : AntitoneOn f (Set.Ici K) := by
-  apply antitoneOn_of_deriv_nonpos (convex_Ici _) (fun x hx =>
-    (hf x hx).continuousAt.continuousWithinAt)
-  · exact fun x hx => (hf x (interior_subset hx)).differentiableAt.differentiableWithinAt
-  · intro x hx
-    rw [(hf x (interior_subset hx)).deriv]
-    exact hn x (interior_subset hx)
+  exact antitoneOn_of_hasDerivWithinAt_nonpos (convex_Ici _)
+    (fun x hx => (hf x hx).continuousAt.continuousWithinAt)
+    (fun x hx => (hf x (interior_subset hx)).hasDerivWithinAt)
+    (fun x hx => hn x (interior_subset hx))
 
 lemma distillEBudget_antitone_on {K : ℝ} (hK : 0 < K) :
     AntitoneOn distillEBudget (Set.Ici K) := by
@@ -64,11 +62,9 @@ lemma distillEBudget_antitone : AntitoneOn distillEBudget (Set.Ici 64) :=
 
 lemma cubicPolarEnvelope_le_five_sixths {α : ℝ} (hα : 0 ≤ α) (hα17 : α ≤ 17) :
     cubicPolarEnvelope α ≤ 5 / 6 := by
-  have h := cubicPolarEnvelope_mono hα hα17
-  have h17 : cubicPolarEnvelope 17 = 199087 / 240000 := by
-    norm_num [cubicPolarEnvelope]
-  rw [h17] at h
-  linarith
+  calc
+    cubicPolarEnvelope α ≤ cubicPolarEnvelope 17 := cubicPolarEnvelope_mono hα hα17
+    _ ≤ 5 / 6 := by norm_num [cubicPolarEnvelope]
 
 lemma distillNode_antitone_degree_on {K α : ℝ} (hK : 0 < K) (hα : 0 ≤ α) :
     AntitoneOn (fun m => distillNode m α) (Set.Ici K) := by
@@ -90,7 +86,7 @@ lemma distillNode_lt_four_fifths {m α : ℝ} (hm : 64 ≤ m)
     apply (div_le_iff₀ (by linarith : 0 < 25 * m)).mpr
     linarith
   unfold distillNode
-  linarith
+  linarith only [he, ht]
 
 private lemma kappa_slope {m α : ℝ} (hm : 34 < m) (hα17 : α ≤ 17) :
     HasDerivAt (fun x => distillKappa x α)
@@ -125,7 +121,7 @@ private lemma kappa_slope_le {K m α : ℝ} (hK : 34 < K) (hm : K ≤ m)
     div_le_div_of_nonneg_left (by norm_num) (by linarith) (by linarith)
   have h3 : 2 / (m - 2 * α) ≤ 2 / (K - 34) :=
     div_le_div_of_nonneg_left (by norm_num) (by linarith) (by linarith)
-  linarith
+  linarith only [h1, h2, h3]
 
 /-- Explicit sufficient conditions on the start, rather than an assumed derivative sign. -/
 lemma distillKappa_rpow_antitone_on {K α z : ℝ} (hK : 34 < K)
