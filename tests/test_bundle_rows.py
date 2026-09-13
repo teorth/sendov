@@ -16,19 +16,20 @@ class Bundling(unittest.TestCase):
         rows = source / 'Sendov/DistillationFinite'
         rows.mkdir(parents=True)
         (source / 'Sendov/Common').mkdir()
-        for m in range(5, 62):
+        for m in [*range(5, 56), 61]:
             (rows / f'Row{m}.lean').write_text(
                 'import Mathlib.Data.Nat.Basic\n\n'
                 f'namespace FixtureRow{m}\ntheorem value : (1 : Nat) = 1 := rfl\nend FixtureRow{m}\n')
         (source / 'Sendov/Common/DistillationFinite.lean').write_text(''.join(
-            f'import Sendov.DistillationFinite.Row{m}\n' for m in range(5, 62)) + '\n-- aggregate body\n')
+            f'import Sendov.DistillationFinite.Row{m}\n' for m in [*range(5, 56), 61]) +
+            '\n-- aggregate body\n')
         return source
 
     def test_all_rows_once_in_original_order_and_bodies_preserved(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source = self.fixture(root)
             result = bundle_rows.bundle(source, root / 'out', size=8)
-            self.assertEqual([m for group in result['groups'] for m in group['rows']], list(range(5, 62)))
+            self.assertEqual([m for group in result['groups'] for m in group['rows']], [*range(5, 56), 61])
             for group in result['groups']:
                 text = (root / 'out' / group['path']).read_text()
                 for m in group['rows']:
@@ -36,6 +37,7 @@ class Bundling(unittest.TestCase):
                     body = ''.join(x for x in original.splitlines(keepends=True) if not x.startswith('import '))
                     self.assertIn(body, text)
             self.assertEqual(result['groups'][-1]['module'], 'Sendov.DistillationFinite.Rows61_61')
+            self.assertEqual(result['groups'][-2]['module'], 'Sendov.DistillationFinite.Rows53_55')
             self.assertFalse((root / 'out/Sendov/DistillationFinite/Row61.lean').exists())
             self.assertFalse((root / 'out/Sendov/DistillationFinite/Row46.lean').exists())
             aggregate = (root / 'out/Sendov/Common/DistillationFinite.lean').read_text()
@@ -54,6 +56,15 @@ class Bundling(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source = self.fixture(root)
             (source / 'Sendov/DistillationFinite/Row62.lean').write_text(
+                'import Mathlib.Data.Nat.Basic\n')
+            with self.assertRaisesRegex(ValueError, 'rows'):
+                bundle_rows.bundle(source, root / 'out')
+            self.assertFalse((root / 'out').exists())
+
+    def test_retired_row56_fails_before_output(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); source = self.fixture(root)
+            (source / 'Sendov/DistillationFinite/Row56.lean').write_text(
                 'import Mathlib.Data.Nat.Basic\n')
             with self.assertRaisesRegex(ValueError, 'rows'):
                 bundle_rows.bundle(source, root / 'out')

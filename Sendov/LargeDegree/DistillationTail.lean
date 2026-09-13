@@ -1,13 +1,15 @@
 import Sendov.Common.DistillationFactors
 
 /-!
-# Real-degree monotonicity for the regularized distillation components
+# Real-degree monotonicity and bounded growth of distillation components
 
 New Lean adaptation of Senjian An, *Proof Distillation for Sendov's Conjecture*,
 revision e8ae601491ec171ab4f7f8456113dd6a047aa85d, lines 898--950.
 Paper: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ .
 The m=61 reduction uses the actual dependence of the rational denominator
 on alpha and the stronger decay from `cubicPolarEnvelope 17 <= (21/22)^4`.
+The rational component is antitone already from 55; a finite-interval growth
+lemma retains exponential decay even when a power component is not antitone.
 Finite base certificates remain separate. No raw scalar value at alpha zero
 is identified with a continuous extension.
 -/
@@ -127,6 +129,72 @@ private lemma kappa_slope_le {K m α : ℝ} (hK : 34 < K) (hm : K ≤ m)
     div_le_div_of_nonneg_left (by norm_num) (by linarith) (by linarith)
   linarith only [h1, h2, h3]
 
+/-- On a bounded degree interval, a small positive logarithmic slope consumes
+only a linear budget. Unlike an infinite antitone tail, this permits growth. -/
+lemma distillKappa_rpow_interval {K U m α z q ε : ℝ} (n : ℕ)
+    (hK : 34 < K) (hm : m ∈ Set.Icc K U) (hε : 0 ≤ ε)
+    (hroom : ε * (U - K) < 1)
+    (hdecay : 1 / (K - 1) + 2 / (K - 34) ≤ n * (1 - q) / 2 + ε)
+    (hα : 0 ≤ α) (hα17 : α ≤ 17) (hz : 0 ≤ z) (hq : 0 < q)
+    (hzq : z ≤ q ^ n) :
+    (distillKappa m α * z ^ ((m - 3) / 2)) * (1 - ε * (U - K)) ≤
+      distillKappa K α * z ^ ((K - 3) / 2) := by
+  rcases hz.eq_or_lt with rfl | hz
+  · have hm' : (m - 3) / 2 ≠ 0 := by have := hm.1; linarith
+    have hK' : (K - 3) / 2 ≠ 0 := by linarith
+    simp [Real.zero_rpow hm', Real.zero_rpow hK']
+  let f := fun t => distillKappa t α * z ^ ((t - 3) / 2)
+  let w := fun t => 1 - ε * (t - K)
+  have hf0 (t : ℝ) (ht : K ≤ t) : 0 ≤ f t :=
+    mul_nonneg (distillKappa_nonneg (by linarith) hα) (Real.rpow_nonneg hz.le _)
+  have hw (t : ℝ) (ht : t ≤ U) : 0 ≤ w t := by
+    have := mul_le_mul_of_nonneg_left (sub_le_sub_right ht K) hε
+    dsimp [w]
+    linarith
+  have hlog : Real.log z / 2 ≤ -(n * (1 - q) / 2) := by
+    have hl := Real.log_le_log hz hzq
+    rw [Real.log_pow] at hl
+    have hqlog := mul_le_mul_of_nonneg_left (Real.log_le_sub_one_of_pos hq)
+      (Nat.cast_nonneg n : (0 : ℝ) ≤ n)
+    linarith
+  let s := fun t => 1 / (t - 1) + 1 / (t + 1) - 1 / t +
+    2 / (t - 2 * α) + Real.log z / 2
+  have hs (t : ℝ) (ht : K ≤ t) : s t ≤ ε := by
+    have := kappa_slope_le hK ht hα17
+    dsimp [s]
+    linarith
+  have hd (t : ℝ) (ht : K ≤ t) :
+      HasDerivAt (fun t => f t * w t) (f t * (s t * w t - ε)) t := by
+    have hp : HasDerivAt (fun t : ℝ => z ^ ((t - 3) / 2))
+        (z ^ ((t - 3) / 2) * (Real.log z / 2)) t := by
+      convert! (hasDerivAt_const t z).rpow
+        (((hasDerivAt_id' t).sub_const 3).div_const 2) hz using 1
+      ring
+    have hf := slope_mul (kappa_slope (hK.trans_le ht) hα17) hp
+    have hw' := (((hasDerivAt_id' t).sub_const K).const_mul ε).const_sub 1
+    convert! hf.mul hw' using 1
+    dsimp [f, w, s]
+    ring
+  have hanti : AntitoneOn (fun t => f t * w t) (Set.Icc K U) := by
+    apply antitoneOn_of_hasDerivWithinAt_nonpos (convex_Icc _ _)
+      (fun t ht => (hd t ht.1).continuousAt.continuousWithinAt)
+      (fun t ht => (hd t (interior_subset ht).1).hasDerivWithinAt)
+    intro t ht
+    have ht' : t ∈ Set.Icc K U := interior_subset ht
+    apply mul_nonpos_of_nonneg_of_nonpos (hf0 t ht'.1)
+    have hsw := mul_le_mul_of_nonneg_right (hs t ht'.1) (hw t ht'.2)
+    have hprod : 0 ≤ ε * (ε * (t - K)) := by
+      exact mul_nonneg hε (mul_nonneg hε (sub_nonneg.mpr ht'.1))
+    dsimp [w] at *
+    nlinarith
+  have hstep := hanti ⟨le_rfl, hm.1.trans hm.2⟩ hm hm.1
+  have hweight : 1 - ε * (U - K) ≤ w m := by
+    dsimp [w]
+    have := mul_le_mul_of_nonneg_left (sub_le_sub_right hm.2 K) hε
+    linarith
+  exact (mul_le_mul_of_nonneg_left hweight (hf0 m hm.1)).trans
+    (by simpa [w, f] using hstep)
+
 /-- A rational power cap retains stronger logarithmic decay without a log estimate
 or a derivative sign as a caller premise. Since `K > 34`, the positive left side
 of `hdecay` already forces `n > 0` and `q < 1`; no extra premises are needed. -/
@@ -205,16 +273,16 @@ private def tailP (m α : ℝ) : ℝ :=
   7 * m ^ 4 - 30 * α * m ^ 3 - (8 * α ^ 2 + 96 * α + 105) * m ^ 2 +
     (90 * α - 128 * α ^ 2) * m - 360 * α ^ 2
 
-private lemma tailP_pos {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (hα12 : α ≤ 12) :
+private lemma tailP_pos {m α : ℝ} (hm : 55 ≤ m) (hα : 0 ≤ α) (hα10 : α ≤ 10) :
     0 < tailP m α := by
   have hm0 : 0 ≤ m := by linarith
-  have hx : 0 ≤ m - 61 := by linarith
-  have hgap : 0 ≤ 12 - α := by linarith
+  have hx : 0 ≤ m - 55 := by linarith
+  have hgap : 0 ≤ 10 - α := by linarith
   have hid : tailP m α =
-      7 * (m - 61) ^ 4 + 1348 * (m - 61) ^ 3 + 87993 * (m - 61) ^ 2 +
-        2025538 * (m - 61) + 5133526 +
-      (12 - α) * (α * (8 * m ^ 2 + 128 * m + 360) +
-        30 * m ^ 3 + 192 * m ^ 2 + 1446 * m + 4320) := by
+      7 * (m - 55) ^ 4 + 1240 * (m - 55) ^ 3 + 75685 * (m - 55) ^ 2 +
+        1718950 * (m - 55) + 7809750 +
+      (10 - α) * (α * (8 * m ^ 2 + 128 * m + 360) +
+        30 * m ^ 3 + 176 * m ^ 2 + 1190 * m + 3600) := by
     dsimp [tailP]
     ring
   rw [hid]
@@ -224,38 +292,37 @@ private noncomputable def tailQ (m α d : ℝ) : ℝ :=
   d * tailP m α / 7 + (21 / 25 - d) * (4 * α / 7) *
     ((3 * m - 2 * α) * m ^ 2 + 32 * (m - α) * m + (75 * m - 90 * α))
 
-private lemma tailQ_cap_pos {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α)
-    (hα17 : α ≤ 17) : 0 < tailQ m α (2 / 5) := by
+private lemma tailQ_cap_pos {m α : ℝ} (hm : 55 ≤ m) (hα : 0 ≤ α)
+    (hα17 : α ≤ 17) : 0 < tailQ m α (39 / 100) := by
   have hm0 : 0 ≤ m := by linarith
-  have hx : 0 ≤ m - 61 := by linarith
+  have hx : 0 ≤ m - 55 := by linarith
   have hgap : 0 ≤ 17 - α := by linarith
-  have hquad : 0 ≤ 24 * m ^ 2 - 64 * m - 600 := by nlinarith
-  have hid : tailQ m α (2 / 5) =
-      (2 / 5) * (m - 61) ^ 4 + (2032 / 25) * (m - 61) ^ 3 +
-        (142598 / 25) * (m - 61) ^ 2 + (3692204 / 25) * (m - 61) +
-        17072148 / 25 +
-      (17 - α) * ((24 / 25) * (α + 17) * (m ^ 2 + 16 * m + 45) +
-        m * (24 * m ^ 2 - 64 * m - 600) / 25) := by
+  have hid : tailQ m α (39 / 100) =
+      (39 / 100) * (m - 55) ^ 4 + (141 / 2) * (m - 55) ^ 3 +
+        (431967 / 100) * (m - 55) ^ 2 + (4544763 / 50) * (m - 55) +
+        160893 / 2 +
+      (17 - α) * (3 / 50) * (16 * α * m ^ 2 + 256 * α * m + 720 * α +
+        15 * m ^ 3 + 224 * m ^ 2 + 3947 * m + 12240) := by
     dsimp [tailQ, tailP]
     ring
   rw [hid]
   positivity
 
-private lemma tailQ_pos {m α d : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α)
+private lemma tailQ_pos {m α d : ℝ} (hm : 55 ≤ m) (hα : 0 ≤ α)
     (hα17 : α ≤ 17) (hd : 0 < d) (hd1 : d ≤ 21 / 25)
-    (hdα : 12 ≤ α → d ≤ 2 / 5) : 0 < tailQ m α d := by
+    (hdα : 10 ≤ α → d ≤ 39 / 100) : 0 < tailQ m α d := by
   have hm0 : 0 ≤ m := by linarith
   have h1 : 0 ≤ 3 * m - 2 * α := by linarith
   have h2 : 0 ≤ m - α := by linarith
   have h3 : 0 ≤ 75 * m - 90 * α := by linarith
   have h4 : 0 ≤ 21 / 25 - d := by linarith
-  by_cases hα12 : α ≤ 12
+  by_cases hα10 : α ≤ 10
   · unfold tailQ
-    exact add_pos_of_pos_of_nonneg (div_pos (mul_pos hd (tailP_pos hm hα hα12))
+    exact add_pos_of_pos_of_nonneg (div_pos (mul_pos hd (tailP_pos hm hα hα10))
       (by norm_num)) (by positivity)
-  · have hd2 : 0 ≤ 2 / 5 - d := sub_nonneg.mpr (hdα (by linarith))
-    have hid : tailQ m α d = d * (5 / 2 * tailQ m α (2 / 5)) +
-        (2 / 5 - d) * (6 * α / 5) *
+  · have hd2 : 0 ≤ 39 / 100 - d := sub_nonneg.mpr (hdα (by linarith))
+    have hid : tailQ m α d = d * (100 / 39 * tailQ m α (39 / 100)) +
+        (39 / 100 - d) * (16 * α / 13) *
           ((3 * m - 2 * α) * m ^ 2 + 32 * (m - α) * m + (75 * m - 90 * α)) := by
       dsimp [tailQ, tailP]
       ring
@@ -266,13 +333,13 @@ private lemma tailQ_pos {m α d : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α)
 private noncomputable def tailRational (m α d : ℝ) : ℝ :=
   m ^ 3 * (m - 2 * α) ^ 2 / ((m + 3) * (m + 5) * (d * m - 12 * α / 25) ^ 4)
 
-private lemma tail_den_pos {m α d : ℝ} (hm : 61 ≤ m) (hα17 : α ≤ 17)
+private lemma tail_den_pos {m α d : ℝ} (hm : 55 ≤ m) (hα17 : α ≤ 17)
     (hd : 17 / 50 ≤ d) : 0 < d * m - 12 * α / 25 := by
   have hm0 : 0 ≤ m := by linarith
   have hd0 : 0 ≤ d - 17 / 50 := by linarith
   nlinarith [mul_nonneg hd0 hm0]
 
-private lemma rational_slope {m α d : ℝ} (hm : 61 ≤ m) (hα17 : α ≤ 17)
+private lemma rational_slope {m α d : ℝ} (hm : 55 ≤ m) (hα17 : α ≤ 17)
     (hd : 17 / 50 ≤ d) :
     HasDerivAt (fun x => tailRational x α d)
       (tailRational m α d * (3 / m + 2 / (m - 2 * α) - 1 / (m + 3) -
@@ -299,9 +366,9 @@ private lemma rational_slope {m α d : ℝ} (hm : 61 ≤ m) (hα17 : α ≤ 17)
   · dsimp [tailRational]
     ring
 
-private lemma rational_slope_neg {m α d : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α)
+private lemma rational_slope_neg {m α d : ℝ} (hm : 55 ≤ m) (hα : 0 ≤ α)
     (hα17 : α ≤ 17) (hd : 17 / 50 ≤ d) (hd1 : d ≤ 21 / 25)
-    (hdα : 12 ≤ α → d ≤ 2 / 5) :
+    (hdα : 10 ≤ α → d ≤ 39 / 100) :
     3 / m + 2 / (m - 2 * α) - 1 / (m + 3) - 1 / (m + 5) -
       4 * d / (d * m - 12 * α / 25) < 0 := by
   have hm0 : 0 < m := by linarith
@@ -324,8 +391,8 @@ private lemma rational_slope_neg {m α d : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α)
     (by positivity)
 
 private lemma tailRational_antitone {α d : ℝ} (hα : 0 ≤ α) (hα17 : α ≤ 17)
-    (hd : 17 / 50 ≤ d) (hd1 : d ≤ 21 / 25) (hdα : 12 ≤ α → d ≤ 2 / 5) :
-    AntitoneOn (fun m => tailRational m α d) (Set.Ici 61) := by
+    (hd : 17 / 50 ≤ d) (hd1 : d ≤ 21 / 25) (hdα : 10 ≤ α → d ≤ 39 / 100) :
+    AntitoneOn (fun m => tailRational m α d) (Set.Ici 55) := by
   apply tail_antitone (fun m hm => rational_slope hm hα17 hd)
   intro m hm
   have hm0 : 0 ≤ m := by linarith
@@ -334,7 +401,7 @@ private lemma tailRational_antitone {α d : ℝ} (hα : 0 ≤ α) (hα17 : α �
   exact mul_nonpos_of_nonneg_of_nonpos (by unfold tailRational; positivity)
     (rational_slope_neg hm hα hα17 hd hd1 hdα).le
 
-private lemma distillT0_eq_rational {m α : ℝ} (hm : 61 ≤ m)
+private lemma distillT0_eq_rational {m α : ℝ} (hm : 55 ≤ m)
     (hα : 0 ≤ α) (hα17 : α ≤ 17) :
     distillT0 m α = (24 * (3 / 5) ^ 4 * distillRatio α) *
       tailRational m α (21 / 25 - 3 / 5 * cubicPolarEnvelope α) := by
@@ -344,7 +411,7 @@ private lemma distillT0_eq_rational {m α : ℝ} (hm : 61 ≤ m)
   have hm3 : m + 3 ≠ 0 := by linarith
   have hm5 : m + 5 ≠ 0 := by linarith
   have hn : 1 - distillNode m α ≠ 0 := by
-    have := distillNode_lt_four_fifths hm hα hα17
+    have := distillNode_lt_one (by linarith : 0 < m) hα (by linarith : α ≤ m / 2)
     linarith
   have hc : (21 / 25 - 3 / 5 * cubicPolarEnvelope α) * m - 12 * α / 25 ≠ 0 := by
     apply (tail_den_pos hm hα17 _).ne'
@@ -361,23 +428,27 @@ private lemma distillT0_eq_rational {m α : ℝ} (hm : 61 ≤ m)
   ring
 
 /-- Real-degree antitonicity of the regularized rational component, including alpha zero. -/
-lemma distillT0_antitone {α : ℝ} (hα : 0 ≤ α) (hα17 : α ≤ 17) :
-    AntitoneOn (fun m => distillT0 m α) (Set.Ici 61) := by
+lemma distillT0_antitone_55 {α : ℝ} (hα : 0 ≤ α) (hα17 : α ≤ 17) :
+    AntitoneOn (fun m => distillT0 m α) (Set.Ici 55) := by
   have he := cubicPolarEnvelope_nonneg hα
   have he1 := cubicPolarEnvelope_le_five_sixths hα hα17
   have hd : 17 / 50 ≤ 21 / 25 - 3 / 5 * cubicPolarEnvelope α := by linarith
   have hd1 : 21 / 25 - 3 / 5 * cubicPolarEnvelope α ≤ 21 / 25 := by linarith
-  have hdα : 12 ≤ α → 21 / 25 - 3 / 5 * cubicPolarEnvelope α ≤ 2 / 5 := by
-    intro h12
-    have he12 := cubicPolarEnvelope_mono (by norm_num : (0 : ℝ) ≤ 12) h12
-    have hval : cubicPolarEnvelope 12 = 1468 / 1875 := by norm_num [cubicPolarEnvelope]
-    rw [hval] at he12
+  have hdα : 10 ≤ α → 21 / 25 - 3 / 5 * cubicPolarEnvelope α ≤ 39 / 100 := by
+    intro h10
+    have he10 := cubicPolarEnvelope_mono (by norm_num : (0 : ℝ) ≤ 10) h10
+    have hval : cubicPolarEnvelope 10 = 4970 / 6591 := by norm_num [cubicPolarEnvelope]
+    rw [hval] at he10
     linarith
   intro m hm n hn hmn
   change distillT0 n α ≤ distillT0 m α
   rw [distillT0_eq_rational hn hα hα17, distillT0_eq_rational hm hα hα17]
   exact mul_le_mul_of_nonneg_left (tailRational_antitone hα hα17 hd hd1 hdα hm hn hmn)
     (mul_nonneg (by norm_num) (distillRatio_nonneg hα))
+
+lemma distillT0_antitone {α : ℝ} (hα : 0 ≤ α) (hα17 : α ≤ 17) :
+    AntitoneOn (fun m => distillT0 m α) (Set.Ici 61) :=
+  (distillT0_antitone_55 hα hα17).mono (Set.Ici_subset_Ici.mpr (by norm_num))
 
 /-- The earlier pointwise reduction holds on the full closed alpha interval. -/
 lemma distillComponents_le_61 {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (hα17 : α ≤ 17) :

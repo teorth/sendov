@@ -37,7 +37,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (29 / 2)) :
   apply distillT0_le_of_critical (l := 9) (r := (37 / 4)) (d := (29 / 2))
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (37 / 4)) :
     0 ≤ -distillCritical1 29 x := by
@@ -69,7 +69,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (29 / 2)) :
     26 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 8) :
     0 ≤ -distillCritical2 29 x := by
@@ -99,7 +99,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (29 / 2)) :
     26 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow29
 
@@ -108,8 +108,10 @@ theorem distillFinite_29 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (29 / 2)) :
   have h0 := CriticalRow29.component0 α hα hd
   have h1 := CriticalRow29.component1 α hα hd
   have h2 := CriticalRow29.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 29 + (283 / 1000) + (81 / 500) + (207 / 1000) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (10028 / 10875) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_29 : ((10028 / 10875) : ℝ) < 199 / 200 := by norm_num
 
@@ -154,7 +156,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 15) :
   apply distillT0_le_of_critical (l := (19 / 2)) (r := (39 / 4)) (d := 15)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (39 / 4)) :
     0 ≤ -distillCritical1 30 x := by
@@ -186,7 +188,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 15) :
     27 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (17 / 2)) :
     0 ≤ -distillCritical2 30 x := by
@@ -216,7 +218,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 15) :
     27 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow30
 
@@ -225,8 +227,10 @@ theorem distillFinite_30 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 15) :
   have h0 := CriticalRow30.component0 α hα hd
   have h1 := CriticalRow30.component1 α hα hd
   have h2 := CriticalRow30.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 30 + (71 / 250) + (81 / 500) + (53 / 250) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (8347 / 9000) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_30 : ((8347 / 9000) : ℝ) < 199 / 200 := by norm_num
 
@@ -271,7 +275,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (31 / 2)) :
   apply distillT0_le_of_critical (l := (39 / 4)) (r := 10) (d := (31 / 2))
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 10) :
     0 ≤ -distillCritical1 31 x := by
@@ -303,7 +307,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (31 / 2)) :
     28 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (35 / 4)) :
     0 ≤ -distillCritical2 31 x := by
@@ -333,7 +337,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (31 / 2)) :
     28 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow31
 
@@ -342,8 +346,10 @@ theorem distillFinite_31 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (31 / 2)) :
   have h0 := CriticalRow31.component0 α hα hd
   have h1 := CriticalRow31.component1 α hα hd
   have h2 := CriticalRow31.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 31 + (57 / 200) + (161 / 1000) + (109 / 500) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (10844 / 11625) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_31 : ((10844 / 11625) : ℝ) < 199 / 200 := by norm_num
 
@@ -388,7 +394,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 16) :
   apply distillT0_le_of_critical (l := (41 / 4)) (r := (21 / 2)) (d := 16)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (21 / 2)) :
     0 ≤ -distillCritical1 32 x := by
@@ -420,7 +426,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 16) :
     29 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 9) :
     0 ≤ -distillCritical2 32 x := by
@@ -450,7 +456,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 16) :
     29 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow32
 
@@ -459,8 +465,10 @@ theorem distillFinite_32 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 16) :
   have h0 := CriticalRow32.component0 α hα hd
   have h1 := CriticalRow32.component1 α hα hd
   have h2 := CriticalRow32.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 32 + (143 / 500) + (161 / 1000) + (223 / 1000) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (9007 / 9600) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_32 : ((9007 / 9600) : ℝ) < 199 / 200 := by norm_num
 
@@ -505,7 +513,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (33 / 2)) :
   apply distillT0_le_of_critical (l := (21 / 2)) (r := (43 / 4)) (d := (33 / 2))
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 11) :
     0 ≤ -distillCritical1 33 x := by
@@ -537,7 +545,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (33 / 2)) :
     30 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (37 / 4)) :
     0 ≤ -distillCritical2 33 x := by
@@ -567,7 +575,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (33 / 2)) :
     30 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow33
 
@@ -576,8 +584,10 @@ theorem distillFinite_33 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ (33 / 2)) :
   have h0 := CriticalRow33.component0 α hα hd
   have h1 := CriticalRow33.component1 α hα hd
   have h2 := CriticalRow33.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 33 + (143 / 500) + (161 / 1000) + (57 / 250) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (3733 / 3960) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_33 : ((3733 / 3960) : ℝ) < 199 / 200 := by norm_num
 
@@ -622,7 +632,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   apply distillT0_le_of_critical (l := 11) (r := (45 / 4)) (d := 17)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (23 / 2)) :
     0 ≤ -distillCritical1 34 x := by
@@ -654,7 +664,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     31 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (39 / 4)) :
     0 ≤ -distillCritical2 34 x := by
@@ -684,7 +694,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     31 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow34
 
@@ -693,8 +703,10 @@ theorem distillFinite_34 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   have h0 := CriticalRow34.component0 α hα hd
   have h1 := CriticalRow34.component1 α hα hd
   have h2 := CriticalRow34.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 34 + (287 / 1000) + (161 / 1000) + (233 / 1000) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (12089 / 12750) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_34 : ((12089 / 12750) : ℝ) < 199 / 200 := by norm_num
 
@@ -739,7 +751,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   apply distillT0_le_of_critical (l := (45 / 4)) (r := (23 / 2)) (d := 17)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (47 / 4)) :
     0 ≤ -distillCritical1 35 x := by
@@ -771,7 +783,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     32 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 10) :
     0 ≤ -distillCritical2 35 x := by
@@ -801,7 +813,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     32 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow35
 
@@ -810,8 +822,10 @@ theorem distillFinite_35 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   have h0 := CriticalRow35.component0 α hα hd
   have h1 := CriticalRow35.component1 α hα hd
   have h2 := CriticalRow35.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 35 + (287 / 1000) + (4 / 25) + (239 / 1000) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (1429 / 1500) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_35 : ((1429 / 1500) : ℝ) < 199 / 200 := by norm_num
 
@@ -856,7 +870,7 @@ theorem component0 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   apply distillT0_le_of_critical (l := (47 / 4)) (r := 12) (d := 17)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_0_left sign_0_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_1_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (49 / 4)) :
     0 ≤ -distillCritical1 36 x := by
@@ -888,7 +902,7 @@ theorem component1 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     33 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_1_left sign_1_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 private lemma sign_2_left (x : ℝ) (hx : x ∈ Set.Ioo 0 (41 / 4)) :
     0 ≤ -distillCritical2 36 x := by
@@ -918,7 +932,7 @@ theorem component2 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
     33 (by norm_num) (by norm_num)
     (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
     sign_2_left sign_2_right ?_ ⟨hα, hd⟩
-  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
+  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]
 
 end CriticalRow36
 
@@ -927,8 +941,10 @@ theorem distillFinite_36 (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ 17) :
   have h0 := CriticalRow36.component0 α hα hd
   have h1 := CriticalRow36.component1 α hα hd
   have h2 := CriticalRow36.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget 36 + (287 / 1000) + (4 / 25) + (61 / 250) :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = (51689 / 54000) := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_36 : ((51689 / 54000) : ℝ) < 199 / 200 := by norm_num
 

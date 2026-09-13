@@ -1,16 +1,16 @@
 {
   "distillation": {
-    "Sendov/Common/DistillationFinite.lean": "08ecbb1e3d2d571718579467ac752a4a4b944973c02a1fa355eec785360e0ab6",
-    "Sendov/DistillationFinite/Rows13_20.lean": "d4797d14dc0932db445dd421d8117b84b3748ea98160b105fa296af07a7de0b7",
-    "Sendov/DistillationFinite/Rows21_28.lean": "c8eae11289b2d45e244ee083da84418babdc395af0ee05454cc711b085e1d318",
-    "Sendov/DistillationFinite/Rows29_36.lean": "60ef832981cf7f3c6056d079e0abcfc663a3a4f53523b690f3cf21f82132517b",
-    "Sendov/DistillationFinite/Rows37_44.lean": "cacca609ff5a960d97220629eea75c087c2f7971395d0280b1a770ad1eeffa84",
-    "Sendov/DistillationFinite/Rows45_52.lean": "21ef52d413d69addc9916ebab6830f75c18a213e82d91ba32b702a0874383c25",
-    "Sendov/DistillationFinite/Rows53_60.lean": "4e09662cc6311402ac606523821bb139f89fb877a782c438484136e824744217",
-    "Sendov/DistillationFinite/Rows5_12.lean": "6c2058e9eb2c6b9f73daa869e699640492cfd8f1df5412ebf1fe467bdecdbfc5",
-    "Sendov/DistillationFinite/Rows61_61.lean": "12914a847c6360f43e32fe9ecdfbc2ca5a098388cef6f41a973cf34dca8bc08d"
+    "Sendov/Common/DistillationFinite.lean": "51879329cdb23b7dc2e4d94d94eb5f974c17bff183ab56addb2fdebeae463fb7",
+    "Sendov/DistillationFinite/Rows13_20.lean": "7211b2822f8f262eae422406ce57c48c8f9e566a0961fcdc3fad2812e7fedad4",
+    "Sendov/DistillationFinite/Rows21_28.lean": "16cc1f9657beb98a7bdb2b46a423d4b66e97ab154899335b0e8680873c36a00e",
+    "Sendov/DistillationFinite/Rows29_36.lean": "339320274f3012e878e90f27338a8e1a9bee8240368ab2281d12b7afc11c4fde",
+    "Sendov/DistillationFinite/Rows37_44.lean": "653824c8891543bf6a684048e9a9672accc87c19bc52f55e8dbfa9b9d8579114",
+    "Sendov/DistillationFinite/Rows45_52.lean": "c41366a1bc680c09367945b56eb00f791620c583f1c9c827d0ddd1dfdd33b0f2",
+    "Sendov/DistillationFinite/Rows53_55.lean": "428b635c53f831d4ec2e7a875d58523846302ca89f3eefeaccae87ee28ed6a59",
+    "Sendov/DistillationFinite/Rows5_12.lean": "7c70b26f98e65cffed59178b9ac6d91c683e10a47ec9369f58df4b25d15c7602",
+    "Sendov/DistillationFinite/Rows61_61.lean": "3a2916ff4e15b4cf31fb4e87d16b611d499f3a8ce1399a0ddb0195406b3f9f2c"
   },
-  "table_sha256": "e29363bce9ae130a080e1b02ccbbfddbb5e63a31a769900ab08d389c519cd528",
+  "table_sha256": "d20fef86d64459e54c2e335d9a425451b2f87822acbf6a5dd09ce2d633731183",
   "sinh": {
     "sha256": "d04df2219415aa8e4f838c9c1b246b35af087e4ba41d4c449f95fe0f436c4acb",
     "bytes": 15024

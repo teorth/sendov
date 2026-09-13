@@ -26,13 +26,17 @@ def bundle(source, output, size=8):
     rows_dir = source / 'Sendov/DistillationFinite'
     expected = {f'Row{m}.lean' for m in ROWS}
     if {p.name for p in rows_dir.glob('Row*.lean')} != expected:
-        raise ValueError('rows must be exactly Row5 through Row61')
+        raise ValueError('rows must be exactly Row5 through Row55, then Row61')
     rows = {m: split_row((rows_dir / f'Row{m}.lean').read_text()) for m in ROWS}
     aggregate = (source / 'Sendov/Common/DistillationFinite.lean').read_text()
     row_imports = [line for line in aggregate.splitlines() if line.startswith(f'import {PREFIX}Row')]
     if row_imports != [f'import {PREFIX}Row{m}' for m in ROWS]:
         raise ValueError('aggregate must import each row exactly once in original order')
-    groups = [list(ROWS[start:start + size]) for start in range(0, len(ROWS), size)]
+    groups = []
+    for m in ROWS:
+        if not groups or len(groups[-1]) == size or m != groups[-1][-1] + 1:
+            groups.append([])
+        groups[-1].append(m)
     rendered, manifest = {}, []
     for group in groups:
         name = f'Rows{group[0]}_{group[-1]}'

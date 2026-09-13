@@ -38,12 +38,17 @@ The convention is **`m = n - 1`**. The final degree split now uses the finite
 proof for `5 ≤ m ≤ 60` (through `n=61`), then the real-parameter tail for
 `m ≥ 61` (from `n=62`). The latter reuses the existing row-61 certificate
 to prove a bound of `<199/200`, which is sufficient for the scalar `<1`.
-Exactly 57 unchanged certificate records, `5 ≤ m ≤ 61`, are retained. The finite
-aggregate consumes 56 cases; the tail consumes row 61 from the shared final
-group `Rows61_61`. Rows 62–81 and the old `<2/3` tail interfaces are retired.
+Exactly 52 unchanged certificate records, `5 ≤ m ≤ 55` and `m=61`, are retained.
+The finite aggregate uses 50 individual cases for `5 ≤ m ≤ 54` and a single
+real interval theorem for `55 ≤ m ≤ 61`, with the original row-55 budgets
+constructed internally. The tail still consumes row 61 from `Rows61_61`.
+Rows 56–60, 62–81 and the old `<2/3` tail interfaces are retired.
 There is no separate duplicate row-61 module or second certificate representation.
 The earlier tail uses the rational fourth-power envelope cap `(21/22)^4`
-to retain stronger logarithmic decay, with the same rational-component alpha split.
+to retain stronger logarithmic decay. The rational component is antitone already
+from 55, using an alpha split at 10. On the bounded interval, the two exponential
+components may grow: linear weights bound that growth, giving the exact total
+`58135011269/58896123000 < 199/200`. No new Bernstein certificates are introduced.
 
 Each finite case uses the complete critical polynomials of degrees **7, 7, 4**.
 Exact Bernstein identities prove derivative signs on the full outer intervals;

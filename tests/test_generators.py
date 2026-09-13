@@ -39,7 +39,7 @@ class GeneratorTests(unittest.TestCase):
     def test_retained_table_matches_pinned_original_subset(self):
         table = ROOT / 'data/paper_certificate_table.json'
         self.assertEqual(digest(table), EXPECTED['table_sha256'])
-        self.assertEqual([r['m'] for r in json.loads(table.read_text())], list(range(5, 62)))
+        self.assertEqual([r['m'] for r in json.loads(table.read_text())], [*range(5, 56), 61])
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -68,7 +68,10 @@ class GeneratorTests(unittest.TestCase):
         actual = {str(p.relative_to(output)): digest(p) for p in output.rglob('*') if p.is_file()}
         self.assertEqual(actual, EXPECTED['distillation'])
         aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
-        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 56)
+        self.assertEqual(aggregate.count('  · exact (distillFinite_'), 50)
+        self.assertIn('exact distillComponents_interval_55_61', aggregate)
+        self.assertTrue((output / 'Sendov/DistillationFinite/Rows53_55.lean').is_file())
+        self.assertFalse((output / 'Sendov/DistillationFinite/Rows53_60.lean').exists())
         self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_61.lean').is_file())
         self.assertFalse((output / 'Sendov/DistillationFinite/Row61.lean').exists())
         self.assertFalse((output / 'Sendov/DistillationFinite/Row5.lean').exists())
@@ -99,6 +102,8 @@ class GeneratorTests(unittest.TestCase):
         original = json.loads((self.repo / 'data/paper_certificate_table.json').read_text())
         mutations = {
             'missing61': lambda r: r.pop(),
+            'missing55': lambda r: r.pop(-2),
+            'retired56': lambda r: r.__setitem__(-2, dict(r[-2], m=56)),
             'extra62': lambda r: r.append(dict(r[-1], m=62)),
             'duplicate row': lambda r: r.__setitem__(1, r[0]),
             'row order': lambda r: r.reverse(),

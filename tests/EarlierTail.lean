@@ -73,6 +73,11 @@ open Lean Elab Command in
 run_cmd do
   let env := (← getEnv).setExporting false
   for (consumer, targets) in #[
+      (`Sendov.distillFinite_components, #[`Sendov.distillComponents_interval_55_61]),
+      (`Sendov.distillComponents_interval_55_61,
+        #[`Sendov.distillKappa_rpow_interval, `Sendov.distillT0_antitone_55,
+          `Sendov.CriticalRow55.component0, `Sendov.CriticalRow55.component1,
+          `Sendov.CriticalRow55.component2]),
       (`Sendov.distillComponents_lt_199_200,
         #[`Sendov.distillComponents_le_61, `Sendov.distillFinite_61,
           `Sendov.distillFiniteBound_61]),
@@ -93,7 +98,8 @@ run_cmd do
       unless value.getUsedConstants.contains target do
         throwError "not an actual proof consumer: {consumer} -> {target}"
       logInfo m!"EARLIER_TAIL_CONSUMER {consumer} -> {target}"
-  for target in #[`Sendov.distillComponents_lt_199_200, `Sendov.distillScalar_lt_199_200,
+  for target in #[`Sendov.distillComponents_interval_55_61,
+      `Sendov.distillComponents_lt_199_200, `Sendov.distillScalar_lt_199_200,
       `Sendov.distillScalar_lt_one, `SendovConjecture.sendov,
       `SendovConjecture.phelps_rodriguez] do
     let axioms ← withEnv env <| Lean.collectAxioms target
@@ -133,19 +139,19 @@ run_cmd do
     for m in [5:82] do
       for stem in ["distillFinite_", "distillFiniteBound_"] do
         let name := Name.str `Sendov s!"{stem}{m}"
-        unless visited.contains name == (m ≤ upper) do
+        unless visited.contains name == (m ≤ 54 || (m == 61 && upper == 61)) do
           throwError "wrong actual case closure: {root}, {name}"
-        if 62 ≤ m && env.contains name then
+        if (56 ≤ m && m ≤ 60 || 62 ≤ m) && env.contains name then
           throwError "retired case still imported: {name}"
       for j in [0:3] do
         let name := Name.str (Name.str `Sendov s!"CriticalRow{m}") s!"component{j}"
-        unless visited.contains name == (m ≤ upper) do
+        unless visited.contains name == (m ≤ 55 || (m == 61 && upper == 61)) do
           throwError "wrong actual component closure: {root}, {name}"
-        if 62 ≤ m && env.contains name then
+        if (56 ≤ m && m ≤ 60 || 62 ≤ m) && env.contains name then
           throwError "retired component still imported: {name}"
     for name in visited do
       let text := name.toString
       if retired.contains name || (text.splitOn "two_thirds").length > 1 ||
           (text.splitOn "_le_81").length > 1 then
         throwError "retired tail in actual value closure: {root}, {name}"
-    logInfo m!"K61_VALUE_CLOSURE {root}: 5..{upper}, three components, no retired names"
+    logInfo m!"INTERVAL_VALUE_CLOSURE {root}: cases5..54, base55, tail61 iff final; no retired rows"

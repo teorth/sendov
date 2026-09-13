@@ -15,15 +15,17 @@ import generator_output
 
 
 class ExactCoreTests(unittest.TestCase):
-    def test_k61_exact_allowed_domain_and_components(self):
+    def test_interval_and_tail_exact_base_domain_and_components(self):
         selected = [r for r in json.loads(g.TABLE.read_text()) if 5 <= r['m'] <= 61]
-        self.assertEqual([r['m'] for r in selected], list(range(5, 62)))
+        self.assertEqual([r['m'] for r in selected], [*range(5, 56), 61])
         with tempfile.TemporaryDirectory() as temporary:
             table = Path(temporary) / 'table.json'
             table.write_text(json.dumps(selected))
             self.assertEqual(load_table(table, g.coefficients), selected)
             mutations = {
                 'missing61': lambda r: r.pop(),
+                'missing55': lambda r: r.pop(-2),
+                'retired56': lambda r: r.__setitem__(-2, dict(r[-2], m=56)),
                 'extra62': lambda r: r.append(dict(r[-1], m=62)),
                 'duplicate': lambda r: r.__setitem__(1, r[0]),
                 'reordered': lambda r: r.reverse(),
@@ -41,11 +43,12 @@ class ExactCoreTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         load_table(table, g.coefficients)
 
-    def test_k61_generator_covers_56_finite_cases_and_one_shared_base(self):
+    def test_generator_covers_50_cases_six_degree_interval_and_tail(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / 'output'
             result = g.generate(output)
-            self.assertEqual(result['rows'], list(range(5, 62)))
+            self.assertEqual(result['rows'], [*range(5, 56), 61])
+            self.assertEqual(result['groups'][-2]['rows'], [53, 54, 55])
             self.assertEqual(result['groups'][-1]['rows'], [61])
             self.assertEqual(len(result['groups']), 8)
             self.assertTrue((output / 'Sendov/DistillationFinite/Rows61_61.lean').is_file())
@@ -54,10 +57,12 @@ class ExactCoreTests(unittest.TestCase):
             cases = [f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt '
                      f'distillFiniteBound_{m}' for m in range(5, 34)]
             cases += [f'  · exact (distillFinite_{m} α hα h17).trans_lt '
-                      f'distillFiniteBound_{m}' for m in range(34, 61)]
+                      f'distillFiniteBound_{m}' for m in range(34, 55)]
             self.assertEqual([line for line in aggregate.splitlines()
                               if line.startswith('  · exact (distillFinite_')], cases)
             self.assertIn('(hm60 : m ≤ 60)', aggregate)
+            self.assertIn('by_cases hinterval : 55 ≤ m', aggregate)
+            self.assertIn('exact distillComponents_interval_55_61', aggregate)
             for path in output.rglob('*.lean'):
                 self.assertNotIn('two_thirds', path.read_text())
                 self.assertNotIn('distillFiniteTailBase', path.read_text())
@@ -103,7 +108,30 @@ class ExactCoreTests(unittest.TestCase):
                         self.assertEqual(text.count('  ring1\n'), 1)
                         self.assertNotIn('norm_num only', text)
                         self.assertNotIn('bernstein_ring', text)
-        self.assertEqual((identities, empty), (307, 35))
+        self.assertEqual((identities, empty), (291, 21))
+
+    def test_interval_growth_budget_is_exact_and_has_strict_slack(self):
+        # Independent numerical contract, not values read from generated Lean.
+        row = next(r for r in json.loads(g.TABLE.read_text()) if r['m'] == 55)
+        self.assertEqual([c['u'] for c in row['components']], [248, 91, 330])
+        slope = F(1, 54) + F(2, 21)
+        self.assertEqual(slope - 5 * (1 - F(979, 1000)), F(331, 37800))
+        self.assertEqual(slope - F(1, 11), F(95, 4158))
+        u = F(17, 20)
+        eta = u - u**3 / 30
+        node = F(4, 25) + F(3, 5)*eta + F(204, 1375)
+        self.assertLessEqual(node, F(979, 1000)**10)
+        self.assertLessEqual(eta, F(21, 22)**4)
+        w1, w2 = 1 - F(331, 37800)*6, 1 - F(95, 4158)*6
+        self.assertGreater(min(w1, w2), 0)
+        total = F(43, 165) + F(31, 125) + F(91, 1000)/w1 + F(33, 100)/w2
+        self.assertEqual(total, F(58135011269, 58896123000))
+        self.assertLess(total, F(199, 200))
+        # Removing growth or extending the same interval to 62 is not licensed.
+        self.assertGreater(slope, F(1, 11))
+        wider = F(43, 165) + F(31, 125) + F(91, 1000)/(1-F(331,37800)*7) + (
+            F(33,100)/(1-F(95,4158)*7))
+        self.assertGreater(wider, F(199, 200))
 
     def test_empty_polynomial_and_bad_interval_are_rejected(self):
         with self.assertRaisesRegex(ValueError, 'empty'):
@@ -112,6 +140,42 @@ class ExactCoreTests(unittest.TestCase):
             g.certificate([1], F(1), F(0))
         with self.assertRaisesRegex(ValueError, 'component'):
             g.coefficients(5, 3)
+
+    def test_all_central_budgets_keep_raw_factors_and_correlated_exponents(self):
+        count = 0
+        for row in json.loads(g.TABLE.read_text()):
+            m = row['m']
+            source = g.row_source(row)
+            self.assertEqual(source.count(
+                'norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]'), 3)
+            self.assertNotIn('norm_num [distillEBudget] at *', source)
+            self.assertIn('add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2', source)
+            self.assertIn(f"_ = {g.rat(row['total'])} := by norm_num only [distillEBudget]",
+                          source)
+            budgets = [g.rat(F(c['u'], 1000)) for c in row['components']]
+            self.assertIn(f"_ ≤ distillEBudget {m} + " + ' + '.join(budgets), source)
+            for c in row['components']:
+                j, lo, hi = c['index'], F(c['lo']), F(c['hi'])
+                with self.subTest(m=m, component=j):
+                    # Reconstruct the raw formulas, including lo=0, rather than
+                    # calling the table validator's cancelled-ratio evaluator.
+                    u, v = lo / (lo + 3), hi / (hi + 3)
+                    ratio = (1-u) * (1-u**2/30) / 3
+                    kappa = F(m*m-1, 4*m) * ratio * (m-2*lo)**2
+                    envelope = v-v**3/30
+                    node = F(4, 25) + F(3, 5)*envelope + F(12, 25*m)*hi
+                    if j == 0:
+                        square = (kappa * 96*F(3, 5)**4 /
+                                  ((m-1)*(m+1)*(m+3)*(m+5)*(1-node)**4))**2
+                    else:
+                        square = (F((259, 421)[j-1], 3125)*kappa)**2 * (
+                            node if j == 1 else envelope)**(m-3)
+                        component = source.split(f'theorem component{j} ')[1].split('\n\n')[0]
+                        self.assertIn(f'    {m-3} (by norm_num) (by norm_num)', component)
+                    self.assertEqual(square, F(c['sq']))
+                    self.assertLess(square, F(c['u'], 1000)**2)
+                    count += 1
+        self.assertEqual(count, 156)
 
     def test_all_actual_sign_certificates_by_coefficient_reconstruction(self):
         # Expand the Bernstein basis back into powers, independently of the

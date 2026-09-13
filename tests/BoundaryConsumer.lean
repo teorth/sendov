@@ -36,6 +36,21 @@ theorem closed_tail {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 
       Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
   Sendov.distillComponents_lt_199_200 hm hα h17
 
+theorem closed_interval {m α : ℝ} (hm : m ∈ Set.Icc 55 61)
+    (hα : 0 ≤ α) (h17 : α ≤ 17) :
+    Sendov.distillEBudget m + Sendov.distillT0 m α +
+      Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
+  Sendov.distillComponents_interval_55_61 hm hα h17
+
+theorem interval_boundary :
+    Sendov.scalarObstruction 55 0 (Sendov.cubicPolarEnvelope 0) = 1 / 110 ∧
+      Sendov.distillEBudget 55 + Sendov.distillT0 55 0 +
+        Sendov.distillT1 55 0 + Sendov.distillT2 55 0 < 199 / 200 := by
+  constructor
+  · convert raw_zero 55 using 1
+    norm_num
+  · exact closed_interval (by norm_num) le_rfl (by norm_num)
+
 end MathPolishBoundary
 
 open Lean Elab Command in
@@ -44,7 +59,8 @@ run_cmd do
   for (consumer, target) in #[
       (`MathPolishBoundary.raw_zero, `Sendov.scalarObstruction_zero),
       (`MathPolishBoundary.tail_zero, `Sendov.distillT2_zero),
-      (`MathPolishBoundary.closed_tail, `Sendov.distillComponents_lt_199_200)] do
+      (`MathPolishBoundary.closed_tail, `Sendov.distillComponents_lt_199_200),
+      (`MathPolishBoundary.closed_interval, `Sendov.distillComponents_interval_55_61)] do
     let some info := env.find? consumer | throwError "missing consumer {consumer}"
     let some value := info.value? (allowOpaque := true) | throwError "missing proof value"
     unless value.getUsedConstants.contains target do

@@ -4,8 +4,9 @@ import Sendov.DistillationFinite.Rows21_28
 import Sendov.DistillationFinite.Rows29_36
 import Sendov.DistillationFinite.Rows37_44
 import Sendov.DistillationFinite.Rows45_52
-import Sendov.DistillationFinite.Rows53_60
+import Sendov.DistillationFinite.Rows53_55
 import Sendov.DistillationFinite.Rows61_61
+import Sendov.LargeDegree.DistillationTailBound
 
 /-! Exact finite-domain critical-bracket closure. Fixed original paper budgets;
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
@@ -14,6 +15,10 @@ namespace Sendov
 theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60)
     {α : ℝ} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
+  by_cases hinterval : 55 ≤ m
+  · exact distillComponents_interval_55_61
+      ⟨by exact_mod_cast hinterval, by exact_mod_cast (show m ≤ 61 by omega)⟩ hα h17
+  have hm54 : m ≤ 54 := by omega
   interval_cases m
   · exact (distillFinite_5 α hα (by linarith)).trans_lt distillFiniteBound_5
   · exact (distillFinite_6 α hα (by linarith)).trans_lt distillFiniteBound_6
@@ -65,12 +70,6 @@ theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60)
   · exact (distillFinite_52 α hα h17).trans_lt distillFiniteBound_52
   · exact (distillFinite_53 α hα h17).trans_lt distillFiniteBound_53
   · exact (distillFinite_54 α hα h17).trans_lt distillFiniteBound_54
-  · exact (distillFinite_55 α hα h17).trans_lt distillFiniteBound_55
-  · exact (distillFinite_56 α hα h17).trans_lt distillFiniteBound_56
-  · exact (distillFinite_57 α hα h17).trans_lt distillFiniteBound_57
-  · exact (distillFinite_58 α hα h17).trans_lt distillFiniteBound_58
-  · exact (distillFinite_59 α hα h17).trans_lt distillFiniteBound_59
-  · exact (distillFinite_60 α hα h17).trans_lt distillFiniteBound_60
 
 theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60)
     {α : ℝ} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :

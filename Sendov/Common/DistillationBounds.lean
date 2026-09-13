@@ -5,9 +5,9 @@ import Sendov.LargeDegree.DistillationTailBound
 # The complete scalar upper bound
 
 The original degree is `n`; the scalar parameter is `m = n - 1`.
-The scalar consumer uses finite rows for `5 ≤ m ≤ 60` and the real-degree
-tail based on the existing row 61 for `m ≥ 61`. These disjoint ranges cover
-every natural `m ≥ 5`; exactly the 57 records from 5 through 61 are retained.
+The scalar consumer uses finite rows for `5 ≤ m ≤ 54`, the real interval
+`55 ≤ m ≤ 61` based on row 55, and the real-degree tail based on row 61.
+Exactly the 52 original records 5 through 55 and 61 are retained.
 -/
 namespace Sendov
 

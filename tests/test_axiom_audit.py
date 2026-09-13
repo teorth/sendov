@@ -26,15 +26,18 @@ TARGETS = [
     'Sendov.distillScalar_lt_199_200',
     'Sendov.distillScalar_lt_one',
     'Sendov.polar_origin_incompatible',
+    'Sendov.distillKappa_rpow_interval',
+    'Sendov.distillT0_antitone_55',
+    'Sendov.distillComponents_interval_55_61',
 ]
 
 MODULES = {
     'Sendov.DistillationFinite.Rows61_61': TARGETS[4:6],
     'Sendov.Common.DistillationFinite': TARGETS[2:4],
-    'Sendov.LargeDegree.DistillationTail': TARGETS[6:8],
-    'Sendov.LargeDegree.DistillationTailBound': TARGETS[8:10],
+    'Sendov.LargeDegree.DistillationTail': TARGETS[6:8] + TARGETS[12:14],
+    'Sendov.LargeDegree.DistillationTailBound': TARGETS[8:10] + TARGETS[14:15],
     'Sendov.Common.DistillationBounds': TARGETS[10:11],
-    'Sendov.Reduction.Main': TARGETS[11:],
+    'Sendov.Reduction.Main': TARGETS[11:12],
     'Solution': TARGETS[:2],
 }
 

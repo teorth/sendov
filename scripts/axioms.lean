@@ -46,3 +46,6 @@ end SendovAudit
 #sendov_axioms Sendov.distillScalar_lt_199_200
 #sendov_axioms Sendov.distillScalar_lt_one
 #sendov_axioms Sendov.polar_origin_incompatible
+#sendov_axioms Sendov.distillKappa_rpow_interval
+#sendov_axioms Sendov.distillT0_antitone_55
+#sendov_axioms Sendov.distillComponents_interval_55_61

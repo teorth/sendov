@@ -13,7 +13,7 @@ import textwrap
 import os
 import tempfile
 from bundle_rows import bundle
-from distillation_data import FINITE_ROWS, ROWS, load_table
+from distillation_data import FINITE_ROWS, INTERVAL_START, ROWS, load_table
 from fractions import Fraction as F
 from math import comb, gcd, lcm
 from pathlib import Path
@@ -125,16 +125,19 @@ def row_source(row):
             s+=f'    {m-3} (by norm_num) (by norm_num)\n'
         s+='    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)\n'
         s+=f'    sign_{j}_left sign_{j}_right ?_ ⟨hα, hd⟩\n'
-        s+='  norm_num [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]\n\n'
+        s+='  norm_num only [distillKappa, distillRatio, distillNode, cubicPolarEnvelope]\n\n'
     s+=f'end CriticalRow{m}\n\n'
     total=rat(row['total'])
+    budgets=[rat(F(c['u'],1000)) for c in row['components']]
     s+=f'''theorem distillFinite_{m} (α : ℝ) (hα : 0 ≤ α) (hd : α ≤ {rat(d)}) :
     distillEBudget {m} + distillT0 {m} α + distillT1 {m} α + distillT2 {m} α ≤ {total} := by
   have h0 := CriticalRow{m}.component0 α hα hd
   have h1 := CriticalRow{m}.component1 α hα hd
   have h2 := CriticalRow{m}.component2 α hα hd
-  norm_num [distillEBudget] at *
-  linarith
+  calc
+    _ ≤ distillEBudget {m} + {budgets[0]} + {budgets[1]} + {budgets[2]} :=
+      add_le_add (add_le_add (add_le_add le_rfl h0) h1) h2
+    _ = {total} := by norm_num only [distillEBudget]
 
 theorem distillFiniteBound_{m} : ({total} : ℝ) < 199 / 200 := by norm_num
 
@@ -144,6 +147,7 @@ theorem distillFiniteBound_{m} : ({total} : ℝ) < 199 / 200 := by norm_num
 
 def aggregate_source():
     s=''.join(f'import Sendov.DistillationFinite.Row{m}\n' for m in ROWS)
+    s+='import Sendov.LargeDegree.DistillationTailBound\n'
     s+=f'''
 /-! Exact finite-domain critical-bracket closure. Fixed original paper budgets;
 see DistillationCriticalFinite for attribution. No sampled truth or global T grid. -/
@@ -152,9 +156,13 @@ namespace Sendov
 theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm60 : m ≤ {FINITE_ROWS[-1]})
     {{α : ℝ}} (hα : 0 ≤ α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
     distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α < 199 / 200 := by
+  by_cases hinterval : {INTERVAL_START} ≤ m
+  · exact distillComponents_interval_55_61
+      ⟨by exact_mod_cast hinterval, by exact_mod_cast (show m ≤ 61 by omega)⟩ hα h17
+  have hm54 : m ≤ {INTERVAL_START - 1} := by omega
   interval_cases m
 '''
-    for m in FINITE_ROWS:
+    for m in range(5, INTERVAL_START):
         bound = 'h17' if F(m, 2) >= 17 else '(by linarith)'
         s+=f'  · exact (distillFinite_{m} α hα {bound}).trans_lt distillFiniteBound_{m}\n'
     s+=f'''
