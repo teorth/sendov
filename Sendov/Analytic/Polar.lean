@@ -155,13 +155,8 @@ lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
     (q.map (fun v => ‖(a : ℂ) + (s : ℂ) * v‖ ^ 2)).sum
       = (q.card : ℝ) * a ^ 2 + 2 * a * s * ((q.map (fun v => v.re)).sum)
         + s ^ 2 * ((q.map (fun v => ‖v‖ ^ 2)).sum) := by
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    rw [ih, norm_sq_add_real_mul]
-    push_cast
-    ring
+  simp_rw [norm_sq_add_real_mul]
+  simp [Multiset.sum_map_add, Multiset.sum_map_mul_left, nsmul_eq_mul]
 
 lemma sum_norm_sq_le_card (q : Multiset ℂ) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) :
     (q.map (fun v => ‖v‖ ^ 2)).sum ≤ (q.card : ℝ) := by

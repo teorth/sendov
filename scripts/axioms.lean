@@ -1,29 +1,44 @@
-import Sendov.Reduction.Main
-import Sendov.Interior
-import Sendov.Boundary
-import Sendov.Conjecture
+import Lean
+import Solution
+import Sendov.Common.DistillationFinite
+import Sendov.LargeDegree.DistillationTailBound
 
 /-!
-Run with `lake env lean scripts/axioms.lean`.  This file is deliberately *not* part of the
-library: it exists so that the axiom check is an explicit, separately-run audit step rather
-than something buried in a build log.
+Run after building the selected proof with `lake env lean scripts/axioms.lean`.
+This separate audit checks the two exact public conjecture statements and their
+active finite/tail seams, not retired intermediate names.
 
-Every result below must depend on `propext`, `Classical.choice` and `Quot.sound` only.  In
-particular `sorryAx` must not appear, and neither must `Lean.ofReduceBool` (which is what
-`native_decide` introduces).
+Only `propext`, `Classical.choice` and `Quot.sound` are permitted. In particular,
+`sorryAx` and `Lean.ofReduceBool` are not permitted. These assertions do not
+replace the complete build, kernel replay or theorem-type contract check.
 -/
 
-#print axioms Sendov.stat_lt_one
-#print axioms Sendov.stat_contradiction
-#print axioms Sendov.finite_range
-#print axioms Sendov.finite_range_le_100
-#print axioms Sendov.large_degree
-#print axioms Sendov.polar_origin_incompatible
-#print axioms Sendov.alpha_le_seventeen
-#print axioms Sendov.sendov_interior
-#print axioms Sendov.sendov_center
-#print axioms Sendov.sendov_interior_real
-#print axioms Sendov.rubinstein_one
-#print axioms Sendov.sendov_boundary_one
-#print axioms Sendov.phelps_rodriguez
-#print axioms Sendov.sendov
+namespace SendovAudit
+open Lean Elab Command
+
+-- collectAxioms is transitive, including imported declarations. Check existence
+-- first: collecting an unknown name alone can silently return an empty array.
+syntax "#sendov_axioms " ident : command
+elab_rules : command
+  | `(#sendov_axioms $decl:ident) => do
+    let env := (← getEnv).setExporting false
+    let name := decl.getId
+    unless (env.find? name).isSome do
+      throwError "missing audit declaration {name}"
+    let axioms ← withEnv env <| Lean.collectAxioms name
+    let allowed := #[``propext, ``Classical.choice, ``Quot.sound]
+    unless axioms.all allowed.contains do
+      throwError "unexpected mathematical premise in {name}: {axioms}"
+    logInfo m!"SENDOV_AXIOMS {(Json.mkObj [("name", toJson name.toString),
+      ("axioms", toJson (axioms.map Name.toString))]).compress}"
+
+end SendovAudit
+
+#sendov_axioms SendovConjecture.sendov
+#sendov_axioms SendovConjecture.phelps_rodriguez
+#sendov_axioms Sendov.distillFinite_components
+#sendov_axioms Sendov.distillFinite_scalar
+#sendov_axioms Sendov.distillFiniteTailBase
+#sendov_axioms Sendov.distillComponents_lt_two_thirds
+#sendov_axioms Sendov.distillScalar_lt_two_thirds
+#sendov_axioms Sendov.polar_origin_incompatible

@@ -6,30 +6,11 @@ Authors: Terence Tao
 import Sendov.Common.Quadratic
 
 /-!
-# Chord bounds and the Beta integrals
+# Chord bounds and Beta integrals
 
-Both halves of the argument replace a power of the quadratic by a power of its chord and
-integrate.  The blog post does this twice, with different weights:
-
-* with weight `t`, to bound `∫₀¹ t β(t)^{(n-2)/2}` in the proof of `α ≤ 17`;
-* with weight `t³`, to bound `∫₀¹ t³ Q^{(n-4)/2}` in the large-degree argument.
-
-Both reduce to a Beta integral, and the split is the same in both cases, so it is proved once:
-`Sendov.integral_le_tail_gen` bounds `∫₀¹ t^k QQ^r` by the chord integral over `[0,1/c]` plus
-`QQ 1 ^ r / (k+1)`, for any natural `k`, leaving the Beta value to be substituted afterwards.
-
-The informal write-up instead uses `QQ ≤ exp(-ct)` and the Gamma integral
-`∫₀^∞ t³ e^{-rct} dt = 6/(rc)⁴`.  The Beta route is preferable in Lean — no improper integral
-and no `Real.exp` — and is strictly sharper, since
-`6/((s+1)(s+2)(s+3)(s+4)) ≤ 6/s⁴` (`Sendov.beta_le_six_div_pow`), so every numerical constant
-downstream of the Gamma bound stays valid.
-
-## Main statements
-
-* `Sendov.integral_lin_mul_rpow`, `Sendov.integral_cube_mul_rpow`: the Beta values;
-* `Sendov.integral_chord_lin`, `Sendov.integral_chord_pow`: the same, scaled to `[0,1/c]`;
-* `Sendov.integral_le_tail_gen`: the split, for an arbitrary weight `t^k`;
-* `Sendov.integral_le_tail_lin`, `Sendov.integral_le_tail_cube`: the two instances used.
+Retain the linear and cubic Beta integrals, scaled chord integrals, generic split and linear tail.
+`Alpha17` consumes the linear tail; `Simplified` the linear chord; `TwoChord` the cubic Beta
+integral.
 -/
 
 namespace Sendov
@@ -105,13 +86,6 @@ lemma integral_cube_mul_rpow {s : ℝ} (hs : 0 < s) :
   push_cast
   field_simp
   ring
-
-/-- The Beta value is at most `6/s⁴`; this is the form the informal argument uses, obtained
-there from the Gamma integral. -/
-lemma beta_le_six_div_pow {s : ℝ} (hs : 0 < s) :
-    6 / ((s + 1) * (s + 2) * (s + 3) * (s + 4)) ≤ 6 / s ^ 4 := by
-  apply div_le_div_of_nonneg_left (by norm_num) (by positivity)
-  nlinarith [hs.le, sq_nonneg s, sq_nonneg (s + 1)]
 
 /-- The chord integral with weight `t`, over `[0, 1/c]`. -/
 lemma integral_chord_lin {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
@@ -246,23 +220,6 @@ theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
     nlinarith [mul_nonneg hBnn hsk]
   linarith
 
-/-- The integral is antitone in `c`: raising `c` lowers `QQ` pointwise on `[0,1]`.  Note that
-nonnegativity is only needed for the *larger* `c`; for the smaller one it comes free from the
-pointwise comparison.  (`Sendov.integral_anti` in `FiniteRange.Batch` is the same trick applied
-to the degree instead.) -/
-lemma integral_QQ_anti {c₁ c₂ A : ℝ} (hle : c₁ ≤ c₂) (hfeas : c₂ ^ 2 ≤ A) {r : ℝ} (hr : 0 ≤ r)
-    (k : ℕ) :
-    (∫ t in (0 : ℝ)..1, t ^ k * QQ c₂ A t ^ r)
-      ≤ ∫ t in (0 : ℝ)..1, t ^ k * QQ c₁ A t ^ r := by
-  refine intervalIntegral.integral_mono_on (by norm_num)
-    ((continuous_pow_mul_QQ c₂ A k hr).intervalIntegrable _ _)
-    ((continuous_pow_mul_QQ c₁ A k hr).intervalIntegrable _ _) ?_
-  intro u hu
-  refine mul_le_mul_of_nonneg_left ?_ (pow_nonneg hu.1 k)
-  refine Real.rpow_le_rpow (QQ_nonneg hfeas u) ?_ hr
-  simp only [QQ]
-  nlinarith [hu.1, hle]
-
 /-- The instance with weight `t`, used for `α ≤ 17`. -/
 theorem integral_le_tail_lin {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)
     {r : ℝ} (hr : 0 < r) :
@@ -271,15 +228,6 @@ theorem integral_le_tail_lin {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
   have h := integral_le_tail_gen hfeas hc hc1 hr 1
   simp only [pow_one] at h
   rw [integral_chord_lin hr hc, show ((1 : ℕ) : ℝ) + 1 = 2 by norm_num] at h
-  exact h
-
-/-- The instance with weight `t³`, used by the large-degree argument. -/
-theorem integral_le_tail_cube {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)
-    {r : ℝ} (hr : 0 < r) :
-    (∫ t in (0 : ℝ)..1, t ^ 3 * QQ c A t ^ r)
-      ≤ 6 / (c ^ 4 * ((r + 1) * (r + 2) * (r + 3) * (r + 4))) + QQ c A 1 ^ r / 4 := by
-  have h := integral_le_tail_gen hfeas hc hc1 hr 3
-  rw [integral_chord_pow hr hc, show ((3 : ℕ) : ℝ) + 1 = 4 by norm_num] at h
   exact h
 
 end Sendov

@@ -3,7 +3,7 @@ Copyright (c) 2026 Terence Tao. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Terence Tao
 -/
-import Sendov.Reduction.Stat
+import Sendov.Reduction.BetaBound
 
 /-!
 # From the raw origin inequality to its `α`, `β(1)` form
@@ -12,7 +12,7 @@ This is `(origin-exact) + (beta-bound) ⟹ (1le)`.  The work is in replacing
 
   `∫₀¹ t β(t)^((n-2)/2) dt`
 
-by a Beta value plus the `t³` integral that `stat` is stated with.  Writing `β` as a sum of
+by a Beta value plus the `t³` integral used in the scalar obstruction. Writing `β` as a sum of
 squares, `β(t) = (1-axt)² + a²t²(1-x²)`, the blog post applies the mean value theorem to
 `s ↦ ((1-axt)² + s)^((n-2)/2)`.  Here that step is Bernoulli's inequality instead: dividing
 

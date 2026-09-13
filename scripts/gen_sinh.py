@@ -1,68 +1,70 @@
 import sympy as sp, io
 
-y = sp.symbols('y', real=True)
-U = y**3 - 10*y**2 + 36*y - 36
-V = y**4 + 16*y**2 - 72
-W = y**3 + 10*y**2 + 36*y + 36
+# Modified for round6: generator entry/output fixes; see GENERATORS.md (Apache-2.0).
+if __name__ == "__main__":
+    y = sp.symbols('y', real=True)
+    U = y**3 - 10*y**2 + 36*y - 36
+    V = y**4 + 16*y**2 - 72
+    W = y**3 + 10*y**2 + 36*y + 36
 
-rows = []
-for j in range(9):
-    u = sp.Poly(U, y).all_coeffs()[::-1] + [0]*4
-    v = sp.Poly(V, y).all_coeffs()[::-1] + [0]*5
-    w = sp.Poly(W, y).all_coeffs()[::-1] + [0]*4 if W != 0 else [0]*4
-    u, v, w = u[:4], v[:5], w[:4]
-    assert sp.Poly(U, y).degree() <= 3 and sp.Poly(V, y).degree() <= 4
-    rows.append((u, v, w))
-    U, V, W = sp.expand(2*U + sp.diff(U, y)), sp.expand(V + sp.diff(V, y)), sp.expand(sp.diff(W, y))
+    rows = []
+    for j in range(9):
+        u = sp.Poly(U, y).all_coeffs()[::-1] + [0]*4
+        v = sp.Poly(V, y).all_coeffs()[::-1] + [0]*5
+        w = sp.Poly(W, y).all_coeffs()[::-1] + [0]*4 if W != 0 else [0]*4
+        u, v, w = u[:4], v[:5], w[:4]
+        assert sp.Poly(U, y).degree() <= 3 and sp.Poly(V, y).degree() <= 4
+        rows.append((u, v, w))
+        U, V, W = sp.expand(2*U + sp.diff(U, y)), sp.expand(V + sp.diff(V, y)), sp.expand(sp.diff(W, y))
 
-# sanity: Phi_j(0) = u0 - v0 - w0 is 0 for j <= 7 and 56 for j = 8
-for j, (u, v, w) in enumerate(rows):
-    val = u[0] - v[0] - w[0]
-    assert val == (0 if j < 8 else 56), (j, val)
+    # sanity: Phi_j(0) = u0 - v0 - w0 is 0 for j <= 7 and 56 for j = 8
+    for j, (u, v, w) in enumerate(rows):
+        val = u[0] - v[0] - w[0]
+        assert val == (0 if j < 8 else 56), (j, val)
 
-# the base case polynomial
-A = y**3 + 2*y**2 - 2*y + 10
-u8, v8, _w8 = rows[8]
-assert sp.expand(sum(u8[i]*y**i for i in range(4)) - 256*A) == 0
-V8 = sum(v8[i]*y**i for i in range(5))
-base = sp.expand(256*(1 + y + y**2/2)*A - V8)
-bc = sp.Poly(base, y).all_coeffs()[::-1]
-assert all(c > 0 for c in bc), bc
-print("base polynomial coefficients (ascending):", bc)
-
-
-def num(c):
-    c = sp.Rational(c)
-    assert c.q == 1
-    return f"({c.p})" if c.p < 0 else str(c.p)
+    # the base case polynomial
+    A = y**3 + 2*y**2 - 2*y + 10
+    u8, v8, _w8 = rows[8]
+    assert sp.expand(sum(u8[i]*y**i for i in range(4)) - 256*A) == 0
+    V8 = sum(v8[i]*y**i for i in range(5))
+    base = sp.expand(256*(1 + y + y**2/2)*A - V8)
+    bc = sp.Poly(base, y).all_coeffs()[::-1]
+    assert all(c > 0 for c in bc), bc
+    print("base polynomial coefficients (ascending):", bc)
 
 
-def args(j):
-    u, v, w = rows[j]
-    return " ".join(num(c) for c in (u[3], u[2], u[1], u[0])) + " " \
-        + " ".join(num(c) for c in (v[4], v[3], v[2], v[1], v[0])) + " " \
-        + " ".join(num(c) for c in (w[3], w[2], w[1], w[0]))
+    def num(c):
+        c = sp.Rational(c)
+        assert c.q == 1
+        return f"({c.p})" if c.p < 0 else str(c.p)
 
 
-def poly_str(cs, var="y"):
-    ts = []
-    for i, c in enumerate(cs):
-        c = sp.Integer(c)
-        if c == 0:
-            continue
-        s = ("+ " if c > 0 else "- ") + str(abs(c))
-        if i == 1:
-            s += f" * {var}"
-        elif i > 1:
-            s += f" * {var} ^ {i}"
-        ts.append(s)
-    t = " ".join(ts)
-    return t[2:] if t.startswith("+ ") else "-" + t[2:]
+    def args(j):
+        u, v, w = rows[j]
+        return " ".join(num(c) for c in (u[3], u[2], u[1], u[0])) + " " \
+            + " ".join(num(c) for c in (v[4], v[3], v[2], v[1], v[0])) + " " \
+            + " ".join(num(c) for c in (w[3], w[2], w[1], w[0]))
 
 
-steps = []
-for j in range(7, -1, -1):
-    steps.append(f'''
+    def poly_str(cs, var="y"):
+        ts = []
+        for i, c in enumerate(cs):
+            c = sp.Integer(c)
+            if c == 0:
+                continue
+            s = ("+ " if c > 0 else "- ") + str(abs(c))
+            if i == 1:
+                s += f" * {var}"
+            elif i > 1:
+                s += f" * {var} ^ {i}"
+            ts.append(s)
+        t = " ".join(ts)
+        return t[2:] if t.startswith("+ ") else "-" + t[2:]
+
+
+    steps = []
+    for j in range(7, -1, -1):
+        steps.append(f'''
 private lemma step{j} (y : ℝ) (hy : 0 ≤ y) :
     0 ≤ Sf {args(j)} y := by
   refine nonneg_Sf_of_deriv (by norm_num) ?_ hy
@@ -70,7 +72,7 @@ private lemma step{j} (y : ℝ) (hy : 0 ≤ y) :
   convert step{j+1} z hz using 1
   norm_num''')
 
-src = f'''/-
+    src = f'''/-
 Copyright (c) 2026 Terence Tao. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Terence Tao
@@ -244,16 +246,17 @@ theorem sinh_sq_le {{h : ℝ}} (hh : 0 ≤ h) :
 
 end Sendov
 '''
-# The analytic tail carries no generated data, and contains brace characters that an
-# f-string would swallow, so it is kept beside this script rather than inlined.
-from pathlib import Path
-import argparse
+    # The analytic tail carries no generated data, and contains brace characters that an
+    # f-string would swallow, so it is kept beside this script rather than inlined.
+    from pathlib import Path
+    import argparse
 
-parser = argparse.ArgumentParser(description="Emit Sinh.lean from the symbolic derivative recurrence")
-parser.add_argument("--output", type=Path, default=Path("Sinh.lean"))
-options = parser.parse_args()
-src = src.replace("\nend Sendov\n", "\n") + io.open(
-    Path(__file__).with_name("sinh_tail.lean.txt"), encoding="utf-8").read()
-io.open(options.output, "w",
-        encoding="utf-8", newline="\n").write(src)
-print(f"written Sinh.lean, {len(src)} bytes")
+    parser = argparse.ArgumentParser(description="Emit Sinh.lean from the symbolic derivative recurrence")
+    parser.add_argument("--output", type=Path,
+                        default=Path(__file__).resolve().parents[1] / "Sendov/Common/Sinh.lean")
+    options = parser.parse_args()
+    src = src.replace("\nend Sendov\n", "\n") + io.open(
+        Path(__file__).with_name("sinh_tail.lean.txt"), encoding="utf-8").read()
+    from generator_output import write_lean
+    write_lean(options.output, src)
+    print(f"written Sinh.lean, {len(src)} bytes")

@@ -20,6 +20,6 @@ jobs:
       # The repository's trust policy, enforced: no `sorry` outside the two
       # deliberate holes in Challenge.lean, no project-defined axiom, no
       # native_decide, no unsafe, no floating point, and the top-level results
-      # depending on the three standard axioms only.  See docs/design.md §8.
+      # depending on the three standard axioms only.  See docs/design.md.
       - name: Trust audit
         run: bash scripts/audit.sh

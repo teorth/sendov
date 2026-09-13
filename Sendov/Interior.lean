@@ -25,11 +25,11 @@ disk, and `Sendov.exists_root_multiset` writes `p` over the other zeroes `zⱼ`.
 
 From `(⋆)` the argument branches on the degree.
 
-* For `n ≥ 5`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
+* For `n ≥ 6`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
   the two origin identities give `(origin-exact)`, and `Sendov.polar_origin_incompatible` says
   the two cannot hold together.
 * For `n ≤ 5`, `Sendov.low_degree_contradiction` shows `(⋆)` is already contradictory on its own,
-  with no recourse to the origin channel.  The two branches overlap at degree five.
+  with no recourse to the origin channel. Degree five belongs only to this low-degree branch.
 
 The zero `a = 0` is excluded above (the polar identity divides by `a`) but needs none of this
 machinery: `p'(a)` two ways already says `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`, and at `a = 0` both factors
@@ -96,10 +96,9 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     (prod_sub_mul_prod (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n) (z := z) (q := q)
       (p := p) hc0 hq0 hpz hpq')
   -- the branch: low degree needs nothing further
-  rcases (by omega : n < 5 ∨ 5 ≤ n) with hn5 | hn5
-  · exact low_degree_contradiction hn (by omega) ha0 ha1 hqcard hq1 hstar
-  have hnR : (5 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn5
-  have hn1 : (0 : ℝ) < (n : ℝ) - 1 := by linarith
+  rcases (by omega : n ≤ 5 ∨ 6 ≤ n) with hn5 | hn6
+  · exact low_degree_contradiction hn hn5 ha0 ha1 hqcard hq1 hstar
+  have hn5 : 5 ≤ n := by omega
   -- `x + iy` is the centroid of the `qⱼ`
   obtain ⟨x, y, hxy⟩ : ∃ x y : ℝ, q.sum = ((n : ℂ) - 1) * ((x : ℂ) + (y : ℂ) * I) := by
     refine ⟨(q.sum / ((n : ℂ) - 1)).re, (q.sum / ((n : ℂ) - 1)).im, ?_⟩
@@ -116,7 +115,7 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
   have horigin := origin_exact (n := n) (α := M n * (1 - a ^ 2) / 2) hn5 ha0 ha1 hqcard hqne
     hz1 hq1 hxy hcent hfirst hsecond rfl
   -- the two are incompatible
-  exact polar_origin_incompatible hn5 ha0 ha1 (by nlinarith [hx2, sq_nonneg y]) rfl hpolar
+  exact polar_origin_incompatible hn6 ha0 ha1 (by nlinarith [hx2, sq_nonneg y]) rfl hpolar
     horigin
 
 /-- **The conjecture at `a = 0`.**  `p'(a)` two ways gives `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`.  At

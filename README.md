@@ -1,280 +1,96 @@
 # Sendov's conjecture in Lean
 
-A formalization of **Sendov's conjecture** and the **Phelps–Rodriguez conjecture**, in full
-generality.
+This local development proves **Sendov's conjecture** and the full
+**Phelps–Rodriguez equality classification**. The statements of record are
+`SendovConjecture.sendov` and `SendovConjecture.phelps_rodriguez` in
+[`Solution.lean`](Solution.lean), with the original specifications retained in
+[`Challenge.lean`](Challenge.lean). The latter contains the original two
+statement placeholders and is not imported by the proof.
 
-```lean
-/-- Sendov's conjecture. -/
-theorem Sendov.sendov {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
-    (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℂ} (hpa : p.eval a = 0) :
-    ∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - a‖ ≤ 1
+For every complex polynomial of degree at least two whose zeros lie in the
+closed unit disk, every zero has a critical point at distance at most one.
+The distance is strictly less than one unless the distinguished zero lies on
+the unit circle and the polynomial has the stated nonzero scalar-multiple
+form. There is no extra numerical, genericity, degree-bound, or simple-root
+hypothesis in either final theorem.
 
-/-- The Phelps–Rodriguez conjecture. -/
-theorem Sendov.phelps_rodriguez {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
-    (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℂ} (hpa : p.eval a = 0) :
-    (∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - a‖ < 1)
-      ∨ (‖a‖ = 1 ∧ ∃ c : ℂ, c ≠ 0 ∧ p = C c * (X ^ n - C (a ^ n)))
-```
+## One active proof route
 
-If every zero of a complex polynomial of degree `n ≥ 2` lies in the closed unit disk, then
-every zero `a` has a critical point within distance `1` — and within distance *strictly* less
-than `1`, unless `a` is on the unit circle and `p` is a scalar multiple of `zⁿ - aⁿ`.
+The polynomial identities, analytic reduction, low-degree argument and boundary
+classification start from Terence Tao's formalization.[1] The scalar endgame
+here is a Lean implementation of Senjian An's rational-envelope and
+low-degree critical-polynomial method, not an import of its Python checks as
+trusted facts.[2]
 
-The informal proof being formalized is
-[*A digestion of the proof of Sendov's conjecture*](https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/).
-
-Both are in [`Sendov/Conjecture.lean`](Sendov/Conjecture.lean#L83), and both depend on
-`propext`, `Classical.choice` and `Quot.sound` only.
-
-[`Challenge.lean`](Challenge.lean) is the statement of record: 87 lines, importing only
-Mathlib, declaring no definitions of its own. A reader who wants to check *what* has been
-proved should read that file and need not read anything else.
-
-## Roadmap
-
-The proof is by contradiction throughout. Suppose `p` has degree `n ≥ 2`, all zeroes in the
-closed unit disk, `p(a) = 0`, and *no* critical point within distance `1` of `a`.
-
-### 0. Normalize, and split into two multisets
-
-A rotation `p(ωz)` moves `a` to the real point `‖a‖`, so `a` may be assumed real and in
-`[0,1]` — [`Sendov.rotate`](Sendov/Conjecture.lean#L43). The counterexample is then
-repackaged as two multisets of `n-1` points of the closed unit disk:
-
-| | |
+| Part | Active source |
 |---|---|
-| the other zeroes `zⱼ` | [`exists_root_multiset`](Sendov/Counterexample/Factor.lean#L46) |
-| the critical points, as `qⱼ = 1/(a - wⱼ)` | [`exists_crit_multiset`](Sendov/Counterexample/Factor.lean#L74) |
+| Final statements and rotation | [`Solution.lean`](Solution.lean), [`Conjecture`](Sendov/Conjecture.lean) |
+| Unit-circle boundary and equality case | [`Boundary`](Sendov/Boundary.lean) |
+| Interior degrees `2 ≤ n ≤ 5` | [`LowDegree`](Sendov/Analytic/LowDegree.lean), [`Interior`](Sendov/Interior.lean) |
+| Original polar/origin hypotheses → scalar domain and lower bound | [`CubicScalar`](Sendov/Reduction/CubicScalar.lean) |
+| Strong hyperbolic bound and cubic polar envelope | [`DistillationHyperbolic`](Sendov/Common/DistillationHyperbolic.lean), [`CubicPolar`](Sendov/Reduction/CubicPolar.lean) |
+| Two-chord integral estimate and regularized factors | [`TwoChord`](Sendov/Common/TwoChord.lean), [`DistillationMajorant`](Sendov/Common/DistillationMajorant.lean) |
+| Finite critical-point certificates | [`DistillationFinite`](Sendov/Common/DistillationFinite.lean), [`generated modules`](Sendov/DistillationFinite) |
+| Real-parameter tail using the actual base certificate | [`DistillationTailBound`](Sendov/LargeDegree/DistillationTailBound.lean) |
+| Complete contradiction | [`DistillationBounds`](Sendov/Common/DistillationBounds.lean), [`Reduction/Main`](Sendov/Reduction/Main.lean) |
 
-The hypothesis "no critical point within distance 1" is exactly `‖qⱼ‖ ≤ 1`.
+The convention is **`m = n - 1`**. The finite proof covers all `5 ≤ m ≤ 81`;
+the tail is proved for every real `m ≥ 81` and uses the certified `m=81` case.
+The final degree split uses the finite proof through `n=82`, then the tail.
+Both are parts of the same scalar argument.
 
-### 1. Four identities linking zeroes to critical points
+Each finite case uses the complete critical polynomials of degrees **7, 7, 4**.
+Exact Bernstein identities prove derivative signs on the full outer intervals;
+a mixed-endpoint estimate covers the central bracket. The proof does not assume
+that a numerical root finder found all critical points. Closed endpoints and
+empty outer intervals are handled explicitly.
 
-All in [`Sendov/Counterexample/Identities.lean`](Sendov/Counterexample/Identities.lean), all
-division-free, so that no `p'(a) ≠ 0` side condition is ever needed:
+The old `R`-based finite/large-degree certificate system and its specialized
+generators are retired, not shipped as a second compatibility route. General
+lemmas still used by the new proof remain. The mean/variance budget formulation
+also incorporates an idea examined in Pickhardt's work; no conditional Sendov
+claim or assumed threshold from that project is used.[3]
 
-| identity | meaning | |
-|---|---|---|
-| [`centroid_identity`](Sendov/Counterexample/Identities.lean#L60) | centroid of zeroes = centroid of critical points | |
-| [`prod_sub_mul_prod`](Sendov/Counterexample/Identities.lean#L322) | `p'(a)` two ways: `(∏qⱼ)(∏(a-zⱼ)) = n` | |
-| [`polar_identity`](Sendov/Counterexample/Identities.lean#L355) | `∏(1-azⱼ)/(a-zⱼ)` as an integral | |
-| [`first_origin_identity`](Sendov/Counterexample/Identities.lean#L241) | `∫₀¹F` in terms of `∏zⱼ` | `F(t) = ∏(1 - a t qⱼ)` |
-| [`second_origin_identity`](Sendov/Counterexample/Identities.lean#L165) | `F(1)` in terms of `∏zⱼ` and `∑1/zⱼ` | |
+## Build and verify
 
-### 2. The branch point `(⋆)`
+Use the versions pinned by [`lean-toolchain`](lean-toolchain) and
+[`lake-manifest.json`](lake-manifest.json):
 
-The polar identity together with `p'(a)` two ways gives
-
-> [`one_le_integral_prod_norm`](Sendov/Analytic/Polar.lean#L115) : `1 ≤ ∫₀¹ ∏ⱼ ‖a + t(1-a²)qⱼ‖ dt`
-
-This is where the argument forks. The Möbius estimate `|1-az|/|a-z| ≥ 1` is the one step that
-needs `a` real.
-
-### 3a. Low degrees, `2 ≤ n ≤ 4`
-
-Bounding each factor of `(⋆)` by the *scalar* `X(t) = a + (1-a²)t` already contradicts itself:
-`1 ≤ Jₘ(a) = ∫₀¹X(t)ᵐ dt` with `m = n-1`, while `Jₘ(a) < 1` for `0 < a < 1` and `m ≤ 4`. The
-computation is done once, at `m = 4`, where `1 - J₄(a) = ((1-a)³(1+a)/5)(a⁴-3a³+3a+4)`.
-
-> [`low_degree_contradiction`](Sendov/Analytic/LowDegree.lean#L210), from
-> [`one_le_lowJ`](Sendov/Analytic/LowDegree.lean#L93) and
-> [`lowJ_lt_one`](Sendov/Analytic/LowDegree.lean#L185)
-
-No origin channel, no `Real.rpow`, no certificates.
-
-The lemma is stated for `2 ≤ n ≤ 5`, but this is the only branch that needs no certificate,
-and the recorded proof enters it only for `n ≤ 4`: [`sendov_interior`](Sendov/Interior.lean#L53)
-splits at `n < 5`, so degree `5` goes through the two-channel branch below like every larger
-degree.
-
-### 3b. High degrees, `n ≥ 5`: two channels that cannot both hold
-
-Write `x + iy = (∑ⱼqⱼ)/(n-1)` and `α = (n-1)(1-a²)/2`.
-
-**The polar channel.** AM–GM relaxes `(⋆)` to a scalar inequality in `x` alone:
-
-> [`one_le_integral_Ppolar`](Sendov/Analytic/Polar.lean#L274) — the raw polar inequality `(1Q)`
-
-**The origin channel.** Differentiating `F(t) = ∏ⱼ(1 - a t qⱼ)` and integrating against the
-fundamental theorem of calculus:
-
-| step | |
-|---|---|
-| `∑ⱼ∏_{k≠j}‖1-atq_k‖ ≤ (n-1)β(t)^{(n-2)/2}` | [`sumEraseProdMap_norm_le`](Sendov/Analytic/Origin.lean#L158) |
-| `‖F'(t) + (n-1)a(x+iy)F(t)‖ ≤ …` | [`norm_deriv_add_le`](Sendov/Analytic/Origin.lean#L329) |
-| integrate, using `F(0) = 1` | [`one_le_tri`](Sendov/Analytic/Origin.lean#L388) |
-| estimate `J∑1/zⱼ`, paying the defect `1-\|J\|²` | [`Jsum_estimate`](Sendov/Analytic/Jsum.lean#L122) |
-| `‖W‖ ≥ 2an/(n-1)`, collapsing `\|J\|` to `1` | [`grow`](Sendov/Analytic/OriginExact.lean#L92) |
-| | [`origin_exact`](Sendov/Analytic/OriginExact.lean#L179) |
-
-`grow` reduces to `(n-1)²a² - (3n-1)a + (n-1) > 0`, whose discriminant `(3n-1)² - 4(n-1)³` is
-negative exactly from `n ≥ 5`. **This is the only place `n ≥ 5` is used.**
-
-**The contradiction.** The two inequalities force `α ≤ 17` and then contradict each other:
-
-> [`polar_origin_incompatible`](Sendov/Reduction/Main.lean#L60)
-
-by way of the chain `(1Q) ⟹ (lt)` ([`polar_exp`](Sendov/Reduction/Polar.lean#L74)),
-`(lt) ⟹ (beta-bound)` ([`beta_le`](Sendov/Reduction/BetaBound.lean#L108)),
-[`alpha_le_seventeen`](Sendov/Reduction/Alpha17.lean#L106), and a numerical claim `stat`:
-
-> [`stat_lt_one`](Sendov/Main.lean#L40), from
-> [`finite_range_le_100`](Sendov/FiniteRange/Cover.lean#L58) (degrees 5–100, by per-degree
-> Bernstein certificates) and [`large_degree`](Sendov/LargeDegree/Endgame.lean#L251)
-> (degrees ≥ 101, by an analytic reduction that removes the degree, then the single
-> Bernstein certificate [`F_pos`](Sendov/LargeDegree/Endgame.lean#L53) for what it leaves)
-
-See [`docs/finite-range.md`](docs/finite-range.md) for that component on its own.
-
-### 3c. The boundary, `‖a‖ = 1`
-
-The polar identity degenerates at the boundary — the reflected point `1/a` coincides with `a`
-and `1-a² = 0` — so it is replaced by one identity from `p''(1)/p'(1)`:
-
-> `∑ⱼqⱼ = 2∑ⱼ1/(1-zⱼ)` — [`boundary_reciprocal`](Sendov/Boundary.lean#L151)
-
-Both sides are then pinned: `Re qⱼ ≤ ‖qⱼ‖ ≤ 1` caps the left at `n-1`, while
-`Re 1/(1-z) - 1/2 = (1-‖z‖²)/(2‖1-z‖²) ≥ 0` floors the right at `n-1`. Equality term by term
-forces `qⱼ = 1`, so every critical point is `0` and `p = c(zⁿ-1)`.
-
-> [`all_q_eq_one`](Sendov/Boundary.lean#L168) → [`rubinstein_one`](Sendov/Boundary.lean#L210)
-
-The boundary case is Rubinstein's theorem, and it is where the Phelps–Rodriguez equality case
-comes from. The argument is **not new**: the identity and the half-plane bound above are
-equation (5.1) and Remark 5.1 of [Tang and Zhang](https://arxiv.org/abs/2508.10341), where the
-same two steps give the `a = 1` case of Sendov's conjecture. What is done here in addition is
-to run the sandwich to equality, recovering the classification — which is Rubinstein's 1968
-theorem, and so not new either. See [Provenance](#provenance-and-novelty).
-
-### 3d. The centre, `a = 0`
-
-`p'(a)` two ways is already enough: `(∏qⱼ)(∏zⱼ) = n` with both factors of norm at most one
-forces `n ≤ 1`.
-
-> [`sendov_center`](Sendov/Interior.lean#L125)
-
-### 4. Assembling
-
-> [`sendov_interior`](Sendov/Interior.lean#L53) (real `0 < a < 1`) →
-> [`sendov_interior_real`](Sendov/Interior.lean#L162) (with `a = 0`) →
-> [`phelps_rodriguez`](Sendov/Conjecture.lean#L83) (rotation, and the boundary) →
-> [`sendov`](Sendov/Conjecture.lean#L158)
-
-## Two ingredients absent from Mathlib
-
-* **Maclaurin's inequality**, top case — [`Multiset.esymm_card_pred_le`](Sendov/Analytic/Maclaurin.lean#L166),
-  by multiset induction reducing to Bernoulli. The same induction gives multiset AM–GM,
-  [`Multiset.prod_le_mean_pow`](Sendov/Analytic/Maclaurin.lean#L107).
-* **The defect lemma** — [`defect`](Sendov/Analytic/Defect.lean#L93):
-  `∏|wⱼ| · ∑ⱼ|1/wⱼ - conj wⱼ| ≤ 1 - ∏|wⱼ|²` on the closed unit disk.
-
-A third piece worth naming is [`log_sinh_div_le`](Sendov/Common/Sinh.lean#L245),
-`log(sinh h / h) ≤ √(h²+9) - 3`, which is sharp to three orders at `h = 0` and is the crux of
-the `(beta-bound)` step.
-
-## Trust
-
-* no `sorry` and no project-defined `axiom`, with one deliberate exception: `Challenge.lean`
-  *states* the two theorems without proving them, which is what makes it the statement of
-  record for Comparator to check `Solution.lean` against. `scripts/audit.sh` requires exactly
-  those two holes and no others, and forbids `sorry` everywhere else including `Solution.lean`;
-* no `native_decide`, no `unsafe`, no floating point in any statement or proof;
-* `maxHeartbeats` / `maxRecDepth` appear only as deliberate resource knobs, each with an
-  explanatory comment.
-
-`scripts/audit.sh` checks all of this and prints the axiom dependencies of the top-level
-results; `scripts/mutation_test.sh` checks that the numerical certificates are actually
-load-bearing.
-
-## Building
-
-```
+```sh
 lake exe cache get
 lake build
-bash scripts/audit.sh
+lake env lean scripts/axioms.lean
 ```
 
-Memory, not time, is the binding constraint on a full build; `scripts/staged_build.sh` builds
-the certificate files in batches.
+The mathematical proof uses only `propext`, `Classical.choice`, and `Quot.sound`.
+No project axiom, `sorry`, `native_decide`, or floating-point computation is used
+in the proved library. Kernel replay, original headline-type comparison and
+actual proof-dependency checks are separate acceptance steps; compilation alone
+is not reported as all of them.
 
-## Documents
+See [`docs/getting-started.md`](docs/getting-started.md) for verification and
+[`scripts/GENERATORS.md`](scripts/GENERATORS.md) for reproducible generation.
+The finite generator emits the entire table in one command to a fresh output
+root. Python prepares exact data; Lean verifies the complete identities and
+inequalities. A successful generator run is **not** a completed proof check.
 
-| | |
-|---|---|
-| [`docs/making-of.md`](docs/making-of.md) | how this formalization happened: a curated transcript of the conversation that produced it |
-| [`docs/getting-started.md`](docs/getting-started.md) | how to set up to do something like this, for someone new to Lean, VS Code, GitHub or coding agents |
-| [`docs/design.md`](docs/design.md) | design record: status table, the measurements behind each decision, and the traps encountered |
-| [`docs/finite-range.md`](docs/finite-range.md) | the finite-range check on its own |
-| [`docs/proof-large-degree.md`](docs/proof-large-degree.md) | informal proof for degrees ≥ 101 |
-| [`docs/plan-*.md`](docs/) | the staged hand-off plans, with notes on where they were superseded |
-| [the blog post](https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/) | the informal proof being formalized |
+## Provenance and scope
 
-## Provenance and novelty
+This is a local adaptation, not a claim that upstream maintainers reviewed or
+endorsed these changes. The repository keeps the original Apache-2.0 code
+license. The distilled mathematics and certificate table are attributed to
+Senjian An's fixed source version; the source paper is CC BY 4.0.[2]
+The retained generator entry points incorporate applicable portability fixes;
+obsolete batch-specific tools are not retained merely to preserve a PR surface.[4]
+Only contributions serving the active proof and its reproducibility are kept.
+Unverified theorem corpora, numerical demonstrations, unrelated visualization
+programs and obsolete generator interfaces are not part of the proof deliverable.
 
-**No novelty is claimed anywhere in this repository, and no literature or formalization search
-was performed.** Where this document notes that something here differs from earlier work, that
-is a description of this development, not a priority claim: whether any of it is new is
-unknown.
+See [`docs/design.md`](docs/design.md) for the reduction contract and trust boundary.
 
-The mathematics descends from **Lech Mazur's** proof. Sendov's conjecture was first proved, and
-first formalized in Lean, by that work at [ProofAtlas](https://www.proofatlas.ai/formalizations/sendov-conjecture/) — priority for both belongs there.
-The informal proof formalized here is [Tao's digestion](https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/) of Mazur's argument, described in
-the post as an effort "to place the proof in proper context with previous literature and to
-simplify and streamline the argument to highlight the main ideas". This repository is therefore
-the **second** formalization of Sendov's conjecture, and its mathematical content is a
-streamlined descendant of the first rather than an independent route to the same theorem.
+## Sources
 
-As far as we are aware it is the first formalization of the **Phelps–Rodriguez** form: the
-earlier formalization reports a single main theorem, Sendov's `‖ζ - a‖ ≤ 1`, and does not state
-the equality classification. That is an observation about the one earlier formalization we know
-of, not the result of a search.
-
-The two developments are separately checkable evidence for the same theorem, and they differ in
-what they state and in size:
-
-| | this repository | the earlier formalization |
-|---|---|---|
-| statement | Sendov **and** Phelps–Rodriguez | Sendov |
-| Lean | 80 files, 15,152 lines | 1,160 files, 92,816 lines *(as reported there)* |
-| shared code | none | |
-
-The boundary argument in [`Sendov/Boundary.lean`](Sendov/Boundary.lean) is likewise not new.
-It was reached here from the blog post rather than from the literature, but its two ingredients
-are equation (5.1) and Remark 5.1 of Quanyu Tang and Teng Zhang, *Sharp Schoenberg type
-inequalities and the de Bruin–Sharma problem*, [arXiv:2508.10341](https://arxiv.org/abs/2508.10341):
-their `∑ₖ 1/wₖ = 2 ∑ⱼ 1/zⱼ` is `boundary_reciprocal` after moving the distinguished zero from
-`0` to `1`, and their `ℜ(1/zⱼ) ≤ -1/2` is `half_le_re_inv_one_sub`. Remark 5.1 stops at the
-non-strict conclusion `min|wₖ| ≤ 1`; the extra step here, extracting equality term by term to
-get the classification, recovers Rubinstein's 1968 theorem and is not claimed as new either.
-
-One difference is worth naming because it is checkable here: this development uses **no
-interval arithmetic and no floating point at all**. The computational step — a numerical
-inequality reached by every degree from `5` up, in both the finite range and, after the
-analytic reduction, the large-degree endgame — is discharged by exact rational Bernstein
-certificates re-verified inside Lean, and `scripts/audit.sh` fails the build if `Float`
-appears anywhere in a statement or proof. No comparison of the two proofs' internal arguments has been carried out.
-
-## How this was produced
-
-Essentially all of the Lean source in this repository was written by **Claude Opus 5**
-(Anthropic), working interactively in Claude Code under the direction and review of the
-author: choosing the Lean formulations, finding and repairing proofs, and designing the
-certificate machinery. The author set the targets, supplied the informal proof and the staged
-plans in `docs/`, made the mathematical decisions, and reviewed the output as it was produced.
-No external or independent review has been performed.
-
-The Bernstein certificates are emitted by the Python scripts in `scripts/`: the per-degree
-ones in `Sendov/FiniteRange/`, and the degree-58 endgame certificate `F_pos` in
-`Sendov/LargeDegree/Endgame.lean`, from `scripts/gen_endgame.py`. Those scripts are outside the trusted base: they write Lean source that Lean
-re-verifies from scratch, so a bug in them causes a build failure, not an unsound theorem.
-
-Two documents record the process rather than the result.
-[`docs/making-of.md`](docs/making-of.md) is a curated transcript of the conversation that
-produced the development — the stages it went through, and the dead ends and mistakes along
-the way. [`docs/getting-started.md`](docs/getting-started.md) describes the setup this
-repository started from and the working habits that mattered, for someone new to Lean, VS Code,
-GitHub or coding agents.
-
-## Licence
-
-Apache-2.0; see [`LICENSE`](LICENSE).
+[1] https://github.com/teorth/sendov
+[2] https://github.com/SJanPerth/Sendov-Proof-Distillation/tree/e8ae601491ec171ab4f7f8456113dd6a047aa85d
+[3] https://github.com/pickhardt/sendov-explicit-threshold
+[4] https://github.com/teorth/sendov/pull/1

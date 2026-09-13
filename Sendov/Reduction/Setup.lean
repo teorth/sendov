@@ -6,31 +6,11 @@ Authors: Terence Tao
 import Sendov.Common.Chord
 
 /-!
-# The raw inequalities, and the dictionary between them and `Sendov.R`
+# Actual polar/origin coordinates
 
-`Sendov.stat_lt_one` refutes equation `stat` of the blog post.  `stat` is itself deduced there
-from two inequalities that come out of the complex-analytic part of the argument:
-
-* the **raw polar inequality** `(1Q)`, `1 ≤ ∫₀¹ P(t)^((n-1)/2) dt` with
-  `P(t) = a² + 2atx(1-a²) + t²(1-a²)²`;
-* the **raw origin inequality** `(origin-exact)`,
-  `2α + ax ≤ (1-x²)/(2(n-1)) + a²n(n-1) ∫₀¹ t β(t)^((n-2)/2) dt`.
-
-Both are statements about two real numbers `a ∈ (0,1)` and `x ∈ [-1,1]` and a degree `n`; no
-polynomial, no complex number and no `q_j` survives into them.  That is what makes the next
-target — that the two are not simultaneously satisfiable for `n ≥ 5` — a self-contained
-real-variable statement.
-
-This file fixes `P` and records the dictionary.  The key entry is that `α` and `a` determine
-each other: with `α = (n-1)(1-a²)/2` one has `A n α = a²` *exactly*, so the `A` of
-`Sendov.Defs` and the `a²` of the blog post are the same thing, and `β(t)` is
-`Sendov.QQ (a*x) (a^2) t` while `Q n α t` is `Sendov.QQ (c n α) (A n α) t`.
-
-## Main statements
-
-* `Sendov.Ppolar_eq`: `P` as a sum of squares, hence nonnegative for `|x| ≤ 1`;
-* `Sendov.A_eq_sq`: `A n α = a²`;
-* `Sendov.alpha_pos`, `Sendov.alpha_le_half`: the range of `α`.
+The raw polar kernel, `A_eq_sq`, and `mul_eq_c` describe actual data, not an enlarged scalar
+obstruction.
+Positivity and the half-degree bound for alpha are shared by the selected reduction.
 -/
 
 namespace Sendov
@@ -58,6 +38,14 @@ lemma continuous_Ppolar (a x : ℝ) : Continuous fun t : ℝ => Ppolar a x t := 
 lemma A_eq_sq (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) : A n α = a ^ 2 := by
   have hM : M n ≠ 0 := (M_pos hn).ne'
   simp only [A, hα]
+  field_simp
+  ring
+
+/-- `ax = 1 - β(1)/2 - α/(n-1)`: the blog post's rearrangement of `β(1) = 1 - 2ax + a²`. -/
+lemma mul_eq_c (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) :
+    a * x = 1 - QQ (a * x) (a ^ 2) 1 / 2 - α / M n := by
+  have hM : M n ≠ 0 := (M_pos hn).ne'
+  simp only [QQ, hα]
   field_simp
   ring
 
