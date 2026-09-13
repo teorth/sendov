@@ -45,22 +45,22 @@ variable {n : ℕ} {a x t α : ℝ}
 lemma Ppolar_le_lin (a x : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Ppolar a x t ≤ 1 + (1 - a ^ 2) * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t) := by
   have hid : 1 + (1 - a ^ 2) * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t) - Ppolar a x t
-      = (1 - a ^ 2) ^ 2 * (t - t ^ 2) := by
+      = (1 - a ^ 2) ^ 2 * (t * (1 - t)) := by
     simp only [Ppolar, QQ]; ring
-  nlinarith [mul_nonneg (sq_nonneg (1 - a ^ 2)) (mul_nonneg ht0 (sub_nonneg.2 ht1))]
+  rw [← sub_nonneg, hid]
+  exact mul_nonneg (sq_nonneg _) (mul_nonneg ht0 (sub_nonneg.mpr ht1))
 
 /-- The pointwise bound after raising to the power `(n-1)/2`. -/
 lemma Ppolar_rpow_le (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a ^ 2) / 2)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Ppolar a x t ^ (((n : ℝ) - 1) / 2)
       ≤ Real.exp (α * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t)) := by
-  have hM : (0 : ℝ) < M n := M_pos hn
-  have he : (0 : ℝ) ≤ ((n : ℝ) - 1) / 2 := by simp only [M] at hM; linarith
+  have he : (0 : ℝ) ≤ ((n : ℝ) - 1) / 2 :=
+    div_nonneg (M_pos hn).le (by norm_num)
   set y : ℝ := (1 - a ^ 2) * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t) with hy
   have h1 : Ppolar a x t ≤ Real.exp y := by
     refine le_trans (Ppolar_le_lin a x ht0 ht1) ?_
-    have := Real.add_one_le_exp y
-    linarith
+    simpa only [add_comm] using Real.add_one_le_exp y
   have h2 : Ppolar a x t ^ (((n : ℝ) - 1) / 2) ≤ Real.exp y ^ (((n : ℝ) - 1) / 2) :=
     Real.rpow_le_rpow (Ppolar_nonneg hx a t) h1 he
   refine h2.trans_eq ?_
@@ -74,8 +74,8 @@ lemma Ppolar_rpow_le (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a 
 theorem polar_exp (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a ^ 2) / 2)
     (hpolar : 1 ≤ ∫ t in (0 : ℝ)..1, Ppolar a x t ^ (((n : ℝ) - 1) / 2)) :
     1 ≤ ∫ t in (0 : ℝ)..1, Real.exp (α * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t)) := by
-  have hM : (0 : ℝ) < M n := M_pos hn
-  have he : (0 : ℝ) ≤ ((n : ℝ) - 1) / 2 := by simp only [M] at hM; linarith
+  have he : (0 : ℝ) ≤ ((n : ℝ) - 1) / 2 :=
+    div_nonneg (M_pos hn).le (by norm_num)
   have hc1 : Continuous fun t : ℝ => Ppolar a x t ^ (((n : ℝ) - 1) / 2) :=
     (continuous_rpow_const he).comp (continuous_Ppolar a x)
   have hc2 : Continuous fun t : ℝ =>

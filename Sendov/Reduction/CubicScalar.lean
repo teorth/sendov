@@ -9,7 +9,8 @@ only the original weak polar integral and original origin inequality. In
 particular, the alpha range and eta domain are conclusions, not extra inputs.
 
 The analytic origin reduction remains `one_le_of_origin` in `Simplified`, via
-`one_le_scalarObstruction_of_polar_origin`. The strict cubic polar bound and
+`one_le_scalarObstruction_of_origin`, reusing the established eta domain.
+The strict cubic polar bound and
 eta monotonicity then enlarge the actual scalar obstruction. No finite-range
 certificate, tail bound, or old `R` enlargement is used here.
 -/
@@ -40,8 +41,8 @@ theorem cubicScalar_constraints_of_polar_origin {n : ℕ} (hn : 6 ≤ n) {a x α
   have hbeta := beta_le hα0 hη.1 hlt
   have hlog := log_le_alpha_mul hα0 hη.2.le hlt
   have h17 := alpha_le_seventeen hn5 ha ha1 hx hα hbeta hlog horigin
-  have hactual := one_le_scalarObstruction_of_polar_origin hn5 ha ha1 hx hα hpolar horigin
-  have hcubic := actualEta_lt_cubicPolarEnvelope_of_polar hn2 ha.le ha1 hx hα h17 hpolar
+  have hactual := one_le_scalarObstruction_of_origin hn5 ha ha1 hx hα hη.2 horigin
+  have hcubic := eta_lt_cubicPolarEnvelope hα0 h17 hη.1 hη.2 hlt
   exact ⟨hα0, hhalf, h17, hactual.trans
     (scalarObstruction_mono_eta hm hα0 hη.1 hcubic.le (cubicPolarEnvelope_lt_one hα0.le))⟩
 

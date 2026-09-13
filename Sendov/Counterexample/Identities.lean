@@ -121,10 +121,7 @@ lemma prod_map_neg (s : Multiset ℂ) :
 lemma eval_prod_zero (z : Multiset ℂ) :
     ((z.map (fun w => X - C w)).prod).eval 0 = (-1) ^ (Multiset.card z) * z.prod := by
   rw [eval_multiset_prod, Multiset.map_map]
-  rw [show (z.map ((fun r : ℂ[X] => r.eval 0) ∘ (fun w => X - C w))).prod
-      = (z.map (fun w => -w)).prod from
-    congrArg Multiset.prod (Multiset.map_congr rfl fun w _ => by simp)]
-  exact prod_map_neg z
+  simpa only [Function.comp_apply, eval_sub, eval_X, eval_C, zero_sub] using prod_map_neg z
 
 /-- The derivative of `∏ⱼ (X - zⱼ)` at the origin.  Proved by induction rather than through
 `Polynomial.derivative_prod`, which would need the evaluation of a multiset sum. -/

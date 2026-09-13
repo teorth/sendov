@@ -131,13 +131,12 @@ lemma distillElementary_le_budget {m α : ℝ} (hm : 0 < m) (hα : 0 < α) :
     apply (div_le_iff₀ (by positivity : 0 < 4 * α)).mpr
     linarith
   have hlast : cubicPolarEnvelope α / (4 * α * m) ≤ 1 / (12 * m) := by
-    rw [div_le_div_iff₀ (by positivity : 0 < 4 * α * m) (by positivity : 0 < 12 * m)]
-    nlinarith [mul_le_mul_of_nonneg_right her hm.le]
+    simpa only [div_div] using div_le_div_of_nonneg_right hsecond hm.le
   have hid : (1 : ℝ) / 6 + 1 / 12 + 1 / (2 * m) + 1 / (12 * m) =
       distillEBudget m := by
     unfold distillEBudget
     ring
-  linarith
+  exact (add_le_add (add_le_add (add_le_add hfirst hsecond) le_rfl) hlast).trans_eq hid
 
 /-- The prefactor is regularized only after cancelling a positive alpha. -/
 lemma distillKappa_eq {m α : ℝ} (hα : 0 < α) :
@@ -215,6 +214,8 @@ lemma distillScalar_le_components {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α)
   unfold scalarObstruction
   rw [← distillKappa_eq hα]
   unfold distillT0 distillT1 distillT2
-  nlinarith
+  calc
+    _ ≤ distillEBudget m + distillKappa m α * _ := add_le_add hE hK
+    _ = _ := by ring
 
 end Sendov

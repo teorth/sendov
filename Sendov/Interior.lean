@@ -73,10 +73,8 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     exact hpq
   -- basic numerology
   have hne : ((n : ℂ) - 1) ≠ 0 := by
-    intro h
-    have h1 : (n : ℂ) = 1 := by linear_combination h
-    have h2 : n = 1 := by exact_mod_cast h1
-    omega
+    apply sub_ne_zero.mpr
+    exact_mod_cast (show n ≠ 1 by omega)
   have hqne : q ≠ 0 := by
     intro h
     rw [h, Multiset.card_zero] at hqcard
@@ -85,12 +83,10 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     simpa using ne_of_gt ha0
   have haC2 : ((a : ℝ) : ℂ) ^ 2 ≠ 1 := by
     intro h
-    have : (a : ℂ) ^ 2 = ((a ^ 2 : ℝ) : ℂ) := by push_cast; ring
-    rw [this] at h
     have h1 : a ^ 2 = 1 := by exact_mod_cast h
-    nlinarith [h1, ha0, ha1]
+    nlinarith only [h1, ha0, ha1]
   have hstar := one_le_integral_prod_norm hn (a := a)
-    (by rw [abs_of_nonneg (le_of_lt ha0)]; linarith) hz1
+    (by rw [abs_of_nonneg ha0.le]; linarith only [ha1]) hz1
     (polar_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n) (z := z) (q := q) (p := p)
       hc0 haC0 haC2 hzcard hqcard hq0 hpa hpz hpq')
     (prod_sub_mul_prod (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n) (z := z) (q := q)
@@ -115,8 +111,8 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
   have horigin := origin_exact (n := n) (α := M n * (1 - a ^ 2) / 2) hn5 ha0 ha1 hqcard hqne
     hz1 hq1 hxy hcent hfirst hsecond rfl
   -- the two are incompatible
-  exact polar_origin_incompatible hn6 ha0 ha1 (by nlinarith [hx2, sq_nonneg y]) rfl hpolar
-    horigin
+  exact polar_origin_incompatible hn6 ha0 ha1
+    ((le_add_of_nonneg_right (sq_nonneg y)).trans hx2) rfl hpolar horigin
 
 /-- **The conjecture at `a = 0`.**  `p'(a)` two ways gives `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`.  At
 `a = 0` the second factor is `∏ⱼ zⱼ` up to sign, so both factors have norm at most one and
@@ -154,8 +150,11 @@ theorem sendov_center {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree 
     simpa using hz1 w hw
   have h3 : ‖(n : ℂ)‖ = (n : ℝ) := by simp
   rw [h3] at hnorm
-  have h4 : (2 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
-  nlinarith [hnorm, h1, h2, norm_nonneg q.prod, norm_nonneg (z.map (fun w => (0 : ℂ) - w)).prod]
+  have hn1 : (n : ℝ) ≤ 1 := by
+    rw [← hnorm]
+    exact mul_le_one₀ h1 (norm_nonneg _) h2
+  have : n ≤ 1 := by exact_mod_cast hn1
+  omega
 
 /-- **The conjecture for a real zero in `[0,1)`**, every degree `n ≥ 2`. -/
 theorem sendov_interior_real {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)

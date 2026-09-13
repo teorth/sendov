@@ -36,7 +36,7 @@ lemma cubicPolarEnvelope_center_lt_ten {α : ℝ} (hα : 0 ≤ α) (h17 : α ≤
   have hp : 0 < 10 - α * (1 - cubicPolarEnvelope α / 2) := by
     rw [hid]
     exact div_pos hn (by positivity)
-  linarith
+  exact sub_pos.mp hp
 
 /-- Strict positivity at the envelope. Clearing the paper's u-expression gives
 an all-positive numerator, so no strict integral premise is necessary. -/
@@ -85,32 +85,30 @@ theorem eta_lt_cubicPolarEnvelope {α η : ℝ} (hα : 0 < α) (h17 : α ≤ 17)
   have hpcp : pc ≤ p := by dsimp [pc, p]; gcongr
   have hx0 : 0 < x := by
     dsimp [x, p]
-    nlinarith [mul_pos hα (sub_pos.mpr hη1)]
+    nlinarith only [hα, mul_pos hα (sub_pos.mpr hη1)]
   have hx10 : x < 10 := by
     have hc := cubicPolarEnvelope_center_lt_ten hα.le h17
     have hxp : x ≤ α * (1 - cubicPolarEnvelope α / 2) := by
-      dsimp [x, p, pc] at *
-      nlinarith
+      calc x = α - p := hxdef
+        _ ≤ α - pc := sub_le_sub_left hpcp α
+        _ = α * (1 - cubicPolarEnvelope α / 2) := by rw [hpcdef]; ring
     exact hxp.trans_lt hc
-  have hlog : p ≤ log (sinh x / x) := polar_le_log_sinh hα (by linarith) hpolar
+  have hlog : p ≤ log (sinh x / x) :=
+    polar_le_log_sinh hα (hη1.trans (by norm_num)) hpolar
   have hstrong : p ≤ (7 / 8 : ℝ) * (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) - 3) :=
     hlog.trans (DistillationHyperbolic.log_sinh_div_le hx0 hx10.le)
   have hroot : (8 / 7 : ℝ) * p + 3 ≤ sqrt (9 + (8 / 7 : ℝ) * x ^ 2) := by
-    linarith
-  have hsq : sqrt (9 + (8 / 7 : ℝ) * x ^ 2) ^ 2 =
-      9 + (8 / 7 : ℝ) * x ^ 2 := Real.sq_sqrt (by positivity)
+    linarith only [hstrong]
   have hsquare : ((8 / 7 : ℝ) * p + 3) ^ 2 ≤ 9 + (8 / 7 : ℝ) * x ^ 2 := by
-    nlinarith [sq_nonneg (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) - ((8 / 7 : ℝ) * p + 3)),
-      mul_nonneg (show 0 ≤ (8 / 7 : ℝ) * p + 3 by positivity)
-        (sub_nonneg.mpr hroot)]
+    exact (Real.le_sqrt (by positivity) (by positivity)).mp hroot
   have hF : p ^ 2 / 7 + 2 * (α + 3) * p - α ^ 2 ≤ 0 := by
     rw [hxdef] at hsquare
-    nlinarith
+    nlinarith only [hsquare]
   have hFc : 0 < pc ^ 2 / 7 + 2 * (α + 3) * pc - α ^ 2 :=
     cubicPolarEnvelope_quadratic_pos hα
   have hmono : pc ^ 2 ≤ p ^ 2 := pow_le_pow_left₀ hpc0 hpcp 2
-  nlinarith [mul_nonneg (show 0 ≤ 2 * (α + 3) by positivity)
-    (sub_nonneg.mpr hpcp)]
+  nlinarith only [hF, hFc, hmono, mul_le_mul_of_nonneg_left hpcp
+    (show 0 ≤ 2 * (α + 3) by positivity)]
 
 /-- Old `a,x,n` coordinates: eta's domain follows from the original weak
 polar hypothesis via the already proved Bridge, rather than an extra premise.

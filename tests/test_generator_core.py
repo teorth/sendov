@@ -52,7 +52,9 @@ class ExactCoreTests(unittest.TestCase):
             self.assertFalse((output / 'Sendov/DistillationFinite/Row64.lean').exists())
             aggregate = (output / 'Sendov/Common/DistillationFinite.lean').read_text()
             cases = [f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt '
-                     f'distillFiniteBound_{m}' for m in range(5, 64)]
+                     f'distillFiniteBound_{m}' for m in range(5, 34)]
+            cases += [f'  · exact (distillFinite_{m} α hα h17).trans_lt '
+                      f'distillFiniteBound_{m}' for m in range(34, 64)]
             self.assertEqual([line for line in aggregate.splitlines()
                               if line.startswith('  · exact (distillFinite_')], cases)
             self.assertIn('(hm63 : m ≤ 63)', aggregate)

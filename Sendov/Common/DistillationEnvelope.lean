@@ -24,16 +24,16 @@ lemma cubicPolarEnvelope_nonneg {α : ℝ} (hα : 0 ≤ α) :
   have hd : 0 < α + 3 := by linarith
   have hu : 0 ≤ α / (α + 3) := div_nonneg hα hd.le
   have hu1 : α / (α + 3) ≤ 1 := (div_le_one hd).mpr (by linarith)
-  have hu3 := pow_le_pow_left₀ hu hu1 3
+  have hu3 : (α / (α + 3)) ^ 3 ≤ α / (α + 3) :=
+    pow_le_of_le_one hu hu1 (by decide)
   unfold cubicPolarEnvelope
-  nlinarith [pow_nonneg hu 3, mul_nonneg hu (sub_nonneg.mpr hu1),
-    mul_nonneg (sq_nonneg (α / (α + 3))) (sub_nonneg.mpr hu1)]
+  exact sub_nonneg.mpr ((div_le_self (pow_nonneg hu 3) (by norm_num)).trans hu3)
 
 lemma cubicPolarEnvelope_le_linear {α : ℝ} (hα : 0 ≤ α) :
     cubicPolarEnvelope α ≤ α / (α + 3) := by
   have hu : 0 ≤ α / (α + 3) := div_nonneg hα (by linarith)
   unfold cubicPolarEnvelope
-  linarith [pow_nonneg hu 3]
+  exact sub_le_self _ (div_nonneg (pow_nonneg hu 3) (by norm_num))
 
 lemma cubicPolarEnvelope_lt_one {α : ℝ} (hα : 0 ≤ α) :
     cubicPolarEnvelope α < 1 := by

@@ -93,19 +93,10 @@ lemma integral_chord_lin {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
   have hc' : c ≠ 0 := hc.ne'
   have h := intervalIntegral.integral_comp_mul_left (a := (0 : ℝ)) (b := 1 / c)
     (fun y : ℝ => (y / c) * (1 - y) ^ s) hc'
-  have hfun : (fun t : ℝ => ((c * t) / c) * (1 - c * t) ^ s)
-      = fun t : ℝ => t * (1 - c * t) ^ s := by
-    funext t
-    rw [mul_div_cancel_left₀ t hc']
-  simp only [hfun] at h
-  rw [show c * (1 / c) = 1 by field_simp, mul_zero] at h
-  have hg : (fun y : ℝ => (y / c) * (1 - y) ^ s)
-      = fun y : ℝ => (1 / c) * (y * (1 - y) ^ s) := by
-    funext y
-    field_simp
-  rw [hg, intervalIntegral.integral_const_mul, integral_lin_mul_rpow hs] at h
+  simp only [mul_div_cancel_left₀ _ hc', mul_one_div_cancel hc', mul_zero,
+    div_mul_eq_mul_div, intervalIntegral.integral_div, integral_lin_mul_rpow hs,
+    smul_eq_mul] at h
   rw [h]
-  simp only [smul_eq_mul]
   field_simp
 
 /-- The chord integral with weight `t³`, over `[0, 1/c]`. -/
@@ -115,19 +106,10 @@ lemma integral_chord_pow {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
   have hc' : c ≠ 0 := hc.ne'
   have h := intervalIntegral.integral_comp_mul_left (a := (0 : ℝ)) (b := 1 / c)
     (fun y : ℝ => (y / c) ^ 3 * (1 - y) ^ s) hc'
-  have hfun : (fun t : ℝ => ((c * t) / c) ^ 3 * (1 - c * t) ^ s)
-      = fun t : ℝ => t ^ 3 * (1 - c * t) ^ s := by
-    funext t
-    rw [mul_div_cancel_left₀ t hc']
-  simp only [hfun] at h
-  rw [show c * (1 / c) = 1 by field_simp, mul_zero] at h
-  have hg : (fun y : ℝ => (y / c) ^ 3 * (1 - y) ^ s)
-      = fun y : ℝ => (1 / c ^ 3) * (y ^ 3 * (1 - y) ^ s) := by
-    funext y
-    field_simp
-  rw [hg, intervalIntegral.integral_const_mul, integral_cube_mul_rpow hs] at h
+  simp only [mul_div_cancel_left₀ _ hc', mul_one_div_cancel hc', mul_zero,
+    div_pow, div_mul_eq_mul_div, intervalIntegral.integral_div, integral_cube_mul_rpow hs,
+    smul_eq_mul] at h
   rw [h]
-  simp only [smul_eq_mul]
   field_simp
 
 /-! ### The split -/
@@ -160,9 +142,9 @@ theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
   have hsc : s ≤ 1 / c := by
     rcases min_cases t₀ 1 with ⟨h, _⟩ | ⟨h, _⟩
     · rw [hsdef, h, ht₀def, le_div_iff₀ hc, div_mul_eq_mul_div, div_le_one hA]
-      nlinarith [hfeas]
+      simpa only [pow_two] using hfeas
     · rw [hsdef, h, le_div_iff₀ hc]
-      linarith
+      simpa only [one_mul] using hc1
   rw [← intervalIntegral.integral_add_adjacent_intervals (hint 0 s) (hint s 1)]
   have hfirst : (∫ u in (0 : ℝ)..s, u ^ k * QQ c A u ^ r)
       ≤ ∫ u in (0 : ℝ)..1 / c, u ^ k * (1 - c * u) ^ r := by
@@ -192,7 +174,7 @@ theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
         = ∫ u in (0 : ℝ)..1 / c, u ^ k * (1 - c * u) ^ r :=
       intervalIntegral.integral_add_adjacent_intervals
         (hchordcont.intervalIntegrable 0 s) (hchordcont.intervalIntegrable s (1 / c))
-    linarith
+    exact (le_add_of_nonneg_right hrest).trans_eq hadd
   have hsecond : (∫ u in s..1, u ^ k * QQ c A u ^ r) ≤ QQ c A 1 ^ r / (k + 1) := by
     have hBnn : (0 : ℝ) ≤ QQ c A 1 ^ r := Real.rpow_nonneg (QQ_nonneg hfeas 1) _
     have hQB : ∀ u ∈ Set.Icc s 1, QQ c A u ≤ QQ c A 1 := by
@@ -210,15 +192,16 @@ theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
       refine intervalIntegral.integral_mono_on hs1 (hint s 1)
         ((by fun_prop : Continuous fun u : ℝ => QQ c A 1 ^ r * u ^ k).intervalIntegrable _ _) ?_
       intro u hu
-      have := Real.rpow_le_rpow (QQ_nonneg hfeas u) (hQB u hu) hr.le
-      nlinarith [pow_nonneg (le_trans hs0.le hu.1) k, this, hBnn]
+      simpa only [mul_comm] using mul_le_mul_of_nonneg_left
+        (Real.rpow_le_rpow (QQ_nonneg hfeas u) (hQB u hu) hr.le)
+        (pow_nonneg (le_trans hs0.le hu.1) k)
     refine hle.trans ?_
     rw [intervalIntegral.integral_const_mul, integral_pow]
     have hsk : (0 : ℝ) ≤ s ^ (k + 1) := pow_nonneg hs0.le _
     rw [one_pow, ← mul_div_assoc]
     gcongr
     nlinarith [mul_nonneg hBnn hsk]
-  linarith
+  exact add_le_add hfirst hsecond
 
 /-- The instance with weight `t`, used for `α ≤ 17`. -/
 theorem integral_le_tail_lin {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)

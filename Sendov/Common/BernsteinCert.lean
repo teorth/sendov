@@ -59,9 +59,9 @@ theorem Cert.pos_right (a : Cert) {x y : ℝ} (hx : 0 < x) (hy : 0 ≤ y)
 theorem Cert.pos (a : Cert) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
     (hxy : 0 < x + y) (hl : a.edge true = true) (hr : a.edge false = true) :
     0 < a.eval x y := by
-  rcases lt_or_eq_of_le hx with h | h
-  · exact a.pos_right h hy hr
-  · exact a.pos_left hx (by linarith) hl
+  rcases eq_or_lt_of_le hx with rfl | hx
+  · exact a.pos_left le_rfl (by simpa only [zero_add] using hxy) hl
+  · exact a.pos_right hx hy hr
 
 theorem scaled_pos (a : Cert) {x y s P : ℝ}
     (hid : s * P = a.eval x y) (hs : 0 < s) (hx : 0 ≤ x) (hy : 0 ≤ y)

@@ -122,26 +122,13 @@ theorem sum_norm_sq_one_sub_le {n : ℕ} {a x t : ℝ} {q : Multiset ℂ}
 
 lemma sq_sum_le_card_mul_sum_sq (s : Multiset ℝ) (hs : ∀ b ∈ s, 0 ≤ b) :
     (s.sum) ^ 2 ≤ (s.card : ℝ) * (s.map (fun b => b ^ 2)).sum := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons b t ih =>
-    have hb := hs b (Multiset.mem_cons_self b t)
-    have ht : ∀ u ∈ t, 0 ≤ u := fun u hu => hs u (Multiset.mem_cons_of_mem hu)
-    rcases eq_or_ne t 0 with rfl | ht0
-    · simp
-    · have hIH := ih ht
-      have hcard : (0 : ℝ) < (t.card : ℕ) := by
-        have := Multiset.card_pos.2 ht0
-        exact_mod_cast this
-      have hsum : 0 ≤ t.sum := Multiset.sum_nonneg ht
-      have hQ : (0 : ℝ) ≤ (t.map (fun b => b ^ 2)).sum :=
-        Multiset.sum_nonneg (by
-          intro y hy
-          obtain ⟨u, _, rfl⟩ := Multiset.mem_map.1 hy
-          exact sq_nonneg u)
-      simp only [Multiset.sum_cons, Multiset.card_cons, Multiset.map_cons]
-      push_cast
-      nlinarith [hIH, sq_nonneg (t.sum - (t.card : ℝ) * b), hcard, hsum, hb, hQ]
+  -- Apply Cauchy–Schwarz with f = 1 and g = l.get on list positions, preserving repeats.
+  -- The original nonnegativity hypothesis hs is retained for interface compatibility.
+  induction s using Quotient.inductionOn with
+  | h l =>
+    have h := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ
+      (fun _ : Fin l.length => (1 : ℝ)) l.get
+    simpa [← List.sum_ofFn, List.ofFn_getElem_eq_map l (fun b : ℝ => b ^ 2)] using h
 
 /-- **The error bound.**  `∑ⱼ ∏_{k≠j} ‖1 - a t q_k‖ ≤ (n-1) β(t)^{(n-2)/2}`: Maclaurin's
 inequality, then Cauchy–Schwarz, then the quadratic mean.  Nonnegativity of `β(t)` is not
@@ -250,18 +237,16 @@ lemma sumEraseProdC_cons (v : ℂ) (t : Multiset ℂ) (g f : ℂ → ℂ) :
 /-- A weighted erasure sum with unit-size weights is dominated by the unweighted one. -/
 lemma norm_sumEraseProdC_le (g f : ℂ → ℂ) : ∀ (s : Multiset ℂ), (∀ v ∈ s, ‖g v‖ ≤ 1) →
     ‖sumEraseProdC s g f‖ ≤ sumEraseProdMap s (fun v => ‖f v‖) := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp [sumEraseProdMap]
-  | cons v t ih =>
-    intro hg
-    have hv := hg v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖g u‖ ≤ 1 := fun u hu => hg u (Multiset.mem_cons_of_mem hu)
-    rw [sumEraseProdC_cons, sumEraseProdMap_cons]
-    refine (norm_add_le _ _).trans ?_
-    rw [norm_mul, norm_mul, norm_prod_map]
-    have h2 : (0 : ℝ) ≤ (t.map (fun v => ‖f v‖)).prod := prod_map_norm_nonneg t f
-    nlinarith [ih ht, norm_nonneg (f v), norm_nonneg (sumEraseProdC t g f), h2, hv]
+  classical
+  intro s hg
+  unfold sumEraseProdC sumEraseProdMap
+  refine (norm_multiset_sum_le _).trans ?_
+  rw [Multiset.map_map]
+  refine Multiset.sum_map_le_sum_map _ _ ?_
+  intro v hv
+  dsimp only [Function.comp_def]
+  rw [norm_mul, norm_prod_map]
+  exact mul_le_of_le_one_left (prod_map_norm_nonneg _ _) (hg v hv)
 
 /-- `F(t) = ∏ⱼ (1 - a t qⱼ)`. -/
 noncomputable def Fprod (a : ℝ) (q : Multiset ℂ) (t : ℝ) : ℂ :=
@@ -294,27 +279,20 @@ lemma hasDerivAt_Fprod (a t : ℝ) : ∀ (q : Multiset ℂ),
   induction q using Multiset.induction_on with
   | empty =>
     have he : Fprod a 0 = fun _ : ℝ => (1 : ℂ) := by funext s; simp [Fprod]
-    have hz : -(a : ℂ) * sumEraseProdC 0 id (fun v => 1 - (a : ℂ) * (t : ℂ) * v) = 0 := by simp
-    rw [he, hz]
+    rw [he, sumEraseProdC_zero, mul_zero]
     exact hasDerivAt_const t 1
   | cons v r ih =>
     have h0 : HasDerivAt (fun s : ℝ => (s : ℂ)) 1 t := Complex.ofRealCLM.hasDerivAt
     have h1 : HasDerivAt (fun s : ℝ => 1 - (a : ℂ) * (s : ℂ) * v) (-((a : ℂ) * v)) t := by
       simpa using ((h0.const_mul (a : ℂ)).mul_const v).const_sub 1
-    have h2 := h1.mul ih
     have hfun : Fprod a (v ::ₘ r)
         = fun s : ℝ => (1 - (a : ℂ) * (s : ℂ) * v) * Fprod a r s := by
       funext s
       simp only [Fprod, Multiset.map_cons, Multiset.prod_cons]
-    have hderiv : -(a : ℂ) * ((v : ℂ) * (r.map (fun w => 1 - (a : ℂ) * (t : ℂ) * w)).prod
-          + (1 - (a : ℂ) * (t : ℂ) * v) * sumEraseProdC r id (fun w => 1 - (a : ℂ) * (t : ℂ) * w))
-        = -((a : ℂ) * v) * Fprod a r t
-          + (1 - (a : ℂ) * (t : ℂ) * v)
-              * (-(a : ℂ) * sumEraseProdC r id (fun w => 1 - (a : ℂ) * (t : ℂ) * w)) := by
-      simp only [Fprod]
-      ring
-    rw [hfun, sumEraseProdC_cons, id_eq, hderiv]
-    exact h2
+    rw [hfun, sumEraseProdC_cons, id_eq]
+    apply (h1.mul ih).congr_deriv
+    simp only [Fprod]
+    ring
 
 /-- **The pointwise estimate.**  `‖F'(t) + (n-1) a (x+iy) F(t)‖ ≤ a² t (n-1) β(t)^{(n-2)/2}`. -/
 theorem norm_deriv_add_le {n : ℕ} (hn : 2 ≤ n) {a x y t : ℝ} {q : Multiset ℂ}

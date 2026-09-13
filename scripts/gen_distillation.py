@@ -155,7 +155,8 @@ theorem distillFinite_components {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINIT
   interval_cases m
 '''
     for m in FINITE_ROWS:
-        s+=f'  · exact (distillFinite_{m} α hα (by linarith)).trans_lt distillFiniteBound_{m}\n'
+        bound = 'h17' if F(m, 2) >= 17 else '(by linarith)'
+        s+=f'  · exact (distillFinite_{m} α hα {bound}).trans_lt distillFiniteBound_{m}\n'
     s+=f'''
 theorem distillFinite_scalar {{m : ℕ}} (hm : 5 ≤ m) (hm63 : m ≤ {FINITE_ROWS[-1]})
     {{α : ℝ}} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :

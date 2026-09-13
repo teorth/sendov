@@ -65,8 +65,8 @@ lemma norm_le_lowX {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) {
   refine (norm_add_le _ _).trans ?_
   rw [norm_mul, Complex.norm_real, Complex.norm_real, Real.norm_eq_abs, Real.norm_eq_abs,
     abs_of_nonneg ha0, abs_of_nonneg (mul_nonneg ht0 hb)]
-  simp only [lowX]
-  nlinarith [hv, norm_nonneg v, mul_nonneg ht0 hb]
+  simpa only [lowX, mul_comm t] using
+    add_le_add_right (mul_le_of_le_one_right (mul_nonneg ht0 hb) hv) a
 
 lemma prod_norm_le_lowX_pow {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) :
     ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →

@@ -59,16 +59,10 @@ lemma norm_sub_le_norm_one_sub_mul {a : ℝ} (ha : |a| ≤ 1) {z : ℂ} (hz : �
     nlinarith [this.1, this.2]
   have hz2 : Complex.normSq z ≤ 1 := by
     rw [Complex.normSq_eq_norm_sq]
-    nlinarith [norm_nonneg z]
-  have hdiff : 0 ≤ Complex.normSq (1 - (a : ℂ) * z) - Complex.normSq ((a : ℂ) - z) := by
-    rw [hkey]
-    have h1 : (0 : ℝ) ≤ 1 - a ^ 2 := by linarith
-    have h2 : (0 : ℝ) ≤ 1 - Complex.normSq z := by linarith
-    positivity
-  have hsq : ‖(a : ℂ) - z‖ ^ 2 ≤ ‖1 - (a : ℂ) * z‖ ^ 2 := by
-    rw [← Complex.normSq_eq_norm_sq, ← Complex.normSq_eq_norm_sq]
-    linarith
-  nlinarith [norm_nonneg ((a : ℂ) - z), norm_nonneg (1 - (a : ℂ) * z), hsq]
+    exact pow_le_one₀ (norm_nonneg z) hz
+  apply (sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).1
+  rw [Complex.sq_norm, Complex.sq_norm, ← sub_nonneg, hkey]
+  exact mul_nonneg (sub_nonneg.2 ha2) (sub_nonneg.2 hz2)
 
 /-! ### Products of norms over a multiset -/
 
@@ -127,7 +121,7 @@ theorem one_le_integral_prod_norm {n : ℕ} (hn : 2 ≤ n) {a : ℝ} (ha : |a| �
         (q.map (fun v => (a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v)).prod‖ := by
       rw [← h2, h1]
       exact mul_le_mul_of_nonneg_left hmob (norm_nonneg _)
-    nlinarith [hstep, hnpos]
+    exact (mul_le_mul_iff_right₀ hnpos).mp (by simpa only [mul_one] using hstep)
   -- and the triangle inequality moves the norm inside
   refine h3.trans ?_
   refine (intervalIntegral.norm_integral_le_integral_norm (by norm_num)).trans_eq ?_
@@ -237,7 +231,7 @@ lemma prod_norm_le_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x t : ℝ}
     refine hamgm.trans ?_
     exact pow_le_pow_left₀ hM0' hMle _
   rw [← hsq] at hchain
-  nlinarith [hchain, hP0, Real.rpow_nonneg (le_trans hM0' hMle) (((n : ℝ) - 1) / 2)]
+  exact (sq_le_sq₀ hP0 (Real.rpow_nonneg hb _)).1 hchain
 
 /-- **The raw polar inequality `(1Q)`.** -/
 theorem one_le_integral_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x : ℝ}

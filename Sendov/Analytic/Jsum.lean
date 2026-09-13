@@ -62,15 +62,12 @@ lemma norm_prod_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ ≤ 1) �
 no `sⱼ` vanishes. -/
 lemma prod_mul_sum_inv : ∀ (s : Multiset ℂ), (∀ w ∈ s, w ≠ 0) →
     s.prod * (s.map (fun w => w⁻¹)).sum = sumEraseProd s := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => simp [sumEraseProd]
-  | cons v t ih =>
-    intro hs
-    have hv := hs v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, u ≠ 0 := fun u hu => hs u (Multiset.mem_cons_of_mem hu)
-    rw [Multiset.prod_cons, Multiset.map_cons, Multiset.sum_cons, sumEraseProd_cons, ← ih ht]
-    field_simp
+  classical
+  intro s hs
+  rw [sumEraseProd, ← Multiset.sum_map_mul_left]
+  refine congrArg Multiset.sum (Multiset.map_congr rfl ?_)
+  intro w hw
+  rw [← Multiset.prod_erase hw, mul_right_comm, mul_inv_cancel₀ (hs w hw), one_mul]
 
 /-- The degenerate case.  If `∏ sⱼ = 0` then some `sⱼ` vanishes, so at most one term of
 `∑ⱼ ∏_{k≠j} sₖ` is nonzero — and that term is a product of points of the closed unit disk. -/
@@ -86,12 +83,10 @@ lemma sumEraseProd_norm_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ �
     rw [sumEraseProd_cons]
     rcases eq_or_ne t.prod 0 with ht0 | ht0
     · rw [ht0, zero_add, norm_mul]
-      nlinarith [ih ht ht0, norm_nonneg v, norm_nonneg (sumEraseProd t), hv]
+      exact mul_le_one₀ hv (norm_nonneg _) (ih ht ht0)
     · have hv0 : v = 0 := by
         rw [Multiset.prod_cons] at hp
-        rcases mul_eq_zero.1 hp with h | h
-        · exact h
-        · exact absurd h ht0
+        exact (mul_eq_zero.1 hp).resolve_right ht0
       rw [hv0, zero_mul, add_zero]
       exact norm_prod_le_one t ht
 
@@ -117,7 +112,7 @@ theorem Jsum_estimate {n : ℕ} (hn : 2 ≤ n) {a x y : ℝ} {z q : Multiset ℂ
   · -- degenerate: `J = 0`, and `sumEraseProd z` has at most one surviving term
     rw [hz0, mul_zero, mul_zero, sub_zero, norm_zero, mul_zero, norm_mul]
     have h2 : ‖sumEraseProd z‖ ≤ 1 := sumEraseProd_norm_le_one z hz1 hz0
-    nlinarith [norm_nonneg q.prod, norm_nonneg (sumEraseProd z)]
+    simpa using (mul_le_one₀ hqpnorm (norm_nonneg _) h2).trans hratio
   · -- the main case: every `zⱼ` is nonzero, so denominators may be cleared
     have hzne : ∀ w ∈ z, w ≠ 0 := by
       intro w hw hw0

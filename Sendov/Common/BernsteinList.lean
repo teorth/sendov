@@ -26,6 +26,7 @@ theorem coeffs_pos (cs : List ℕ) {lo hi s P x : ℝ}
     (hr : (coeffTree cs 0).edge false = true)
     (hid : s * P = (coeffTree cs 0).eval (x - lo) (hi - x)) : 0 < P := by
   exact scaled_pos (coeffTree cs 0) hid hs (sub_nonneg.mpr hx.1)
-    (sub_nonneg.mpr hx.2) (by linarith) hl hr
+    (sub_nonneg.mpr hx.2)
+    (by simpa only [sub_add_sub_cancel'] using sub_pos.mpr hab) hl hr
 
 end BernsteinCert

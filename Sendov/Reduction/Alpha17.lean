@@ -57,16 +57,10 @@ lemma log_le_div_exp_one {t : ℝ} (ht : 0 < t) : Real.log t ≤ t / exp 1 := by
 
 /-- `exp z ≤ 1/(1-z)` for `z < 1`, from `1 - z ≤ e^{-z}`. -/
 lemma exp_le_one_div_one_sub {z : ℝ} (hz : z < 1) : exp z ≤ 1 / (1 - z) := by
-  have hpos := Real.exp_pos z
-  have h1 : (0 : ℝ) < 1 - z := by linarith
-  have h := Real.add_one_le_exp (-z)
-  rw [Real.exp_neg] at h
-  have h2 : (1 - z) * exp z ≤ 1 := by
-    have := mul_le_mul_of_nonneg_right h hpos.le
-    rw [inv_mul_cancel₀ hpos.ne'] at this
-    linarith
-  rw [le_div_iff₀ h1]
-  linarith
+  have h : 1 - z ≤ exp (-z) := by
+    simpa only [sub_eq_add_neg, add_comm] using Real.add_one_le_exp (-z)
+  have hbound := one_div_le_one_div_of_le (sub_pos.mpr hz) h
+  simpa only [Real.exp_neg, one_div, inv_inv] using hbound
 
 /-- `2.83 ≤ log 17`, via `log 16 + log(17/16) ≥ 4 log 2 + 1/17`. -/
 lemma log_seventeen_ge : (2.83 : ℝ) ≤ Real.log 17 := by
@@ -115,10 +109,10 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   rw [not_le] at hcon
   have hn2 : 2 ≤ n := by omega
   have hM : (0 : ℝ) < M n := M_pos hn2
-  have hα0 : (0 : ℝ) < α := by linarith
+  have hα0 : (0 : ℝ) < α := lt_trans (by norm_num) hcon
   -- feasibility forces `n - 1 ≥ 2α > 34`
-  have hMge : 2 * α ≤ M n := by linarith [alpha_le_half hn2 hα]
-  have hM34 : (34 : ℝ) < M n := by linarith
+  have hMge : 2 * α ≤ M n := by linarith only [alpha_le_half hn2 hα]
+  have hM34 : (34 : ℝ) < M n := by linarith only [hMge, hcon]
   have hMn : M n = (n : ℝ) - 1 := rfl
   -- the standing facts about `β(1)`
   set B1 : ℝ := QQ (a * x) (a ^ 2) 1 with hB1def
@@ -126,17 +120,16 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   have hfeas : (a * x) ^ 2 ≤ a ^ 2 := by
     simpa only [mul_pow, mul_one] using mul_le_mul_of_nonneg_left hx (sq_nonneg a)
   have hB0 : 0 ≤ B1 := QQ_nonneg hfeas 1
-  have h3 : (0 : ℝ) < 3 + α := by linarith
+  have h3 : (0 : ℝ) < 3 + α := by positivity
   have hB1lt : B1 < 1 := by
-    have : α / (3 + α) < 1 := by rw [div_lt_one h3]; linarith
-    linarith
+    exact hbeta.trans_lt ((div_lt_one h3).mpr (by linarith only []))
   have hB1eq : B1 = 1 - 2 * (a * x) + a ^ 2 := by rw [hB1def, QQ_one]
   have hax : 0 < a * x := by nlinarith only [hB1lt, hB1eq, sq_nonneg a]
   have haxle : a * x ≤ 1 := by
     have hxle : x ≤ 1 := by nlinarith only [hx]
     calc a * x ≤ a * 1 := mul_le_mul_of_nonneg_left hxle ha.le
       _ ≤ 1 := by simpa only [mul_one] using ha1.le
-  have hxpos : 0 < x := by nlinarith only [hax, ha]
+  have hxpos : 0 < x := (mul_pos_iff_of_pos_left ha).mp hax
   have hr : (0 : ℝ) < r := by rw [hrdef]; rw [hMn] at hM34; linarith
   -- `log α ≥ 2.83`
   have hlog17 : (2.83 : ℝ) ≤ Real.log α :=
@@ -194,8 +187,8 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   obtain ⟨v, hvdef⟩ : ∃ w : ℝ, w = M n / (2 * α) - 1 := ⟨_, rfl⟩
   have h2α : (0 : ℝ) < 2 * α := by linarith
   have hv0 : 0 ≤ v := by
-    rw [hvdef, sub_nonneg, le_div_iff₀ h2α]
-    linarith
+    rw [hvdef, sub_nonneg, le_div_iff₀ h2α, one_mul]
+    exact hMge
   have hMv : M n = 2 * α * (v + 1) := by
     rw [hvdef]
     field_simp
@@ -209,10 +202,12 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
     field_simp
   -- `β(1) ≤ exp(-log α/α)`, hence `β(1)^r ≤ exp(-(v+1)log α) exp(log α/(2α))`
   have hB1exp : B1 ≤ exp (-(Real.log α / α)) := by
-    have h1 : B1 ≤ exp (B1 - 1) := by linarith [Real.add_one_le_exp (B1 - 1)]
+    have h1 : B1 ≤ exp (B1 - 1) := by
+      simpa only [sub_add_cancel] using Real.add_one_le_exp (B1 - 1)
     refine h1.trans (Real.exp_le_exp.2 ?_)
-    have : Real.log α / α ≤ 1 - B1 := by rw [div_le_iff₀ hα0]; linarith
-    linarith
+    have : Real.log α / α ≤ 1 - B1 :=
+      (div_le_iff₀ hα0).mpr (by simpa only [mul_comm] using hlogb)
+    linarith only [this]
   have hrM : r = (M n - 1) / 2 := by rw [hrdef, hMn]; ring
   have hB1r : B1 ^ r ≤ exp (-(v * Real.log α)) / α * exp (Real.log α / (2 * α)) := by
     have h1 : B1 ^ r ≤ exp (-(Real.log α / α) * r) := by
@@ -243,7 +238,7 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
     have hlast : α / 2.7 ≤ 0.1852 * (2 * α) := by
       rw [div_le_iff₀ (by norm_num : (0 : ℝ) < 2.7)]
       linarith only [hα0]
-    linarith only [h, h27, hlast]
+    exact h.trans (h27.trans hlast)
   -- assemble the geometric term
   have hnv : (n : ℝ) = 2 * α * (v + 1) + 1 := by
     rw [← hMv, hMn]
@@ -267,8 +262,8 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
     rw [hfinal]
     have hbound : v * (2 * (v + 1) + 1 / α) * exp (-(2.83 * v)) ≤ 0.4118 := by
       refine le_trans ?_ (tail_poly_bound hv0)
-      have hinv : (1 : ℝ) / α ≤ 1 / 17 := by
-        rw [div_le_div_iff₀ hα0 (by norm_num)]; linarith
+      have hinv : (1 : ℝ) / α ≤ 1 / 17 :=
+        one_div_le_one_div_of_le (by norm_num) hcon.le
       exact mul_le_mul_of_nonneg_right
         (mul_le_mul_of_nonneg_left (add_le_add le_rfl hinv) hv0) hexpnn
     have hscale : α * (v * (2 * (v + 1) + 1 / α) * exp (-(2.83 * v))) ≤ α * 0.4118 :=
@@ -278,9 +273,8 @@ theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
   have hlogterm : 4 * α / Real.log α ≤ 1.41343 * α := by
     rw [div_le_iff₀ hlogpos]
     linarith only [mul_le_mul_of_nonneg_right hlog17 hα0.le, hα0]
-  have hMterm : 1 / (2 * M n) ≤ 1 / 68 := by
-    rw [div_le_div_iff₀ (by positivity) (by norm_num)]
-    linarith
+  have hMterm : 1 / (2 * M n) ≤ 1 / 68 :=
+    one_div_le_one_div_of_le (by norm_num) (by linarith only [hM34])
   linarith only [hmain, hlogterm, hMterm, hthird, hcon]
 
 end Sendov

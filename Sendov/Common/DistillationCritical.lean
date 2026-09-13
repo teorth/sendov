@@ -425,15 +425,8 @@ lemma distillT0_deriv_nonpos_iff {m α : ℝ} (hm : 5 ≤ m)
   rw [(hasDerivAt_distillT0 hm hα hαm).deriv]
   have ht := distillT0_pos hm hα.le hαm
   have hd := distillT0_denom_pos hm hα hαm
-  constructor
-  · intro h
-    have hnum := (div_le_iff₀ hd).mp (nonpos_of_mul_nonpos_right h ht)
-    simp only [zero_mul] at hnum
-    exact hnum
-  · intro hp
-    apply mul_nonpos_of_nonneg_of_nonpos ht.le
-    apply div_nonpos_of_nonpos_of_nonneg _ hd.le
-    exact hp
+  nth_rw 1 [← mul_zero (distillT0 m α)]
+  rw [mul_le_mul_iff_right₀ ht, div_le_iff₀ hd, zero_mul]
 
 lemma distillT0_deriv_nonpos {m α : ℝ} (hm : 5 ≤ m)
     (hα : 0 < α) (hαm : 2 * α < m) (hp : distillCritical0 m α ≤ 0) :
@@ -460,15 +453,8 @@ lemma distillT1_deriv_nonpos_iff {m α : ℝ} (hm : 5 ≤ m)
   rw [(hasDerivAt_distillT1 hm hα hαm).deriv]
   have ht := distillT1_pos hm hα.le hαm
   have hd := distillT1_denom_pos hm hα hαm
-  constructor
-  · intro h
-    have hnum := (div_le_iff₀ hd).mp (nonpos_of_mul_nonpos_right h ht)
-    simp only [zero_mul] at hnum
-    exact neg_nonpos.mp hnum
-  · intro hp
-    apply mul_nonpos_of_nonneg_of_nonpos ht.le
-    apply div_nonpos_of_nonpos_of_nonneg _ hd.le
-    exact neg_nonpos.mpr hp
+  nth_rw 1 [← mul_zero (distillT1 m α)]
+  rw [mul_le_mul_iff_right₀ ht, div_le_iff₀ hd, zero_mul, neg_nonpos]
 
 lemma distillT1_deriv_nonpos {m α : ℝ} (hm : 5 ≤ m)
     (hα : 0 < α) (hαm : 2 * α < m) (hp : 0 ≤ distillCritical1 m α) :
@@ -495,15 +481,8 @@ lemma distillT2_deriv_nonpos_iff {m α : ℝ} (hm : 5 ≤ m)
   rw [(hasDerivAt_distillT2 hm hα hαm).deriv]
   have ht := distillT2_pos hm hα hαm
   have hd := distillT2_denom_pos hm hα hαm
-  constructor
-  · intro h
-    have hnum := (div_le_iff₀ hd).mp (nonpos_of_mul_nonpos_right h ht)
-    simp only [zero_mul] at hnum
-    exact neg_nonpos.mp hnum
-  · intro hp
-    apply mul_nonpos_of_nonneg_of_nonpos ht.le
-    apply div_nonpos_of_nonpos_of_nonneg _ hd.le
-    exact neg_nonpos.mpr hp
+  nth_rw 1 [← mul_zero (distillT2 m α)]
+  rw [mul_le_mul_iff_right₀ ht, div_le_iff₀ hd, zero_mul, neg_nonpos]
 
 lemma distillT2_deriv_nonpos {m α : ℝ} (hm : 5 ≤ m)
     (hα : 0 < α) (hαm : 2 * α < m) (hp : 0 ≤ distillCritical2 m α) :

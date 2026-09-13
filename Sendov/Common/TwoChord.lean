@@ -199,7 +199,7 @@ theorem integral_polarKernel_two_chord_rpow {m α η s : ℝ} (hm : 0 < m)
     (hcont.intervalIntegrable 0 (3 / 5)) (hcont.intervalIntegrable (3 / 5) 1)]
   have hfirst := integral_polarKernel_first_chord hm hα hαm hη hη1 (show 0 < s by linarith)
   have hsecond := integral_polarKernel_second_chord hm hα hαm hη hs
-  linarith
+  simpa only [add_assoc] using add_le_add hfirst hsecond
 
 /-- The paper's two-chord estimate with real degree, arbitrary admissible eta, and all endpoints. -/
 theorem integral_polarKernel_two_chord {m α η : ℝ} (hm : 5 ≤ m)

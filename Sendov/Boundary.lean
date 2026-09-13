@@ -79,20 +79,19 @@ lemma half_le_re_inv_one_sub {z : ℂ} (hz : ‖z‖ ≤ 1) (hz1 : z ≠ 1) :
   have hne : (1 : ℂ) - z ≠ 0 := sub_ne_zero.2 (Ne.symm hz1)
   have hd : 0 < Complex.normSq ((1 : ℂ) - z) := Complex.normSq_pos.2 hne
   have hsq : z.re ^ 2 + z.im ^ 2 ≤ 1 := by
-    have h := Complex.normSq_eq_norm_sq z
-    rw [Complex.normSq_apply] at h
-    nlinarith [hz, norm_nonneg z, h]
+    have h := pow_le_one₀ (norm_nonneg z) hz (n := 2)
+    rw [Complex.sq_norm, Complex.normSq_apply] at h
+    nlinarith only [h]
   rw [Complex.inv_re, le_div_iff₀ hd, Complex.normSq_apply]
   simp only [Complex.sub_re, Complex.sub_im, Complex.one_re, Complex.one_im]
   nlinarith [hsq]
 
 /-- A point of the closed unit disk with real part `1` is `1`. -/
 lemma eq_one_of_re_eq_one_of_norm_le_one {v : ℂ} (hre : v.re = 1) (hv : ‖v‖ ≤ 1) : v = 1 := by
-  have hsq : v.re ^ 2 + v.im ^ 2 ≤ 1 := by
-    have h := Complex.normSq_eq_norm_sq v
-    rw [Complex.normSq_apply] at h
-    nlinarith [hv, norm_nonneg v, h]
-  have him : v.im = 0 := by nlinarith [hsq, hre, sq_nonneg v.im]
+  have him : v.im = 0 := by
+    have hsq := pow_le_one₀ (norm_nonneg v) hv (n := 2)
+    rw [Complex.sq_norm, Complex.normSq_apply] at hsq
+    nlinarith only [hsq, hre, sq_nonneg v.im]
   apply Complex.ext <;> simp [hre, him]
 
 /-- A multiset of nonnegative reals summing to zero is all zeroes. -/

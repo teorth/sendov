@@ -64,18 +64,12 @@ lemma norm_mul_norm_inv_sub_conj_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
     ‖w‖ * ‖w⁻¹ - (starRingEnd ℂ) w‖ ≤ 1 - ‖w‖ ^ 2 := by
   rcases eq_or_ne w 0 with rfl | hne
   · simp
-  · have hkey : w * (w⁻¹ - (starRingEnd ℂ) w) = 1 - ((‖w‖ : ℝ) : ℂ) ^ 2 := by
-      rw [mul_sub, mul_inv_cancel₀ hne, Complex.mul_conj]
-      norm_cast
-      rw [Complex.normSq_eq_norm_sq]
-    have h1 : ‖w‖ * ‖w⁻¹ - (starRingEnd ℂ) w‖ = ‖(1 : ℂ) - ((‖w‖ : ℝ) : ℂ) ^ 2‖ := by
-      rw [← norm_mul, hkey]
-    rw [h1]
-    have h2 : ((1 : ℂ) - ((‖w‖ : ℝ) : ℂ) ^ 2) = ((1 - ‖w‖ ^ 2 : ℝ) : ℂ) := by
+  · have hkey : w * (w⁻¹ - (starRingEnd ℂ) w) = ((1 - ‖w‖ ^ 2 : ℝ) : ℂ) := by
+      rw [mul_sub, mul_inv_cancel₀ hne, Complex.mul_conj, Complex.normSq_eq_norm_sq]
       push_cast
-      ring
-    rw [h2, Complex.norm_real, Real.norm_eq_abs,
-      abs_of_nonneg (by nlinarith [norm_nonneg w])]
+      rfl
+    rw [← norm_mul, hkey, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonneg (sub_nonneg.2 (pow_le_one₀ (norm_nonneg w) hw))]
 
 /-! ### The lemma -/
 

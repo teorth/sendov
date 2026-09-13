@@ -44,36 +44,36 @@ theorem distillFinite_components {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
   · exact (distillFinite_31 α hα (by linarith)).trans_lt distillFiniteBound_31
   · exact (distillFinite_32 α hα (by linarith)).trans_lt distillFiniteBound_32
   · exact (distillFinite_33 α hα (by linarith)).trans_lt distillFiniteBound_33
-  · exact (distillFinite_34 α hα (by linarith)).trans_lt distillFiniteBound_34
-  · exact (distillFinite_35 α hα (by linarith)).trans_lt distillFiniteBound_35
-  · exact (distillFinite_36 α hα (by linarith)).trans_lt distillFiniteBound_36
-  · exact (distillFinite_37 α hα (by linarith)).trans_lt distillFiniteBound_37
-  · exact (distillFinite_38 α hα (by linarith)).trans_lt distillFiniteBound_38
-  · exact (distillFinite_39 α hα (by linarith)).trans_lt distillFiniteBound_39
-  · exact (distillFinite_40 α hα (by linarith)).trans_lt distillFiniteBound_40
-  · exact (distillFinite_41 α hα (by linarith)).trans_lt distillFiniteBound_41
-  · exact (distillFinite_42 α hα (by linarith)).trans_lt distillFiniteBound_42
-  · exact (distillFinite_43 α hα (by linarith)).trans_lt distillFiniteBound_43
-  · exact (distillFinite_44 α hα (by linarith)).trans_lt distillFiniteBound_44
-  · exact (distillFinite_45 α hα (by linarith)).trans_lt distillFiniteBound_45
-  · exact (distillFinite_46 α hα (by linarith)).trans_lt distillFiniteBound_46
-  · exact (distillFinite_47 α hα (by linarith)).trans_lt distillFiniteBound_47
-  · exact (distillFinite_48 α hα (by linarith)).trans_lt distillFiniteBound_48
-  · exact (distillFinite_49 α hα (by linarith)).trans_lt distillFiniteBound_49
-  · exact (distillFinite_50 α hα (by linarith)).trans_lt distillFiniteBound_50
-  · exact (distillFinite_51 α hα (by linarith)).trans_lt distillFiniteBound_51
-  · exact (distillFinite_52 α hα (by linarith)).trans_lt distillFiniteBound_52
-  · exact (distillFinite_53 α hα (by linarith)).trans_lt distillFiniteBound_53
-  · exact (distillFinite_54 α hα (by linarith)).trans_lt distillFiniteBound_54
-  · exact (distillFinite_55 α hα (by linarith)).trans_lt distillFiniteBound_55
-  · exact (distillFinite_56 α hα (by linarith)).trans_lt distillFiniteBound_56
-  · exact (distillFinite_57 α hα (by linarith)).trans_lt distillFiniteBound_57
-  · exact (distillFinite_58 α hα (by linarith)).trans_lt distillFiniteBound_58
-  · exact (distillFinite_59 α hα (by linarith)).trans_lt distillFiniteBound_59
-  · exact (distillFinite_60 α hα (by linarith)).trans_lt distillFiniteBound_60
-  · exact (distillFinite_61 α hα (by linarith)).trans_lt distillFiniteBound_61
-  · exact (distillFinite_62 α hα (by linarith)).trans_lt distillFiniteBound_62
-  · exact (distillFinite_63 α hα (by linarith)).trans_lt distillFiniteBound_63
+  · exact (distillFinite_34 α hα h17).trans_lt distillFiniteBound_34
+  · exact (distillFinite_35 α hα h17).trans_lt distillFiniteBound_35
+  · exact (distillFinite_36 α hα h17).trans_lt distillFiniteBound_36
+  · exact (distillFinite_37 α hα h17).trans_lt distillFiniteBound_37
+  · exact (distillFinite_38 α hα h17).trans_lt distillFiniteBound_38
+  · exact (distillFinite_39 α hα h17).trans_lt distillFiniteBound_39
+  · exact (distillFinite_40 α hα h17).trans_lt distillFiniteBound_40
+  · exact (distillFinite_41 α hα h17).trans_lt distillFiniteBound_41
+  · exact (distillFinite_42 α hα h17).trans_lt distillFiniteBound_42
+  · exact (distillFinite_43 α hα h17).trans_lt distillFiniteBound_43
+  · exact (distillFinite_44 α hα h17).trans_lt distillFiniteBound_44
+  · exact (distillFinite_45 α hα h17).trans_lt distillFiniteBound_45
+  · exact (distillFinite_46 α hα h17).trans_lt distillFiniteBound_46
+  · exact (distillFinite_47 α hα h17).trans_lt distillFiniteBound_47
+  · exact (distillFinite_48 α hα h17).trans_lt distillFiniteBound_48
+  · exact (distillFinite_49 α hα h17).trans_lt distillFiniteBound_49
+  · exact (distillFinite_50 α hα h17).trans_lt distillFiniteBound_50
+  · exact (distillFinite_51 α hα h17).trans_lt distillFiniteBound_51
+  · exact (distillFinite_52 α hα h17).trans_lt distillFiniteBound_52
+  · exact (distillFinite_53 α hα h17).trans_lt distillFiniteBound_53
+  · exact (distillFinite_54 α hα h17).trans_lt distillFiniteBound_54
+  · exact (distillFinite_55 α hα h17).trans_lt distillFiniteBound_55
+  · exact (distillFinite_56 α hα h17).trans_lt distillFiniteBound_56
+  · exact (distillFinite_57 α hα h17).trans_lt distillFiniteBound_57
+  · exact (distillFinite_58 α hα h17).trans_lt distillFiniteBound_58
+  · exact (distillFinite_59 α hα h17).trans_lt distillFiniteBound_59
+  · exact (distillFinite_60 α hα h17).trans_lt distillFiniteBound_60
+  · exact (distillFinite_61 α hα h17).trans_lt distillFiniteBound_61
+  · exact (distillFinite_62 α hα h17).trans_lt distillFiniteBound_62
+  · exact (distillFinite_63 α hα h17).trans_lt distillFiniteBound_63
 
 theorem distillFinite_scalar {m : ℕ} (hm : 5 ≤ m) (hm63 : m ≤ 63)
     {α : ℝ} (hα : 0 < α) (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :

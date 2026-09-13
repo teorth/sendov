@@ -57,7 +57,7 @@ lemma distillMulRpow_le_of_sq {a b c m : ℝ} (n : ℕ)
     (hsq : a ^ 2 * b ^ n ≤ c ^ 2) : a * b ^ ((m - 3) / 2) ≤ c := by
   have hid : (a * b ^ ((m - 3) / 2)) ^ 2 = a ^ 2 * b ^ n := by
     rw [mul_pow, hn, distillRpow_half_sq hb]
-  nlinarith [sq_nonneg (a * b ^ ((m - 3) / 2) - c)]
+  exact le_of_sq_le_sq (by rwa [hid]) hc
 
 /-- Component 0: exact flanks from the critical derivative API and one mixed bracket. -/
 lemma distillT0_le_of_critical {m d l r b α : ℝ}

@@ -40,12 +40,10 @@ open Real Set Filter
 private lemma nonneg_of_deriv {f g : ℝ → ℝ} (hd : ∀ z, HasDerivAt f (g z) z)
     (h0 : f 0 = 0) (hg : ∀ z, 0 ≤ z → 0 ≤ g z) {y : ℝ} (hy : 0 ≤ y) : 0 ≤ f y := by
   have hmono : MonotoneOn f (Ici 0) := by
-    refine monotoneOn_of_deriv_nonneg (convex_Ici 0)
+    refine monotoneOn_of_hasDerivWithinAt_nonneg (convex_Ici 0)
       (fun z _ => (hd z).continuousAt.continuousWithinAt)
-      (fun z _ => (hd z).differentiableAt.differentiableWithinAt) (fun z hz => ?_)
-    rw [(hd z).deriv]
-    rw [interior_Ici] at hz
-    exact hg z (le_of_lt hz)
+      (fun z _ => (hd z).hasDerivWithinAt)
+      (fun z hz => hg z (interior_subset hz))
   simpa [h0] using hmono (mem_Ici.2 le_rfl) (mem_Ici.2 hy) hy
 
 /-- The numerator polynomial in the donor Padé majorant. -/
@@ -369,7 +367,7 @@ private lemma P_nonpos {y : ℝ} (hy : 0 ≤ y) (hy100 : y ≤ 100) : P y ≤ 0 
     unfold P
     ring
   rw [hid] at h
-  nlinarith
+  exact nonpos_of_mul_nonneg_right h (by norm_num)
 
 /-- Rational square comparison, with the essential factor `8/7`. -/
 theorem pade_square_le {x : ℝ} (hx : 0 ≤ x) (hx10 : x ≤ 10) :
@@ -378,26 +376,25 @@ theorem pade_square_le {x : ℝ} (hx : 0 ≤ x) (hx10 : x ≤ 10) :
   have hid : 7 * ((9 + (8 / 7 : ℝ) * x ^ 2) * A x ^ 2 - D x ^ 2) =
       x ^ 2 * P (x ^ 2) := by unfold A D P; ring
   have hh := mul_nonpos_of_nonneg_of_nonpos (sq_nonneg x) hP
-  nlinarith
+  linarith only [hid, hh]
 
 /-- Cleared derivative comparison for the stronger, interval-restricted bound. -/
 theorem sqrt_mul_sub_le {x : ℝ} (hx : 0 ≤ x) (hx10 : x ≤ 10) :
     sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * (x * cosh x - sinh x) ≤ x ^ 2 * sinh x := by
-  have hA : 0 ≤ A x := by unfold A; positivity
   have hD : 0 < D x := by unfold D; positivity
   have hs := pade_square_le hx hx10
   have hr : 0 ≤ 9 + (8 / 7 : ℝ) * x ^ 2 := by positivity
   have hroot : sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * A x ≤ D x := by
     have heq : (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) * A x) ^ 2 =
         (9 + (8 / 7 : ℝ) * x ^ 2) * A x ^ 2 := by rw [mul_pow, sq_sqrt hr]
-    have hpos := mul_nonneg (sqrt_nonneg (9 + (8 / 7 : ℝ) * x ^ 2)) hA
-    nlinarith
+    exact le_of_sq_le_sq (by rwa [heq]) hD.le
   have hp := pade_nonneg hx
   have hsinh : 0 ≤ sinh x := sinh_nonneg_iff.mpr hx
   have hmul := mul_le_mul_of_nonneg_left hroot (mul_nonneg (sq_nonneg x) hsinh)
   have hmul2 := mul_nonneg (sqrt_nonneg (9 + (8 / 7 : ℝ) * x ^ 2)) hp
   have hh : D x * (sqrt (9 + (8 / 7 : ℝ) * x ^ 2) *
-      (x * cosh x - sinh x)) ≤ D x * (x ^ 2 * sinh x) := by nlinarith
+      (x * cosh x - sinh x)) ≤ D x * (x ^ 2 * sinh x) := by
+    nlinarith only [hmul, hmul2]
   exact (mul_le_mul_iff_right₀ hD).mp hh
 
 /-- Strong SJanPerth bound on `(0,10]`; both rational scale factors are retained. -/
@@ -419,19 +416,19 @@ theorem log_sinh_div_le {h : ℝ} (hh : 0 < h) (hh10 : h ≤ 10) :
     · exact (((hasDerivAt_sinh z).log hsinh).sub
         ((hasDerivAt_id' z).log (ne_of_gt hz))).congr_deriv (by field_simp)
   have hmono : MonotoneOn ψ (Ioc 0 10) := by
-    refine monotoneOn_of_deriv_nonneg (convex_Ioc 0 10)
+    refine monotoneOn_of_hasDerivWithinAt_nonneg (convex_Ioc 0 10)
       (fun z hz => (hderiv z hz.1).continuousAt.continuousWithinAt)
       (fun z hz => (hderiv z (by rw [interior_Ioc] at hz; exact
-          hz.1)).differentiableAt.differentiableWithinAt)
+          hz.1)).hasDerivWithinAt)
       (fun z hz => ?_)
     rw [interior_Ioc, mem_Ioo] at hz
     have hzpos : 0 < z := hz.1
-    rw [(hderiv z hz.1).deriv, sub_nonneg, div_sub_div _ _ (ne_of_gt (sinh_pos_iff.2 hz.1))
+    rw [sub_nonneg, div_sub_div _ _ (ne_of_gt (sinh_pos_iff.2 hz.1))
       (ne_of_gt hz.1), div_le_div_iff₀ (by positivity) (by positivity)]
-    nlinarith [sqrt_mul_sub_le (le_of_lt hz.1) (le_of_lt hz.2)]
+    nlinarith only [sqrt_mul_sub_le (le_of_lt hz.1) (le_of_lt hz.2)]
   -- `ψ → 0` as `z → 0⁺`
   have hslope : Tendsto (fun z => sinh z / z) (nhdsWithin 0 {(0 : ℝ)}ᶜ) (nhds 1) := by
-    simpa [slope_fun_def, div_eq_inv_mul, hasDerivAt_iff_tendsto_slope] using hasDerivAt_sinh 0
+    simpa [slope_fun_def, div_eq_inv_mul] using (hasDerivAt_sinh 0).tendsto_slope
   have hlog : Tendsto ψ (nhdsWithin 0 (Ioi 0)) (nhds 0) := by
     have hsub : nhdsWithin (0 : ℝ) (Ioi 0) ≤ nhdsWithin 0 {(0 : ℝ)}ᶜ :=
       nhdsWithin_mono _ (fun z hz => ne_of_gt hz)

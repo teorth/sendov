@@ -126,7 +126,7 @@ lemma norm_Worigin_le {n : ℕ} {a x y : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
       ≤ (1 - x ^ 2) / (2 * ((n : ℝ) - 1)) := by
     rw [div_le_div_iff₀ hs hden]
     nlinarith [hy2, hslow, ha2, sq_nonneg y, hn1]
-  linarith [hmain, htail]
+  exact hmain.trans (add_le_add_right htail _)
 
 /-- `x` and `y` are determined by `q.sum`, and inherit two bounds from `‖qⱼ‖ ≤ 1`: the real
 part is what the polar and origin estimates need, and `x² + y² ≤ 1` is what eliminates `y`. -/
@@ -151,17 +151,13 @@ lemma xy_bounds {n : ℕ} (hn : 2 ≤ n) {x y : ℝ} {q : Multiset ℂ}
     simp
   · have hxynorm : ‖(x : ℂ) + (y : ℂ) * I‖ ^ 2 = x ^ 2 + y ^ 2 := by
       rw [← Complex.normSq_eq_norm_sq, Complex.normSq_add_mul_I]
-    have h2 : ‖q.sum‖ ≤ (q.map (fun v => ‖v‖)).sum := by
-      have h := norm_sum_map_le q (fun v => v)
-      simpa using h
+    have h2 : ‖q.sum‖ ≤ (q.map (fun v => ‖v‖)).sum := norm_multiset_sum_le q
     have h3 := sum_norm_le_card q hq1
     rw [hqcardR] at h3
     have h1 : ‖q.sum‖ ≤ (n : ℝ) - 1 := h2.trans h3
     rw [hxy, norm_mul, hnc] at h1
-    have h4 : ‖(x : ℂ) + (y : ℂ) * I‖ ≤ 1 := by
-      by_contra hcon
-      rw [not_le] at hcon
-      nlinarith [h1, hn1]
+    have h4 : ‖(x : ℂ) + (y : ℂ) * I‖ ≤ 1 :=
+      (mul_le_mul_iff_right₀ hn1).mp (by simpa only [mul_one] using h1)
     nlinarith [hxynorm, h4, norm_nonneg ((x : ℂ) + (y : ℂ) * I)]
 
 /-! ### The origin inequality -/
@@ -210,9 +206,7 @@ theorem origin_exact {n : ℕ} (hn : 5 ≤ n) {a x y α : ℝ} {z q : Multiset �
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (le_of_lt ha0)]
   have hPJ0 : (0 : ℝ) ≤ ‖q.prod‖ * ‖z.prod‖ := by positivity
   have hPJ1 : ‖q.prod‖ * ‖z.prod‖ ≤ 1 := by
-    have h1 : ‖q.prod‖ ≤ 1 := norm_prod_le_one q hq1
-    have h2 : ‖z.prod‖ ≤ 1 := norm_prod_le_one z hz1
-    nlinarith [norm_nonneg q.prod, norm_nonneg z.prod]
+    exact mul_le_one₀ (norm_prod_le_one q hq1) (norm_nonneg _) (norm_prod_le_one z hz1)
   have hstep1 : (n : ℝ) * ‖Fprod a q 1
         + ((n : ℂ) - 1) * (a : ℂ) * ((x : ℂ) + (y : ℂ) * I) * ∫ t in (0 : ℝ)..1, Fprod a q t‖
       ≤ ‖q.prod‖ * ‖z.prod‖ * ‖Worigin n a x y‖

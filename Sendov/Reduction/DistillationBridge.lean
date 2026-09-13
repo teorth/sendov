@@ -45,13 +45,11 @@ lemma scalarObstruction_mono_eta {m α η₁ η₂ : ℝ} (hm : 5 ≤ m)
   have hm2 : 0 ≤ m ^ 2 - 1 := by nlinarith
   have hη₂0 : 0 ≤ η₂ := hη₁.trans hη
   have hr : 0 ≤ (m - 3) / 2 := by linarith
-  have hd₁ : 0 < 2 * α * (1 - η₁) :=
-    mul_pos (by positivity) (by linarith)
   have hd₂ : 0 < 2 * α * (1 - η₂) :=
-    mul_pos (by positivity) (by linarith)
-  have he₁ : η₁ / (2 * α * (1 - η₁)) ≤ η₂ / (2 * α * (1 - η₂)) := by
-    rw [div_le_div_iff₀ hd₁ hd₂]
-    nlinarith [mul_nonneg hα.le (sub_nonneg.mpr hη)]
+    mul_pos (by positivity) (sub_pos.mpr hη₂)
+  have he₁ : η₁ / (2 * α * (1 - η₁)) ≤ η₂ / (2 * α * (1 - η₂)) :=
+    div_le_div₀ hη₂0 hη hd₂
+      (mul_le_mul_of_nonneg_left (sub_le_sub_left hη 1) (by positivity))
   have he₂ : η₁ / (4 * α) ≤ η₂ / (4 * α) :=
     div_le_div_of_nonneg_right hη (by positivity)
   have he₄ : η₁ / (4 * α * m) ≤ η₂ / (4 * α * m) :=
@@ -64,7 +62,7 @@ lemma scalarObstruction_mono_eta {m α η₁ η₂ : ℝ} (hm : 5 ≤ m)
   have hk0 := scalarObstruction_prefactor_nonneg hm hα hη₂0
   have hlast := mul_le_mul hk hi hi0 hk0
   unfold scalarObstruction
-  linarith
+  linarith only [he₁, he₂, he₄, hlast]
 
 /-- Exact actual-data coordinates; no polar or origin inequality is required. -/
 lemma polarKernel_actual {n : ℕ} {a x α : ℝ} (hn : 2 ≤ n)
@@ -74,7 +72,7 @@ lemma polarKernel_actual {n : ℕ} {a x α : ℝ} (hn : 2 ≤ n)
   have hc := mul_eq_c (x := x) hn hα
   have hA := A_eq_sq hn hα
   change 1 - 2 * α / M n = a ^ 2 at hA
-  rw [hA, show 1 - α / M n - QQ (a * x) (a ^ 2) 1 / 2 = a * x by linarith]
+  rw [hA, show 1 - α / M n - QQ (a * x) (a ^ 2) 1 / 2 = a * x by linarith only [hc]]
 
 /-- The raw RHS of `(1le)` is exactly H at actual eta, not H at the old envelope. -/
 lemma scalarObstruction_actual_eq {n : ℕ} {a x α : ℝ} (hn : 2 ≤ n)
@@ -86,20 +84,20 @@ lemma scalarObstruction_actual_eq {n : ℕ} {a x α : ℝ} (hn : 2 ≤ n)
       + (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * QQ (a * x) (a ^ 2) 1 / (4 * α)
         * ∫ t in (0 : ℝ)..1, t ^ 3 * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 4) / 2) := by
   have hm : M n ≠ 0 := (M_pos hn).ne'
-  have hA := A_eq_sq hn hα
   have hs : M n - 2 * α = M n * a ^ 2 := by
-    change 1 - 2 * α / M n = a ^ 2 at hA
-    field_simp at hA
-    nlinarith [hA]
+    rw [hα]
+    ring
   have hk : QQ (a * x) (a ^ 2) 1 * (M n ^ 2 - 1) * (M n - 2 * α) ^ 2 /
       (4 * α * M n) =
       (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * QQ (a * x) (a ^ 2) 1 / (4 * α) := by
     rw [hs]
-    by_cases ha0 : α = 0
-    · simp [ha0]
-    · field_simp
-      unfold M
-      ring
+    calc
+      _ = ((a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * QQ (a * x) (a ^ 2) 1 * M n) /
+          (4 * α * M n) := by
+        congr 1
+        unfold M
+        ring
+      _ = _ := mul_div_mul_right _ _ hm
   have hi : (∫ t in (0 : ℝ)..1,
       t ^ 3 * polarKernel (M n) α (QQ (a * x) (a ^ 2) 1) t ^ ((M n - 3) / 2)) =
       ∫ t in (0 : ℝ)..1, t ^ 3 * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 4) / 2) := by
@@ -146,7 +144,8 @@ lemma actualEta_mem_Ico_of_polar {n : ℕ} (hn : 2 ≤ n) {a x α : ℝ}
     (hpolar : 1 ≤ ∫ t in (0 : ℝ)..1, Ppolar a x t ^ (((n : ℝ) - 1) / 2)) :
     QQ (a * x) (a ^ 2) 1 ∈ Set.Ico (0 : ℝ) 1 := by
   have hα0 := alpha_pos hn ha1 ha hα
-  have hf : (a * x) ^ 2 ≤ a ^ 2 := by nlinarith [sq_nonneg a]
+  have hf : (a * x) ^ 2 ≤ a ^ 2 := by
+    simpa only [mul_pow, mul_one] using mul_le_mul_of_nonneg_left hx (sq_nonneg a)
   have hη0 := QQ_nonneg hf 1
   have hb := beta_le hα0 hη0 (polar_exp hn hx hα hpolar)
   refine ⟨hη0, hb.trans_lt ?_⟩

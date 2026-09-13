@@ -69,10 +69,10 @@ lemma QQ_secant_gap (c A l r t : ℝ) (hlr : l ≠ r) :
 lemma QQ_le_secant {c A l r t : ℝ} (hA : 0 ≤ A) (hlr : l < r)
     (ht : t ∈ Set.Icc l r) :
     QQ c A t ≤ ((r - t) * QQ c A l + (t - l) * QQ c A r) / (r - l) := by
-  have h := QQ_secant_gap c A l r t hlr.ne
-  have hn := mul_nonneg (mul_nonneg hA (sub_nonneg.mpr ht.1))
+  apply sub_nonneg.mp
+  rw [QQ_secant_gap c A l r t hlr.ne]
+  exact mul_nonneg (mul_nonneg hA (sub_nonneg.mpr ht.1))
     (sub_nonneg.mpr ht.2)
-  linarith
 
 /-- Integral comparison with exactly the positivity needed on the interval.
 This generalization serves both actual polynomial data and the enlarged scalar domain. -/
