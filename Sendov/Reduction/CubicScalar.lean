@@ -17,7 +17,7 @@ certificate, tail bound, or old `R` enlargement is used here.
 
 namespace Sendov
 
-/-- The four facts required by the cubic finite/tail endgame, all derived from
+/-- The four facts required by the cubic scalar contradiction, all derived from
 raw geometric inputs. The final conjunction is a lower bound, not a premise. -/
 theorem cubicScalar_constraints_of_polar_origin {n : ℕ} (hn : 6 ≤ n) {a x α : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)

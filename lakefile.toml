@@ -16,6 +16,7 @@ scope = "leanprover-community"
 
 [[lean_lib]]
 name = "Sendov"
+globs = ["Sendov", "Sendov.+"]
 
 [[lean_lib]]
 name = "Challenge"

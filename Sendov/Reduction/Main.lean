@@ -10,7 +10,7 @@ import Sendov.Common.DistillationBounds
 # Polar/origin incompatibility through the cubic scalar obstruction
 
 For `n ≥ 6`, the original geometric hypotheses produce the scalar domain and
-`1 ≤ H`. The complete finite/tail bound proves `H < 1` on that same domain.
+`1 ≤ H`. The uniform real-degree bound proves `H < 1` on that same domain.
 Degrees two through five are handled directly by the low-degree analytic argument
 in `Interior`; no old `R` certificate route is needed.
 -/

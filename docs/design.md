@@ -1,122 +1,135 @@
 # Proof design
 
-The active endgame implements the rational-envelope/critical-point method of
-Senjian An on top of the existing polynomial and analytic reduction.[1][2]
-It is a replacement for the old scalar certificate route, not an extra premise
-added to the final statements.
+The polynomial, analytic, low-degree and boundary arguments retain the original
+meaning.[1] The scalar reduction uses Senjian An's rational envelope and
+two-chord estimate.[2] Its upper bound now uses full-degree-ray estimates:
+there are no finite degree certificates or later tail cutoff.
 
-## Reduction contract
+## Exact reduction contract
 
-For interior degree `n ≥ 6`, put `m = M n = n - 1`. The theorem
-`cubicScalar_constraints_of_polar_origin` derives all four facts from the
-original geometric hypotheses:
+For interior degree `n >= 6`, put `m = M n = n - 1`.
+`cubicScalar_constraints_of_polar_origin` derives, from the original geometric
+hypotheses, `0 < alpha`, `2*alpha <= M n`, `alpha <= 17`, and
+`1 <= scalarObstruction (M n) alpha (cubicPolarEnvelope alpha)`.
+These are conclusions of the reduction, not additional conjecture hypotheses.
+The original weak polar integral premise remains `1 <= I`.
 
-1. `0 < α`;
-2. `2 * α ≤ M n`;
-3. `α ≤ 17`;
-4. `1 ≤ scalarObstruction (M n) α (cubicPolarEnvelope α)`.
+`distillScalar_lt_one_real` proves `<1` for every real `m >= 5`,
+`0 < alpha <= 17`, `2*alpha <= m`. It splits at alpha 2, not at any degree.
+The original `distillScalar_lt_one` natural `n >= 6` signature is unchanged.
+`polar_origin_incompatible` combines these bounds. Degrees 2 through 5 still
+use the existing elementary integral proof; boundary equality classification
+is separate. Neither final headline theorem is weakened or strengthened.
+No minimality claim about the scalar starting value 5 is made.
 
-The range and the scalar lower bound are conclusions, not inputs smuggled into
-Sendov's conjecture. The original weak polar integral bound remains weak:
-its left side is `1 ≤ I`, not an assumed stronger inequality.
+## Small alpha
 
-`distillScalar_lt_one` proves a strict upper bound on exactly this domain.
-`polar_origin_incompatible` combines the lower and upper bounds. The interior
-proof covers degrees two through five with the already-proved elementary
-integral argument; the unit-circle case and its equality classification stay
-in the separate boundary proof.
-
-## Scalar upper bound
-
-The two-chord integral theorem gives
+For `0 < alpha <= 7/5`, `DistillationTotalBound` uses the full chord:
 
 ```text
-raw cubic scalar obstruction ≤ E_budget(m) + T0(m,α) + T1(m,α) + T2(m,α).
+C(m,alpha) = E_budget(m)
+  + (8/27) (alpha+3)^3 (m-2alpha)^2 / (m(m+3)(m+5)).
 ```
 
-For `5 ≤ m ≤ 54`, fixed rational budgets and critical brackets are checked for
-every integer parameter; row 55 supplies a bounded real interval and row 61 the tail
-base. The complete critical expressions are tied to the
-actual derivatives of `T0`, `T1`, and `T2`. Their polynomial signs are certified
-on entire outer intervals, while the middle interval uses monotone factors at
-opposite endpoints. This establishes the bound without trusting a sampled
-maximum or requiring a separate root-isolation oracle.
+Degree factors cancel before estimation. A degree-five alpha identity with six
+polynomial coefficients in `m-5` proves `C<1` on the entire unbounded strip;
+the last two coefficients use explicit nonnegative-square decompositions.
+There is no degree subdivision. The method does not extend automatically:
+`C(25/2,17/12)=1+141383/711868500` and
+`C(13,10/7)=1+426061/212373252`. These refute an enlarged chord majorant,
+not the original scalar inequality.
 
-The coefficient-list frontend constructs the existing Bernstein addition tree.
-Scale positivity, interval membership, both endpoint supports and the complete
-polynomial equality remain explicit Lean obligations. The Python coefficient
-calculation is not in the trusted base.
+## Faithful elementary term and middle alpha
 
-For all real `m ≥ 61`, proved parameter antitonicity reduces the four-component
-bound to the existing finite `m=61` certificate. `DistillationTailBound` discharges
-that base with its already-certified `<199/200` budget; no base or monotonicity
-premise is left to the final caller. The rational component uses the actual
-envelope-dependent denominator, with a split at `α=10`, rather than the old
-independent worst-case bounds that required 81. The exponential components use
-`η ≤ (21/22)^4`, hence `log η / 2 ≤ 2 log(21/22) ≤ -1/11`.
-This dominates `1/60 + 2/27`, the kappa slope bound at 61, without assuming
-a logarithmic estimate or derivative sign. Zero bases are handled separately.
+For positive alpha, with `u=alpha/(alpha+3)` and `eta=u-u^3/30`,
 
-For `55 ≤ m ≤ 61`, the rational component is already antitone. The parameterized
-lemma `distillKappa_rpow_interval` bounds finite growth instead of asserting
-antitonicity: if the logarithmic slope is at most `ε`, then
-`f(m) (1 - ε (U-K)) ≤ f(K)` on `[K,U]`, provided the weight is positive.
-It proves this by differentiating `f(m) (1 - ε (m-K))`; no exponential
-comparison or derivative fact is left to the final caller. The node cap
-`node(55,α) ≤ (979/1000)^10` gives `ε1=331/37800`, while the envelope cap gives
-`ε2=95/4158`. Together with the original row-55 budgets `248,91,330` divided by
-1000, the exact total is `58135011269/58896123000 < 199/200`.
-The theorem covers real degrees and the entire closed alpha interval, without
-a finite case split or new Bernstein certificates. The original correlation
-`α ≤ min(m/2,17)` remains in the finite interface; for this interval it follows
-from `m ≥ 55` and `α ≤ 17`.
+```text
+L = u^2/(180(1-eta)) + u(30+u-u^2)(1+1/m)/360
+H = E_budget - L + kappa*J.
+```
 
-The natural-number split `m < 61` versus `61 ≤ m` has no gap. The finite
-aggregate proves exactly 5 through 60, and both it and the tail import the final
-group `Rows61_61`; row 61 is emitted only once. The generator and validator share
-an explicit retained range `5..55,61`, paired with both real theorems. They reject
-missing55, missing61, reintroduced56, extra62, duplicated/reordered rows and mismatched components rather
-than inferring a smaller cutoff from truncated data. Rows 62 through 81 and all
-old row-81-only/two-thirds interfaces have been retired.
+The exact loss bridge is actually consumed by
+`distillScalar_le_elementary_components`. The unused total derivative and the
+unused strict loss-positivity research lemma are retired, not the bridge.
+`distillTotal`, `distillElementaryLoss`, the original raw scalar, and all
+retained factor definitions keep their meanings.
 
-## Endpoints and definitions
+For `7/5 <= alpha <= 2`, `DistillationMiddleEstimates` and
+`DistillationMiddleAlpha` split alpha at `17/10`. The rational T0 estimate
+retains `(m+3)(m+5)` and uses two positive sextics in `m-5` on the whole ray.
+Mixed-alpha exponential estimates bound T1 and T2 on the same ray.
+The component budgets are `221/660`, `13/50`, `7/30`, `1/6`.
+All constants are discharged internally, with no assumed maximizer or bound.
 
-The regularized components are continuous at `α=0` and their closed-interval
-certificates include that endpoint. The raw scalar definition is **not** silently
-replaced by a continuous extension there. The geometric reduction supplies
-`α>0` where the raw scalar comparison is used.
+## Large alpha
 
-The old specialized `c`, `Q`, `R` definitions and their moment/packed/batch
-certificates are absent from the active source. `M`, `A`, `QQ`, the actual
-coordinate identity `mul_eq_c`, the linear and cubic integral lemmas and the
-global weak hyperbolic estimate remain because real consumers still need them.
-A name containing `c` or a file containing `Tail` is not, by itself, a reason
-to delete useful mathematics.
+For `2 <= alpha <= 17`, `DistillationCorrelatedPeak` shifts by `m-2*alpha`,
+not `m-34`, and bounds the full legal degree ray analytically.
+`DistillationPeakRational` converts the exponential estimates to rational ones.
+`DistillationPeakAlgebra`, `PeakFirst`, `PeakRest`, and `PeakClosure` close the
+alpha inequality. The only additional split is alpha `5/2`, where
+`max 5 (2*alpha)` changes formula.
 
-## Verification boundary
+The first peak uses an affine budget `(431-3*alpha)/2500` and a fourth-order
+Taylor denominator; the second retains the sixth-order denominator. Three
+full identities of degrees 53, 47, 47 contain respectively 54, 48, 48 ordered
+integer coefficients, plus 71 coefficients in the smaller homogeneous factors.
+The positive scales are `15^53`, `1`, and `29^47`. The complete identities,
+factor ordering and scale obligations are explicit. They are not sampled
+equalities or finite degree data.
 
-Acceptance distinguishes:
+The four large-alpha closure modules occupy 885 lines, including all 150 large
+and 71 small factor coefficients, before counting the upstream same-alpha,
+rational, middle, small-alpha and common-certificate helpers. The existing
+`BernsteinList`, `BernsteinCert`, and `BernsteinRing` remain necessary.
+No new generator is needed: the Lean identities are self-contained.
+The stricter historical `<199/200` convenience is not imposed: the new
+rational peak at alpha 17 lies between `199/200` and 1.
 
-- exact source generation and input coverage;
-- Lean elaboration with the pinned project options;
-- independent kernel replay over the pinned imported environment;
-- original final-theorem type preservation;
-- actual value and type/value dependency checks for both final theorems.
+## Retirement boundary and endpoints
 
-The earlier-tail consumer test checks actual proof-value edges from both final
-theorems through the geometric reduction and the tail to row 61. Its recursive
-project-value audit requires rows 5 through 54 with their strict budgets and all
-three row-55 components in the finite aggregate. Each final theorem additionally
-consumes row 61 and its strict budget. The row-55 aggregate budget theorem is not
-needed: the interval uses the three individual budgets with different growth weights.
-Retired rows 56 through 60, 62 through 81 and tail interfaces must be absent from
-both the imported environment and the actual value closure. Dependency checks
-do not equate a module import with proof consumption.
+All degree rows, finite aggregates, critical-polynomial derivative machinery,
+old degree-tail/interval modules, and their table/generator/bundler are retired.
+The old compound scalar wrapper discarded elementary loss and has no remaining
+consumer; it is replaced by the faithful elementary-component bridge.
+`DistillationRegularity` preserves common compact forms, positivity and
+continuity from the former critical module without retaining its row machinery.
+The endpoint-only alpha-17 research theorem is superseded by the uniform strip.
 
-Readability is the first selection criterion, measured compilation cost second,
-and line count third. Source counts include the shared certificate frontend;
-generator, template and input-table costs are reported separately rather than
-hidden by moving text out of Lean files.
+The raw scalar at alpha zero is exactly `1/(2*m)`, not the continuous extension.
+The positive-alpha theorem stays positive. `BoundaryConsumer` separately covers
+raw zero, regularized T2 zero for every real `m>=5`, and legal `m=2*alpha`.
+`NoFiniteRows` covers generic natural degrees, noninteger degrees, alpha
+`7/5`, `2`, `17`, and the endpoint ray. Existing low-degree statements remain
+unchanged. The raw scalar itself need not be antitone in degree:
+`LocalTotalBound` retains the exact `H(5,1)<H(7,1)` regression.
+
+## Trust and verification
+
+`tests/NoFiniteRows.lean` recursively traverses actual proof values using
+`ConstantInfo.value? (allowOpaque := true)` and `Expr.getUsedConstants`.
+Traversal includes private and imported constants with no namespace pruning.
+Each of the real scalar, natural wrapper and both final headline roots must
+actually consume all three alpha regimes and the three large-alpha identities.
+Old row/critical/tail helpers are rejected; imports and theorem types alone
+are not evidence of proof consumption.
+
+`scripts/axioms.lean` explicitly enumerates actual roots and both final results.
+The Python auditor fixtures independently enumerate those targets and reject
+unknown targets, imported `externalAssumption`, and real Lean errors.
+Only `propext`, `Classical.choice`, and `Quot.sound` are permitted.
+The shell scanner allows only the three original syntax-only partial tactic
+signatures; generated proof terms are still kernel-checked. `Challenge.lean`
+retains its two deliberate specification holes and is not imported by Solution.
+
+Negative certificate tests compile unchanged controls, then mutate an interior
+coefficient in each complete retained identity. They require exactly the algebraic
+`ring failed, ring expressions not equal` error, not a timeout, missing import,
+linter or type mismatch.
+Smaller full-identity regressions also cover scale, ordering, truncation and
+interval changes. Python success, elaboration, exact-module kernel replay,
+original compiled-type comparison and proof consumption remain separate gates.
+Retired private project objects must be absent during the final run.
 
 ## Sources
 

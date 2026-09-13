@@ -198,24 +198,4 @@ lemma distillT2_mixed {m l α r : ℝ} (hm : 5 ≤ m) (hl : 0 ≤ l)
       (by norm_num)) hb (Real.rpow_nonneg (cubicPolarEnvelope_nonneg hα0) _)
     (mul_nonneg (by norm_num) (distillKappa_nonneg hm hl))
 
-/-- Algebraic assembly for a separately proved two-chord integral bound.
-No integral estimate or polar implication is asserted by this interface. -/
-lemma distillScalar_le_components {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α)
-    (hJ : (∫ t in (0 : ℝ)..1,
-      t ^ 3 * polarKernel m α (cubicPolarEnvelope α) t ^ ((m - 3) / 2)) ≤
-      96 * (3 / 5) ^ 4 /
-        ((m - 1) * (m + 1) * (m + 3) * (m + 5) * (1 - distillNode m α) ^ 4) +
-      (259 / 3125) * distillNode m α ^ ((m - 3) / 2) +
-      (421 / 3125) * cubicPolarEnvelope α ^ ((m - 3) / 2)) :
-    scalarObstruction m α (cubicPolarEnvelope α) ≤
-      distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α := by
-  have hE := distillElementary_le_budget (by linarith : 0 < m) hα
-  have hK := mul_le_mul_of_nonneg_left hJ (distillKappa_nonneg hm hα.le)
-  unfold scalarObstruction
-  rw [← distillKappa_eq hα]
-  unfold distillT0 distillT1 distillT2
-  calc
-    _ ≤ distillEBudget m + distillKappa m α * _ := add_le_add hE hK
-    _ = _ := by ring
-
 end Sendov

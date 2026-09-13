@@ -1,55 +1,24 @@
-import Lean
-import Sendov.Common.DistillationCritical
-import Sendov.LargeDegree.DistillationTailBound
+import Sendov.Common.DistillationBounds
 
 namespace MathPolishBoundary
+open Sendov
 
-/-- The totalized raw obstruction retains its actual zero-endpoint value. -/
 theorem raw_zero (m : ℝ) :
-    Sendov.scalarObstruction m 0 (Sendov.cubicPolarEnvelope 0) = 1 / (2 * m) :=
-  Sendov.scalarObstruction_zero m
+    scalarObstruction m 0 (cubicPolarEnvelope 0) = 1 / (2 * m) :=
+  scalarObstruction_zero m
 
-/-- The tail component vanishes at the closed left endpoint. -/
-theorem tail_zero {m : ℝ} (hm : 61 ≤ m) : Sendov.distillT2 m 0 = 0 :=
-  Sendov.distillT2_zero hm
+theorem component_zero {m : ℝ} (hm : 5 ≤ m) : distillT2 m 0 = 0 := by
+  have hexp : (m - 3) / 2 ≠ 0 := by linarith
+  simp [distillT2, cubicPolarEnvelope, Real.zero_rpow hexp]
 
-/-- Both boundary identities are consumed together at the real tail threshold. -/
-theorem threshold_boundary :
-    Sendov.scalarObstruction 61 0 (Sendov.cubicPolarEnvelope 0) = 1 / 122 ∧
-      Sendov.distillT2 61 0 = 0 := by
+theorem legal_right_endpoint {α : ℝ} (hα : 5 / 2 ≤ α) (h17 : α ≤ 17) :
+    scalarObstruction (2 * α) α (cubicPolarEnvelope α) < 1 :=
+  distillScalar_lt_one_real (by linarith) (by linarith) h17 le_rfl
+
+example : scalarObstruction 5 0 (cubicPolarEnvelope 0) = 1 / 10 ∧ distillT2 5 0 = 0 := by
   constructor
-  · convert raw_zero 61 using 1
-    norm_num
-  · exact tail_zero (by norm_num)
-
-/-- The former threshold remains covered by the stronger tail interface. -/
-theorem former_threshold_boundary :
-    Sendov.scalarObstruction 64 0 (Sendov.cubicPolarEnvelope 0) = 1 / 128 ∧
-      Sendov.distillT2 64 0 = 0 := by
-  constructor
-  · convert raw_zero 64 using 1
-    norm_num
-  · exact tail_zero (by norm_num)
-
-theorem closed_tail {m α : ℝ} (hm : 61 ≤ m) (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    Sendov.distillEBudget m + Sendov.distillT0 m α +
-      Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
-  Sendov.distillComponents_lt_199_200 hm hα h17
-
-theorem closed_interval {m α : ℝ} (hm : m ∈ Set.Icc 55 61)
-    (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    Sendov.distillEBudget m + Sendov.distillT0 m α +
-      Sendov.distillT1 m α + Sendov.distillT2 m α < 199 / 200 :=
-  Sendov.distillComponents_interval_55_61 hm hα h17
-
-theorem interval_boundary :
-    Sendov.scalarObstruction 55 0 (Sendov.cubicPolarEnvelope 0) = 1 / 110 ∧
-      Sendov.distillEBudget 55 + Sendov.distillT0 55 0 +
-        Sendov.distillT1 55 0 + Sendov.distillT2 55 0 < 199 / 200 := by
-  constructor
-  · convert raw_zero 55 using 1
-    norm_num
-  · exact closed_interval (by norm_num) le_rfl (by norm_num)
+  · norm_num [raw_zero]
+  · exact component_zero le_rfl
 
 end MathPolishBoundary
 
@@ -58,16 +27,9 @@ run_cmd do
   let env := (← getEnv).setExporting false
   for (consumer, target) in #[
       (`MathPolishBoundary.raw_zero, `Sendov.scalarObstruction_zero),
-      (`MathPolishBoundary.tail_zero, `Sendov.distillT2_zero),
-      (`MathPolishBoundary.closed_tail, `Sendov.distillComponents_lt_199_200),
-      (`MathPolishBoundary.closed_interval, `Sendov.distillComponents_interval_55_61)] do
+      (`MathPolishBoundary.legal_right_endpoint, `Sendov.distillScalar_lt_one_real)] do
     let some info := env.find? consumer | throwError "missing consumer {consumer}"
     let some value := info.value? (allowOpaque := true) | throwError "missing proof value"
     unless value.getUsedConstants.contains target do
       throwError "not a real value consumer: {consumer} -> {target}"
     logInfo m!"BOUNDARY_VALUE_CONSUMER {consumer} -> {target}"
-  for target in #[`Sendov.distillComponents_le_of_mixed, `Sendov.distillL_eq,
-      `Sendov.distillT0_nonneg, `Sendov.distillT1_nonneg, `Sendov.distillT2_nonneg,
-      `Sendov.QQ_zero, `Sendov.QQ_le_one] do
-    if env.contains target then throwError "retired declaration remains: {target}"
-  logInfo "BOUNDARY_PASS: actual zero identities consumed; seven retired declarations absent"

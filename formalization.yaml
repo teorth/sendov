@@ -4,10 +4,10 @@ project:
   name: Sendov's conjecture and the Phelps-Rodriguez conjecture
   description: 'Local Lean development of both complete conjectures, retaining the original polynomial,
     analytic and boundary arguments and replacing the old scalar endgame by a proved cubic polar envelope
-    and exact critical-point certificates. Degrees 2 through 5 use the elementary analytic proof.
-    For n >= 6, m = n - 1: the finite range 5 <= m <= 63 is fully certified, and the real-parameter
-    tail for m >= 64 uses the actual m=64 base. Exactly 60 unchanged records, m=5 through 64,
-    remain. Final statements are unchanged; no numerical bound is assumed.'
+    and full-degree-ray alpha estimates. Degrees 2 through 5 use the unchanged elementary analytic proof.
+    For every real m >= 5, 0 < alpha <= 17, 2*alpha <= m, the original scalar is strictly below one.
+    The natural n >= 6 wrapper and final statements are unchanged. No finite degree certificates,
+    numerical degree bases or old interval/tail cutoff remain; no bound is assumed.'
   authors:
   - Terence Tao
   license: Apache-2.0
@@ -52,12 +52,12 @@ status:
     literature_dependencies: []
 fidelity:
   divergences: The original final theorem types and polynomial semantics are unchanged. The local
-    variant uses Senjian An's stronger rational polar envelope and 7/7/4-degree critical-polynomial
-    bounds in place of the old R/packed/moment route. All analytic bridges, derivative signs, interval
-    endpoints, finite budgets and the infinite tail are proved in Lean. The raw scalar at alpha zero
+    variant uses Senjian An's stronger rational polar envelope and two-chord estimate, followed by
+    small, middle and large alpha bounds on full real-degree rays. Fixed alpha identities of degrees
+    53, 47 and 47 have complete kernel-checked coefficients and factors. The raw scalar at alpha zero
     is not silently redefined by regularization. The degree-five case now uses the existing elementary
-    low-degree theorem. Obsolete intermediate interfaces are retired, not maintained as a second proof
-    system.
+    low-degree theorem, unchanged in this stage. Obsolete intermediate interfaces are retired, not
+    maintained as a second proof system. No claim that m=5 is globally minimal is made.
 sources:
 - title: A digestion of the proof of Sendov's conjecture
   authors:
@@ -140,7 +140,7 @@ sources:
   id: https://zbmath.org/7681950
   relationship: background
   note: The earlier high-degree result. Its use of analytic continuation is what the digested argument
-    replaces by an explicit finite check, which is why this development can be fully formalized.
+    replaces by explicit scalar estimates. This variant closes the scalar domain without degree rows.
 - title: Sendov conjecture proof (ProofAtlas manuscript)
   authors:
   - Lech Mazur
@@ -158,9 +158,9 @@ sources:
   type: other
   id: https://github.com/SJanPerth/Sendov-Proof-Distillation/tree/e8ae601491ec171ab4f7f8456113dd6a047aa85d
   relationship: adapts
-  note: Cubic rational envelope, two-chord estimate, complete low-degree critical expressions, original
-    finite budgets and real-parameter tail. The source paper is CC BY 4.0. Python verification is
-    not a trusted premise; the adapted method is proved in Lean.
+  note: Source of the retained cubic rational envelope and two-chord estimate. The source paper is
+    CC BY 4.0. Its finite degree certificates and degree tail are superseded by the full-ray alpha
+    estimates; no Python verification is a trusted premise.
 related_formalizations:
 - id: https://www.proofatlas.ai/formalizations/sendov-conjecture/
   relationship: builds-on
@@ -182,15 +182,15 @@ automation:
       adaptation. This is not an assertion of new upstream-maintainer or human peer review.
   - method: other
     framework: Python exact arithmetic
-    role: scripts/gen_distillation.py generates every selected finite case and the aggregate into
-      a fresh output root. scripts/gen_sinh.py reproduces the retained global hyperbolic proof source.
-      Generator output is rechecked by Lean; compiler and kernel acceptance are separate.
+    role: scripts/gen_sinh.py reproduces the retained global hyperbolic proof source. The alpha
+      identities are self-contained Lean source and require no generator. Python tests exercise
+      full-identity mutations and audit failures; compiler and kernel acceptance are separate.
 review:
   status: self-assessed
-  notes: The K64 pruning candidate has local exact-source compilation, kernel replay, original-contract
-    and actual proof-value dependency probes. Parent independent review and final whole-library gates
-    remain pending. These are not claims of independent human mathematical review or endorsement by
-    the upstream authors.
+  notes: The no-degree-row full-real-m5 candidate is subject to exact-source compilation, kernel replay,
+    original compiled-contract comparison and full unpruned proof-value audits. Parent review of the
+    final exact tree, promotion and paired milestone measurements remain separate pending gates.
+    This is not a claim of human peer review or upstream-author endorsement.
 known_gaps: []
 limitations:
 - The two deliberate placeholders in Challenge.lean are specifications, not imported proof premises.
@@ -218,13 +218,8 @@ alignment:
     module: Sendov.Reduction.CubicScalar
     status: proved
     note: Derives all scalar-domain conditions and the lower bound from the original geometric inputs.
-  - source: Complete finite critical-point certificate range
-    lean: Sendov.distillFinite_scalar
-    module: Sendov.Common.DistillationFinite
+  - source: Complete original scalar domain on real degree rays
+    lean: Sendov.distillScalar_lt_one_real
+    module: Sendov.Common.DistillationBounds
     status: proved
-    note: All integer m from 5 through 63; entire alpha domain, not samples.
-  - source: Real-parameter infinite tail
-    lean: Sendov.distillScalar_lt_199_200
-    module: Sendov.LargeDegree.DistillationTailBound
-    status: proved
-    note: All real m >= 64 and positive alpha <= 17; the actual m=64 base is discharged.
+    note: Every real m >= 5, 0 < alpha <= 17, 2*alpha <= m; no degree base or finite row.

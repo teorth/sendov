@@ -1,4 +1,3 @@
-import Sendov.Common.DistillationCriticalFinite
 import Sendov.Common.DistillationHyperbolic
 import Sendov.Common.DistillationBounds
 
@@ -46,42 +45,20 @@ example {m : ℝ} (hm : 5 ≤ m) :
     ContinuousWithinAt (distillT2 m) (Set.Icc 0 (m / 2)) (m / 2) :=
   distillT2_continuousOn hm (m / 2) ⟨by linarith, le_rfl⟩
 
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    deriv (distillT0 m) α ≤ 0 ↔ distillCritical0 m α ≤ 0 :=
-  distillT0_deriv_nonpos_iff hm hα hαm
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    deriv (distillT1 m) α ≤ 0 ↔ 0 ≤ distillCritical1 m α :=
-  distillT1_deriv_nonpos_iff hm hα hαm
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    deriv (distillT2 m) α ≤ 0 ↔ 0 ≤ distillCritical2 m α :=
-  distillT2_deriv_nonpos_iff hm hα hαm
-
 -- Neither square recovery nor the zero-base case requires a nonnegative coefficient.
 example {a c : ℝ} (hc : 0 ≤ c) (hsq : a ^ 2 ≤ c ^ 2) :
     a * (0 : ℝ) ^ (((3 : ℝ) - 3) / 2) ≤ c := by
-  apply distillMulRpow_le_of_sq 0 (by norm_num) hc (by norm_num)
-  simpa only [pow_zero, mul_one] using hsq
+  norm_num only [sub_self, zero_div, Real.rpow_zero, mul_one]
+  exact le_of_sq_le_sq hsq hc
 
 example {a c : ℝ} (hc : 0 ≤ c) :
     a * (0 : ℝ) ^ (((4 : ℝ) - 3) / 2) ≤ c := by
-  apply distillMulRpow_le_of_sq 1 (by norm_num) hc (by norm_num)
-  simpa only [pow_one, mul_zero] using sq_nonneg c
-
-example {f : ℝ → ℝ} {b : ℝ} (hc : ContinuousOn f (Set.Icc 0 0))
-    (hb : f 0 ≤ b) : f 0 ≤ b := by
-  apply distillPeak_le (l := 0) (r := 0) (d := 0) le_rfl le_rfl le_rfl hc
-  · simp
-  · simp
-  · simp
-  · simpa using hb
-  · exact ⟨le_rfl, le_rfl⟩
+  simpa only [Real.zero_rpow (by norm_num : ((4 : ℝ) - 3) / 2 ≠ 0), mul_zero] using hc
 
 example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α ≤ m) :
     scalarObstruction m α (cubicPolarEnvelope α) ≤
-      distillEBudget m + distillT0 m α + distillT1 m α + distillT2 m α :=
-  distillScalar_le_majorant hm hα hαm
+      distillElementary m α + distillT0 m α + distillT1 m α + distillT2 m α :=
+  distillScalar_le_elementary_components hm hα hαm
 
 example : Filter.Tendsto (fun z => Real.sinh z / z)
     (nhdsWithin 0 {(0 : ℝ)}ᶜ) (nhds 1) := by
@@ -94,17 +71,6 @@ example : Real.sinh 0 ≤ 0 * Real.exp
 example : Real.log (Real.sinh 10 / 10) ≤
     (7 / 8 : ℝ) * (Real.sqrt (9 + (8 / 7 : ℝ) * 10 ^ 2) - 3) :=
   DistillationHyperbolic.log_sinh_div_le (by norm_num) le_rfl
-
-example {m : ℝ} (hm : 61 ≤ m) : distillT2 m 0 = 0 := distillT2_zero hm
-
-example {m : ℝ} (hm : 61 ≤ m) :
-    distillEBudget m + distillT0 m 0 + distillT1 m 0 + distillT2 m 0 ≤
-      distillEBudget 61 + distillT0 61 0 + distillT1 61 0 + distillT2 61 0 :=
-  distillComponents_le_61 hm le_rfl (by norm_num)
-
-example {m : ℝ} (hm : 61 ≤ m) :
-    scalarObstruction m 17 (cubicPolarEnvelope 17) < 199 / 200 :=
-  distillScalar_lt_199_200 hm (by norm_num) le_rfl
 
 example {n : ℕ} (hn : 6 ≤ n) {α : ℝ} (hα : 0 < α) (h17 : α ≤ 17)
     (hhalf : 2 * α ≤ M n) :

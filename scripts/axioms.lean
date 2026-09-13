@@ -1,12 +1,10 @@
 import Lean
 import Solution
-import Sendov.Common.DistillationFinite
-import Sendov.LargeDegree.DistillationTailBound
 
 /-!
 Run after building the selected proof with `lake env lean scripts/axioms.lean`.
 This separate audit checks the two exact public conjecture statements and their
-active finite/tail seams, not retired intermediate names.
+active full-domain alpha estimates, not retired degree-certificate interfaces.
 
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. In particular,
 `sorryAx` and `Lean.ofReduceBool` are not permitted. These assertions do not
@@ -36,16 +34,19 @@ end SendovAudit
 
 #sendov_axioms SendovConjecture.sendov
 #sendov_axioms SendovConjecture.phelps_rodriguez
-#sendov_axioms Sendov.distillFinite_components
-#sendov_axioms Sendov.distillFinite_scalar
-#sendov_axioms Sendov.distillFinite_61
-#sendov_axioms Sendov.distillFiniteBound_61
-#sendov_axioms Sendov.distillComponents_le_61
-#sendov_axioms Sendov.distillT2_zero
-#sendov_axioms Sendov.distillComponents_lt_199_200
-#sendov_axioms Sendov.distillScalar_lt_199_200
+#sendov_axioms Sendov.distillScalar_lt_one_real
 #sendov_axioms Sendov.distillScalar_lt_one
 #sendov_axioms Sendov.polar_origin_incompatible
-#sendov_axioms Sendov.distillKappa_rpow_interval
-#sendov_axioms Sendov.distillT0_antitone_55
-#sendov_axioms Sendov.distillComponents_interval_55_61
+#sendov_axioms Sendov.scalarObstruction_zero
+#sendov_axioms Sendov.distillScalar_lt_one_small_alpha
+#sendov_axioms Sendov.distillScalar_lt_one_middle_alpha
+#sendov_axioms Sendov.distillScalar_lt_one_alpha_le_two
+#sendov_axioms Sendov.distillScalar_lt_one_peak_strip
+#sendov_axioms Sendov.distillScalar_le_total_sub_loss
+#sendov_axioms Sendov.distillChordTotal_lt_one
+#sendov_axioms Sendov.distillScalar_le_elementary_components
+#sendov_axioms Sendov.distillScalar_le_rationalPeak
+#sendov_axioms Sendov.distillRationalPeak_lt_one
+#sendov_axioms Sendov.PeakClosure.gap1_identity
+#sendov_axioms Sendov.PeakClosure.LowHomogeneous.gapH_identity
+#sendov_axioms Sendov.PeakClosure.HighHomogeneous.gapH_identity

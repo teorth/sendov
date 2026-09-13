@@ -10,6 +10,8 @@ lake exe cache get
 lake build
 lake env lean scripts/axioms.lean
 sh scripts/audit.sh
+lake env lean tests/NoFiniteRows.lean
+python3 -B -m unittest discover -s tests
 ```
 
 The default build includes `Sendov`, `Solution`, and the original `Challenge`
@@ -41,26 +43,28 @@ The final theorem types must also agree with the original specification.
 Axiom checks, independent kernel replay, type comparison and actual proof
 consumption address different questions and are not interchangeable.
 
-## Regenerate the selected finite certificates
+## Reproducible certificates and regressions
 
-Python prepares exact rational/integer data. It neither proves the final
-inequalities nor replaces the Lean checks.
+The alpha-53/47/47 identities are self-contained Lean source, including every
+coefficient and homogeneous factor. There is no finite-degree table or row
+generator. No Python computation is a mathematical premise.
 
 ```sh
 set -eu
-out=$(mktemp -d)
-python3 scripts/gen_distillation.py --output "$out/generated"
-diff -ru Sendov/DistillationFinite "$out/generated/Sendov/DistillationFinite"
-diff -u Sendov/Common/DistillationFinite.lean "$out/generated/Sendov/Common/DistillationFinite.lean"
-python3 -m unittest discover -s tests
+for probe in tests/*.lean; do
+  lake env lean -DwarningAsError=true "$probe"
+done
+python3 -B -m unittest discover -s tests
 ```
 
-The output contains all 52 retained records (`m = 5..55,61`) in eight groups.
-The finite aggregate covers `m = 5..60` using 50 direct cases and the real
-interval 55–61 based on row 55; the tail shares row 61 in the final
-`Rows61_61` group. Use a fresh output root; generation must not replace a
-nonempty directory. See [`scripts/GENERATORS.md`](../scripts/GENERATORS.md) for
-the retained global `sinh` generator and its SymPy dependency.
+The full scalar domain is every real `m >= 5`, `0 < alpha <= 17`,
+`2*alpha <= m`; there is no numerical degree base or finite tail cutoff.
+`NoFiniteRows` checks complete recursive proof-value closures, requiring actual
+small/middle/large-alpha consumption in all four roots. The Python suite
+contains real Lean negative coefficient/scale/interval controls and the complete
+independent auditor fixture matrix. Run compilers serially.
+See [`scripts/GENERATORS.md`](../scripts/GENERATORS.md) for the retained global
+`sinh` generator and its SymPy dependency.
 
 If certificate data or generated proofs change, verify the complete affected
 import cone, its kernel checks and final consumers. Do not count previously
@@ -72,7 +76,9 @@ compiled objects from a different source projection as a successful new build.
 - A Lean success means that particular source/module elaborated.
 - A kernel success means the named module replayed over its imports.
 - Full completion also requires both unchanged final contracts and their real
-  proof dependencies, including every finite case and the infinite tail.
+  proof dependencies, including all three full-degree-ray alpha estimates.
 
-The active branch does not include the retired packed/moment/`R` certificate
-system as a compatibility fallback.
+Lake enumerates every `Sendov` source module explicitly through its root glob,
+including useful common mathematics outside the final theorem import cone.
+Retired degree-row objects and sidecars must not be available as a fallback;
+never delete dependency-package caches when retiring project artifacts.

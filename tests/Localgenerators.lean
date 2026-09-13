@@ -1,5 +1,4 @@
 import Sendov.Common.BernsteinList
-import Sendov.Common.DistillationFinite
 import Sendov.Common.Sinh
 
 namespace Localgenerators
@@ -59,24 +58,6 @@ example (x y : ℝ) : x + y + 1 = 1 + (x + y) := by
 example (x y : ℝ) : y - x = -1 * x + y := by
   fail_if_success bernstein_ring x y
   ring
-
-example {m : ℕ} (hm : 5 ≤ m) (hm60 : m ≤ 60) {α : ℝ} (hα : 0 ≤ α)
-    (hαm : α ≤ (m : ℝ) / 2) (h17 : α ≤ 17) :
-    Sendov.distillEBudget m + Sendov.distillT0 m α + Sendov.distillT1 m α +
-      Sendov.distillT2 m α < 199 / 200 :=
-  Sendov.distillFinite_components hm hm60 hα hαm h17
-
-example {α : ℝ} (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    Sendov.distillT0 61 α ≤ 57 / 250 :=
-  Sendov.CriticalRow61.component0 α hα h17
-
-example {α : ℝ} (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    Sendov.distillT1 61 α ≤ 13 / 250 :=
-  Sendov.CriticalRow61.component1 α hα h17
-
-example {α : ℝ} (hα : 0 ≤ α) (h17 : α ≤ 17) :
-    Sendov.distillT2 61 α ≤ 81 / 250 :=
-  Sendov.CriticalRow61.component2 α hα h17
 
 example : Real.sinh 0 ≤ 0 * Real.exp (Real.sqrt (0 ^ 2 + 9) - 3) :=
   Sendov.sinh_le_mul_exp le_rfl

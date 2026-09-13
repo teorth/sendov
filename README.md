@@ -18,9 +18,8 @@ hypothesis in either final theorem.
 
 The polynomial identities, analytic reduction, low-degree argument and boundary
 classification start from Terence Tao's formalization.[1] The scalar endgame
-here is a Lean implementation of Senjian An's rational-envelope and
-low-degree critical-polynomial method, not an import of its Python checks as
-trusted facts.[2]
+uses Senjian An's rational envelope and two-chord estimate, followed by
+full-degree-ray alpha estimates proved in Lean, not trusted Python checks.[2]
 
 | Part | Active source |
 |---|---|
@@ -29,32 +28,26 @@ trusted facts.[2]
 | Interior degrees `2 ≤ n ≤ 5` | [`LowDegree`](Sendov/Analytic/LowDegree.lean), [`Interior`](Sendov/Interior.lean) |
 | Original polar/origin hypotheses → scalar domain and lower bound | [`CubicScalar`](Sendov/Reduction/CubicScalar.lean) |
 | Strong hyperbolic bound and cubic polar envelope | [`DistillationHyperbolic`](Sendov/Common/DistillationHyperbolic.lean), [`CubicPolar`](Sendov/Reduction/CubicPolar.lean) |
-| Two-chord integral estimate and regularized factors | [`TwoChord`](Sendov/Common/TwoChord.lean), [`DistillationMajorant`](Sendov/Common/DistillationMajorant.lean) |
-| Finite critical-point certificates | [`DistillationFinite`](Sendov/Common/DistillationFinite.lean), [`generated modules`](Sendov/DistillationFinite) |
-| Real-parameter tail using the actual base certificate | [`DistillationTailBound`](Sendov/LargeDegree/DistillationTailBound.lean) |
+| Two-chord integral estimate and regularized factors | [`TwoChord`](Sendov/Common/TwoChord.lean), [`DistillationFactors`](Sendov/Common/DistillationFactors.lean) |
+| Small alpha, `0 < alpha <= 7/5` | [`DistillationTotalBound`](Sendov/Common/DistillationTotalBound.lean) |
+| Middle alpha, `7/5 <= alpha <= 2` | [`DistillationMiddleAlpha`](Sendov/Common/DistillationMiddleAlpha.lean) |
+| Large alpha, `2 <= alpha <= 17` | [`DistillationPeakClosure`](Sendov/Common/DistillationPeakClosure.lean) |
 | Complete contradiction | [`DistillationBounds`](Sendov/Common/DistillationBounds.lean), [`Reduction/Main`](Sendov/Reduction/Main.lean) |
 
-The convention is **`m = n - 1`**. The final degree split now uses the finite
-proof for `5 ≤ m ≤ 60` (through `n=61`), then the real-parameter tail for
-`m ≥ 61` (from `n=62`). The latter reuses the existing row-61 certificate
-to prove a bound of `<199/200`, which is sufficient for the scalar `<1`.
-Exactly 52 unchanged certificate records, `5 ≤ m ≤ 55` and `m=61`, are retained.
-The finite aggregate uses 50 individual cases for `5 ≤ m ≤ 54` and a single
-real interval theorem for `55 ≤ m ≤ 61`, with the original row-55 budgets
-constructed internally. The tail still consumes row 61 from `Rows61_61`.
-Rows 56–60, 62–81 and the old `<2/3` tail interfaces are retired.
-There is no separate duplicate row-61 module or second certificate representation.
-The earlier tail uses the rational fourth-power envelope cap `(21/22)^4`
-to retain stronger logarithmic decay. The rational component is antitone already
-from 55, using an alpha split at 10. On the bounded interval, the two exponential
-components may grow: linear weights bound that growth, giving the exact total
-`58135011269/58896123000 < 199/200`. No new Bernstein certificates are introduced.
+The convention is **`m = n - 1`**. `distillScalar_lt_one_real` proves the
+original raw scalar bound `<1` for **every real `m >= 5`,
+`0 < alpha <= 17`, `2*alpha <= m`**, including noninteger degrees and the
+legal `m=2*alpha` endpoint. The natural `n >= 6` wrapper has its original type.
+There is no finite-degree certificate, numerical degree base, interval patch
+or later tail cutoff. No claim is made that 5 is globally minimal.
 
-Each finite case uses the complete critical polynomials of degrees **7, 7, 4**.
-Exact Bernstein identities prove derivative signs on the full outer intervals;
-a mixed-endpoint estimate covers the central bracket. The proof does not assume
-that a numerical root finder found all critical points. Closed endpoints and
-empty outer intervals are handled explicitly.
+The three alpha regimes are mathematical estimates on entire degree rays.
+Large alpha uses three complete polynomial identities of degrees **53, 47, 47**,
+with 150 ordered coefficients and 71 low-degree homogeneous factor coefficients.
+All scales, factors and identities are checked by Lean's kernel. These are
+fixed alpha certificates, not degree rows; their full source and data cost is
+included in the implementation, not hidden behind three theorem names.
+The raw value at `alpha=0` remains `1/(2*m)`, separately from regularization.
 
 The old `R`-based finite/large-degree certificate system and its specialized
 generators are retired, not shipped as a second compatibility route. General
@@ -81,15 +74,15 @@ is not reported as all of them.
 
 See [`docs/getting-started.md`](docs/getting-started.md) for verification and
 [`scripts/GENERATORS.md`](scripts/GENERATORS.md) for reproducible generation.
-The finite generator emits the entire selected table in one command to a fresh output
-root. Python prepares exact data; Lean verifies the complete identities and
-inequalities. A successful generator run is **not** a completed proof check.
+The alpha identities are self-contained Lean source and need no generator.
+The existing global `sinh` generator remains reproducible. A successful
+generator run is **not** a completed proof check.
 
 ## Provenance and scope
 
 This is a local adaptation, not a claim that upstream maintainers reviewed or
 endorsed these changes. The repository keeps the original Apache-2.0 code
-license. The distilled mathematics and certificate table are attributed to
+license. The retained distilled mathematics is attributed to
 Senjian An's fixed source version; the source paper is CC BY 4.0.[2]
 The retained generator entry points incorporate applicable portability fixes;
 obsolete batch-specific tools are not retained merely to preserve a PR surface.[4]

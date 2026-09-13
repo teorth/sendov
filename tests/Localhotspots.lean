@@ -1,5 +1,5 @@
 import Sendov.Reduction.CubicScalar
-import Sendov.Common.DistillationCriticalFinite
+import Sendov.Common.DistillationRegularity
 
 open Sendov Real
 
@@ -37,22 +37,6 @@ example {Q p : ℝ} (hQ : 0 < Q) (hp : 1 ≤ p) :
     (0 + Q) ^ p ≤ (0 : ℝ) ^ p + p * Q * (0 + Q) ^ (p - 1) :=
   rpow_add_le_of_one_le le_rfl (by simpa using hQ) hp
 
--- All three identities are symbolic polynomial equalities, not evaluations.
-example (m α : ℝ) :
-    distillCritical0 m α = distillK m α * distillD m α +
-      4 * (m - 2 * α) * distillN α * distillRp m α :=
-  distillCritical0_eq m α
-
-example (m α : ℝ) :
-    distillCritical1 m α = -2 * distillK m α * distillB m α -
-      (m - 3) * (m - 2 * α) * distillN α * distillRp m α :=
-  distillCritical1_eq m α
-
-example (m α : ℝ) :
-    distillCritical2 m α = -2 * α * distillK m α -
-      (m - 3) * (m - 2 * α) * distillL α :=
-  distillCritical2_eq m α
-
 example (α : ℝ) : distillN α = 29 * α ^ 2 + 180 * α + 270 := rfl
 
 example (x : ℝ) :
@@ -62,44 +46,6 @@ example (x : ℝ) :
 example (x : ℝ) :
     DistillationHyperbolic.D x =
       55 * x ^ 8 + 25740 * x ^ 6 + 2837835 * x ^ 4 + 91891800 * x ^ 2 + 654729075 := rfl
-
-example {m : ℝ} (hm : 0 < m) :
-    distillD m 0 = 50 * m * (0 + 3) ^ 3 * (1 - distillNode m 0) :=
-  distillD_eq hm le_rfl
-
-example {m α : ℝ} (hm : 0 < m) (hα : 0 ≤ α) :
-    distillD m α = 50 * m * (α + 3) ^ 3 * (1 - distillNode m α) :=
-  distillD_eq hm hα
-
-example {m : ℝ} (hm : 0 < m) :
-    HasDerivAt (distillKappa m)
-      (distillKappa m 0 * (distillK m 0 / ((0 + 3) * (m - 2 * 0) * distillN 0))) 0 :=
-  hasDerivAt_distillKappa le_rfl (by simpa using hm)
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    HasDerivAt (distillT0 m)
-      (distillT0 m α * (distillCritical0 m α /
-        ((α + 3) * (m - 2 * α) * distillN α * distillD m α))) α :=
-  hasDerivAt_distillT0 hm hα hαm
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    HasDerivAt (distillT1 m)
-      (distillT1 m α * (-distillCritical1 m α /
-        (2 * (α + 3) * (m - 2 * α) * distillN α * distillB m α))) α :=
-  hasDerivAt_distillT1 hm hα hαm
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    HasDerivAt (distillT2 m)
-      (distillT2 m α * (-distillCritical2 m α /
-        (2 * α * (α + 3) * (m - 2 * α) * distillN α))) α :=
-  hasDerivAt_distillT2 hm hα hαm
-
-example {m α : ℝ} (hm : 5 ≤ m) (hα : 0 < α) (hαm : 2 * α < m) :
-    (deriv (distillT0 m) α ≤ 0 ↔ distillCritical0 m α ≤ 0) ∧
-      (deriv (distillT1 m) α ≤ 0 ↔ 0 ≤ distillCritical1 m α) ∧
-      (deriv (distillT2 m) α ≤ 0 ↔ 0 ≤ distillCritical2 m α) :=
-  ⟨distillT0_deriv_nonpos_iff hm hα hαm, distillT1_deriv_nonpos_iff hm hα hαm,
-    distillT2_deriv_nonpos_iff hm hα hαm⟩
 
 example {m : ℝ} (hm : 5 ≤ m) :
     ContinuousWithinAt (distillT0 m) (Set.Icc 0 (m / 2)) 0 :=
