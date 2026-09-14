@@ -1,0 +1,14 @@
+[
+  "Sendov/Analytic/PaperGlobalPolar.lean",
+  "tests/PaperGlobalPolarTests.lean",
+  "Sendov/Analytic/PaperTail.lean",
+  "tests/PaperTailTests.lean",
+  "Sendov/Analytic/PaperRayGeometry.lean",
+  "tests/PaperRayGeometry.lean",
+  "Sendov/Analytic/PaperCenteredBound.lean",
+  "tests/PaperCenteredBoundTests.lean",
+  "Sendov/Analytic/PaperNearMargins.lean",
+  "tests/PaperNearMargins.lean",
+  "tests/PaperPolarCounterexample.lean",
+  "tests/PaperSecantNeighborhoods.lean"
+]
