@@ -1,6 +1,5 @@
 {
   "baseline": "0a4e966c41e1287f92d305d3bad8e70c8c295dde",
-  "source_tree": "1b08ca1ec9c505dbecffb6341b62dfde2fb5634d",
   "changed_seeds": [
     "Sendov",
     "Sendov.Analytic.FirstOriginAlgebra",
@@ -84,7 +83,14 @@
     "tests.PaperTaylor",
     "tests.PaperTwoEndTests",
     "tests.PaperUniform",
-    "tests.PaperWideRaysTests"
+    "tests.PaperWideRaysTests",
+    "Sendov.Analytic.PaperOriginCorollaries",
+    "tests.PaperOriginCorollaries",
+    "Sendov.Analytic.PaperMomentCorollaries",
+    "tests.PaperMomentCorollaries",
+    "Sendov.Analytic.PaperRegionCorollaries",
+    "tests.PaperRegionCorollaries",
+    "tests.PaperAcceptance"
   ],
   "affected_modules_topological": [
     "Sendov.Analytic.FirstOriginAlgebra",
@@ -176,6 +182,23 @@
     "tests.PaperTaylor",
     "tests.PaperTwoEndTests",
     "tests.PaperUniform",
-    "tests.PaperWideRaysTests"
+    "tests.PaperWideRaysTests",
+    "Sendov.Analytic.PaperOriginCorollaries",
+    "tests.PaperOriginCorollaries",
+    "Sendov.Analytic.PaperMomentCorollaries",
+    "tests.PaperMomentCorollaries",
+    "Sendov.Analytic.PaperRegionCorollaries",
+    "tests.PaperRegionCorollaries",
+    "tests.PaperAcceptance"
+  ],
+  "reviewed_base_source_tree": "1b08ca1ec9c505dbecffb6341b62dfde2fb5634d",
+  "supplemental_modules": [
+    "Sendov.Analytic.PaperOriginCorollaries",
+    "tests.PaperOriginCorollaries",
+    "Sendov.Analytic.PaperMomentCorollaries",
+    "tests.PaperMomentCorollaries",
+    "Sendov.Analytic.PaperRegionCorollaries",
+    "tests.PaperRegionCorollaries",
+    "tests.PaperAcceptance"
   ]
 }

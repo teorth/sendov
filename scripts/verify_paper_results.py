@@ -34,10 +34,19 @@ def digest(path):
 
 
 config_digest = digest(config)
+expected_gates = 0
 for module in modules:
     source = TREE / Path(*module.split('.')).with_suffix('.lean')
     source_digest = digest(source)
-    for kernel in [False, True]:
+    # leanchecker targets are namespace prefixes. An import-only umbrella has
+    # no declarations to replay, and passing it would replay every descendant.
+    import_only = all(not line.strip() or line.startswith('import ')
+                      for line in source.read_text().splitlines())
+    checks = [False] if import_only else [False, True]
+    expected_gates += len(checks)
+    if import_only:
+        print(module, 'IMPORT_ONLY: no local kernel declarations', flush=True)
+    for kernel in checks:
         previous = accepted.get((module, kernel))
         if previous and previous['exit_code'] == 0:
             assert previous['source_sha256'] == source_digest, 'source changed; use a new tag'
@@ -62,6 +71,6 @@ for module in modules:
         if result.returncode:
             print(result.stdout + result.stderr, flush=True)
             raise SystemExit(result.returncode)
-assert len(rows) == 2 * len(modules)
+assert len(rows) == expected_gates
 result_file.write_text(json.dumps(rows, indent=2))
 print(f'PASS: {len(modules)} affected modules, {len(rows)} compile/kernel gates', flush=True)
