@@ -1,0 +1,127 @@
+[
+  {
+    "path": "Sendov/Analytic/PaperWideRays.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-wide-rays/Sendov/Analytic/PaperWideRays.lean",
+    "bytes": 10909
+  },
+  {
+    "path": "tests/PaperWideRaysTests.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-wide-rays/tests/PaperWideRaysTests.lean",
+    "bytes": 4453
+  },
+  {
+    "path": "Sendov/Analytic/PaperRateDetails.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-rate-details/Sendov/Analytic/PaperRateDetails.lean",
+    "bytes": 7193
+  },
+  {
+    "path": "tests/PaperRateDetailsTests.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-rate-details/tests/PaperRateDetailsTests.lean",
+    "bytes": 8450
+  },
+  {
+    "path": "Sendov/Analytic/PaperCenteredCertificate.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-centered-100/Sendov/Analytic/PaperCenteredCertificate.lean",
+    "bytes": 6603
+  },
+  {
+    "path": "tests/PaperCenteredHundred.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-centered-100/tests/PaperCenteredHundred.lean",
+    "bytes": 92902
+  },
+  {
+    "path": "scripts/generate_centered_hundred.py",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-centered-100/scripts/generate_centered_hundred.py",
+    "bytes": 4011
+  },
+  {
+    "path": "tests/data/di02-witnesses.json",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-centered-100/tests/data/di02-witnesses.json",
+    "bytes": 61695
+  },
+  {
+    "path": "Sendov/Analytic/PaperConjugate.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/Sendov/Analytic/PaperConjugate.lean",
+    "bytes": 8157
+  },
+  {
+    "path": "tests/PaperConjugateDI03.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateDI03.lean",
+    "bytes": 4861
+  },
+  {
+    "path": "tests/PaperConjugateDI04.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateDI04.lean",
+    "bytes": 6567
+  },
+  {
+    "path": "tests/PaperConjugateDI05.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateDI05.lean",
+    "bytes": 14683
+  },
+  {
+    "path": "tests/PaperConjugateDI06.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateDI06.lean",
+    "bytes": 143025
+  },
+  {
+    "path": "tests/PaperConjugateDI07.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateDI07.lean",
+    "bytes": 167306
+  },
+  {
+    "path": "tests/PaperConjugateBudgets.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/PaperConjugateBudgets.lean",
+    "bytes": 4474
+  },
+  {
+    "path": "tests/generate_conjugate_budgets.py",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/generate_conjugate_budgets.py",
+    "bytes": 6035
+  },
+  {
+    "path": "tests/conjugate-data.json",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/conjugate-data.json",
+    "bytes": 3796
+  },
+  {
+    "path": "tests/CONJUGATE_BUDGETS.md",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-conjugate-cases/tests/CONJUGATE_BUDGETS.md",
+    "bytes": 3928
+  },
+  {
+    "path": "Sendov/Analytic/PaperLegacyHelpers.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-legacy-cases/Sendov/Analytic/PaperLegacyHelpers.lean",
+    "bytes": 7144
+  },
+  {
+    "path": "Sendov/Analytic/PaperLegacyExact.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-legacy-cases/Sendov/Analytic/PaperLegacyExact.lean",
+    "bytes": 13930
+  },
+  {
+    "path": "Sendov/Analytic/PaperLegacyHundred.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-legacy-cases/Sendov/Analytic/PaperLegacyHundred.lean",
+    "bytes": 36194
+  },
+  {
+    "path": "tests/PaperLegacyCertificates.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-legacy-cases/tests/PaperLegacyCertificates.lean",
+    "bytes": 10588
+  },
+  {
+    "path": "tests/PaperPolarDomainWitnesses.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-polar-witnesses/tests/PaperPolarDomainWitnesses.lean",
+    "bytes": 13982
+  },
+  {
+    "path": "Sendov/Analytic/PaperConsequences.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-paper-corollaries/Sendov/Analytic/PaperConsequences.lean",
+    "bytes": 14145
+  },
+  {
+    "path": "tests/PaperConsequencesTests.lean",
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-paper-corollaries/tests/PaperConsequencesTests.lean",
+    "bytes": 4943
+  }
+]
