@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "modules": 97,
+  "compile_gates": 97,
+  "kernel_gates": 96,
+  "total_gates": 193,
+  "seconds_sum": 1435.7561169988476,
+  "axiom_roots": 243,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "exact_baseline_contracts": 10,
+  "import_only_umbrella": "Sendov: compiled; no local declarations, no redundant namespace-prefix replay",
+  "baseline": "0a4e966c41e1287f92d305d3bad8e70c8c295dde",
+  "source_commit": "8e1b056a241e6a99af2e2029569dc92a334c1a6d"
+}
