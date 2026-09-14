@@ -23,7 +23,9 @@ run_cmd do
         if let some v := ci.value? (allowOpaque := true) then
           for used in v.getUsedConstants do pending := used :: pending
     for target in #[`Sendov.FirstOriginSmall.first_origin_polar_six_seven,
-        `Sendov.FirstOriginSmall.norm_integral_Fprod_le_of_factorization] do
+        `Sendov.FirstOriginSmall.norm_integral_Fprod_le_of_factorization,
+        `Sendov.FirstOriginBudget.near_contradiction,
+        `Sendov.PaperNearClosure.near_endpoint_D] do
       unless visited.contains target do
         throwError "missing final-root consumption {root} -> {target}"
       logInfo m!"FIRST_ORIGIN_SOLUTION_VALUE {root} -> {target}"

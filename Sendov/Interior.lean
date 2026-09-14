@@ -7,6 +7,7 @@ import Sendov.Analytic.OriginExact
 import Sendov.Analytic.Polar
 import Sendov.Analytic.LowDegree
 import Sendov.Analytic.FirstOriginSmall
+import Sendov.Analytic.FirstOriginBudget
 import Sendov.Analytic.Jsum
 import Sendov.Counterexample.Factor
 import Sendov.Reduction.Main
@@ -108,7 +109,15 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     rw [Complex.re_add_im, mul_div_cancel₀ _ hne]
   obtain ⟨hxre, hx2⟩ := xy_bounds hn hqcard hq1 hxy
   have hpolar := one_le_integral_Ppolar hn (a := a) (x := x) hqcard hq1 hxre hstar
-  -- the origin channel
+  -- The uniform near-endpoint region uses only the first-origin channel.
+  by_cases hnear : ((n : ℝ) - 1) * (1 - a) ≤ 2 / 5
+  · have hxSq : x ^ 2 ≤ 1 := (le_add_of_nonneg_right (sq_nonneg y)).trans hx2
+    exact FirstOriginBudget.near_contradiction (by omega) ha0 ha1
+      (by nlinarith [sq_nonneg (x + 1)]) (by nlinarith [sq_nonneg (x - 1)])
+      hqcard hq1 hxre hxy hpolar hnear
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
+  -- the remaining origin channel
   have hcent := centroid_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n)
     (z := z) (q := q) (p := p) hn hc0 hzcard hqcard hpz hpq'
   have hfirst := first_origin_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n)

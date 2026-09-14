@@ -4,6 +4,28 @@ Baseline: `0a4e966c41e1287f92d305d3bad8e70c8c295dde`.
 Integration branch: `formalize/paper-results-20260914`.
 Status: **IN PROGRESS**, not complete and not a uniform D proof.
 
+## Checkpoint 2 — actual near-endpoint D, now wired into Solution
+
+`PaperNearClosure.near_endpoint_D` proves the actual raw-polar integral
+implication for every natural m≥7 and m(1-a)≤2/5, with strict gap >h/1000.
+The two-endpoint integral bounds, sharp Laplace estimate, curvature secant
+and its sufficient D gate, finite complex centered expansion, and optimized
+coefficient bounds have also been integrated and freshly checked (24 gates).
+The centered actual-coefficient budget and independent optimized coefficient
+bound still need their common majorant interface; this is in the next batch.
+
+`FirstOriginBudget.lower_budget` connects the scalar integral to actual Fprod.
+`Interior` now branches into the new near-endpoint contradiction before
+constructing the polynomial centroid and second-origin identities. Both
+public Solution proof-value closures contain `near_endpoint_D`; the standalone
+near contradiction's closure excludes all old centroid/second-origin/endgame
+entries. Exact final sources passed the `near-wiring-clean` gates. The original
+remaining-domain proof is retained; no all-a m≥256 Lean claim is made yet.
+
+Next dispatched items: global polar endpoint/log bounds, quantitative tails,
+ray geometry, centered majorant assembly, older stronger near margins, exact
+full-complex-polar diagnostic, and independent semantic review of checkpoint2.
+
 ## Checkpoint 1 — integrated and freshly rechecked
 
 Boundary rigidity and first-origin n=6/n=7 are now actual consumers of both
