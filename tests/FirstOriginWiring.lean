@@ -25,7 +25,9 @@ run_cmd do
     for target in #[`Sendov.FirstOriginSmall.first_origin_polar_six_seven,
         `Sendov.FirstOriginSmall.norm_integral_Fprod_le_of_factorization,
         `Sendov.FirstOriginBudget.near_contradiction,
-        `Sendov.PaperNearClosure.near_endpoint_D] do
+        `Sendov.PaperNearClosure.near_endpoint_D,
+        `Sendov.FirstOriginBudget.uniform_contradiction,
+        `Sendov.PaperUniform.uniform_D] do
       unless visited.contains target do
         throwError "missing final-root consumption {root} -> {target}"
       logInfo m!"FIRST_ORIGIN_SOLUTION_VALUE {root} -> {target}"

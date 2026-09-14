@@ -1,5 +1,6 @@
 import Sendov.Analytic.FirstOriginSmall
 import Sendov.Analytic.PaperNear
+import Sendov.Analytic.PaperUniform
 
 /-! Generic first-origin consumers of the scalar D estimates.
 No second-origin or polynomial centroid identity is used in these proofs. -/
@@ -71,6 +72,29 @@ theorem near_contradiction {n : ℕ} (hn : 8 ≤ n) {a x y : ℝ} {q : Multiset 
   have he : (n : ℝ) - 1 + 1 = n := by ring
   rw [he] at hd
   have hh : 0 < (1 - a) / 1000 := by positivity
+  rw [mul_comm a ((n : ℝ) - 1)] at hl
+  linarith
+
+/-- All degrees n≥257 close using only polar and the first-origin bound. -/
+theorem uniform_contradiction {n : ℕ} (hn : 257 ≤ n) {a x y : ℝ} {q : Multiset ℂ}
+    (ha : 0 < a) (ha1 : a < 1) (hx0 : -1 ≤ x) (hx1 : x ≤ 1)
+    (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
+    (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x)
+    (hsum : q.sum = ((n : ℂ) - 1) * ((x : ℂ) + (y : ℂ) * Complex.I))
+    (hraw : 1 ≤ ∫ t in (0 : ℝ)..1, Ppolar a x t ^ (((n : ℝ) - 1) / 2))
+    (hfirst : ‖∫ t in (0 : ℝ)..1, Fprod a q t‖ ≤ 1 / (n : ℝ)) : False := by
+  have hm : 256 ≤ n - 1 := by omega
+  have hcast : ((n - 1 : ℕ) : ℝ) = (n : ℝ) - 1 := by
+    rw [Nat.cast_sub (by omega : 1 ≤ n)]
+    norm_num
+  have hr : PaperPolar.RawPolar (n - 1) a x := by
+    rw [PaperPolar.rawPolar_iff, hcast]
+    exact hraw
+  have hd := PaperUniform.uniform_D hm ha ha1 hx0 hx1 hr
+  have hl := lower_budget (by omega) ha ha1 hx1 hqcard hq1 hx hsum hfirst
+  rw [hcast] at hd
+  have he : (n : ℝ) - 1 + 1 = n := by ring
+  rw [he] at hd
   rw [mul_comm a ((n : ℝ) - 1)] at hl
   linarith
 

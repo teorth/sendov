@@ -29,9 +29,11 @@ From `(⋆)` the argument branches on the degree.
 
 * For `n = 6` or `n = 7`, the first-origin factorization bound and `(⋆)` feed
   `Sendov.FirstOriginSmall.first_origin_polar_six_seven`, without the second-origin channel.
-* For `n ≥ 8`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
-  the two origin identities give `(origin-exact)`, and `Sendov.polar_origin_incompatible` says
-  the two cannot hold together.
+* For `n ≥ 257`, raw polar and first-origin alone close the entire interval `0 < a < 1`.
+* For `8 ≤ n ≤ 256` with `(n-1)(1-a) ≤ 2/5`, the uniform near-endpoint budget
+  also closes with first-origin alone.
+* In the remaining finite-degree region, the centroid identity and the two origin identities
+  give `(origin-exact)`, and `Sendov.polar_origin_incompatible` closes the contradiction.
 * For `n ≤ 5`, `Sendov.low_degree_contradiction` shows `(⋆)` is already contradictory on its own,
   with no recourse to the origin channel. Degree five belongs only to this low-degree branch.
 
@@ -109,6 +111,14 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     rw [Complex.re_add_im, mul_div_cancel₀ _ hne]
   obtain ⟨hxre, hx2⟩ := xy_bounds hn hqcard hq1 hxy
   have hpolar := one_le_integral_Ppolar hn (a := a) (x := x) hqcard hq1 hxre hstar
+  -- All sufficiently large degrees use only the first-origin channel.
+  by_cases hlarge : 257 ≤ n
+  · have hxSq : x ^ 2 ≤ 1 := (le_add_of_nonneg_right (sq_nonneg y)).trans hx2
+    exact FirstOriginBudget.uniform_contradiction hlarge ha0 ha1
+      (by nlinarith [sq_nonneg (x + 1)]) (by nlinarith [sq_nonneg (x - 1)])
+      hqcard hq1 hxre hxy hpolar
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
   -- The uniform near-endpoint region uses only the first-origin channel.
   by_cases hnear : ((n : ℝ) - 1) * (1 - a) ≤ 2 / 5
   · have hxSq : x ^ 2 ≤ 1 := (le_add_of_nonneg_right (sq_nonneg y)).trans hx2

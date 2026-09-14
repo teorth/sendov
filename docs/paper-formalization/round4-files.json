@@ -1,0 +1,8 @@
+[
+  "Sendov/Analytic/PaperUniform.lean",
+  "tests/PaperUniform.lean",
+  "Sendov/Analytic/PaperHistoricalBounds.lean",
+  "tests/PaperHistoricalBoundsTests.lean",
+  "Sendov/Analytic/FirstOriginMargins.lean",
+  "tests/FirstOriginMargins.lean"
+]

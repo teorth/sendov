@@ -2,12 +2,14 @@ import Sendov.Analytic.FirstOriginBudget
 
 #print axioms Sendov.FirstOriginBudget.lower_budget
 #print axioms Sendov.FirstOriginBudget.near_contradiction
+#print axioms Sendov.FirstOriginBudget.uniform_contradiction
 
 -- Verify proof-value independence, not merely an import or a theorem name.
 open Lean Elab Command in
 run_cmd do
   let env := (← getEnv).setExporting false
   for root in #[`Sendov.FirstOriginBudget.near_contradiction,
+      `Sendov.FirstOriginBudget.uniform_contradiction,
       `Sendov.FirstOriginSmall.first_origin_polar_six_seven] do
     let mut pending := [root]
     let mut seen : Std.HashSet Name := {}
