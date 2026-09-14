@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "sympy_version": "1.13.1",
+  "identities": [
+    {
+      "gap": "gap1",
+      "degree": 53,
+      "identity": true,
+      "coefficients": 54,
+      "factor_identities": 6,
+      "factor_coefficients": 29
+    },
+    {
+      "gap": "gapLow",
+      "degree": 47,
+      "identity": true,
+      "coefficients": 48,
+      "factor_identities": 6,
+      "factor_coefficients": 21
+    },
+    {
+      "gap": "gapHigh",
+      "degree": 47,
+      "identity": true,
+      "coefficients": 48,
+      "factor_identities": 6,
+      "factor_coefficients": 21
+    }
+  ],
+  "interior_coefficient_mutants_rejected": [
+    "gap1",
+    "gapLow",
+    "gapHigh"
+  ],
+  "scope": "Exact rational polynomial identities from displayed note formulas and JSON; not an analytic proof or Lean replay."
+}
