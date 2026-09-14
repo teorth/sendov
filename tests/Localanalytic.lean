@@ -32,11 +32,10 @@ example {w : ℂ} (hw : ‖w‖ ≤ 1) :
       abs_of_nonneg (sub_nonneg.2 (pow_le_one₀ (norm_nonneg w) hw))]
 
 example {v : ℂ} (hre : v.re = 1) (hv : ‖v‖ ≤ 1) : v = 1 := by
-  have him : v.im = 0 := by
-    have hsq := pow_le_one₀ (norm_nonneg v) hv (n := 2)
-    rw [Complex.sq_norm, Complex.normSq_apply] at hsq
-    nlinarith only [hsq, hre, sq_nonneg v.im]
-  apply Complex.ext <;> simp [hre, him]
+  -- Migrate the existing scalar boundary consumer to the refined moment API.
+  exact all_eq_one_of_sum_norm_sq_le_card (s := {v})
+    (by simpa using pow_le_one₀ (norm_nonneg v) hv (n := 2))
+    (by simp [hre]) v (by simp)
 
 example (g f : ℂ → ℂ) : ∀ (s : Multiset ℂ), (∀ v ∈ s, ‖g v‖ ≤ 1) →
     ‖sumEraseProdC s g f‖ ≤ sumEraseProdMap s (fun v => ‖f v‖) := by

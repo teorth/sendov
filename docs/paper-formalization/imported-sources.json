@@ -1,0 +1,114 @@
+[
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-near/Sendov/Analytic/PaperNearAlgebra.lean",
+    "target": "Sendov/Analytic/PaperNearAlgebra.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-near/tests/PaperNearAlgebra.lean",
+    "target": "tests/PaperNearAlgebra.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-taylor/Sendov/Analytic/PaperTaylor.lean",
+    "target": "Sendov/Analytic/PaperTaylor.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-taylor/tests/PaperTaylor.lean",
+    "target": "tests/PaperTaylor.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-polar/Sendov/Analytic/PaperPolar.lean",
+    "target": "Sendov/Analytic/PaperPolar.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-polar/Sendov/Tests/PaperPolar.lean",
+    "target": "tests/PaperPolar.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov.lean",
+    "target": "Sendov.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Analytic/FirstOriginAlgebra.lean",
+    "target": "Sendov/Analytic/FirstOriginAlgebra.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Analytic/FirstOriginBounds.lean",
+    "target": "Sendov/Analytic/FirstOriginBounds.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Analytic/FirstOriginSmall.lean",
+    "target": "Sendov/Analytic/FirstOriginSmall.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Boundary.lean",
+    "target": "Sendov/Boundary.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Collinear/Balance.lean",
+    "target": "Sendov/Collinear/Balance.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Collinear/Diameter.lean",
+    "target": "Sendov/Collinear/Diameter.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Collinear/Gate.lean",
+    "target": "Sendov/Collinear/Gate.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Collinear/Mass.lean",
+    "target": "Sendov/Collinear/Mass.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Collinear/Moment.lean",
+    "target": "Sendov/Collinear/Moment.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/Sendov/Interior.lean",
+    "target": "Sendov/Interior.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/BoundaryAudit.lean",
+    "target": "tests/BoundaryAudit.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/BoundaryContracts.lean",
+    "target": "tests/BoundaryContracts.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/BoundaryProbe.lean",
+    "target": "tests/BoundaryProbe.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/BoundaryWiring.lean",
+    "target": "tests/BoundaryWiring.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/CollinearAcceptance.lean",
+    "target": "tests/CollinearAcceptance.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/CollinearRound2Tests.lean",
+    "target": "tests/CollinearRound2Tests.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/CollinearTests.lean",
+    "target": "tests/CollinearTests.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/FirstOriginAudit.lean",
+    "target": "tests/FirstOriginAudit.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/FirstOriginWiring.lean",
+    "target": "tests/FirstOriginWiring.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/Localanalytic.lean",
+    "target": "tests/Localanalytic.lean"
+  },
+  {
+    "source": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-existing/tests/verify_existing_integration.py",
+    "target": "tests/verify_existing_integration.py"
+  }
+]

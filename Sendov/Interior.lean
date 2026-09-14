@@ -6,6 +6,7 @@ Authors: Terence Tao
 import Sendov.Analytic.OriginExact
 import Sendov.Analytic.Polar
 import Sendov.Analytic.LowDegree
+import Sendov.Analytic.FirstOriginSmall
 import Sendov.Analytic.Jsum
 import Sendov.Counterexample.Factor
 import Sendov.Reduction.Main
@@ -25,7 +26,9 @@ disk, and `Sendov.exists_root_multiset` writes `p` over the other zeroes `zⱼ`.
 
 From `(⋆)` the argument branches on the degree.
 
-* For `n ≥ 6`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
+* For `n = 6` or `n = 7`, the first-origin factorization bound and `(⋆)` feed
+  `Sendov.FirstOriginSmall.first_origin_polar_six_seven`, without the second-origin channel.
+* For `n ≥ 8`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
   the two origin identities give `(origin-exact)`, and `Sendov.polar_origin_incompatible` says
   the two cannot hold together.
 * For `n ≤ 5`, `Sendov.low_degree_contradiction` shows `(⋆)` is already contradictory on its own,
@@ -94,6 +97,10 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
   -- the branch: low degree needs nothing further
   rcases (by omega : n ≤ 5 ∨ 6 ≤ n) with hn5 | hn6
   · exact low_degree_contradiction hn hn5 ha0 ha1 hqcard hq1 hstar
+  by_cases hn67 : n = 6 ∨ n = 7
+  · exact FirstOriginSmall.first_origin_polar_six_seven hn67 ha0 ha1 hqcard hq1 hstar
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
   have hn5 : 5 ≤ n := by omega
   -- `x + iy` is the centroid of the `qⱼ`
   obtain ⟨x, y, hxy⟩ : ∃ x y : ℝ, q.sum = ((n : ℂ) - 1) * ((x : ℂ) + (y : ℂ) * I) := by

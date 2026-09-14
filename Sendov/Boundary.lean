@@ -23,10 +23,11 @@ The polar identity is useless here: at `a = 1` the reflected point `1/a` coincid
 
   `∑ⱼ qⱼ = 2 ∑ⱼ 1/(1 - zⱼ)`,   `qⱼ = 1/(1 - wⱼ)`.
 
-Both sides are then sandwiched.  On the left `Re qⱼ ≤ ‖qⱼ‖ ≤ 1`, so the real part is at most
-`n-1`; on the right `Re 1/(1-z) ≥ 1/2` for `‖z‖ ≤ 1`, because
-`Re 1/(1-z) - 1/2 = (1-‖z‖²)/(2‖1-z‖²)`, so the real part is at least `n-1`.  Equality forces
-`Re qⱼ = 1` for every `j`, hence `qⱼ = 1`, hence every critical point is `0`, hence
+The right side has real part at least `n-1`: `Re 1/(1-z) ≥ 1/2` for `‖z‖ ≤ 1`, because
+`Re 1/(1-z) - 1/2 = (1-‖z‖²)/(2‖1-z‖²)`.  On the left `‖qⱼ‖ ≤ 1` gives
+`∑ⱼ ‖qⱼ‖² ≤ n-1`.  The squared-distance identity now gives
+`0 ≤ ∑ⱼ ‖qⱼ - 1‖² = ∑ⱼ ‖qⱼ‖² - 2 Re ∑ⱼ qⱼ + (n-1) ≤ 0`.
+Every summand vanishes, hence every `qⱼ = 1`, hence every critical point is `0`, hence
 `p' = n c Xⁿ⁻¹` and `p = c(Xⁿ - 1)`.
 
 The repeated-root case is handled before any division: if `1` is a multiple zero then `p'(1) = 0`
@@ -86,32 +87,31 @@ lemma half_le_re_inv_one_sub {z : ℂ} (hz : ‖z‖ ≤ 1) (hz1 : z ≠ 1) :
   simp only [Complex.sub_re, Complex.sub_im, Complex.one_re, Complex.one_im]
   nlinarith [hsq]
 
-/-- A point of the closed unit disk with real part `1` is `1`. -/
-lemma eq_one_of_re_eq_one_of_norm_le_one {v : ℂ} (hre : v.re = 1) (hv : ‖v‖ ≤ 1) : v = 1 := by
-  have him : v.im = 0 := by
-    have hsq := pow_le_one₀ (norm_nonneg v) hv (n := 2)
-    rw [Complex.sq_norm, Complex.normSq_apply] at hsq
-    nlinarith only [hsq, hre, sq_nonneg v.im]
-  apply Complex.ext <;> simp [hre, him]
+/-- The sum of squared distances to `1`, with multiplicities (also for the empty multiset). -/
+lemma sum_norm_sub_one_sq (s : Multiset ℂ) :
+    (s.map (fun v => ‖v - 1‖ ^ 2)).sum =
+      (s.map (fun v => ‖v‖ ^ 2)).sum - 2 * s.sum.re + s.card := by
+  simp_rw [Complex.sq_norm, Complex.normSq_sub, Complex.normSq_one, map_one, mul_one]
+  rw [Multiset.sum_map_sub, Multiset.sum_map_add, Multiset.sum_map_mul_left, sum_map_re]
+  simp only [Multiset.map_const', Multiset.sum_replicate, nsmul_eq_mul, mul_one]
+  ring
 
-/-- A multiset of nonnegative reals summing to zero is all zeroes. -/
-lemma eq_zero_of_sum_eq_zero {s : Multiset ℝ} (hs : ∀ x ∈ s, 0 ≤ x) (h : s.sum = 0) :
-    ∀ x ∈ s, x = 0 := by
-  exact Multiset.all_zero_of_le_zero_le_of_sum_eq_zero hs h
-
-lemma sum_le_card_mul (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, x ≤ c) →
-    s.sum ≤ (s.card : ℝ) * c := by
-  intro s h
-  simpa only [nsmul_eq_mul] using Multiset.sum_le_card_nsmul s c h
-
-lemma card_mul_le_sum (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, c ≤ x) →
-    (s.card : ℝ) * c ≤ s.sum := by
-  intro s h
-  simpa only [nsmul_eq_mul] using Multiset.card_nsmul_le_sum h
-
-lemma sum_map_one_sub_re (s : Multiset ℂ) :
-    (s.map (fun v => 1 - v.re)).sum = (s.card : ℝ) - (s.map (fun v => v.re)).sum := by
-  simp [Multiset.sum_map_sub, Multiset.map_const', Multiset.sum_replicate]
+/-- Average second moment at most `1` and average real part at least `1` force every point
+ to be `1`.  No pointwise disk bound or nonempty hypothesis is needed. -/
+lemma all_eq_one_of_sum_norm_sq_le_card {s : Multiset ℂ}
+    (hsecond : (s.map (fun v => ‖v‖ ^ 2)).sum ≤ (s.card : ℝ))
+    (hfirst : (s.card : ℝ) ≤ s.sum.re) : ∀ v ∈ s, v = 1 := by
+  have hzero : (s.map (fun v => ‖v - 1‖ ^ 2)).sum = 0 := by
+    apply le_antisymm
+    · rw [sum_norm_sub_one_sq]
+      linarith only [hsecond, hfirst]
+    · exact Multiset.sum_nonneg (by simp only [Multiset.mem_map]; rintro _ ⟨v, _, rfl⟩; positivity)
+  intro v hv
+  have hvzero := Multiset.all_zero_of_le_zero_le_of_sum_eq_zero
+    (s := s.map (fun v => ‖v - 1‖ ^ 2))
+    (by simp only [Multiset.mem_map]; rintro _ ⟨u, _, rfl⟩; positivity)
+    hzero _ (Multiset.mem_map_of_mem _ hv)
+  exact sub_eq_zero.mp (norm_eq_zero.mp (sq_eq_zero_iff.mp hvzero))
 
 /-! ### The boundary reciprocal identity -/
 
@@ -131,48 +131,27 @@ theorem boundary_reciprocal {n : ℕ} {Zs Qi : Multiset ℂ} (hn0 : (n : ℂ) �
     linear_combination (-2 * (Zs.map (fun u => u⁻¹)).sum) * hI + 2 * h1 + hII - (n : ℂ) * h2
   exact (mul_left_cancel₀ (mul_ne_zero hn0 hQ0) h).symm
 
-/-! ### The sandwich -/
+/-! ### Average second-moment rigidity -/
 
-/-- Both sides of `(BR)` are pinned: the left has real part at most `N`, the right at least `N`,
-so every `qⱼ` has real part `1` and hence, lying in the closed unit disk, equals `1`. -/
-theorem all_q_eq_one {N : ℕ} {qs zs : Multiset ℂ}
+/-- The boundary identity gives average real part at least `1`; an average second-moment
+bound then forces all `qⱼ = 1`.  This is weaker than assuming each `qⱼ` is in the unit disk. -/
+theorem all_q_eq_one_of_sum_norm_sq_le {N : ℕ} {qs zs : Multiset ℂ}
     (hqcard : qs.card = N) (hzcard : zs.card = N)
-    (hq1 : ∀ v ∈ qs, ‖v‖ ≤ 1) (hz1 : ∀ w ∈ zs, ‖w‖ ≤ 1) (hzne : ∀ w ∈ zs, w ≠ 1)
+    (hqsecond : (qs.map (fun v => ‖v‖ ^ 2)).sum ≤ (N : ℝ))
+    (hz1 : ∀ w ∈ zs, ‖w‖ ≤ 1) (hzne : ∀ w ∈ zs, w ≠ 1)
     (hBR : qs.sum = 2 * (zs.map (fun w => ((1 : ℂ) - w)⁻¹)).sum) :
     ∀ v ∈ qs, v = 1 := by
-  have hupper : (qs.map (fun v => v.re)).sum ≤ (N : ℝ) := by
-    have h := sum_le_card_mul 1 (qs.map (fun v => v.re)) (by
-      intro r hr
-      obtain ⟨v, hv, rfl⟩ := Multiset.mem_map.1 hr
-      exact (Complex.re_le_norm v).trans (hq1 v hv))
-    rwa [Multiset.card_map, hqcard, mul_one] at h
-  have hlower : (N : ℝ) ≤ (qs.map (fun v => v.re)).sum := by
-    have h := card_mul_le_sum (1 / 2) (zs.map (fun w => (((1 : ℂ) - w)⁻¹).re)) (by
+  apply all_eq_one_of_sum_norm_sq_le_card (hqcard ▸ hqsecond)
+  have h := Multiset.card_nsmul_le_sum (s := zs.map (fun w => (((1 : ℂ) - w)⁻¹).re))
+    (a := (1 : ℝ) / 2) (by
       intro r hr
       obtain ⟨w, hw, rfl⟩ := Multiset.mem_map.1 hr
       exact half_le_re_inv_one_sub (hz1 w hw) (hzne w hw))
-    rw [Multiset.card_map, hzcard] at h
-    have hmapre : (zs.map (fun w => (((1 : ℂ) - w)⁻¹).re)).sum
-        = (zs.map (fun w => ((1 : ℂ) - w)⁻¹)).sum.re := by
-      rw [← sum_map_re, Multiset.map_map]
-      rfl
-    have hre : (qs.map (fun v => v.re)).sum
-        = 2 * (zs.map (fun w => (((1 : ℂ) - w)⁻¹).re)).sum := by
-      rw [sum_map_re, hBR, hmapre, Complex.mul_re]
-      simp
-    rw [hre]
-    linarith
-  have heq : (qs.map (fun v => 1 - v.re)).sum = 0 := by
-    rw [sum_map_one_sub_re, hqcard]
-    linarith
-  intro v hv
-  refine eq_one_of_re_eq_one_of_norm_le_one ?_ (hq1 v hv)
-  have hzero := eq_zero_of_sum_eq_zero (s := qs.map (fun v => 1 - v.re)) (by
-    intro r hr
-    obtain ⟨u, hu, rfl⟩ := Multiset.mem_map.1 hr
-    have := (Complex.re_le_norm u).trans (hq1 u hu)
-    linarith) heq (1 - v.re) (Multiset.mem_map_of_mem _ hv)
-  linarith
+  rw [Multiset.card_map, hzcard, nsmul_eq_mul] at h
+  rw [hqcard, hBR, Complex.mul_re, Complex.re_ofNat, Complex.im_ofNat,
+    zero_mul, sub_zero, ← sum_map_re, Multiset.map_map]
+  simp only [Function.comp_def]
+  linarith only [h]
 
 /-! ### Rubinstein's theorem at `a = 1` -/
 
@@ -270,8 +249,15 @@ theorem rubinstein_one {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree
     rw [Multiset.map_map]
     rfl
   rw [hQiinv, hZsinv] at hBRraw
+  -- Pointwise unit-disk bounds imply the average second-moment bound.
+  have hqsecond : (q.map (fun v => ‖v‖ ^ 2)).sum ≤ ((n - 1 : ℕ) : ℝ) := by
+    have h := Multiset.sum_le_card_nsmul (q.map (fun v => ‖v‖ ^ 2)) (1 : ℝ) (by
+      intro r hr
+      obtain ⟨v, hv, rfl⟩ := Multiset.mem_map.1 hr
+      exact pow_le_one₀ (norm_nonneg v) (hq1 v hv))
+    simpa only [Multiset.card_map, hqcard, nsmul_eq_mul, mul_one] using h
   -- every `qⱼ` is `1`, so every critical point is `0`
-  have hqone := all_q_eq_one hqcard hzcard hq1 hz1 hzne hBRraw
+  have hqone := all_q_eq_one_of_sum_norm_sq_le hqcard hzcard hqsecond hz1 hzne hBRraw
   have hderivX : derivative p = C ((n : ℂ) * p.leadingCoeff) * X ^ (n - 1) := by
     rw [hpq]
     congr 1

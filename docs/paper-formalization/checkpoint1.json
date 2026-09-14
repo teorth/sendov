@@ -1,0 +1,9 @@
+{
+  "status": "partial_kernel_verified",
+  "gates": 60,
+  "compile_gates": 34,
+  "kernel_gates": 26,
+  "seconds": 318.20658225315856,
+  "exact_boundary_final_contracts": 10,
+  "complete_D": false
+}

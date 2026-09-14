@@ -4,6 +4,22 @@ Baseline: `0a4e966c41e1287f92d305d3bad8e70c8c295dde`.
 Integration branch: `formalize/paper-results-20260914`.
 Status: **IN PROGRESS**, not complete and not a uniform D proof.
 
+## Checkpoint 1 — integrated and freshly rechecked
+
+Boundary rigidity and first-origin n=6/n=7 are now actual consumers of both
+public Solution theorem proofs. The real-collinear moment theorem is exported
+independently; it is not a proof dependency of the general complex theorem.
+`PaperPolar`, `PaperTaylor`, and `PaperNearAlgebra` are now integrated, with
+actual raw-integral domination, actual integral Taylor budget, and the full
+rational near-endpoint rectangle respectively. Parent replay passed 60 gates
+(34 elaborations, 26 independent kernel checks); the prior bulk module gates
+are separate. Ten boundary/final theorem contracts match baseline exactly.
+Near-endpoint D still requires endpoint decay and parameter assembly.
+
+The initial task allocation below is retained as the acceptance inventory;
+worker assignments marked there refer to the completed first dispatch, not
+claims that all enclosing targets are finished.
+
 ## Acceptance units
 
 - Existing boundary average-square rigidity: re-integrate refined production
