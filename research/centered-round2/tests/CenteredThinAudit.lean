@@ -1,0 +1,6 @@
+import Sendov.Analytic.CenteredThinVariance
+#print axioms Sendov.CenteredThinVariance.crudeTail_le
+#print axioms Sendov.CenteredThinVariance.norm_B_two_global
+#print axioms Sendov.CenteredThinVariance.gamma_endpoint_le
+#print axioms Sendov.CenteredThinVariance.majorantTail_le_crude
+#print axioms Sendov.CenteredThinVariance.C_near_fullpolar_strip

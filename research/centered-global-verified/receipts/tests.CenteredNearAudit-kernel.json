@@ -1,0 +1,7 @@
+{
+  "module": "tests.CenteredNearAudit",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "db7d078f67ab5e031707cb9d25750866930d71126e8a300b8b5feb048efd9166",
+  "object_sha256": "d61d2e80620e33a5ee7147d786b6ae2f1b834dc305f87c278972e0882bac456d"
+}

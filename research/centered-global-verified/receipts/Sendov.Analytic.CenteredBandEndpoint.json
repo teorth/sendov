@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBandEndpoint",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "b08d24f6940c6f86611a7823129cc1b7b1720137c793dc3cb8c8a16f62a5b5a4",
+  "object_sha256": "d108250dd01c667bee62b245c2d726e276896112a46d6be5fb23353d3a77ce10"
+}

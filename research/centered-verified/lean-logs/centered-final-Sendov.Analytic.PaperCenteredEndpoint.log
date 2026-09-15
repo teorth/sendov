@@ -1,0 +1,54 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:28:50: warning: missing space in the source
+
+This part of the code
+  'm+1) (b'
+should be written as
+  'm + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:93:15: warning: missing space in the source
+
+This part of the code
+  '3*b ≤ (m'
+should be written as
+  '3 * b'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:93:27: warning: missing space in the source
+
+This part of the code
+  'ℝ)*h*(1-b))'
+should be written as
+  'ℝ) * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:93:32: warning: missing space in the source
+
+This part of the code
+  'ℝ)*h*(1-b)) (hz'
+should be written as
+  '(1 - b))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:93:45: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/Sendov/Analytic/PaperCenteredEndpoint.lean:93:48: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2 ≤ b)'
+should be written as
+  'z‖ ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

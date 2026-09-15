@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredMeanBudget",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "efa894bcde188a55d42d82df7c8b54b195c9350e6de0f8904dc0ee5dc1bac7d3",
+  "object_sha256": "e4291bf088dfc90c6622cd895c29cb3c72523b776522657e26c1f7f7b7a2713f"
+}

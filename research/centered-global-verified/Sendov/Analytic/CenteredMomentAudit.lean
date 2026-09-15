@@ -1,0 +1,18 @@
+import Sendov.Analytic.CenteredBernsteinMoment
+
+#print axioms Sendov.CenteredEndpointMoment.integral_rpow_le
+#print axioms Sendov.CenteredEndpointMoment.moment_le_upper
+#print axioms Sendov.CenteredEndpointMoment.moment_lt_one_of_upper
+#print axioms Sendov.CenteredEndpointMoment.endpointKernel_nonneg
+#print axioms Sendov.CenteredEndpointMoment.kernel_le_endpoint
+#print axioms Sendov.CenteredEndpointMoment.actualKernel_nonneg
+#print axioms Sendov.CenteredEndpointMoment.real_mean_gt_of_endpoint_moment
+#print axioms Sendov.CenteredEndpointMoment.weighted_sum_le
+#print axioms Sendov.CenteredEndpointMoment.weighted_sum_neg_of_le
+#print axioms Sendov.CenteredEndpointMoment.weighted_sum_neg
+#print axioms Sendov.CenteredEndpointMoment.bernsteinWeight_nonneg
+#print axioms Sendov.CenteredEndpointMoment.sum_bernsteinWeight
+#print axioms Sendov.CenteredEndpointMoment.bernstein_sum_neg
+#print axioms Sendov.CenteredEndpointMoment.lt_one_of_bernstein
+#print axioms Sendov.CenteredEndpointMoment.EndpointBernsteinCertificate.upper_moment_lt_one
+#print axioms Sendov.CenteredEndpointMoment.real_mean_gt_of_bernstein

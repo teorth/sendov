@@ -1,0 +1,6 @@
+{
+  "module": "tests.CenteredThinAudit",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "99c11a705c1772e6ab5fd3245d6f4003ab2b276901fb8d02c4ba105238b14624"
+}

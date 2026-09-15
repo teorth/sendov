@@ -1,0 +1,105 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:19:15: warning: missing space in the source
+
+This part of the code
+  '3*b ≤ (m:ℝ)*h*(1-b))'
+should be written as
+  '3 * b'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:19:22: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b))'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:19:25: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b))'
+should be written as
+  'ℝ) * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:19:30: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b)) :'
+should be written as
+  '(1 - b))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:40:5: warning: Variable name `hw` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hw
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:41:15: warning: missing space in the source
+
+This part of the code
+  '3*b ≤ (m:ℝ)*h*(1-b))'
+should be written as
+  '3 * b'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:41:22: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b))'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:41:25: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b))'
+should be written as
+  'ℝ) * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:41:30: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h*(1-b)) (hwb'
+should be written as
+  '(1 - b))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:41:43: warning: missing space in the source
+
+This part of the code
+  'w^2 ≤ b)'
+should be written as
+  'w ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:72:27: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖ ≤'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterEndpoint.lean:72:34: warning: missing space in the source
+
+This part of the code
+  '5/18) :'
+should be written as
+  '5 / 18)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

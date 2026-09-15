@@ -1,0 +1,29 @@
+Command actually executed:
+python3 /home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2/math-bound/verify.py
+
+Exit code: 0
+Final output: ALL 53 EXACT CHECKS PASSED. No grid was used.
+
+Selected exact outputs:
+A coefficient = 2125787/428415 < 5
+A margin/h = 79/504
+B margin/h = 19/840
+C first-integral coefficient = 41000960000000000/1808651422478220039 < 1/40
+C margins = 14h/15 + 293v/1000
+
+First witness:
+m=7, a=99/100,
+q=(1,1,1,1,1, 999999/1000001 +/- i*2000/1000001)
+v = 56000040/49000098000049
+K-1 = 192038360734699337294415723487393/560000560000000000000000000000000000 > 0
+
+Large-lambda-only witness:
+m=1000, a=9/10, q=(998 copies of 1, i, -i)
+v = 999/250000 > h/m^2
+K >= (81/10000)(27/25)^998 > 1 (exact rational comparison)
+
+Scope of verification:
+Exact rational constants, polynomial identities with nonnegative shifted
+coefficients, monotone-sequence base/ratio checks, and actual-family
+nonvacuity checks. Quantified analytic proof is in PROOF.md; no claim of
+Lean/kernel verification or global proof from finite numerical samples.

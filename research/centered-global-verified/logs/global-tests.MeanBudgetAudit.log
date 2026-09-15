@@ -1,0 +1,7 @@
+'Sendov.CenteredMeanBudget.norm_sq_add_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.norm_sq_ge_one_sub_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.Gamma_le_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.Gamma_le_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.Gamma_le_raw_lambda' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.Gamma_le_raw_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredMeanBudget.Gamma_le_fullpolar_degree' depends on axioms: [propext, Classical.choice, Quot.sound]

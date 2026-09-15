@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredQuarterAudit",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "8f9b2ae91cafac2147c0ed61d9f77a0395dd3e898c6228989ec47a39de08f1c1",
+  "object_sha256": "954f2ff939c794d8a8011734c13a3f30b2c28c9eb36b394104a6e529d878021d"
+}

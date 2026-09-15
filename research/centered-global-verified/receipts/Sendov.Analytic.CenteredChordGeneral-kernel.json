@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredChordGeneral",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "474018a22c5a3d5e3598a47e287f5a90e599b5f6850dbb9fe7c7292e9b7b172d",
+  "object_sha256": "fec31bfebe8cabeff15fc23b2491f84fa0c15a9b945465562b3eb905cbabd34d"
+}

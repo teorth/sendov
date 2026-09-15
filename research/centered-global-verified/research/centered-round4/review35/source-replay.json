@@ -1,0 +1,12 @@
+{
+  "checks_passed": 112,
+  "bernstein_max": -0.4613735336077785,
+  "tail_constant_squared": 0.18739365149347187,
+  "Gamma_constant": 0.060024009603841535,
+  "Gamma_B2_constant": 0.01966987556122983,
+  "proved_margin_h": "107/250",
+  "actual_FULLpolar_integral": 1.0014100154856307,
+  "extended_chord_tail_lower_bound": 0.9544132796217494,
+  "finite_chord_tail_lower_bound": 0.9511606591185526,
+  "actual_target_budget": 0.3628
+}

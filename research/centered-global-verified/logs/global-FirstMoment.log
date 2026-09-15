@@ -1,0 +1,2 @@
+'Sendov.PaperBinomialMode.first_moment_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperBinomialMode.probability_max_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

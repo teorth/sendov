@@ -1,0 +1,204 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:12:70: warning: missing space in the source
+
+This part of the code
+  '1/10)
+'
+should be written as
+  '1 / 10)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:13:25: warning: missing space in the source
+
+This part of the code
+  'M^2*v ≤ h)'
+should be written as
+  'M ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:56:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:44:27: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖ ≤'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:65:12: warning: missing space in the source
+
+This part of the code
+  '81/400 ≤'
+should be written as
+  '81 / 400'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:65:20: warning: missing space in the source
+
+This part of the code
+  'u^2) (hv0'
+should be written as
+  'u ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:65:45: warning: missing space in the source
+
+This part of the code
+  'M^2*v ≤ h)'
+should be written as
+  'M ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:66:11: warning: missing space in the source
+
+This part of the code
+  '1+Bv ≤'
+should be written as
+  '1 + Bv'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:66:18: warning: missing space in the source
+
+This part of the code
+  'M^2) :'
+should be written as
+  'M ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:109:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:112:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:99:59: warning: missing space in the source
+
+This part of the code
+  '1-‖μ‖^2)'
+should be written as
+  '1 - ‖μ‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:99:63: warning: missing space in the source
+
+This part of the code
+  '1-‖μ‖^2)
+ '
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:142:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:119:11: warning: missing space in the source
+
+This part of the code
+  '9/10 ≤'
+should be written as
+  '9 / 10'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:119:57: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:122:30: warning: missing space in the source
+
+This part of the code
+  'ℂ)+(t :'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:122:38: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:122:41: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a :'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:122:49: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:122:52: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:123:41: warning: missing space in the source
+
+This part of the code
+  'z-μ)) ≤'
+should be written as
+  'z - μ))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:123:50: warning: missing space in the source
+
+This part of the code
+  '(1-a)/(q.card'
+should be written as
+  '(1 - a)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:123:53: warning: missing space in the source
+
+This part of the code
+  '(1-a)/(q.card'
+should be written as
+  'a) / (q.card'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredThinVariance.lean:123:66: warning: missing space in the source
+
+This part of the code
+  'ℝ)^2) :'
+should be written as
+  'ℝ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

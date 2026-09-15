@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBandScalar",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "fd84611889cb0cc1eb1e59ab049fba5ae3f0e048b42533f6d37acdc85b8a851e",
+  "object_sha256": "af9ef52ec69c64055b2993052437b171014abe70d6103d10cb25395cd5b00cf5"
+}

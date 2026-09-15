@@ -1,0 +1,10 @@
+{
+  "mode": "full-rational",
+  "exact_families": 13,
+  "two_precision_cases": 30,
+  "full_numeric_rerun": false,
+  "frozen_lean_checks": 10,
+  "seconds": 156.81447213998763,
+  "uniform_C_near": "OPEN",
+  "counterexample": "none certified"
+}

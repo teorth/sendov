@@ -1,0 +1,9 @@
+'Sendov.PaperCenteredTail.normalized_H_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredTail.majorant_term_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredTail.majorant_block_le_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.endpoint_power_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.norm_endpoint_half_of_rawPolar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.zero_variance_C_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/tests/PaperCenteredStructural.lean:15:88: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

@@ -1,0 +1,418 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:26:62: warning: missing space in the source
+
+This part of the code
+  '1/21)
+'
+should be written as
+  '1 / 21)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:27:16: warning: missing space in the source
+
+This part of the code
+  '1-h) :'
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:35:30: warning: missing space in the source
+
+This part of the code
+  '1/21) (hah'
+should be written as
+  '1 / 21)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:35:47: warning: missing space in the source
+
+This part of the code
+  '1-h)
+ '
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:36:11: warning: missing space in the source
+
+This part of the code
+  '1/4 ≤ (m:ℝ)*h)'
+should be written as
+  '1 / 4'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:36:18: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h)'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:36:21: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h) :'
+should be written as
+  'ℝ) * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:66:36: warning: Variable name `hu` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hu
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:67:16: warning: missing space in the source
+
+This part of the code
+  '1/10) (hstat'
+should be written as
+  '1 / 10)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:67:31: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:75:30: warning: missing space in the source
+
+This part of the code
+  '1/21) (hah'
+should be written as
+  '1 / 21)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:75:47: warning: missing space in the source
+
+This part of the code
+  '1-h)
+ '
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:76:11: warning: missing space in the source
+
+This part of the code
+  '1/4 ≤ (m:ℝ)*h)'
+should be written as
+  '1 / 4'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:76:18: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h)'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:76:21: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h) (hu'
+should be written as
+  'ℝ) * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:77:16: warning: missing space in the source
+
+This part of the code
+  '1/10) (hstat'
+should be written as
+  '1 / 10)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:77:31: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:106:53: warning: missing space in the source
+
+This part of the code
+  '113/120 ≤'
+should be written as
+  '113 / 120'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:107:28: warning: missing space in the source
+
+This part of the code
+  '1/30) :'
+should be written as
+  '1 / 30)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:123:64: warning: missing space in the source
+
+This part of the code
+  '1-h)
+ '
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:124:12: warning: missing space in the source
+
+This part of the code
+  '1/4 ≤ m*h)'
+should be written as
+  '1 / 4'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:124:18: warning: missing space in the source
+
+This part of the code
+  'm*h) (hl1'
+should be written as
+  'm * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:124:30: warning: missing space in the source
+
+This part of the code
+  'm*h ≤ 1/3)'
+should be written as
+  'm * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:124:36: warning: missing space in the source
+
+This part of the code
+  '1/3) (hv0'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:125:11: warning: missing space in the source
+
+This part of the code
+  'v*(3+m*h)'
+should be written as
+  'v * (3'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:125:14: warning: missing space in the source
+
+This part of the code
+  'v*(3+m*h) ≤'
+should be written as
+  '(3 + m'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:125:23: warning: missing space in the source
+
+This part of the code
+  'm*h) :'
+should be written as
+  'm * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:153:30: warning: missing space in the source
+
+This part of the code
+  '1/21) (hah'
+should be written as
+  '1 / 21)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:153:47: warning: missing space in the source
+
+This part of the code
+  '1-h)
+ '
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:12: warning: missing space in the source
+
+This part of the code
+  '1/4 ≤ (m:ℝ)*h)'
+should be written as
+  '1 / 4'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:19: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h)'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:22: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h) (hl1'
+should be written as
+  'ℝ) * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:35: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:38: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h ≤ 1/3)'
+should be written as
+  'ℝ) * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:154:44: warning: missing space in the source
+
+This part of the code
+  '1/3)
+ '
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:155:13: warning: missing space in the source
+
+This part of the code
+  '113/120 ≤'
+should be written as
+  '113 / 120'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:155:33: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:30: warning: missing space in the source
+
+This part of the code
+  '1/10) (hv'
+should be written as
+  '1 / 10)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:42: warning: missing space in the source
+
+This part of the code
+  'v*(3+(m:ℝ)*h)'
+should be written as
+  'v * (3'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:45: warning: missing space in the source
+
+This part of the code
+  'v*(3+(m:ℝ)*h)'
+should be written as
+  '(3 + (m'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:48: warning: missing space in the source
+
+This part of the code
+  'v*(3+(m:ℝ)*h)'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:51: warning: missing space in the source
+
+This part of the code
+  'v*(3+(m:ℝ)*h) ≤'
+should be written as
+  'ℝ) * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:59: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h)'
+should be written as
+  '(m : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:156:62: warning: missing space in the source
+
+This part of the code
+  '(m:ℝ)*h)
+ '
+should be written as
+  'ℝ) * h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:157:17: warning: missing space in the source
+
+This part of the code
+  '2*h^2/3) (hB'
+should be written as
+  '2 * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdScalar.lean:157:36: warning: missing space in the source
+
+This part of the code
+  '1/30) (hT'
+should be written as
+  '1 / 30)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

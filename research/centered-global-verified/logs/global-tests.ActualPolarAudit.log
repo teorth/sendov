@@ -1,0 +1,9 @@
+'Sendov.CenteredActualPolar.secondMoment_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.secondMoment_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.norm_square_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.prod_norm_le_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.actual_moment_of_fullpolar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.secondMoment_eq_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredActualPolar.actual_variance_moment_of_fullpolar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

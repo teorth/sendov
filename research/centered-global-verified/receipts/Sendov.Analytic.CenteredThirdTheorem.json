@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredThirdTheorem",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "197bc0f84d5f628ce21d092e2ac943f62a616e4abd39a0683c681224ecb9bf63",
+  "object_sha256": "209a3f96c4d0af25282eed68a645f9143548cdac990ae6f82e2f0e5f8a9c05e8"
+}

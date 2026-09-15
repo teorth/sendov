@@ -1,0 +1,18 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdEndpoint.lean:30:27: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖ ≤'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdEndpoint.lean:30:35: warning: missing space in the source
+
+This part of the code
+  '19/60) :'
+should be written as
+  '19 / 60)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

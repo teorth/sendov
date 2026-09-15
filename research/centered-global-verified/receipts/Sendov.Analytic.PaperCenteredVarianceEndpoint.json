@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.PaperCenteredVarianceEndpoint",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "f450f2424298485dad32e789ec4140b6249356dc2b578d8f0ebdeed4c01c58ee",
+  "object_sha256": "08fb0c6eb3751d834f1bb294bf05a5b4faa77f7f44a49f2421b006a2570db62c"
+}

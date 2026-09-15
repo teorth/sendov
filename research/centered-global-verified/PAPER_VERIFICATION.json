@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "scope": "reviewed paper proof and exact arithmetic/certificates; NOT global Lean/kernel verification",
+  "global_domain": "m>=7,9/10<=a<1,original FULLpolar+pointwise,actual complex mean/variance",
+  "global_margin": "(1-a)/20",
+  "historical_full_rational": true,
+  "records": [
+    {
+      "script": "centered-round2-verified/math-bound/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round2-verified/math-middle/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round2-verified/math-cutoff45/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round3/math-polar/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round4/math-residual/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round4/math-residual/audit.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round4/review35/audit.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round5/review-global/independent_checks.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round3/diagnostics/certify_chord.py",
+      "exit_code": 0
+    },
+    {
+      "script": "centered-round5/boundary-family/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "historical/centered-verified.zip:verify.py --full-rational",
+      "exit_code": 0,
+      "exact_families": 13
+    }
+  ]
+}

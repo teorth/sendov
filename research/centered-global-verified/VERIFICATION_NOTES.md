@@ -1,0 +1,6 @@
+# Verification notes
+
+- The full frozen-source build produced82 successful Lean/leanchecker invocations. Its first aggregate audit then rejected8 namespace-local `#print axioms` names because the parser compared their unqualified spelling with Lean's fully qualified output. This was a verifier name-resolution bug, not a Lean or mathematical failure.
+- The parser now resolves those local names through their unique declared namespace and rejects ambiguous cases. No Lean source or object bytes changed. Rechecking all source/receipt pairs and axiom logs passed, with111 distinct queries. The original rebuild log is preserved rather than fabricated as a clean run.
+- `python3 -B verify.py --full-rational` subsequently exited0, running all current exact paper/witness scripts, reconstructing all13 historical exact families, and validating every frozen Lean source/receipt/axiom entry. This final command validates the fresh compiler receipts; without `--rebuild` it does not claim a second compiler run.
+- The final package is a reviewed paper proof plus partial-domain/general structural kernel evidence. No global kernel theorem is asserted. Source-format warnings remain nonblocking in some inherited modules.

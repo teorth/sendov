@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered/finalists.py", line 20, in <module>
+    if __name__=='__main__':run()
+                            ^^^^^
+  File "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered/finalists.py", line 8, in run
+    chosen=[max(rows,key=lambda r:r['result'][key])['result'] for key in ['ratio','stress']]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered/finalists.py", line 8, in <listcomp>
+    chosen=[max(rows,key=lambda r:r['result'][key])['result'] for key in ['ratio','stress']]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered/finalists.py", line 8, in <lambda>
+    chosen=[max(rows,key=lambda r:r['result'][key])['result'] for key in ['ratio','stress']]
+                                  ~^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'

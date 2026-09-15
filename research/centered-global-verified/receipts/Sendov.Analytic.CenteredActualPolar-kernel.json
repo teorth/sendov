@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredActualPolar",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "52788c0b7937cfbe66581d2310305be99e4f845231fa11c36f1cb757549cb983",
+  "object_sha256": "15632d2993bead25c6a4966592790d3fa3e2061757facb13e774c7a7e47ce5d9"
+}

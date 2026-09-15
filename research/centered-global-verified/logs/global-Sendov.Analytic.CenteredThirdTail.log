@@ -1,0 +1,55 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:43:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:26:56: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2) :'
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:52:56: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2) :'
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:94:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:109:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:79:65: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2)
+ '
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:80:61: warning: missing space in the source
+
+This part of the code
+  '(1-c)^2)'
+should be written as
+  '(1 - c)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTail.lean:80:64: warning: missing space in the source
+
+This part of the code
+  '(1-c)^2) :'
+should be written as
+  'c) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

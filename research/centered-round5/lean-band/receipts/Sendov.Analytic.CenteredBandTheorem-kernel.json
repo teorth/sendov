@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBandTheorem",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "553f3969e0e842ceae5d9405c017f61b7fd8430170ff8a7f12cd765d62a93a9d",
+  "object_sha256": "ead395b68f62f4757bdd6fc7131cf2c6f56ae98fdc5e3507b492e665fc1b7957"
+}

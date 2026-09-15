@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "checks_passed": 399,
+  "band_count": 8,
+  "degree_cover_count": 28,
+  "uniform_margin_h": "1/20"
+}

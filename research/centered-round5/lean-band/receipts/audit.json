@@ -1,0 +1,903 @@
+{
+  "status": "PASS",
+  "module_count": 6,
+  "declaration_count": 21,
+  "checks": [
+    {
+      "module": "Sendov.Analytic.CenteredBandScalar",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "fd84611889cb0cc1eb1e59ab049fba5ae3f0e048b42533f6d37acdc85b8a851e",
+      "object_sha256": "649ca7b13c13ed3273cd64a4d6b10105b2b9d095e0d01048f455581cc4f4d9ed"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandScalar",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "fd84611889cb0cc1eb1e59ab049fba5ae3f0e048b42533f6d37acdc85b8a851e",
+      "object_sha256": "649ca7b13c13ed3273cd64a4d6b10105b2b9d095e0d01048f455581cc4f4d9ed"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandTail",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "79f645c7d1d5765bac999eee3dc8e7f6f054895c05e0e452be1d9ee3f553ebf3",
+      "object_sha256": "85663f6f0ad9ad4cb02e7c7c5b38e5a05fa5278679e813e04cdfe2538c8f2f4d"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandTail",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "79f645c7d1d5765bac999eee3dc8e7f6f054895c05e0e452be1d9ee3f553ebf3",
+      "object_sha256": "85663f6f0ad9ad4cb02e7c7c5b38e5a05fa5278679e813e04cdfe2538c8f2f4d"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandEndpoint",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "b08d24f6940c6f86611a7823129cc1b7b1720137c793dc3cb8c8a16f62a5b5a4",
+      "object_sha256": "a6741b4c5151b73e2c739a27b10e0c3fa6f7219c2c19ee80781f7125b9f2357a"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandEndpoint",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "b08d24f6940c6f86611a7823129cc1b7b1720137c793dc3cb8c8a16f62a5b5a4",
+      "object_sha256": "a6741b4c5151b73e2c739a27b10e0c3fa6f7219c2c19ee80781f7125b9f2357a"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandTheorem",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "553f3969e0e842ceae5d9405c017f61b7fd8430170ff8a7f12cd765d62a93a9d",
+      "object_sha256": "ead395b68f62f4757bdd6fc7131cf2c6f56ae98fdc5e3507b492e665fc1b7957"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandTheorem",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "553f3969e0e842ceae5d9405c017f61b7fd8430170ff8a7f12cd765d62a93a9d",
+      "object_sha256": "ead395b68f62f4757bdd6fc7131cf2c6f56ae98fdc5e3507b492e665fc1b7957"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandCertificate",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "561f01e318350d34c487db3cc733c284ebfba09292a3bfd30570ca03a76fecf3",
+      "object_sha256": "c2b642421d774e6b5c77ec712db2b81ac245142e85d65bf647a7c13b6a34215a"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBandCertificate",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "561f01e318350d34c487db3cc733c284ebfba09292a3bfd30570ca03a76fecf3",
+      "object_sha256": "c2b642421d774e6b5c77ec712db2b81ac245142e85d65bf647a7c13b6a34215a"
+    },
+    {
+      "module": "tests.CenteredBandAudit",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "bed12c007fb04fa09749722df0fba46b0a7437285179fe09e12d4ebfd3c4fd34",
+      "object_sha256": "461864bb85dda8b59488c125739ee80142ff0c94e718767ff9a69477f9323199"
+    },
+    {
+      "module": "tests.CenteredBandAudit",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "bed12c007fb04fa09749722df0fba46b0a7437285179fe09e12d4ebfd3c4fd34",
+      "object_sha256": "461864bb85dda8b59488c125739ee80142ff0c94e718767ff9a69477f9323199"
+    }
+  ],
+  "sources": {
+    "Sendov/Analytic/CenteredBandScalar.lean": "fd84611889cb0cc1eb1e59ab049fba5ae3f0e048b42533f6d37acdc85b8a851e",
+    "Sendov/Analytic/CenteredBandTail.lean": "79f645c7d1d5765bac999eee3dc8e7f6f054895c05e0e452be1d9ee3f553ebf3",
+    "Sendov/Analytic/CenteredBandEndpoint.lean": "b08d24f6940c6f86611a7823129cc1b7b1720137c793dc3cb8c8a16f62a5b5a4",
+    "Sendov/Analytic/CenteredBandTheorem.lean": "553f3969e0e842ceae5d9405c017f61b7fd8430170ff8a7f12cd765d62a93a9d",
+    "Sendov/Analytic/CenteredBandCertificate.lean": "561f01e318350d34c487db3cc733c284ebfba09292a3bfd30570ca03a76fecf3",
+    "tests/CenteredBandAudit.lean": "bed12c007fb04fa09749722df0fba46b0a7437285179fe09e12d4ebfd3c4fd34"
+  },
+  "checker_sha256": "9b439cc62d85f5946db7424a4cc3f25d5cf5c694f5b4f6fd25d759efcb6a0837",
+  "verify_sha256": "108681d42a4243968dbf8632455a1a256e53f8de020fda1c52f7e987701a322b",
+  "forbidden_source_tokens": [],
+  "axioms": {
+    "Sendov.CenteredBand.C_near_fullpolar_band": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.C_near_fullpolar_band_of_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.C_near_raw_band": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.actual_tail_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.available_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.cubicIntegral_le_curved": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.curvedIntegral_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.curved_quadratic_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.curved_quadratic_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.endpoint_quadratic_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.gamma_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.mean_sqrt_variance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.norm_B_two_le_band": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.norm_B_two_le_power": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.original_tail_le_band": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.scalar_budget": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.tailConstant_le_of_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.tailFactor_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.tailFactor_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.tail_expression_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredBand.weightSum_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "read_only_baseline_objects": {
+    ".lake/paper/objects/BinomialMode.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/BinomialMode.olean",
+      "sha256": "a68cb49d86b7718b8cae17dd6eb98ced83e226d2f29ab8315a580cc8d1151d92"
+    },
+    ".lake/paper/objects/Challenge.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Challenge.olean",
+      "sha256": "06345bb9fe913d518155d25410194e09b19330dcd9d2bcdce363be9f99b02fe0"
+    },
+    ".lake/paper/objects/CoefficientBound.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/CoefficientBound.olean",
+      "sha256": "144f7ca2b89754d9274ac75a1d84c006ebf622847be06c0a3954cebe269ec09b"
+    },
+    ".lake/paper/objects/FirstMoment.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/FirstMoment.olean",
+      "sha256": "02ee21b588122d88871ad2f8c33307c4dadede550c10be85f7fd408a72f5c8a9"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredActualTail.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredActualTail.olean",
+      "sha256": "375812658e924eeafdcd1390559f4617886ce001c99168eccffe9fbb6c85993b"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredChordGeneral.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredChordGeneral.olean",
+      "sha256": "071bc9fd56df2a363007392334da46b80a2b870686cda041ac7e007808a70f9b"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredMeanBudget.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredMeanBudget.olean",
+      "sha256": "22f82e87b552dbeb446d140e867c489816d4666a9278ea7a1c37764b06a1250b"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredNearChord.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredNearChord.olean",
+      "sha256": "eac8c5f542a0f62e4d15192baeff402bce986f8b9708b664e0101f645a4cfa87"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredNearEndpoint.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredNearEndpoint.olean",
+      "sha256": "599ce079dcbdaf3b0325cabf3165c5f7d4e9f20f63ce923970df693f7b637953"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredNearScalar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredNearScalar.olean",
+      "sha256": "0949c011d61899d22fbd1b404479b1251cc81a061e2afae257cbe4f18f8d0171"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredNearTheorem.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredNearTheorem.olean",
+      "sha256": "cbed489743dcbba3ee72a4ddb06433d49a9a17fe2486b3ff88e595a70e730e82"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredQuarterActual.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredQuarterActual.olean",
+      "sha256": "19cd0d67a25ec8175c1335b877fa6efc2a10c57583a7b73ccad17630d55aede3"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredQuarterAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredQuarterAudit.olean",
+      "sha256": "954f2ff939c794d8a8011734c13a3f30b2c28c9eb36b394104a6e529d878021d"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredQuarterEndpoint.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredQuarterEndpoint.olean",
+      "sha256": "008d972c68ff3c8a296694dbf290beb8cd871717d3574ffdeaf6d8e156387061"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredQuarterScalar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredQuarterScalar.olean",
+      "sha256": "379bcfdf055db82e2f05fdf13267774cfc2e5a4cd9cba3c2532ba32d5f00568a"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredQuarterTheorem.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredQuarterTheorem.olean",
+      "sha256": "a469864ce60b0a961e41c373773836244a3888b255818d9f1a43237c6ce57b16"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThinVariance.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/CenteredThinVariance.olean",
+      "sha256": "13712c324bf4bf7850b1a7aa2aff5980c889450cf093ca867a1c8c05777a6fb8"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThirdActual.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredThirdActual.olean",
+      "sha256": "45dc3da187765d304d89918087d63347e7885c6a7a8d56fac6c2ab436dfd510d"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThirdEndpoint.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredThirdEndpoint.olean",
+      "sha256": "93a2b6e90bc19b9579f1028715bbb7e1f98846925d59e8d1104295b4fef0ff60"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThirdScalar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredThirdScalar.olean",
+      "sha256": "f26c2fee065abd1b5a778b279870fbd87c461a890f0f4f462d8bc75723d4c2b6"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThirdTail.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredThirdTail.olean",
+      "sha256": "ef917d24c4065e7c6b45627b81049fd034b7d11f5692778c74691e6c38bea2f8"
+    },
+    ".lake/paper/objects/Sendov/Analytic/CenteredThirdTheorem.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/Sendov/Analytic/CenteredThirdTheorem.olean",
+      "sha256": "c6f9be880c2e02b6e8686d54c5981058bd8c7da745100af0a253a38dda1fcc35"
+    },
+    ".lake/paper/objects/Sendov/Analytic/Defect.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/Defect.olean",
+      "sha256": "60b4384c682312a5d0c69061be8e9f871f950919a5141d1367c0bbd9626bdb4d"
+    },
+    ".lake/paper/objects/Sendov/Analytic/FirstOriginAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/FirstOriginAlgebra.olean",
+      "sha256": "8ca51efa5832a32df24a205408f115be7ed930a6798368e890b234c540f6b1d1"
+    },
+    ".lake/paper/objects/Sendov/Analytic/FirstOriginBounds.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/FirstOriginBounds.olean",
+      "sha256": "79a09c1e1d1f4bc1b9edd1792c32513664deb4d2cd4231f39c771d4f7d905d32"
+    },
+    ".lake/paper/objects/Sendov/Analytic/FirstOriginBudget.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/FirstOriginBudget.olean",
+      "sha256": "4808b93ed70107b803ccdd111bb21a97409b7948aed5867a060e607c6293a8b0"
+    },
+    ".lake/paper/objects/Sendov/Analytic/FirstOriginMargins.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/FirstOriginMargins.olean",
+      "sha256": "300cf7ea0a249878a0bafb99d1cd29b58d54258b35f7d743e4259532e7a985da"
+    },
+    ".lake/paper/objects/Sendov/Analytic/FirstOriginSmall.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/FirstOriginSmall.olean",
+      "sha256": "5454eb45389b961ce938b617912df15a095ba632c1bf9ba51a9a1433a2e34449"
+    },
+    ".lake/paper/objects/Sendov/Analytic/Jsum.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/Jsum.olean",
+      "sha256": "19dfee3de624de3d6ce06a1aab51512d7dad042f79182882ea4ad085ed437864"
+    },
+    ".lake/paper/objects/Sendov/Analytic/LowDegree.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/LowDegree.olean",
+      "sha256": "37b5675cde0743ac0df63672289ac6bd8ac574828a5801901ce4d47d6a7aad39"
+    },
+    ".lake/paper/objects/Sendov/Analytic/Maclaurin.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/Maclaurin.olean",
+      "sha256": "a4829134eec48b9b46dbb04e3d9207be1bba44cfe8a1351453a6806ff94b4c89"
+    },
+    ".lake/paper/objects/Sendov/Analytic/Origin.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/Origin.olean",
+      "sha256": "0d4adcc9cd29020d701ad40f896229efbcf94245d74dc6a3f001e35280654236"
+    },
+    ".lake/paper/objects/Sendov/Analytic/OriginExact.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/OriginExact.olean",
+      "sha256": "1df243a02a0eb54cffada28f3bb7e911881cfcdfc4d01f9c3ac3c6afa8d10187"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperBulkAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperBulkAlgebra.olean",
+      "sha256": "57a3097919537f0e60f80e94526fcb76ee8d89d18fa4864fe68bea6404a9dc3f"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCentered.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperCentered.olean",
+      "sha256": "94eb4c88ad993b75038c947a4fcc306bf4834d67eff938e7207713c51f5b7a45"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCenteredBound.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperCenteredBound.olean",
+      "sha256": "6db9c53217307c95477625cb50b7de0ad23d517d227b01c03cbffd0331a0e29a"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCenteredCertificate.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperCenteredCertificate.olean",
+      "sha256": "5b7eab6eb2287d0c63cf9e286562591f5b8ff8a82068ba8817289594d8b74ec4"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCenteredEndpoint.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/PaperCenteredEndpoint.olean",
+      "sha256": "15c868055f465edb4efcb2f590d6cfd244511521274aa43ea48991723c73bbf4"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCenteredTail.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/PaperCenteredTail.olean",
+      "sha256": "ef061c5e5eb67d2b1834478ae10ca1ff2c9ece4303339a5e26ce28397dbcb23c"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCenteredVarianceEndpoint.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/PaperCenteredVarianceEndpoint.olean",
+      "sha256": "08fb0c6eb3751d834f1bb294bf05a5b4faa77f7f44a49f2421b006a2570db62c"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperCoefficient.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperCoefficient.olean",
+      "sha256": "ac338525af01a30248e310c718db8a404f9b00f554290e0852de2c66ddc307c9"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperConjugate.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperConjugate.olean",
+      "sha256": "488fa5d5d09b40b75ec453a0830a304d72497e2d6425fea6b82dd88fbee9af59"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperConsequences.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperConsequences.olean",
+      "sha256": "d00ef52703e524253fdcdbe9510cd3e2dde18ad927501312bebe1c66e82b44f3"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperFactorialTail.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/Sendov/Analytic/PaperFactorialTail.olean",
+      "sha256": "7b016f35a364f14566eeedca514ddbdc55485d12d88023d8c42d3805c4d47240"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperGlobalPolar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperGlobalPolar.olean",
+      "sha256": "da81f2fe979be82d035619c17a5ea57fd1da95545974728e96037aaf57aa01f6"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperHistoricalBounds.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperHistoricalBounds.olean",
+      "sha256": "2b40ff7bd98f285b59206c36c7efaede18be9192f8c7942645476efc78e577a9"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperLaplace.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperLaplace.olean",
+      "sha256": "5359a85fb5ca2333de13ef927712dd69b12c951883f25c379d759b3f7fa45c1e"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperLegacyExact.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperLegacyExact.olean",
+      "sha256": "43e332e604a06694a07a6b2690fa2cea3f12184180b609b8a10ae1d6240d7d38"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperLegacyHelpers.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperLegacyHelpers.olean",
+      "sha256": "8dee33b6e1536159da2cbdbe0da6644e8568b9dbaa9cc206194a8e98f5235ba7"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperLegacyHundred.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperLegacyHundred.olean",
+      "sha256": "a0bb34cbb9fb2b817f3b4f4c33213e263b27fc53df7f7346f0146823a94a48eb"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperMomentCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperMomentCorollaries.olean",
+      "sha256": "e273ea28368e4590bfecfad71b544cca8f68ee35920af5d29623e2477e6dfee2"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperNear.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperNear.olean",
+      "sha256": "2bc0b8cab6697d8ae3a57f9e1d943c3cf383fa04727507485291c7d5bb6841cc"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperNearAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperNearAlgebra.olean",
+      "sha256": "7a1408c81c127153d0bb70edfdb0250b077340e754b352505cc1aeeb38f5149f"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperNearMargins.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperNearMargins.olean",
+      "sha256": "2b0ba440cddf4e71e4a998c80c67bb1757e5584a48052e55ad3f39fff9672452"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperOriginCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperOriginCorollaries.olean",
+      "sha256": "726c5e0d1efeee2b028652da129245e77ea65bed1e885449a8848f32dbeaac79"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperPolar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperPolar.olean",
+      "sha256": "a542cc5fcebf2188b7e9834590cbab902e346f32e64570fb3d68f3090b1ab4dc"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperRateDetails.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperRateDetails.olean",
+      "sha256": "48443eb131ee6452c24726d12d4dfa296cf6878a075327a058ec51fa82d09983"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperRayAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperRayAlgebra.olean",
+      "sha256": "a99c0a1ef142dc53f7a488f1e8b04d337642638e4a420fd0b8f1140a8965aa8e"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperRayGeometry.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperRayGeometry.olean",
+      "sha256": "be6dde94465012e7c3b23c04e73c428740069d53ae5d994518b9ebb9303c96e8"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperRegionCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperRegionCorollaries.olean",
+      "sha256": "84de9858945a08781ce8fe4465bec2c896c6cc2f47554177c615ca422a211498"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperSecant.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperSecant.olean",
+      "sha256": "2ed5f9843c63730a7c9e21b0890ceea6325a6ddc51062b5b6c1b405dca498000"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperTail.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperTail.olean",
+      "sha256": "834ae695102916c35391a9e6ecc1ca96acbf5c3fe0cbcf7a2d35c9d06f383009"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperTaylor.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperTaylor.olean",
+      "sha256": "1fc9d153d5f5c4097042840ea4f1f297087748079826cd8f2bad4caacc9fcb61"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperTwoEnd.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperTwoEnd.olean",
+      "sha256": "cafd0eb279acf349c953d573c31dfe8f517007b38762ca075dd003370eb832e1"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperUniform.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperUniform.olean",
+      "sha256": "913644d1b90ee745cdd969fea79d2a3cc4cd3edd6c870c55a65e23db19c49e4c"
+    },
+    ".lake/paper/objects/Sendov/Analytic/PaperWideRays.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/PaperWideRays.olean",
+      "sha256": "86e7981bb0905ce7c7f593875ed57b0f2e0469007158bc51b2a8a7f94a8187a7"
+    },
+    ".lake/paper/objects/Sendov/Analytic/Polar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Analytic/Polar.olean",
+      "sha256": "32f0774ecb286c1394d04714152f3a64bc30ffd82c60bc9711b35c48817f5419"
+    },
+    ".lake/paper/objects/Sendov/Boundary.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Boundary.olean",
+      "sha256": "a0f4286bec7cbb17588494f765701158911e06223f239675f3ed8810a6f2d0b7"
+    },
+    ".lake/paper/objects/Sendov/Collinear/Balance.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Collinear/Balance.olean",
+      "sha256": "ef6d7ca148f8e4d7282f5475f58cde1b896d999f66b043b55e018fe6a51071f5"
+    },
+    ".lake/paper/objects/Sendov/Collinear/Diameter.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Collinear/Diameter.olean",
+      "sha256": "921858933837123509f4abebcd4338f554b4dbf2c10671302e9df73559e59f77"
+    },
+    ".lake/paper/objects/Sendov/Collinear/Gate.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Collinear/Gate.olean",
+      "sha256": "be939dd7379718676e4e08cfec49512f5949a853830f70e868fa83e768908d95"
+    },
+    ".lake/paper/objects/Sendov/Collinear/Mass.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Collinear/Mass.olean",
+      "sha256": "27f66b765594c22275a07535b787cd612ad9f9ff537ad88fccc15b9e323a7b53"
+    },
+    ".lake/paper/objects/Sendov/Collinear/Moment.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Collinear/Moment.olean",
+      "sha256": "6108ec93a7ed802519c9cf09a48783934a8aaaa09134a3c2610b3b6cc900a314"
+    },
+    ".lake/paper/objects/Sendov/Common/Basic.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/Basic.olean",
+      "sha256": "866ee95124e0190d17124be8e0dbbbd1ef602e88d24acc0a0cb8e56f4209c9ac"
+    },
+    ".lake/paper/objects/Sendov/Common/BernsteinCert.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/BernsteinCert.olean",
+      "sha256": "1ad547714e3418c902425c8c2f61a8771d7f8eeffb42f03cdc2fb3481182e441"
+    },
+    ".lake/paper/objects/Sendov/Common/BernsteinList.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/BernsteinList.olean",
+      "sha256": "10c012146908597a212bc2d6bb6bd330279160b19c8d34d1f86cc066abf2fd26"
+    },
+    ".lake/paper/objects/Sendov/Common/BernsteinRing.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/BernsteinRing.olean",
+      "sha256": "1b42c6aeee16efbb1f6f44a9fc95a79729b0ab87db51bee0841572a2e95e8502"
+    },
+    ".lake/paper/objects/Sendov/Common/Chord.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/Chord.olean",
+      "sha256": "0b987d160319ec4a66c589fce99f9ec00b6b580e2f72c21d7495f21644eae9c8"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationBounds.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationBounds.olean",
+      "sha256": "419df149c14a3fb07433ebcaaeec51612c9d354fead7e7ecda89bbac0c72794b"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationCorrelatedPeak.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationCorrelatedPeak.olean",
+      "sha256": "79132c35f6db635f01d94c041739e428bcf4941508c9dbf08f789f80ac13ce14"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationEnvelope.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationEnvelope.olean",
+      "sha256": "e20bc36127098d5664d421e8d1950ccb84c117857c2f27975f41d8ef40f9b52c"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationFactors.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationFactors.olean",
+      "sha256": "467525c561c016d7001a894b288ccec7e54e6c09c6917a1a068f864ae2dd88b5"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationHyperbolic.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationHyperbolic.olean",
+      "sha256": "e0602fc3cb839d1d252ece3c75bdd7c9b3e94cc8529044d2388fd023a91c5c31"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationKernel.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationKernel.olean",
+      "sha256": "5f6f56bc60856409a35b4020b7246a400e40d850778ab9640a2620fedfa3d624"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationMiddleAlpha.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationMiddleAlpha.olean",
+      "sha256": "f091fa0f8565c990bc9d18870df590560027b2fcdcb50aabb947d775c13e1de0"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationMiddleEstimates.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationMiddleEstimates.olean",
+      "sha256": "e9e0fe4ac134afd33526b37955bb174180f6df3c819d3400ad9ae330626ed20c"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationPeakAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationPeakAlgebra.olean",
+      "sha256": "dbe4ffdff2bf6053b1e0e47a3da5ae692723d93b0326ee3c21e55f6398d44131"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationPeakClosure.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationPeakClosure.olean",
+      "sha256": "1f624d70ea5952edf398e7aa7418351d56fb948567c35f190e1eced1b92ccb8d"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationPeakFirst.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationPeakFirst.olean",
+      "sha256": "acd69cd97d46bcc76b6d2fae93155604795f2b5e5909d3aa6b1a84935bc42e42"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationPeakRational.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationPeakRational.olean",
+      "sha256": "99cc4720ed03637ff628189c7e83596f08bb600cfe7608b614b1d9a2f734b348"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationPeakRest.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationPeakRest.olean",
+      "sha256": "7956d33bf70a357a956174672c8cd6401e7657a3280f3baefd94e704b3ae907d"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationRegularity.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationRegularity.olean",
+      "sha256": "6e58a59d99037c7b97f3b0ab3c34770878678459c396b4b4ec65cfffae6fbd12"
+    },
+    ".lake/paper/objects/Sendov/Common/DistillationTotalBound.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/DistillationTotalBound.olean",
+      "sha256": "7318b8f793e9ea1d695490e90eeba3c9d21de5712ac12fac9f48dac487d2c070"
+    },
+    ".lake/paper/objects/Sendov/Common/Quadratic.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/Quadratic.olean",
+      "sha256": "74ebcf35ed01c5cb56c56a67f2defce33fb72afb3a3732173f6e2fbc26705fb9"
+    },
+    ".lake/paper/objects/Sendov/Common/Rpow.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/Rpow.olean",
+      "sha256": "f4c8cc5062eaaf4e47ac77ff1da399d566bea18de611d9dc68331c88b2d33e92"
+    },
+    ".lake/paper/objects/Sendov/Common/Sinh.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/Sinh.olean",
+      "sha256": "082ea7050cfcd1a49484a1925fafa3b51027d28d4fb5b45c7bc8d33bcf169eb3"
+    },
+    ".lake/paper/objects/Sendov/Common/TwoChord.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Common/TwoChord.olean",
+      "sha256": "fbf7d7693a79d476a16eb5f51e4e52ae9a3d3a2d2dd6f092db819b6489ae984b"
+    },
+    ".lake/paper/objects/Sendov/Conjecture.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Conjecture.olean",
+      "sha256": "3819887879203cc98cc000f327bd57294915de6055e19e2d1857619532d19887"
+    },
+    ".lake/paper/objects/Sendov/Counterexample/Factor.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Counterexample/Factor.olean",
+      "sha256": "52e0bbf1b9e7fb8ad1ea8734e0763425442f5d54e6ad461e0b6c3ceaeb3a7e7e"
+    },
+    ".lake/paper/objects/Sendov/Counterexample/Identities.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Counterexample/Identities.olean",
+      "sha256": "beff0792f909a66bbc6c5c83e441b1ca52f05aa3db05d22d257ccd5739da4800"
+    },
+    ".lake/paper/objects/Sendov/Defs.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Defs.olean",
+      "sha256": "f8646ade1e3a620d166495dee307cfb0a490312c28435da22aaa12995e8ca437"
+    },
+    ".lake/paper/objects/Sendov/Interior.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Interior.olean",
+      "sha256": "ab9c669b767b045aad318b7e12b95ecb6a72d2db778bac2d265ade4c2e7c9af9"
+    },
+    ".lake/paper/objects/Sendov/Reduction/Alpha17.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/Alpha17.olean",
+      "sha256": "bab7e110450be4746760da9dcd6dcb505af578a17afb271cb9d54fe6e4516fc3"
+    },
+    ".lake/paper/objects/Sendov/Reduction/BetaBound.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/BetaBound.olean",
+      "sha256": "3b26cc6a3c2be009e09b2122bade90587d4723667917a19a1a1f5b59a65446e3"
+    },
+    ".lake/paper/objects/Sendov/Reduction/CubicPolar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/CubicPolar.olean",
+      "sha256": "21ac7bf3716e9f8f88c21499fdedf4cadbc5898128b796f5abed551453b24bab"
+    },
+    ".lake/paper/objects/Sendov/Reduction/CubicScalar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/CubicScalar.olean",
+      "sha256": "fbb8cf5e6308b1596220160e9fc4058f8dce7ee3feb8d7a7b2bab8c078444f8d"
+    },
+    ".lake/paper/objects/Sendov/Reduction/DistillationBridge.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/DistillationBridge.olean",
+      "sha256": "ee0248c525b6ab3f7bd30b597fd517d1b3642554b997fd9f262acd421ee26701"
+    },
+    ".lake/paper/objects/Sendov/Reduction/Main.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/Main.olean",
+      "sha256": "4d65eea2c219f2bf12ac55bb4594292c21562d47423ad3891a089d1b81bee8d1"
+    },
+    ".lake/paper/objects/Sendov/Reduction/Polar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/Polar.olean",
+      "sha256": "997e9815ac980e731cf67bf636beddb61f93660a6e16fa56695fc46071eefe9d"
+    },
+    ".lake/paper/objects/Sendov/Reduction/Setup.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/Setup.olean",
+      "sha256": "f916f92d58a4db92f45d95cda991a3bcb875836e126b82bad2107013a845a318"
+    },
+    ".lake/paper/objects/Sendov/Reduction/Simplified.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov/Reduction/Simplified.olean",
+      "sha256": "c6dbac2db1a1821ec5fbc4be2218085fd67467d8b46f13420599129d0e11c563"
+    },
+    ".lake/paper/objects/Sendov.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Sendov.olean",
+      "sha256": "57b310a9916e316ac826cc643fa1e457734aec7de6fac4d1c28900032adcfbf8"
+    },
+    ".lake/paper/objects/Solution.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/Solution.olean",
+      "sha256": "78ee6b4df1fe65e25188b02db28863c8f16a077c405ed06c335753a8ac770ed2"
+    },
+    ".lake/paper/objects/scripts/axioms.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/scripts/axioms.olean",
+      "sha256": "d1ec872b8c92650cf3135a7e8210f908ea8f62b01fd24da925eb258f7559aed9"
+    },
+    ".lake/paper/objects/tests/BoundaryAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/BoundaryAudit.olean",
+      "sha256": "86ade6d65790e7a3f5a92dd80b1d40d9a174a489d14d7cf23eb361cdf6464f62"
+    },
+    ".lake/paper/objects/tests/BoundaryContracts.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/BoundaryContracts.olean",
+      "sha256": "a797f1dd1288233f2cddffcc4480e3b7854aa9e7c273e90ce3b0f0fd38c6953a"
+    },
+    ".lake/paper/objects/tests/BoundaryProbe.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/BoundaryProbe.olean",
+      "sha256": "7496e67ac63a125de7ecffcae20928d8c98007b724bfcf85593222f209aabd38"
+    },
+    ".lake/paper/objects/tests/BoundaryWiring.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/BoundaryWiring.olean",
+      "sha256": "fa69c0f1ea4192b0d86c43d9310e9dcd000996a18f8e38050a74b1e8ffcbea11"
+    },
+    ".lake/paper/objects/tests/CenteredNearAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/tests/CenteredNearAudit.olean",
+      "sha256": "d61d2e80620e33a5ee7147d786b6ae2f1b834dc305f87c278972e0882bac456d"
+    },
+    ".lake/paper/objects/tests/CenteredQuarterFinalAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/tests/CenteredQuarterFinalAudit.olean",
+      "sha256": "7c6669103e4cf5822c9907eade049b2e52ccb9256d50769ba897112d543c66fe"
+    },
+    ".lake/paper/objects/tests/CenteredThinAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/.lake/paper/objects/tests/CenteredThinAudit.olean",
+      "sha256": "154d653a3e2f48d48bad28f4c9fb68dbf5d8e16b5e2f17299bf386e376601395"
+    },
+    ".lake/paper/objects/tests/CenteredThirdAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/tests/CenteredThirdAudit.olean",
+      "sha256": "5158f138e8116190680ea87e03576f887128ac846cf516f8529759e9d9a72f96"
+    },
+    ".lake/paper/objects/tests/CollinearAcceptance.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/CollinearAcceptance.olean",
+      "sha256": "a47df6e22d2f8112f9173eb578b1e4c8b8075a086f968c77833d1dd0334a1f60"
+    },
+    ".lake/paper/objects/tests/CollinearRound2Tests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/CollinearRound2Tests.olean",
+      "sha256": "d2657f7523bbacdd770fac9702e94f6b7a07f970fb27467e154024824948cd43"
+    },
+    ".lake/paper/objects/tests/CollinearTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/CollinearTests.olean",
+      "sha256": "3dd5c5551eae5109418af0fd247f4e54e0dbc80a0ca1c1a5e11ad21e3a2ec9cf"
+    },
+    ".lake/paper/objects/tests/FirstOriginAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/FirstOriginAudit.olean",
+      "sha256": "088924870569aaf60ee49f472dbb65e7ef9a4d1b59bcc44ffe4a2e58d9484809"
+    },
+    ".lake/paper/objects/tests/FirstOriginBudget.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/FirstOriginBudget.olean",
+      "sha256": "83b073b08dd0fa2c7596d16aec72ee3a1d67e7c49228ceefca25fe8bcfebee6f"
+    },
+    ".lake/paper/objects/tests/FirstOriginMargins.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/FirstOriginMargins.olean",
+      "sha256": "03858d0b3c705e7ef7e56b94203d33bae9e8bcbab50c9ca7b8be43088db79240"
+    },
+    ".lake/paper/objects/tests/FirstOriginWiring.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/FirstOriginWiring.olean",
+      "sha256": "f26bc9b7ada00dde6896464658ce625ea647a0065d423dd6f4c3e61e228b5727"
+    },
+    ".lake/paper/objects/tests/LocalMiddleAlpha.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/LocalMiddleAlpha.olean",
+      "sha256": "668ae842c4a06c6b472d02263733ef3ecbde9cf72373ea3c7de6726128c47276"
+    },
+    ".lake/paper/objects/tests/LocalPeakClosure.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/LocalPeakClosure.olean",
+      "sha256": "0ecf23f859bff678c1d42ff7ca858fdfb0c259d2e3c524a98089017c11d56c7b"
+    },
+    ".lake/paper/objects/tests/Localanalytic.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/Localanalytic.olean",
+      "sha256": "48662472963b7415e72d0b0b4d839c10fe535aeaad190711a7681e36d6a49ebc"
+    },
+    ".lake/paper/objects/tests/Localreduction.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/Localreduction.olean",
+      "sha256": "0b74b33112d5538db0aee7cbac19c117b889ae76406f3b39f8c0c2abdbf5a008"
+    },
+    ".lake/paper/objects/tests/MeanBudgetAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round3/integrated/.lake/paper/objects/tests/MeanBudgetAudit.olean",
+      "sha256": "03478ddfafb84555237e3f3421c70519e6e9c1f603c7668d25f69203ae35e9aa"
+    },
+    ".lake/paper/objects/tests/NoFiniteRows.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/NoFiniteRows.olean",
+      "sha256": "814bad78715daea4176c2b0aa458670ff5007b1bfbff655a82c719409db48607"
+    },
+    ".lake/paper/objects/tests/PaperAcceptance.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperAcceptance.olean",
+      "sha256": "afeb6c6f7cc00d395b673d785c882224cb78238cea4c51514d4afbb45ec4ab5e"
+    },
+    ".lake/paper/objects/tests/PaperBulkAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperBulkAlgebra.olean",
+      "sha256": "21508f883bcac9fbc0f9d39ce0385b4187b60c0b24cebef0bdc76a49de597f42"
+    },
+    ".lake/paper/objects/tests/PaperCentered.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCentered.olean",
+      "sha256": "6fa9a5405efafc6624f099a7dd9f124512733ee5c55ebe53e6ad55904bb354ba"
+    },
+    ".lake/paper/objects/tests/PaperCenteredBoundTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCenteredBoundTests.olean",
+      "sha256": "d082a25821bbd462c0fe65e6ec77b52b0eb78f4220268828035a90f03cabdb1f"
+    },
+    ".lake/paper/objects/tests/PaperCenteredHundred.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCenteredHundred.olean",
+      "sha256": "d1083fd1f52a95324f135359d89ad22b8800621e0ab047dfce53fb05d5993a8f"
+    },
+    ".lake/paper/objects/tests/PaperCenteredStructural.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCenteredStructural.olean",
+      "sha256": "34d2614dc112990a43f49b27b37a6422e9e57736b03839da0b3b2f6fe202ae17"
+    },
+    ".lake/paper/objects/tests/PaperCenteredVarianceAudit.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCenteredVarianceAudit.olean",
+      "sha256": "f90d3ce682e3e78c8310d3b0ee7b72a4f82048fa441250d9c1a6dba5f2711d36"
+    },
+    ".lake/paper/objects/tests/PaperCoefficientTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperCoefficientTests.olean",
+      "sha256": "faffd26c6389ededeb23632b8de81cab63b3a487a01b6c3572cd96f0de2c80ee"
+    },
+    ".lake/paper/objects/tests/PaperConjugateBudgets.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateBudgets.olean",
+      "sha256": "ed2a91630de0e4d694f904fc1bc8717f2b2228a04deff41ebc1a2d911e32600d"
+    },
+    ".lake/paper/objects/tests/PaperConjugateDI03.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateDI03.olean",
+      "sha256": "eee5ad50413065ea1005e15f1e2dee5abde795f094fb1a5e52a0596c66fc5755"
+    },
+    ".lake/paper/objects/tests/PaperConjugateDI04.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateDI04.olean",
+      "sha256": "15adea4771351c991daf004cdc78b7e0fdb1780f6c71016307f630b0be8f0c39"
+    },
+    ".lake/paper/objects/tests/PaperConjugateDI05.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateDI05.olean",
+      "sha256": "50a0450088079b3da30997e0e1148ad4012c82529601f6ece42f5bc7325f8f1d"
+    },
+    ".lake/paper/objects/tests/PaperConjugateDI06.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateDI06.olean",
+      "sha256": "b751ed0a59bf577b71f6dab5193fb79aba1118249b681a357de309debb4fb56c"
+    },
+    ".lake/paper/objects/tests/PaperConjugateDI07.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConjugateDI07.olean",
+      "sha256": "929e7cf606366bab1f8f611ce2bdc29864e0ac8373e9fedb3f1b680f1d6c7c59"
+    },
+    ".lake/paper/objects/tests/PaperConsequencesTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperConsequencesTests.olean",
+      "sha256": "4a80d3ecc0b077c9dc0fa8211ca87140807f1ee6fe9d76325f5fd4548da71176"
+    },
+    ".lake/paper/objects/tests/PaperGlobalPolarTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperGlobalPolarTests.olean",
+      "sha256": "328723396fcf1760e85df1df072e6faa3a2e7f7dd28ee3971745901e721b3caa"
+    },
+    ".lake/paper/objects/tests/PaperHistoricalBoundsTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperHistoricalBoundsTests.olean",
+      "sha256": "15adae86037eacad509561e77d569c71808157c39a8152008c9686e63fe9ba70"
+    },
+    ".lake/paper/objects/tests/PaperLaplace.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperLaplace.olean",
+      "sha256": "7941733f348d213c38ca91094492f9b1871d52111a0d3f22ad286ea1165b68d1"
+    },
+    ".lake/paper/objects/tests/PaperLegacyCertificates.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperLegacyCertificates.olean",
+      "sha256": "fae36957e23aa3c88437ac2bdcd84fc2b88babbf67cd983cac214e12408a94e6"
+    },
+    ".lake/paper/objects/tests/PaperMomentCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperMomentCorollaries.olean",
+      "sha256": "f3f3d0bc0ccb1777ae330d530c7453b418d764c830a6f15e22e7c7503124b5a7"
+    },
+    ".lake/paper/objects/tests/PaperNear.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperNear.olean",
+      "sha256": "bb27095e5167ecc1ac3c37e455379fd860b3ab021be1b7ae6b54187c6c0914f8"
+    },
+    ".lake/paper/objects/tests/PaperNearAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperNearAlgebra.olean",
+      "sha256": "ff043320abcb1ac8128827dc0f1cd9acba608432d93d6cc47aab353b84f8f3a0"
+    },
+    ".lake/paper/objects/tests/PaperNearMargins.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperNearMargins.olean",
+      "sha256": "1369e8bc789208148ed0b13f0762629771fda0f365fccdd5ce905c8b2b6bf62b"
+    },
+    ".lake/paper/objects/tests/PaperOriginCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperOriginCorollaries.olean",
+      "sha256": "a1284f4d5e6b63b7d829c13b8a02e4d2e3c01fa7984745546eb775056d54c3f8"
+    },
+    ".lake/paper/objects/tests/PaperPolar.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperPolar.olean",
+      "sha256": "25cc7e6c3329c9911112e6b98654fea18053d9fa8114e4cd319081073298ae78"
+    },
+    ".lake/paper/objects/tests/PaperPolarCounterexample.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperPolarCounterexample.olean",
+      "sha256": "328ea614249505680c199bae4bd671b4c9a5614c8a23de34fd6f3f730155955f"
+    },
+    ".lake/paper/objects/tests/PaperPolarDomainWitnesses.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperPolarDomainWitnesses.olean",
+      "sha256": "c06192bead5cb7830dadf9cf34a38b4c05a5404b3b2a3ec8f14222d8855499c4"
+    },
+    ".lake/paper/objects/tests/PaperRateDetailsTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperRateDetailsTests.olean",
+      "sha256": "0ce555f21bbb93bedad1dcad605f062255be081a9bd09a6c06723b5d03dd3446"
+    },
+    ".lake/paper/objects/tests/PaperRayAlgebra.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperRayAlgebra.olean",
+      "sha256": "4e17ab7ec354c0964243cd25ec897133844f086e0cd38b8b57b0afae68f232b1"
+    },
+    ".lake/paper/objects/tests/PaperRayGeometry.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperRayGeometry.olean",
+      "sha256": "66004c315b0a9c364f58a97f28cd039a98ab9bd05fd16647719134fba59c9a3a"
+    },
+    ".lake/paper/objects/tests/PaperRegionCorollaries.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperRegionCorollaries.olean",
+      "sha256": "e2b5176dec55a586e8e07d68e73a0c75d01ead071afac3406f7da2e22c9ab4e5"
+    },
+    ".lake/paper/objects/tests/PaperSecantNeighborhoods.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperSecantNeighborhoods.olean",
+      "sha256": "882123fefdc28bbce445fa7d24f4bc628eb320858275a6e1550aa73fd4bb009b"
+    },
+    ".lake/paper/objects/tests/PaperSecantTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperSecantTests.olean",
+      "sha256": "09236c4f99980567b3e5f48740137e6e4c7fcdd58850ae3883786992ddc12a67"
+    },
+    ".lake/paper/objects/tests/PaperTailTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperTailTests.olean",
+      "sha256": "851f1d4d59e4c22da8d5f14a9bbda2ac7b6b58aa7acff24371967c6654b65fc7"
+    },
+    ".lake/paper/objects/tests/PaperTaylor.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperTaylor.olean",
+      "sha256": "39ff803257c1189f446b8516bb038d48b2701347738667bf3681cfad04d51af9"
+    },
+    ".lake/paper/objects/tests/PaperTwoEndTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperTwoEndTests.olean",
+      "sha256": "7a27a91cb125228fe79bb04c68b28a0216261232417a2a3ff850fcf1a76c9276"
+    },
+    ".lake/paper/objects/tests/PaperUniform.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperUniform.olean",
+      "sha256": "e2f91b0ecf407c44701a26d3be6c2b0b1a453a95f4b5a70bc6e4688740e45bfa"
+    },
+    ".lake/paper/objects/tests/PaperWideRaysTests.olean": {
+      "resolved_target": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/.lake/paper/objects/tests/PaperWideRaysTests.olean",
+      "sha256": "3c70feaab8be429d65cf8b77069d773bf0809f92c2aff7eb54c98b19d8aea841"
+    }
+  }
+}

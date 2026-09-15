@@ -1,0 +1,12 @@
+import Sendov.Analytic.PaperCenteredVarianceEndpoint
+
+#print axioms Sendov.PaperCenteredTail.normalized_H_integral
+#print axioms Sendov.PaperCenteredTail.majorant_term_integral
+#print axioms Sendov.PaperCenteredTail.majorant_term_le_integral
+#print axioms Sendov.PaperCenteredTail.majorant_block_le_integral
+#print axioms Sendov.PaperCenteredEndpoint.endpoint_power_order
+#print axioms Sendov.PaperCenteredEndpoint.norm_endpoint_half_of_rawPolar
+#print axioms Sendov.PaperCenteredEndpoint.zero_variance_C_near
+#print axioms Sendov.PaperCenteredVarianceEndpoint.actual_variance_endpoint
+#print axioms Sendov.PaperCenteredVarianceEndpoint.variance_endpoint_power
+#print axioms Sendov.PaperCenteredVarianceEndpoint.actual_variance_endpoint_power

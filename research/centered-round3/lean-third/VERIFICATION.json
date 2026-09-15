@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "modules": [
+    "Sendov.Analytic.CenteredThirdTail",
+    "Sendov.Analytic.CenteredThirdScalar",
+    "Sendov.Analytic.CenteredThirdActual",
+    "Sendov.Analytic.CenteredThirdEndpoint",
+    "Sendov.Analytic.CenteredThirdTheorem",
+    "tests.CenteredThirdAudit"
+  ],
+  "theorem_count": 20,
+  "audited_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "source_hashes": {
+    "Sendov/Analytic/CenteredThirdActual.lean": "5194182dbb0e9fa4a29c01f47fb3bad91057c9bc771d195bc124dc939ebfbf6a",
+    "Sendov/Analytic/CenteredThirdEndpoint.lean": "0d2d5d658eb06ee8e784641ecc5e43add3a6f31b461519e2555e434b224dc796",
+    "Sendov/Analytic/CenteredThirdScalar.lean": "586653ec80dcb395102881d1cbcb2f36edccc752bc301a038231affba600d419",
+    "Sendov/Analytic/CenteredThirdTail.lean": "2781c2ec74e44b63a22bbf4e9b9ede0c88107f7ba5f8b61891501706312d244a",
+    "Sendov/Analytic/CenteredThirdTheorem.lean": "197bc0f84d5f628ce21d092e2ac943f62a616e4abd39a0683c681224ecb9bf63",
+    "tests/CenteredThirdAudit.lean": "7b294556f0f87848f62879c82119825de23209a90236b8a46a1bd46838fa5a6b",
+    "check.py": "62376b24e73461b00d41ce6bc60ae019a03edb76bda9a7195e8e1e730e75e900",
+    "replay.py": "a1ad5b10f1bf3c9449f7672eb900d4b950cc8697b69d8381f15a585568f594b1"
+  },
+  "frozen_manifest_sha256": "2596154664f43c295954283a91183a3d634fd6fc23c2a9bcc774810e1c3e5a36",
+  "frozen_manifest_entries_verified": 178,
+  "reviewed_proof_sha256": "41e381086f706a026b8d8bc223b179e4524bc542b1cc900bd8440b9824b05410",
+  "receipts": {
+    "Sendov.Analytic.CenteredThirdTail": {
+      "module": "Sendov.Analytic.CenteredThirdTail",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "2781c2ec74e44b63a22bbf4e9b9ede0c88107f7ba5f8b61891501706312d244a",
+      "object_sha256": "e6bb7422281da6922269c6bdf414bc5ccc44593e62be9cf7e34faba3defddfb2"
+    },
+    "Sendov.Analytic.CenteredThirdTail-kernel": {
+      "module": "Sendov.Analytic.CenteredThirdTail",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "2781c2ec74e44b63a22bbf4e9b9ede0c88107f7ba5f8b61891501706312d244a",
+      "object_sha256": "e6bb7422281da6922269c6bdf414bc5ccc44593e62be9cf7e34faba3defddfb2"
+    },
+    "Sendov.Analytic.CenteredThirdScalar": {
+      "module": "Sendov.Analytic.CenteredThirdScalar",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "586653ec80dcb395102881d1cbcb2f36edccc752bc301a038231affba600d419",
+      "object_sha256": "351cee9a6ae179d29cf446034f6e3fa7173a515976b3e604541f6053f38d6bfb"
+    },
+    "Sendov.Analytic.CenteredThirdScalar-kernel": {
+      "module": "Sendov.Analytic.CenteredThirdScalar",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "586653ec80dcb395102881d1cbcb2f36edccc752bc301a038231affba600d419",
+      "object_sha256": "351cee9a6ae179d29cf446034f6e3fa7173a515976b3e604541f6053f38d6bfb"
+    },
+    "Sendov.Analytic.CenteredThirdActual": {
+      "module": "Sendov.Analytic.CenteredThirdActual",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "5194182dbb0e9fa4a29c01f47fb3bad91057c9bc771d195bc124dc939ebfbf6a",
+      "object_sha256": "a010926a274200f2b3fcd8370d85cb567c6d9e9fa993d8caf64cf9ab07d648d8"
+    },
+    "Sendov.Analytic.CenteredThirdActual-kernel": {
+      "module": "Sendov.Analytic.CenteredThirdActual",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "5194182dbb0e9fa4a29c01f47fb3bad91057c9bc771d195bc124dc939ebfbf6a",
+      "object_sha256": "a010926a274200f2b3fcd8370d85cb567c6d9e9fa993d8caf64cf9ab07d648d8"
+    },
+    "Sendov.Analytic.CenteredThirdEndpoint": {
+      "module": "Sendov.Analytic.CenteredThirdEndpoint",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "0d2d5d658eb06ee8e784641ecc5e43add3a6f31b461519e2555e434b224dc796",
+      "object_sha256": "80ca152f03f1392e59b9243c46567ba7cd2ad4404b879e2340e71bf20301f974"
+    },
+    "Sendov.Analytic.CenteredThirdEndpoint-kernel": {
+      "module": "Sendov.Analytic.CenteredThirdEndpoint",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "0d2d5d658eb06ee8e784641ecc5e43add3a6f31b461519e2555e434b224dc796",
+      "object_sha256": "80ca152f03f1392e59b9243c46567ba7cd2ad4404b879e2340e71bf20301f974"
+    },
+    "Sendov.Analytic.CenteredThirdTheorem": {
+      "module": "Sendov.Analytic.CenteredThirdTheorem",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "197bc0f84d5f628ce21d092e2ac943f62a616e4abd39a0683c681224ecb9bf63",
+      "object_sha256": "e53ac1f31403ee08589e2bdf5fcbc7b04033aa6b532cdc6ca6b19b01b4d74f02"
+    },
+    "Sendov.Analytic.CenteredThirdTheorem-kernel": {
+      "module": "Sendov.Analytic.CenteredThirdTheorem",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "197bc0f84d5f628ce21d092e2ac943f62a616e4abd39a0683c681224ecb9bf63",
+      "object_sha256": "e53ac1f31403ee08589e2bdf5fcbc7b04033aa6b532cdc6ca6b19b01b4d74f02"
+    },
+    "tests.CenteredThirdAudit": {
+      "module": "tests.CenteredThirdAudit",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "7b294556f0f87848f62879c82119825de23209a90236b8a46a1bd46838fa5a6b",
+      "object_sha256": "5158f138e8116190680ea87e03576f887128ac846cf516f8529759e9d9a72f96"
+    },
+    "tests.CenteredThirdAudit-kernel": {
+      "module": "tests.CenteredThirdAudit",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "7b294556f0f87848f62879c82119825de23209a90236b8a46a1bd46838fa5a6b",
+      "object_sha256": "5158f138e8116190680ea87e03576f887128ac846cf516f8529759e9d9a72f96"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "module": "Sendov.Analytic.CenteredActualTail",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "8cc8dab00d043ad7f603885511b209165bb73c7e5221e7c526ce17daa459ee4a"
+}

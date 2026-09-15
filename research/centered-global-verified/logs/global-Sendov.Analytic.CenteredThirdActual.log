@@ -1,0 +1,22 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdActual.lean:53:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdActual.lean:10:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdActual.lean:13:40: warning: missing space in the source
+
+This part of the code
+  '1/3) :'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

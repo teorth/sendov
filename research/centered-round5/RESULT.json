@@ -1,0 +1,26 @@
+{
+  "status": "REVIEWED GLOBAL PAPER PROOF; PARTIAL/GENERIC KERNEL EVIDENCE",
+  "domain": "all naturalm>=7,9/10<=a<1,original FULLpolar and pointwise unit disk,actual mean and variance",
+  "paper_theorem": "E_fin+Gamma<=1-a|mu|-(1-a)/20",
+  "paper_open_domain": null,
+  "original_C_counterexample": false,
+  "original_C_changed": false,
+  "global_half_h_bound_proved": false,
+  "method": "generic analytic criterion with finite continuous-degree-band certificates plus unbounded cutoff; not per-degree original-majorant testing, not certificate-free",
+  "global_kernel_verified": false,
+  "kernel_complete_domains": [
+    "lambda<=1/3",
+    "actual v<=h/m\u00b2"
+  ],
+  "kernel_modules": 41,
+  "kernel_checks": 82,
+  "axiom_queries": 111,
+  "outstanding_kernel_inputs": [
+    "concrete endpoint Bernstein integral identities and coefficient signs",
+    "concrete curved integral/scalar band certificates",
+    "unbounded-cutoff formalization and final global assembly"
+  ],
+  "exact_paper_replay": true,
+  "historical_full_rational": true,
+  "verified_artifact": "../centered-global-verified.zip"
+}

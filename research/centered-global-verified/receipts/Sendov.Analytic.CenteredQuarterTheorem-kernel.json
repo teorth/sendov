@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredQuarterTheorem",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "38e35505abfda2f33ed19a7d8f006f32a9741e123ad45df594d6223b9de2a748",
+  "object_sha256": "4a5acf4dd44a8cf492ab9665a2c84c2c687b215bfa05de8cb7581a0337510deb"
+}

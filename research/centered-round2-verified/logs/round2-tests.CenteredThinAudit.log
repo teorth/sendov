@@ -1,0 +1,5 @@
+'Sendov.CenteredThinVariance.crudeTail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThinVariance.norm_B_two_global' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThinVariance.gamma_endpoint_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThinVariance.majorantTail_le_crude' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThinVariance.C_near_fullpolar_strip' depends on axioms: [propext, Classical.choice, Quot.sound]

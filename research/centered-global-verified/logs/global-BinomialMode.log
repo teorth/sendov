@@ -1,0 +1,3 @@
+'Sendov.PaperBinomialMode.weight_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperBinomialMode.weight_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperBinomialMode.weight_first_moment_succ' depends on axioms: [propext, Classical.choice, Quot.sound]

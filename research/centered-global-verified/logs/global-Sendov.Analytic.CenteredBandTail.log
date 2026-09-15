@@ -1,0 +1,118 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:7:47: warning: missing space in the source
+
+This part of the code
+  'X^2 ≤ 1)'
+should be written as
+  'X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:10:47: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:15:51: warning: missing space in the source
+
+This part of the code
+  'X^2 ≤ 1)'
+should be written as
+  'X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:69:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:24:12: warning: missing space in the source
+
+This part of the code
+  '2*p+3 ≤ m)'
+should be written as
+  '2 * p'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:25:25: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:25:41: warning: missing space in the source
+
+This part of the code
+  'X^2 ≤ 1)'
+should be written as
+  'X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:114:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:119:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:94:11: warning: missing space in the source
+
+This part of the code
+  '2*p+3 ≤ r.card)'
+should be written as
+  '2 * p'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:95:28: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X^2)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:95:34: warning: missing space in the source
+
+This part of the code
+  'X^2) (hX1'
+should be written as
+  'X ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:95:46: warning: missing space in the source
+
+This part of the code
+  'X^2 ≤ 1)'
+should be written as
+  'X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:96:40: warning: missing space in the source
+
+This part of the code
+  '1-‖μ‖^2)'
+should be written as
+  '1 - ‖μ‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTail.lean:96:44: warning: missing space in the source
+
+This part of the code
+  '1-‖μ‖^2)
+ '
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

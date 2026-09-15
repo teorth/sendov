@@ -1,0 +1,6 @@
+{
+  "module": "Sendov.Analytic.CenteredNearEndpoint",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "486657a3cc6c0f6b5377375276c37e6104fa8d0d773146353909afa64ee3dae9"
+}

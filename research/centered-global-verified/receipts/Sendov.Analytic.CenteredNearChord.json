@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredNearChord",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "e7c10c78a14da89bac330b82a8c4072b8fb6cb1490af5f18218a7501b6c39832",
+  "object_sha256": "eac8c5f542a0f62e4d15192baeff402bce986f8b9708b664e0101f645a4cfa87"
+}

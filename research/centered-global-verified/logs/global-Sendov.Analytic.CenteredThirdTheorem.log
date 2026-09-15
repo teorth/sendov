@@ -1,0 +1,250 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:39:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:12:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:14:12: warning: missing space in the source
+
+This part of the code
+  '1/4 ≤ PaperPolar.lambda'
+should be written as
+  '1 / 4'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:14:82: warning: missing space in the source
+
+This part of the code
+  '1/3) :'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:43:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:45:40: warning: missing space in the source
+
+This part of the code
+  '1/3) :'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:56:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:58:24: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ)..1,'
+should be written as
+  '(0 : ℝ)..1,'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:25: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:28: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:31: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(t : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:34: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:37: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:40: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:43: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:59:46: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:60:40: warning: missing space in the source
+
+This part of the code
+  '1/3) :'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:71:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:73:24: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ)..1,'
+should be written as
+  '(0 : ℝ)..1,'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:25: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:28: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:31: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(t : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:34: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:37: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:40: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:43: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:74:46: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredThirdTheorem.lean:75:40: warning: missing space in the source
+
+This part of the code
+  '1/3) :'
+should be written as
+  '1 / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

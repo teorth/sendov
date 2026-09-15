@@ -1,0 +1,89 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:44:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:44:6: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:32:27: warning: missing space in the source
+
+This part of the code
+  'q.card*μ) (a'
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:48:27: warning: missing space in the source
+
+This part of the code
+  'q.card*μ) (a'
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:88:27: warning: missing space in the source
+
+This part of the code
+  'q.card*μ) (a'
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:90:30: warning: missing space in the source
+
+This part of the code
+  'ℂ)+(t :'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:90:38: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:90:41: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a :'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:90:49: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:90:52: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean:132:55: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2) *'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+{"command": ["/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean", "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/Sendov/Analytic/CenteredActualPolar.lean", "-o", "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/.lake/paper/objects/Sendov/Analytic/CenteredActualPolar.olean", "-i", "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/.lake/paper/objects/Sendov/Analytic/CenteredActualPolar.ilean", "--setup", "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/.lake/paper/setups/Sendov/Analytic/CenteredActualPolar.json"], "exit_code": 0, "seconds": 3.422030806017574, "module": "Sendov.Analytic.CenteredActualPolar", "kernel": false, "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean", "options": {"weak.linter.mathlibStandardSet": true, "relaxedAutoImplicit": false, "pp.unicode.fun": true, "maxSynthPendingDepth": 3, "autoImplicit": false}}
+

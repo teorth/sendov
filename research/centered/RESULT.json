@@ -1,0 +1,42 @@
+{
+  "status": "OPEN_positive_variance_C_near",
+  "certified_counterexample": false,
+  "proved_domains": [
+    "zeroth_endpoint_h_over_2: m>=7, 0<a<1, raw_polar, norm_mu<=1",
+    "entire_C_near_when_actual_variance_zero"
+  ],
+  "kernel_checked_modules": {
+    "Sendov.Analytic.PaperCenteredTail": ".lake/paper/logs/centered-tail-02-Sendov.Analytic.PaperCenteredTail-kernel.json",
+    "Sendov.Analytic.PaperCenteredEndpoint": ".lake/paper/logs/centered-endpoint-final-Sendov.Analytic.PaperCenteredEndpoint-kernel.json",
+    "Sendov.Analytic.PaperCenteredVarianceEndpoint": ".lake/paper/logs/centered-variance-final-Sendov.Analytic.PaperCenteredVarianceEndpoint-kernel.json"
+  },
+  "axiom_audit_count": 10,
+  "search_cases": 2400,
+  "optimization_evaluations": 13068,
+  "optimizer_outputs": 27,
+  "scalar_raw_only_cases": 7777,
+  "structural_envelope_raw_only_cases": 6060,
+  "high_precision_case_count": 34,
+  "high_precision_rejected_fullpolar_boundary_cases": 6,
+  "exact_rational_case_count": 10,
+  "largest_certified_E_over_h": 0.31135511636188135,
+  "largest_hp_E_over_h": "0.312825032353382523464775639280386725757444674567459970542166202622393712145181518728561118154728180638925398526677323712177257807285224621472024087038",
+  "largest_scalar_raw_only_E_over_h": 0.31284132851358964,
+  "largest_structural_C_budget_ratio": 0.34553266181211933,
+  "largest_refined_structural_half_ratio": 0.4424589826192684,
+  "source_sha256": {
+    "research/centered/search.py": "c463214aaa33ac6dd2816bc40093da1f080ff92e1b50b3bbf63483463dc2bc43",
+    "research/centered/large_precision.py": "377fed7c8d696ebbd472e37a7746479ee94a5952df9c2d0d4b528a912928ba25",
+    "research/centered/scalar_scan.py": "c86e48c0e2beff65098acfd2e14756357edba832c286304de549564e7242c6a4",
+    "research/centered/instability.py": "ddbd57866dd497bc76954937f97111c2d963fce85760684da24b852fd6d145a7",
+    "research/centered/envelope.py": "61423f75af5e7a31efaad766a26e7aff0cbde42737f26347710a0b54e9603427",
+    "research/centered/high_precision.py": "72d254a3faf39e0ed5283add1db423d05027f6a910e43f46a790ff598510bc48",
+    "research/centered/optimize.py": "c5a35c476e62e7ea59606920618d66f46c4dfcd6ecea54c355091ac88a8aa0ad",
+    "research/centered/verify_optimization.py": "09542d24f3d17318d81e6d631a7ad0a81cc7c28d85a2a5779b61181a09f371da",
+    "research/centered/rational.py": "cd95c24c57fdace31995cadc06281cbf2177074701bae1c197c11e0bf03a3829",
+    "research/centered/verify.py": "17814779d24356312e72d2673f84123a94a51eec18a17ccf7d805fc38608b234",
+    "Sendov/Analytic/PaperCenteredTail.lean": "ade69637e3b2fbe39651fa4a15e289620de0bb4cc6960dac18b83caa2a649fbd",
+    "Sendov/Analytic/PaperCenteredEndpoint.lean": "f8a9f8a5b66ab5a3c985ad9b45c4be82a141d550026033e770c998f1816bb352",
+    "Sendov/Analytic/PaperCenteredVarianceEndpoint.lean": "f450f2424298485dad32e789ec4140b6249356dc2b578d8f0ebdeed4c01c58ee"
+  }
+}

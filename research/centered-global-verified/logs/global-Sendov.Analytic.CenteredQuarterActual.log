@@ -1,0 +1,135 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:23:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:26:40: warning: missing space in the source
+
+This part of the code
+  '1/4) :'
+should be written as
+  '1 / 4)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:74:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:113:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:90:55: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:93:40: warning: missing space in the source
+
+This part of the code
+  '1/4)
+ '
+should be written as
+  '1 / 4)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:94:40: warning: missing space in the source
+
+This part of the code
+  '(q.card+1),
+'
+should be written as
+  '(q.card + 1),'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:95:79: warning: missing space in the source
+
+This part of the code
+  'z-μ)))'
+should be written as
+  'z - μ)))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:25: warning: missing space in the source
+
+This part of the code
+  'k:ℝ)*‖μ‖^k))*‖PaperCentered.H'
+should be written as
+  'k : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:28: warning: missing space in the source
+
+This part of the code
+  'k:ℝ)*‖μ‖^k))*‖PaperCentered.H'
+should be written as
+  'ℝ) * ‖μ‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:32: warning: missing space in the source
+
+This part of the code
+  'k:ℝ)*‖μ‖^k))*‖PaperCentered.H'
+should be written as
+  '‖μ‖ ^ k))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:36: warning: missing space in the source
+
+This part of the code
+  'k:ℝ)*‖μ‖^k))*‖PaperCentered.H'
+should be written as
+  'k)) *
+ '
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:66: warning: missing space in the source
+
+This part of the code
+  '((a:ℂ)*μ)‖)'
+should be written as
+  '((a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:96:69: warning: missing space in the source
+
+This part of the code
+  '((a:ℂ)*μ)‖)'
+should be written as
+  'ℂ) * μ)‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterActual.lean:97:71: warning: missing space in the source
+
+This part of the code
+  'z-μ))))'
+should be written as
+  'z - μ))))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

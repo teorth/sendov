@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBernsteinMoment",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "ee4a7e5009755e1b9402c602be8452069a2c1af9b20ebceeabbab6f8ec972612",
+  "object_sha256": "375dc669e4151ccf1cbdeb7a0f2f0b2ecdb5a79c372313408380ba1b03e61b6c"
+}

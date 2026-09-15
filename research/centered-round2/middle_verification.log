@@ -1,0 +1,51 @@
+PASS: shifted endpoint polynomial coefficients
+PASS: factorial lower bound at m=7
+PASS: factorial shifted linear coefficient
+PASS: b <= 1/10 <= r^2
+PASS: a >= 20/21
+PASS: x >= 113/120
+PASS: u sqrt(v) <= 3/10 square
+PASS: B2 base at m=7
+PASS: B2 three sequence ratios
+PASS: a^4 linear bound coefficient
+PASS: a^4 reduction from lambda >= 1/4
+PASS: combined mode and a^4 reduction
+PASS: near G <= 3 A/10
+PASS: near A+G <= 19/3
+PASS: near m-budget <=3
+PASS: near variance-to-h budget
+PASS: near endpoint budget
+PASS: near final margin
+PASS: old near regime implies new common margin
+PASS: quadratic value at t=1/4
+PASS: positive endpoint chord gap
+PASS: high b forces lambda > 129/7
+PASS: high b forces integer m >=185
+PASS: logarithm monotonicity domain
+PASS: high-b M >=16
+PASS: endpoint exponent at m=185 >=19/4
+PASS: endpoint exponent condition identity
+PASS: fourth root of 16
+PASS: sqrt(10) <=16/5
+PASS: high endpoint prefactor
+PASS: N(170) <=17/100 by squares
+PASS: N(185) <=3/20 by squares
+PASS: low-b J(170) <=121/500
+PASS: low-b all-degree ratio squared
+PASS: high-b remainder at m=185 <=49/200
+PASS: Gamma coefficient at m=170
+PASS: Gamma coefficient at m=185
+PASS: Gamma B2 coarse prefactor <=6
+PASS: low-b Gamma B2 base square
+PASS: low-b Gamma B2 sequence ratio squared
+PASS: high-b Gamma B2 at m=185 square
+PASS: B2 polynomial bound base and shift
+PASS: low-b sum
+PASS: high-b sum
+PASS: high-b covered by common budget
+PASS: cutoff variance margin
+PASS: cutoff h margin
+PASS: remaining lambda upper endpoint
+ALL 48 EXACT RATIONAL CHECKS PASSED
+Certified paper domains: lambda <= 1/3; or m >= 170; plus imported v <= h/m^2.
+Outstanding: 7 <= m <= 169, 1/3 < lambda <= m/10, v > h/m^2.

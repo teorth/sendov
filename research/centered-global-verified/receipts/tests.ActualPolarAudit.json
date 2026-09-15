@@ -1,0 +1,7 @@
+{
+  "module": "tests.ActualPolarAudit",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "7648ea3e443c99a4dc3f5ada85e7f69122416b5cdc1a604d609d907b254e391b",
+  "object_sha256": "dcc875c07bfc0c6a947e8e0315fd16f1b28302d0d87d260b16d4432e1263026e"
+}

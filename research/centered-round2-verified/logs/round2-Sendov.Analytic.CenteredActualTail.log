@@ -1,0 +1,49 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:24:30: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2) :'
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:53:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:38:56: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2) :'
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:89:56: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2) :'
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:115:65: warning: missing space in the source
+
+This part of the code
+  '‖μ‖^2)
+ '
+should be written as
+  '‖μ‖ ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredActualTail.lean:116:54: warning: missing space in the source
+
+This part of the code
+  'CenteredNearScalar.rho^2) :'
+should be written as
+  'CenteredNearScalar.rho ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

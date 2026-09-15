@@ -1,0 +1,47 @@
+'Sendov.CenteredQuarter.choose_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.endpoint_quartic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.endpoint_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.BEnvelope_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.norm_B_two_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.sqrt_fall_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.chordTail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.gamma_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.five_variance_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.scalar_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.rawPolar_slope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.actual_quarter_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.actual_endpoint_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.actual_C_quarter_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+Sendov.CenteredQuarter.endpoint_quadratic (m : ℕ) (hm : 7 ≤ m) (w b h : ℝ) (hw : 0 ≤ w) (hb0 : 0 ≤ b) (hb1 : b ≤ 1)
+  (hh : 0 ≤ h) (hslope : 3 * b ≤ ↑m * h * (1 - b)) (hwb : w ^ 2 ≤ b) : w ^ (m + 1) ≤ 2 * h ^ 2 / 3
+Sendov.CenteredQuarter.norm_B_two_le (m : ℕ) (hm : 7 ≤ m) (z : ℂ) (hz : ‖z‖ ≤ 1) (hw : ‖1 - z‖ ≤ 5 / 18) :
+  ‖Sendov.PaperCentered.B m 2 z‖ ≤ 1 / 50
+Sendov.CenteredQuarter.chordTail_le (m a u v : ℝ) (hm : 7 ≤ m) (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (hu0 : 0 ≤ u) (hu1 : u ≤ 1)
+  (hv0 : 0 ≤ v) (hv1 : v ≤ 1 / 13) : Sendov.CenteredQuarter.chordTail m a u v ≤ 109350 / 28561 * v / (m - 1)
+Sendov.CenteredQuarter.scalar_budget (m a h u v e0 B T : ℝ) (hm : 7 ≤ m) (hh0 : 0 ≤ h) (hh1 : h ≤ 1 / 28)
+  (hah : a = 1 - h) (hu : 19 / 20 ≤ u) (hstat : u ^ 2 + v ≤ 1) (hv0 : 0 ≤ v) (hv1 : v ≤ 1 / 13) (hv : v ≤ m * h / 3)
+  (he0 : e0 ≤ 2 * h ^ 2 / 3) (hB : B ≤ 1 / 50) (hT : T ≤ Sendov.CenteredQuarter.chordTail m a u v) :
+  e0 + v / ((m - 1) * u ^ 2) * (1 + B) + T ≤ 1 - a * u - 79 * h / 504
+Sendov.CenteredQuarter.actual_quarter_facts (q : Multiset ℂ) (hm : 7 ≤ q.card) (a : ℝ) (μ : ℂ) (ha0 : 0 < a)
+  (ha1 : a < 1) (hmean : q.sum = ↑q.card * μ) (hq : ∀ z ∈ q, ‖z‖ ≤ 1) (hx0 : -1 ≤ μ.re) (hx1 : μ.re ≤ 1)
+  (hp : Sendov.PaperPolar.RawPolar q.card a μ.re) (hl : Sendov.PaperPolar.lambda q.card a ≤ 1 / 4) :
+  1 - a ≤ 1 / 28 ∧
+    155 / 162 ≤ ‖μ‖ ∧
+      Sendov.PaperPolar.b a μ.re ≤ 1 / 13 ∧
+        Sendov.PaperCentered.variance (Multiset.map (fun z ↦ z - μ) q) ≤ 1 / 13 ∧
+          Sendov.PaperCentered.variance (Multiset.map (fun z ↦ z - μ) q) ≤ ↑q.card * (1 - a) / 3 ∧ ‖1 - ↑a * μ‖ ≤ 5 / 18
+Sendov.CenteredQuarter.actual_C_quarter_budget (q : Multiset ℂ) (hm : 7 ≤ q.card) (a : ℝ) (μ : ℂ) (ha0 : 0 < a)
+  (ha1 : a < 1) (hmean : q.sum = ↑q.card * μ) (hq : ∀ z ∈ q, ‖z‖ ≤ 1) (hx0 : -1 ≤ μ.re) (hx1 : μ.re ≤ 1)
+  (hp : Sendov.PaperPolar.RawPolar q.card a μ.re) (hl : Sendov.PaperPolar.lambda q.card a ≤ 1 / 4)
+  (htail :
+    ∑ k ∈ Finset.Ico 3 (q.card + 1),
+        Sendov.PaperCenteredBound.C q.card k (Sendov.PaperCentered.variance (Multiset.map (fun z ↦ z - μ) q)) /
+            (↑(q.card.choose k) * ‖μ‖ ^ k) *
+          ‖Sendov.PaperCentered.H q.card k (↑a * μ)‖ ≤
+      Sendov.CenteredQuarter.chordTail (↑q.card) a ‖μ‖
+        (Sendov.PaperCentered.variance (Multiset.map (fun z ↦ z - μ) q))) :
+  Sendov.PaperCenteredBound.majorant_Efin (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) +
+      Sendov.PaperCentered.Gamma (Multiset.map (fun z ↦ z - μ) q) μ ≤
+    1 - a * ‖μ‖ - 79 * (1 - a) / 504
+def Sendov.CenteredQuarter.chordTail : ℝ → ℝ → ℝ → ℝ → ℝ :=
+fun m a u v ↦ 9 * a ^ 4 * u * √(v ^ 3) / ((13 / 18) ^ 4 * √(m * (m - 1) * (m - 2)))
