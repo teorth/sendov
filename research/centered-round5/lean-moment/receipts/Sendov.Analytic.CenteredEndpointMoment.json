@@ -1,0 +1,13 @@
+{
+  "module": "Sendov.Analytic.CenteredEndpointMoment",
+  "kernel": false,
+  "exit_code": 0,
+  "baseline": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round4/lean-polar",
+  "actual_moment_dependency": {
+    "source_sha256": "52788c0b7937cfbe66581d2310305be99e4f845231fa11c36f1cb757549cb983",
+    "object_sha256": "8884904d66730ee611abcba255a9872fc06db8be89306e83bc1574168b9017b2"
+  },
+  "config_sha256": "bc28f5b03cadb205520082f4e0bb76de04b240e2e5af529c65f1494b383b9d1c",
+  "source_sha256": "d80cf57512d77b0ff13c56d403e42fe349ca4e27c4d9f4126b24b5d2ef6dda8f",
+  "object_sha256": "b7f26e41548dc3c92765d9f6f4107b3e2ed26f294482068f5881f555edc542bc"
+}

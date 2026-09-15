@@ -1,0 +1,13 @@
+import Sendov.Analytic.CenteredNearTheorem
+#print axioms Sendov.PaperBinomialMode.C_sq_le_binomial
+#print axioms Sendov.PaperFactorialTail.coefficient_tail3_le
+#print axioms Sendov.CenteredNearScalar.tailScalar_le
+#print axioms Sendov.CenteredNearScalar.actual_endpoint_le
+#print axioms Sendov.CenteredNearScalar.actual_tailScalar_le
+#print axioms Sendov.CenteredNearScalar.beta_le_squared_chord
+#print axioms Sendov.CenteredNearScalar.cubic_beta_integral
+#print axioms Sendov.CenteredNearScalar.budget_close
+#print axioms Sendov.CenteredActualTail.majorantTail_le_cubicIntegral
+#print axioms Sendov.CenteredActualTail.majorantTail_le_tailScalar
+#print axioms Sendov.CenteredNearTheorem.C_near_fullpolar_small
+#print axioms Sendov.CenteredNearTheorem.norm_J_gt_one_fullpolar_small

@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredThinVariance",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "bd479da44a9df0c63d6d60f37e55a677eb19ffa51cf13d7a42025abee9a02a13",
+  "object_sha256": "5f1a78002ae7e60d4ba0daae23094442d22f38db7cdb01a9bddb1b9ffcdf9ed9"
+}

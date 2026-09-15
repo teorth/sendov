@@ -1,459 +1,225 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
-version: "v0.4"
-
+version: v0.4
 project:
-  name: "Sendov's conjecture and the Phelps-Rodriguez conjecture"
-  description: >-
-    A Lean formalization of Sendov's conjecture, and of its Phelps-Rodriguez
-    strengthening, in full generality: if every zero of a complex polynomial p
-    of degree n >= 2 lies in the closed unit disk, then every zero a of p has
-    a critical point of p within distance 1 of it, and within distance
-    strictly less than 1 unless |a| = 1 and p is a scalar multiple of z^n -
-    a^n. The proof is by contradiction. Degrees 2 to 4 fall to an elementary
-    integral computation; degree 5 upward goes through two estimates on the
-    same integral -- a polar channel and an origin channel -- which are shown
-    to be incompatible, reducing the theorem to a single numerical inequality.
-    That inequality is discharged by exact rational Bernstein certificates,
-    generated outside Lean and re-verified inside it, in both of its ranges:
-    per-degree certificates for 5 <= n <= 100, and, for n >= 101, a single
-    degree-58 certificate closing the one-variable inequality that the
-    analytic large-degree reduction leaves behind. The boundary case |a| = 1
-    is proved separately from a reciprocal identity, and it is there that the
-    equality classification is extracted. Nothing here is claimed to be new:
-    the informal proof being formalized is a digestion of Lech Mazur's proof,
-    which had already been formalized in Lean, so this is a second and
-    independently checkable machine-checked proof of Sendov's conjecture,
-    whose additional content is the Phelps-Rodriguez equality case. The Lean
-    source was written by an AI agent under the direction and review of the
-    author. There is no sorry outside the two deliberate holes in
-    Challenge.lean, no project-defined axiom, no native_decide, and no
-    floating point in any statement or proof.
+  name: Sendov's conjecture and the Phelps-Rodriguez conjecture
+  description: 'Local Lean development of both complete conjectures, retaining the original polynomial,
+    analytic and boundary arguments and replacing the old scalar endgame by a proved cubic polar envelope
+    and full-degree-ray alpha estimates. Degrees 2 through 5 use the unchanged elementary analytic proof.
+    For every real m >= 5, 0 < alpha <= 17, 2*alpha <= m, the original scalar is strictly below one.
+    The natural n >= 6 wrapper and final statements are unchanged. No finite degree certificates,
+    numerical degree bases or old interval/tail cutoff remain; no bound is assumed.'
   authors:
-    - "Terence Tao"
-  license: "Apache-2.0"
-  responsible_maintainers:
-    - "Terence Tao"
-
+  - Terence Tao
+  license: Apache-2.0
 repository:
   role: substantive-development
-
 classification:
-  arxiv: [math.CV]
-  msc2020: ["30C15", "30C10", "12D10"]
-
+  arxiv:
+  - math.CV
+  msc2020:
+  - 30C15
+  - 30C10
+  - 12D10
 status:
-  scope: >-
-    Complete, with no unproved step. Both conjectures in full generality: every
-    complex polynomial of degree at least two with all zeroes in the closed
-    unit disk, and every zero of it. No restriction on the degree beyond
-    n >= 2, on the modulus or argument of the distinguished zero, or on
-    multiplicities. Nothing is assumed from the literature; the two compared
-    theorems are proved from Mathlib alone.
-  # The proof development contains no sorry at all. The only two in the
-  # repository are the deliberate placeholders in Challenge.lean, which these
-  # counts exclude by convention.
+  scope: 'Complete, with no unproved step. Both conjectures in full generality: every complex polynomial
+    of degree at least two with all zeroes in the closed unit disk, and every zero of it. No restriction
+    on the degree beyond n >= 2, on the modulus or argument of the distinguished zero, or on multiplicities.
+    Nothing is assumed from the literature; the two compared theorems are proved from Mathlib alone.'
   sorry_count: 0
   sorry_in_definitions: 0
-  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
   main_results:
-    - declaration: "SendovConjecture.sendov"
-      file: "Solution.lean"
-      sorry_count: 0
-      axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.json"
-      literature_dependencies: []
-    - declaration: "SendovConjecture.phelps_rodriguez"
-      file: "Solution.lean"
-      sorry_count: 0
-      axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.json"
-      literature_dependencies: []
-
+  - declaration: SendovConjecture.sendov
+    file: Solution.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: comparator.json
+    literature_dependencies: []
+  - declaration: SendovConjecture.phelps_rodriguez
+    file: Solution.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: comparator.json
+    literature_dependencies: []
 fidelity:
-  divergences: >-
-    Faithful to the source, and in two respects stronger than it. The blog post
-    argues Sendov's conjecture for n >= 5; this development proves all n >= 2,
-    adding degrees 2 to 4 in Sendov/Analytic/LowDegree.lean. The blog post
-    states the non-strict conclusion; this development additionally extracts
-    the Phelps-Rodriguez equality classification, strengthening the distance
-    bound to a strict inequality except for p = c(z^n - a^n) with |a| = 1.
-    Both are generalizations rather than weakenings: no hypothesis of the
-    source was strengthened, and no part of its statement was dropped. One
-    step is proved by a different route than the informal account: for
-    n >= 101 the write-up in docs/proof-large-degree.md splits 0 <= alpha <= 17
-    at alpha = 16 and estimates the two pieces by exact rational endpoint
-    bounds, whereas Sendov/LargeDegree/Endgame.lean settles the whole interval
-    with one generated Bernstein certificate, Sendov.F_pos, which the sharp
-    Beta constant leaves enough margin for. The conclusion is the same. Lemma
-    names differ from the informal text throughout; the roadmap in README.md
-    records the correspondence.
-
-# ---------------------------------------------------------------------------
-# Mathematical sources.
-#
-# This is a source-based formalization. The result is not new, is not claimed
-# to be new, and no literature or formalization search was performed. It
-# formalizes the informal proof in the blog post below, which is itself a
-# digestion and simplification of Lech Mazur's proof -- so the mathematics here
-# descends from that work rather than reaching the theorem independently. See
-# related_formalizations.
-#
-# NOTE TO REVIEWER: the blog post carries the full literature account. The
-# entries below record the sources this formalization actually used to choose,
-# state and justify the result.
-# ---------------------------------------------------------------------------
+  divergences: The original final theorem types and polynomial semantics are unchanged. The local
+    variant uses Senjian An's stronger rational polar envelope and two-chord estimate, followed by
+    small, middle and large alpha bounds on full real-degree rays. Fixed alpha identities of degrees
+    53, 47 and 47 have complete kernel-checked coefficients and factors. The raw scalar at alpha zero
+    is not silently redefined by regularization. The degree-five case now uses the existing elementary
+    low-degree theorem, unchanged in this stage. Obsolete intermediate interfaces are retired, not
+    maintained as a second proof system. No claim that m=5 is globally minimal is made.
 sources:
-  - title: "A digestion of the proof of Sendov's conjecture"
-    authors: ["Terence Tao"]
-    type: "web post"
-    id: "https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/"
-    relationship: formalizes
-    note: >-
-      The informal proof that this development formalizes, including the
-      treatment of Rubinstein's boundary theorem that it derives from the same
-      arguments. The formalization follows its
-      architecture closely and extends it from n >= 5 to n >= 2. It is a
-      published blog post rather than an archived preprint; that URL is the
-      most stable identifier that exists for it.
-
-  - title: "Research Problems in Function Theory (statement of Sendov's conjecture)"
-    authors: ["W. K. Hayman"]
-    type: "book"
-    id: "https://zbmath.org/3254142"
-    relationship: background
-    note: >-
-      Where the conjecture, due to Blagovest Sendov, was first recorded as a
-      research problem. Used to fix the standard statement that Challenge.lean
-      is checked against.
-
-  - title: "Some properties of extremal polynomials for the Ilieff conjecture"
-    authors: ["D. Phelps", "R. S. Rodriguez"]
-    type: "article"
-    id: "https://zbmath.org/3386011"
-    relationship: formalizes
-    note: >-
-      The source of the strengthened conjecture with the equality
-      classification, formalized here as SendovConjecture.phelps_rodriguez.
-      Two sources carry "formalizes", and they supply different things: the
-      blog post supplies the proof that this development follows, and this
-      paper supplies the statement of the stronger of the two theorems proved.
-      The submitted statement does not extend the conjecture recorded here --
-      it is proved exactly as stated -- which is why this is "formalizes"
-      rather than "adapts".
-
-  - title: "On a problem of Ilyeff"
-    authors: ["Z. Rubinstein"]
-    type: "article"
-    location: "Pacific J. Math. 26 (1968), 159-161"
-    relationship: background
-    note: >-
-      The boundary case |a| = 1, with the same equality classification. This
-      development proves that case from scratch in Sendov/Boundary.lean, from
-      p''(1)/p'(1), following the blog post rather than transcribing
-      Rubinstein's paper, on which it does not depend. The argument used is not
-      new either: see the Tang-Zhang entry below.
-
-  - title: "Sharp Schoenberg type inequalities and the de Bruin-Sharma problem"
-    authors: ["Quanyu Tang", "Teng Zhang"]
-    type: "preprint"
-    id: "arXiv:2508.10341"
-    location: "Equation (5.1) and Remark 5.1"
-    relationship: background
-    note: >-
-      Equation (5.1) and Remark 5.1 of this preprint are the two ingredients of
-      the boundary case |a| = 1 in Sendov/Boundary.lean: their identity
-      sum_k 1/w_k = 2 sum_j 1/z_j is Sendov.boundary_reciprocal after moving
-      the distinguished zero from 0 to 1, and their Re(1/z_j) <= -1/2 is
-      Sendov.half_le_re_inv_one_sub. Remark 5.1 combines them to give the a = 1
-      case of Sendov's conjecture in the non-strict form min_k |w_k| <= 1. This
-      development reaches the same two ingredients from the blog post rather
-      than from this preprint, and goes one step further, extracting equality
-      term by term to obtain the classification p = c(z^n - a^n); that step
-      recovers Rubinstein's 1968 theorem and is likewise not claimed as new.
-      The correspondence was checked against the preprint after the
-      formalization was complete.
-
-  - title: "On a conjecture of Ilieff"
-    authors: ["D. A. Brannan"]
-    type: "article"
-    location: "Proc. Cambridge Philos. Soc. 64 (1968), 83-85"
-    relationship: background
-    note: >-
-      The cubic case, which falls out of the low-degree branch here. No
-      comparison with Brannan's argument was made.
-
-  - title: "On Ilyeff's conjecture"
-    authors: ["A. Meir", "A. Sharma"]
-    type: "article"
-    location: "Pacific J. Math. 31 (1969), 459-467"
-    relationship: background
-    note: >-
-      Degree five, and the reciprocal identities of which the boundary identity
-      used here is the k = nu = 1 specialization.
-
-  - title: "Sendov's conjecture for sufficiently high degree polynomials"
-    authors: ["Terence Tao"]
-    type: "article"
-    id: "https://zbmath.org/7681950"
-    relationship: background
-    note: >-
-      The earlier high-degree result. Its use of analytic continuation is what
-      the digested argument replaces by an explicit finite check, which is why
-      this development can be fully formalized.
-
-  - title: "Sendov conjecture proof (ProofAtlas manuscript)"
-    authors: ["Lech Mazur"]
-    type: "other"
-    id: "https://www.proofatlas.ai/papers/sendov-conjecture/"
-    relationship: adapts
-    note: >-
-      The first complete proof of Sendov's conjecture for all n >= 2, produced
-      with an AI tool. The blog post above is a digestion and simplification of
-      this argument, so the mathematics formalized here descends from it; the
-      extension to the Phelps-Rodriguez form is what "adapts" records. The
-      adaptation reached this repository through the blog post; this manuscript
-      was not worked from directly. The corresponding Lean work is recorded
-      under related_formalizations.
-
+- title: A digestion of the proof of Sendov's conjecture
+  authors:
+  - Terence Tao
+  type: web post
+  id: https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/
+  relationship: formalizes
+  note: Source of the retained polynomial, analytic and boundary reduction. The scalar endgame in
+    this local variant is replaced by the separately listed distillation method; the full conjecture
+    statements are preserved.
+- title: Research Problems in Function Theory (statement of Sendov's conjecture)
+  authors:
+  - W. K. Hayman
+  type: book
+  id: https://zbmath.org/3254142
+  relationship: background
+  note: Where the conjecture, due to Blagovest Sendov, was first recorded as a research problem. Used
+    to fix the standard statement that Challenge.lean is checked against.
+- title: Some properties of extremal polynomials for the Ilieff conjecture
+  authors:
+  - D. Phelps
+  - R. S. Rodriguez
+  type: article
+  id: https://zbmath.org/3386011
+  relationship: formalizes
+  note: 'The source of the strengthened conjecture with the equality classification, formalized here
+    as SendovConjecture.phelps_rodriguez. Two sources carry "formalizes", and they supply different
+    things: the blog post supplies the proof that this development follows, and this paper supplies
+    the statement of the stronger of the two theorems proved. The submitted statement does not extend
+    the conjecture recorded here -- it is proved exactly as stated -- which is why this is "formalizes"
+    rather than "adapts".'
+- title: On a problem of Ilyeff
+  authors:
+  - Z. Rubinstein
+  type: article
+  location: Pacific J. Math. 26 (1968), 159-161
+  relationship: background
+  note: 'The boundary case |a| = 1, with the same equality classification. This development proves
+    that case from scratch in Sendov/Boundary.lean, from p''''(1)/p''(1), following the blog post
+    rather than transcribing Rubinstein''s paper, on which it does not depend. The argument used is
+    not new either: see the Tang-Zhang entry below.'
+- title: Sharp Schoenberg type inequalities and the de Bruin-Sharma problem
+  authors:
+  - Quanyu Tang
+  - Teng Zhang
+  type: preprint
+  id: arXiv:2508.10341
+  location: Equation (5.1) and Remark 5.1
+  relationship: background
+  note: 'Equation (5.1) and Remark 5.1 of this preprint are the two ingredients of the boundary case
+    |a| = 1 in Sendov/Boundary.lean: their identity sum_k 1/w_k = 2 sum_j 1/z_j is Sendov.boundary_reciprocal
+    after moving the distinguished zero from 0 to 1, and their Re(1/z_j) <= -1/2 is Sendov.half_le_re_inv_one_sub.
+    Remark 5.1 combines them to give the a = 1 case of Sendov''s conjecture in the non-strict form
+    min_k |w_k| <= 1. This development reaches the same two ingredients from the blog post rather
+    than from this preprint, and goes one step further, extracting equality term by term to obtain
+    the classification p = c(z^n - a^n); that step recovers Rubinstein''s 1968 theorem and is likewise
+    not claimed as new. The correspondence was checked against the preprint after the formalization
+    was complete.'
+- title: On a conjecture of Ilieff
+  authors:
+  - D. A. Brannan
+  type: article
+  location: Proc. Cambridge Philos. Soc. 64 (1968), 83-85
+  relationship: background
+  note: The cubic case, which falls out of the low-degree branch here. No comparison with Brannan's
+    argument was made.
+- title: On Ilyeff's conjecture
+  authors:
+  - A. Meir
+  - A. Sharma
+  type: article
+  location: Pacific J. Math. 31 (1969), 459-467
+  relationship: background
+  note: Degree five, and the reciprocal identities of which the boundary identity used here is the
+    k = nu = 1 specialization.
+- title: Sendov's conjecture for sufficiently high degree polynomials
+  authors:
+  - Terence Tao
+  type: article
+  id: https://zbmath.org/7681950
+  relationship: background
+  note: The earlier high-degree result. Its use of analytic continuation is what the digested argument
+    replaces by explicit scalar estimates. This variant closes the scalar domain without degree rows.
+- title: Sendov conjecture proof (ProofAtlas manuscript)
+  authors:
+  - Lech Mazur
+  type: other
+  id: https://www.proofatlas.ai/papers/sendov-conjecture/
+  relationship: adapts
+  note: The first complete proof of Sendov's conjecture for all n >= 2, produced with an AI tool.
+    The blog post above is a digestion and simplification of this argument, so the mathematics formalized
+    here descends from it; the extension to the Phelps-Rodriguez form is what "adapts" records. The
+    adaptation reached this repository through the blog post; this manuscript was not worked from
+    directly. The corresponding Lean work is recorded under related_formalizations.
+- title: Proof Distillation for Sendov's Conjecture
+  authors:
+  - Senjian An
+  type: other
+  id: https://github.com/SJanPerth/Sendov-Proof-Distillation/tree/e8ae601491ec171ab4f7f8456113dd6a047aa85d
+  relationship: adapts
+  note: Source of the retained cubic rational envelope and two-chord estimate. The source paper is
+    CC BY 4.0. Its finite degree certificates and degree tail are superseded by the full-ray alpha
+    estimates; no Python verification is a trusted premise.
 related_formalizations:
-  - id: "https://www.proofatlas.ai/formalizations/sendov-conjecture/"
-    relationship: builds-on
-    note: >-
-      The earlier Lean formalization of Sendov's conjecture for all n >= 2, by
-      Lech Mazur, reported there as 1160 files and 92816 lines with a single
-      main theorem. Priority for the first machine-checked proof of Sendov's
-      conjecture belongs to that work, and this repository is the second
-      formalization of it. "builds-on" rather than "independent": no code is
-      shared and that development was never read, but the informal proof
-      formalized here is a digestion of its argument, so the mathematics
-      descends from it. What is additional here is the Phelps-Rodriguez
-      equality classification, which that formalization does not state; as far
-      as we are aware this is its first formalization, but that is an
-      observation about the one earlier formalization we know of and not the
-      result of a search. The two developments are separately checkable
-      evidence for the same theorem; no comparison of their internal arguments
-      has been carried out.
-
-# ---------------------------------------------------------------------------
-# How this was produced.
-# ---------------------------------------------------------------------------
+- id: https://www.proofatlas.ai/formalizations/sendov-conjecture/
+  relationship: builds-on
+  note: 'The earlier Lean formalization of Sendov''s conjecture for all n >= 2, by Lech Mazur, reported
+    there as 1160 files and 92816 lines with a single main theorem. Priority for the first machine-checked
+    proof of Sendov''s conjecture belongs to that work, and this repository is the second formalization
+    of it. "builds-on" rather than "independent": no code is shared and that development was never
+    read, but the informal proof formalized here is a digestion of its argument, so the mathematics
+    descends from it. What is additional here is the Phelps-Rodriguez equality classification, which
+    that formalization does not state; as far as we are aware this is its first formalization, but
+    that is an observation about the one earlier formalization we know of and not the result of a
+    search. The two developments are separately checkable evidence for the same theorem; no comparison
+    of their internal arguments has been carried out.'
 automation:
   methods:
-    - method: agent
-      models: ["Claude Opus 5 (Anthropic)"]
-      framework: "Claude Code"
-      role: >-
-        Wrote essentially all of the Lean source in this repository, working
-        interactively in Claude Code under the direction and review of the
-        author across many sessions: choosing the Lean formulations, finding
-        and repairing proofs, and designing the certificate machinery. The
-        author set the targets, supplied the informal proof and the staged
-        plans in docs/, made the mathematical decisions, and reviewed the
-        output as it was produced.
-    # AI-assisted, upstream of this repository.
-    - method: other
-      models: []
-      role: >-
-        The informal proof being formalized was itself digested from earlier
-        work with heavy AI assistance, as the blog post records; the models
-        used there are unspecified. That work is a mathematical source here,
-        not part of this repository.
-    # Script generation.
-    - method: other
-      framework: "Python scripts in scripts/"
-      role: >-
-        Every Bernstein certificate in the development is emitted by the Python
-        scripts in scripts/ (about 1300 lines): the per-degree certificates for
-        5 <= n <= 100 in Sendov/FiniteRange/, and the degree-58 endgame
-        certificate Sendov.F_pos in Sendov/LargeDegree/Endgame.lean, which
-        scripts/gen_endgame.py generates. Those
-        scripts are outside the trusted base: they write Lean source that Lean
-        re-verifies from scratch, so a bug in them causes a build failure, not
-        an unsound theorem. scripts/mutation_test.sh checks that the
-        certificates are load-bearing.
-
+  - method: agent
+    framework: Hermes Agent
+    role: Local implementation, independent agent source reviews, and executable verification of this
+      adaptation. This is not an assertion of new upstream-maintainer or human peer review.
+  - method: other
+    framework: Python exact arithmetic
+    role: scripts/gen_sinh.py reproduces the retained global hyperbolic proof source. The alpha
+      identities are self-contained Lean source and require no generator. Python tests exercise
+      full-identity mutations and audit failures; compiler and kernel acceptance are separate.
 review:
   status: self-assessed
-  reviewers:
-    - "Terence Tao"
-  notes: >-
-    The author directed and reviewed the development as it was produced. No
-    external or independent review has been performed, and no mathematician
-    other than the author has read the Lean source. Every step is checked by
-    Lean, and scripts/audit.sh checks the trust conditions below.
-
-# ---------------------------------------------------------------------------
-# Limitations, stated so that a reader can calibrate the claim.
-# ---------------------------------------------------------------------------
+  notes: The no-degree-row full-real-m5 candidate is subject to exact-source compilation, kernel replay,
+    original compiled-contract comparison and full unpruned proof-value audits. Parent review of the
+    final exact tree, promotion and paired milestone measurements remain separate pending gates.
+    This is not a claim of human peer review or upstream-author endorsement.
 known_gaps: []
-
 limitations:
-  - >-
-    No novelty is claimed anywhere, and no literature or formalization search
-    was performed. Sendov's conjecture was proved, and formalized in Lean,
-    before this work, and the informal proof formalized here is a digestion of
-    that proof; see related_formalizations. Where the documentation notes a
-    difference from earlier work it is describing this development, not
-    claiming priority. In particular the boundary argument in
-    Sendov/Boundary.lean is not new: its two ingredients are equation (5.1) and
-    Remark 5.1 of the Tang-Zhang preprint listed above, and the equality case it
-    additionally extracts is Rubinstein's 1968 theorem.
-  - >-
-    The proof depends on a computational component, in both degree ranges.
-    Every degree from 5 upward reaches a numerical inequality that is
-    discharged by Bernstein certificates generated outside Lean and re-verified
-    inside it. For 5 <= n <= 100 these are the per-degree certificates in
-    Sendov/FiniteRange/. For n >= 101 an analytic argument first removes the
-    degree, reducing the claim to Ut(alpha) < 1 on [0,17] in a single variable;
-    that residual inequality is then closed by Sendov.F_pos in
-    Sendov/LargeDegree/Endgame.lean, a generated degree-58 Bernstein
-    certificate, so the large-degree branch is not purely analytic either.
-    This is about half the Lean source by line count. It uses no
-    interval arithmetic and no floating point: the certificates are exact
-    rationals, and scripts/audit.sh fails if Float appears in any statement or
-    proof.
-  - >-
-    The compared theorems depend on propext, Classical.choice and Quot.sound,
-    and on nothing else. There is no sorry outside the two deliberate holes in
-    Challenge.lean, no project-defined axiom, no native_decide, no unsafe, and
-    no floating point in any statement or proof.
-  - >-
-    Challenge.lean states the result but does not prove it; that is the
-    Comparator convention, and Solution.lean supplies the proofs.
-
-# ---------------------------------------------------------------------------
-# How the cited statements correspond to Lean declarations.
-#
-# This is the source-to-formal map, not a lemma index: it lists the statements
-# that the `sources` entries above actually contribute, and where each is
-# discharged. README.md carries the full roadmap of intermediate lemmas.
-# ---------------------------------------------------------------------------
+- The two deliberate placeholders in Challenge.lean are specifications, not imported proof premises.
+- Independent kernel replay is over the fixed imported environment; it is not a fresh re-proof of
+  Mathlib.
+- Timing evidence belongs to its stated source trees and resource configuration, not a claim of exclusive-machine
+  performance.
 alignment:
-  # The proof development lives in the `Sendov` namespace. The two compared
-  # declarations live in `SendovConjecture`, which is what comparator.json
-  # names and what Challenge.lean states.
-  namespace: "Sendov"
+  namespace: Sendov
   statements:
-    - source: "Sendov's conjecture, as stated in Hayman, Research Problems in Function Theory"
-      lean: "SendovConjecture.sendov"
-      module: "Challenge (statement), Solution (proof)"
-      status: proved
-      note: >-
-        The statement of record, compared by Comparator. Challenge.lean states
-        it with a sorry; Solution.lean discharges that from Sendov.sendov.
-        Stated for p.natDegree, with the zero-containment hypothesis given as
-        a condition on p.roots.
-
-    - source: "Sendov's conjecture (development-internal form)"
-      lean: "Sendov.sendov"
-      module: "Sendov.Conjecture"
-      status: proved
-      note: >-
-        The same theorem with the degree carried as an explicit n, which is the
-        form the rest of the development uses.
-
-    - source: "The Phelps-Rodriguez conjecture: the distance is strictly less than 1 unless p = c(z^n - a^n) with |a| = 1"
-      lean: "SendovConjecture.phelps_rodriguez"
-      module: "Challenge (statement), Solution (proof)"
-      status: proved
-      note: >-
-        The second compared declaration, discharged from
-        Sendov.phelps_rodriguez. This is the strengthening; Sendov's conjecture
-        follows from it by weakening the strict inequality, which is how
-        Sendov.sendov is derived.
-
-    - source: "Rubinstein, On a problem of Ilyeff: the boundary case |a| = 1 with its equality classification"
-      lean: "Sendov.rubinstein_one"
-      module: "Sendov.Boundary"
-      status: proved-independently
-      note: >-
-        Proved from scratch, at the normalized point a = 1; the general
-        |a| = 1 case follows by the rotation in Sendov.Conjecture. Rubinstein's
-        paper was not transcribed and is not depended on, and the argument used
-        is not new -- see the Tang-Zhang rows below. The closed-disk corollary
-        is Sendov.sendov_boundary_one.
-
-    - source: "Tang-Zhang, equation (5.1): sum_k 1/w_k = 2 sum_j 1/z_j"
-      lean: "Sendov.boundary_reciprocal"
-      module: "Sendov.Boundary"
-      status: proved-independently
-      note: >-
-        Stated in division-free form over two multisets, from the two readings
-        of p'(1) and p''(1); it becomes (5.1) after moving the distinguished
-        zero from 0 to 1. Reached from the blog post, not from the preprint.
-
-    - source: "Tang-Zhang, Remark 5.1: Re(1/z_j) <= -1/2 for |z_j| <= 1"
-      lean: "Sendov.half_le_re_inv_one_sub"
-      module: "Sendov.Boundary"
-      status: proved-independently
-      note: >-
-        Stated as a bound on Re(1/(1 - z)) for ‖z‖ <= 1, z != 1. Together with
-        the row above this gives the non-strict a = 1 case, as Remark 5.1 does;
-        Sendov.all_q_eq_one is the extra step that pins the equality case and
-        so recovers Rubinstein's classification.
-
-    - source: "Meir-Sharma, On Ilyeff's conjecture: the reciprocal identities"
-      lean: "Sendov.boundary_reciprocal"
-      module: "Sendov.Boundary"
-      status: specialized
-      note: >-
-        The identity used here is the k = nu = 1 case of theirs. Only that
-        specialization is formalized; the general family is not.
-
-    - source: "Brannan, On a conjecture of Ilieff: the cubic case"
-      lean: "Sendov.low_degree_contradiction"
-      module: "Sendov.Analytic.LowDegree"
-      status: subsumed
-      note: >-
-        Degree three is not treated separately: it falls inside the elementary
-        branch, which contradicts the scalar bound 1 <= J_(n-1)(a) directly.
-        No comparison with Brannan's argument was made.
-
-    - source: "Tao, A digestion of the proof of Sendov's conjecture: the polar channel"
-      lean: "Sendov.one_le_integral_Ppolar"
-      module: "Sendov.Analytic.Polar"
-      status: proved
-      note: "The AM-GM relaxation of the main integral inequality to a scalar inequality in x alone."
-
-    - source: "Tao, A digestion of the proof of Sendov's conjecture: the origin channel"
-      lean: "Sendov.origin_exact"
-      module: "Sendov.Analytic.OriginExact"
-      status: proved
-      note: >-
-        The second estimate on the same integral. Its final step is where
-        n >= 5 is used, and it is the only place that hypothesis is needed.
-
-    - source: "Tao, A digestion of the proof of Sendov's conjecture: the two channels are incompatible"
-      lean: "Sendov.polar_origin_incompatible"
-      module: "Sendov.Reduction.Main"
-      status: proved
-      note: >-
-        The contradiction that closes the main branch, by way of
-        Sendov.alpha_le_seventeen and the numerical claim Sendov.stat_lt_one.
-
-    - source: "Tao, A digestion of the proof of Sendov's conjecture: the residual numerical inequality"
-      lean: "Sendov.stat_lt_one"
-      module: "Sendov.Main"
-      status: proved-by-computation
-      note: >-
-        Split at the degree, but generated exact rational Bernstein
-        certificates close both halves. Sendov.finite_range_le_100
-        (Sendov.FiniteRange.Cover) discharges 5 <= n <= 100 from the per-degree
-        certificates in Sendov/FiniteRange/. Sendov.large_degree
-        (Sendov.LargeDegree.Endgame) handles n >= 101 by an analytic argument
-        that removes the degree, leaving Ut(alpha) < 1 on [0,17] in one
-        variable; that is closed by Sendov.F_pos, a generated degree-58
-        certificate, so this half is not purely analytic. See
-        docs/finite-range.md and docs/proof-large-degree.md.
-
-    - source: "Tao, A digestion of the proof of Sendov's conjecture: the low degrees"
-      lean: "Sendov.low_degree_contradiction"
-      module: "Sendov.Analytic.LowDegree"
-      status: extends-source
-      note: >-
-        The blog post argues n >= 5; this row is the extension down to n >= 2,
-        by an elementary integral computation done once at m = 4. No
-        certificates and no Real.rpow are used here. The lemma is stated for
-        2 <= n <= 5, but the recorded proof invokes it only for n <= 4:
-        Sendov.sendov_interior splits at n < 5, so degree 5 goes through
-        the two-channel branch and its certificates like every larger degree.
+  - source: Sendov's conjecture
+    lean: SendovConjecture.sendov
+    module: Solution
+    status: proved
+    note: Complete original evaluation-based statement for every polynomial of degree at least two
+      and every zero.
+  - source: Phelps-Rodriguez equality classification
+    lean: SendovConjecture.phelps_rodriguez
+    module: Solution
+    status: proved
+    note: Complete original strict-distance alternative or the unit-circle nonzero scalar-multiple
+      form.
+  - source: Original polar/origin reduction with a cubic envelope
+    lean: Sendov.cubicScalar_constraints_of_polar_origin
+    module: Sendov.Reduction.CubicScalar
+    status: proved
+    note: Derives all scalar-domain conditions and the lower bound from the original geometric inputs.
+  - source: Complete original scalar domain on real degree rays
+    lean: Sendov.distillScalar_lt_one_real
+    module: Sendov.Common.DistillationBounds
+    status: proved
+    note: Every real m >= 5, 0 < alpha <= 17, 2*alpha <= m; no degree base or finite row.

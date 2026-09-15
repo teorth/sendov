@@ -1,0 +1,7 @@
+'Sendov.CenteredQuarter.endpoint_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.norm_B_two_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarter.scalar_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarterTheorem.C_near_fullpolar_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredQuarterTheorem.norm_J_gt_one_fullpolar_quarter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

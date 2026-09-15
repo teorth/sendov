@@ -1,0 +1,66 @@
+PASS: endpoint polynomial shifted at 7
+PASS: h endpoint coefficient
+PASS: target variance coefficient
+PASS: B2 quadratic shifted at 7
+PASS: Gamma B2 coefficient bound
+PASS: midpoint B0 identity
+PASS: midpoint alternative identity
+PASS: r minus midpoint endpoint bound
+PASS: midpoint late comparison valid from m=45
+PASS: sqrt tangent identity at root rho=17/20
+PASS: tangent sign: root rho positive
+PASS: d derivative
+PASS: d positive numerator at m=45
+PASS: d(45) strictly below 1/2
+PASS: d <=1/2 exact identity
+PASS: squared-midpoint derivative in a
+PASS: derivative lower-bound difference
+PASS: derivative lower-bound polynomial decreases for d<=1/2
+PASS: midpoint derivative margin at d=1/2
+PASS: midpoint squared RHS positive lower bound
+PASS: chord slope c <=5/9 <2
+PASS: chord slope gives exact a cancellation
+PASS: complete beta integral rational identity
+PASS: tail prefactor after beta integration
+PASS: late integral actual value <=1/4
+PASS: late prefactor
+PASS: exact N logarithmic derivative
+PASS: N log derivative upper numerator
+PASS: N sign sum-of-positive-terms identity
+PASS: N(45) <254/1000 by squares
+PASS: N(50) <247/1000 by squares
+PASS: J second derivative numerator
+PASS: J convexity positive grouping
+PASS: J convexity cubic coefficient on m<=100
+PASS: J convexity remaining quadratic positive on m>=45
+PASS: upper-log remainder derivative
+PASS: lower-log remainder derivative
+PASS: log polynomial bounds agree at t=0
+PASS: J first derivative lower numerator
+PASS: J positive shifted polynomial at m=100
+PASS: J shifted coefficients all positive
+PASS: J(45) <29/500 by squares
+PASS: J(50) <29/500 by squares
+PASS: 29/500 <23/250
+PASS: J(100) <23/250 by squares
+PASS: J(170) <23/250 by squares
+PASS: K logarithm replacement
+PASS: K upper derivative numerator
+PASS: K sign grouping on m<=170
+PASS: K negative coefficient on m<=170
+PASS: K(45) <6/1000 by squares
+PASS: K(50) <1/200 by squares
+PASS: Gamma(45) coefficient <113/1000
+PASS: Gamma(50) coefficient <101/1000
+PASS: 45-to-50 total
+PASS: 50-to-170 total
+PASS: both budgets below imported common coefficient
+PASS: uniform variance margin
+PASS: uniform h margin
+PASS: integer complement largest degree
+PASS: remaining lambda endpoint
+PASS: remaining strict a upper bound expression
+ALL 62 EXACT RATIONAL/ALGEBRA CHECKS PASSED
+New analytic domain: 45 <= m <= 170, all original a, means, and variances.
+With imported theorem: every integer m >=45.
+Remaining: 7 <=m <=44, 1/3 <lambda <=m/10, v >h/m^2, original feasibility.

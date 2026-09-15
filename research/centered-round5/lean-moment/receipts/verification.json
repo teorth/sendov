@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "module": "Sendov.Analytic.CenteredEndpointMoment",
+      "kernel": false,
+      "seconds": 3.726392153010238
+    },
+    {
+      "module": "Sendov.Analytic.CenteredEndpointMoment",
+      "kernel": true,
+      "seconds": 4.5699218469671905
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBernsteinMoment",
+      "kernel": false,
+      "seconds": 3.412683119007852
+    },
+    {
+      "module": "Sendov.Analytic.CenteredBernsteinMoment",
+      "kernel": true,
+      "seconds": 4.552478096971754
+    },
+    {
+      "module": "Sendov.Analytic.CenteredMomentAudit",
+      "kernel": false,
+      "seconds": 2.6544089429662563
+    },
+    {
+      "module": "Sendov.Analytic.CenteredMomentAudit",
+      "kernel": true,
+      "seconds": 4.510759401018731
+    }
+  ],
+  "axiom_declarations": 16,
+  "axioms": {
+    "Sendov.CenteredEndpointMoment.integral_rpow_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.moment_le_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.moment_lt_one_of_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.endpointKernel_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.kernel_le_endpoint": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.actualKernel_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.real_mean_gt_of_endpoint_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.weighted_sum_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.weighted_sum_neg_of_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.weighted_sum_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.bernsteinWeight_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.sum_bernsteinWeight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.bernstein_sum_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.lt_one_of_bernstein": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.EndpointBernsteinCertificate.upper_moment_lt_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.CenteredEndpointMoment.real_mean_gt_of_bernstein": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "source_hashes": {
+    "Sendov.Analytic.CenteredEndpointMoment": "d80cf57512d77b0ff13c56d403e42fe349ca4e27c4d9f4126b24b5d2ef6dda8f",
+    "Sendov.Analytic.CenteredBernsteinMoment": "ee4a7e5009755e1b9402c602be8452069a2c1af9b20ebceeabbab6f8ec972612",
+    "Sendov.Analytic.CenteredMomentAudit": "32256e5848e0539fc3560b83df3b89451407a57bc79357fbb0479213e6209598"
+  },
+  "note": "No concrete endpoint polynomial certificate is instantiated in this stage."
+}

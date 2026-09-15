@@ -1,0 +1,7 @@
+{
+  "module": "tests.CenteredQuarterFinalAudit",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "6c119a9eecc7bb8da4e1ac2a0ec7d8cb6435836813fa27b219336860b9f47a83",
+  "object_sha256": "7c6669103e4cf5822c9907eade049b2e52ccb9256d50769ba897112d543c66fe"
+}

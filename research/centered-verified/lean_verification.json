@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "module": "Sendov.Analytic.PaperCenteredTail",
+      "kernel": false,
+      "exit_code": 0
+    },
+    {
+      "module": "Sendov.Analytic.PaperCenteredTail",
+      "kernel": true,
+      "exit_code": 0
+    },
+    {
+      "module": "Sendov.Analytic.PaperCenteredEndpoint",
+      "kernel": false,
+      "exit_code": 0
+    },
+    {
+      "module": "Sendov.Analytic.PaperCenteredEndpoint",
+      "kernel": true,
+      "exit_code": 0
+    },
+    {
+      "module": "Sendov.Analytic.PaperCenteredVarianceEndpoint",
+      "kernel": false,
+      "exit_code": 0
+    },
+    {
+      "module": "Sendov.Analytic.PaperCenteredVarianceEndpoint",
+      "kernel": true,
+      "exit_code": 0
+    },
+    {
+      "module": "tests.PaperCenteredStructural",
+      "kernel": false,
+      "exit_code": 0
+    },
+    {
+      "module": "tests.PaperCenteredStructural",
+      "kernel": true,
+      "exit_code": 0
+    },
+    {
+      "module": "tests.PaperCenteredVarianceAudit",
+      "kernel": false,
+      "exit_code": 0
+    },
+    {
+      "module": "tests.PaperCenteredVarianceAudit",
+      "kernel": true,
+      "exit_code": 0
+    }
+  ],
+  "source_hashes": {
+    "tests/PaperCenteredVarianceAudit.lean": "03146605f6a2c4546b6d119e6b34c9528d322ecfe968744f3d603763f9cbc03a",
+    "tests/PaperCenteredStructural.lean": "03a8bf2dffb847b91fedc0d19dd918058a71e3278284564441865efa1a3ea270",
+    "Sendov/Analytic/PaperCenteredEndpoint.lean": "f8a9f8a5b66ab5a3c985ad9b45c4be82a141d550026033e770c998f1816bb352",
+    "Sendov/Analytic/PaperCenteredVarianceEndpoint.lean": "f450f2424298485dad32e789ec4140b6249356dc2b578d8f0ebdeed4c01c58ee",
+    "Sendov/Analytic/PaperCenteredTail.lean": "ade69637e3b2fbe39651fa4a15e289620de0bb4cc6960dac18b83caa2a649fbd"
+  }
+}

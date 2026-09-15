@@ -3,7 +3,7 @@ Copyright (c) 2026 Terence Tao. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Terence Tao
 -/
-import Sendov.Reduction.Stat
+import Sendov.Reduction.BetaBound
 
 /-!
 # From the raw origin inequality to its `α`, `β(1)` form
@@ -12,7 +12,7 @@ This is `(origin-exact) + (beta-bound) ⟹ (1le)`.  The work is in replacing
 
   `∫₀¹ t β(t)^((n-2)/2) dt`
 
-by a Beta value plus the `t³` integral that `stat` is stated with.  Writing `β` as a sum of
+by a Beta value plus the `t³` integral used in the scalar obstruction. Writing `β` as a sum of
 squares, `β(t) = (1-axt)² + a²t²(1-x²)`, the blog post applies the mean value theorem to
 `s ↦ ((1-axt)² + s)^((n-2)/2)`.  Here that step is Bernoulli's inequality instead: dividing
 
@@ -47,13 +47,12 @@ obtained from Bernoulli's inequality after dividing by `(P+Q)^p`. -/
 lemma rpow_add_le_of_one_le {P Q p : ℝ} (hP : 0 ≤ P) (hPQ : 0 < P + Q) (hp : 1 ≤ p) :
     (P + Q) ^ p ≤ P ^ p + p * Q * (P + Q) ^ (p - 1) := by
   have hθ : (0 : ℝ) ≤ P / (P + Q) := div_nonneg hP hPQ.le
-  have hb := one_add_mul_self_le_rpow_one_add (s := P / (P + Q) - 1) (by linarith) hp
+  have hb := one_add_mul_self_le_rpow_one_add (s := P / (P + Q) - 1)
+    (by linarith only [hθ]) hp
   rw [show (1 : ℝ) + (P / (P + Q) - 1) = P / (P + Q) by ring] at hb
   have hpow : (0 : ℝ) < (P + Q) ^ p := Real.rpow_pos_of_pos hPQ p
   have hfrac : (P / (P + Q)) ^ p * (P + Q) ^ p = P ^ p := by
-    rw [← Real.mul_rpow hθ hPQ.le]
-    congr 1
-    field_simp
+    rw [← Real.mul_rpow hθ hPQ.le, div_mul_cancel₀ _ hPQ.ne']
   have hsub : (P + Q) ^ (p - 1) = (P + Q) ^ p / (P + Q) := by
     rw [Real.rpow_sub hPQ, Real.rpow_one]
   have key : (P + Q) ^ p - p * Q * ((P + Q) ^ p / (P + Q)) ≤ P ^ p := by
@@ -64,17 +63,14 @@ lemma rpow_add_le_of_one_le {P Q p : ℝ} (hP : 0 ≤ P) (hPQ : 0 < P + Q) (hp :
       _ ≤ (P / (P + Q)) ^ p * (P + Q) ^ p := mul_le_mul_of_nonneg_right hb hpow.le
       _ = P ^ p := hfrac
   rw [hsub]
-  linarith
+  linarith only [key]
 
 /-- `ax t < 1` on `[0,1]`, so the chord `1 - axt` is positive. -/
 lemma one_sub_mul_pos (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : 0 < 1 - a * x * t := by
-  rcases le_or_gt x 0 with h | h
-  · nlinarith [mul_nonneg ht0 (mul_nonneg ha.le (neg_nonneg.2 h))]
-  · have hx1 : x ≤ 1 := by nlinarith
-    have h1 : a * x * t ≤ a * x * 1 :=
-      mul_le_mul_of_nonneg_left ht1 (mul_pos ha h).le
-    nlinarith [h1]
+  have hx1 : x ≤ 1 := by nlinarith only [hx]
+  rw [sub_pos, mul_assoc]
+  exact (mul_le_of_le_one_right ha.le (mul_le_one₀ hx1 ht0 ht1)).trans_lt ha1
 
 /-- The pointwise step: `β^((n-2)/2)` split into a chord power and a `β^((n-4)/2)` remainder. -/
 lemma beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
@@ -87,13 +83,13 @@ lemma beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
   have hy : (0 : ℝ) < 1 - a * x * t := one_sub_mul_pos ha ha1 hx ht0 ht1
   have hP : (0 : ℝ) ≤ (1 - a * x * t) ^ 2 := sq_nonneg _
   have hQ : (0 : ℝ) ≤ a ^ 2 * t ^ 2 * (1 - x ^ 2) := by
-    have : (0 : ℝ) ≤ 1 - x ^ 2 := by linarith
+    have : (0 : ℝ) ≤ 1 - x ^ 2 := sub_nonneg.mpr hx
     positivity
   have hsum : QQ (a * x) (a ^ 2) t
       = (1 - a * x * t) ^ 2 + a ^ 2 * t ^ 2 * (1 - x ^ 2) := by
     rw [QQ_eq]; ring
   have hPQ : (0 : ℝ) < (1 - a * x * t) ^ 2 + a ^ 2 * t ^ 2 * (1 - x ^ 2) := by positivity
-  have hp : (1 : ℝ) ≤ ((n : ℝ) - 2) / 2 := by linarith
+  have hp : (1 : ℝ) ≤ ((n : ℝ) - 2) / 2 := by linarith only [hnR]
   have hb := rpow_add_le_of_one_le hP hPQ hp
   rw [← hsum] at hb
   -- `((1-axt)²)^((n-2)/2) = (1-axt)^(n-2)`
@@ -119,7 +115,9 @@ lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 
   have hs : (0 : ℝ) < (n : ℝ) - 2 := by linarith
   have hr2 : (0 : ℝ) ≤ ((n : ℝ) - 2) / 2 := by linarith
   have hr4 : (0 : ℝ) ≤ ((n : ℝ) - 4) / 2 := by linarith
-  have haxle : a * x ≤ 1 := by nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1), ha.le]
+  have haxle : a * x ≤ 1 := by
+    have hx1 : x ≤ 1 := by nlinarith only [hx]
+    exact (mul_le_of_le_one_right ha.le hx1).trans ha1.le
   -- the three continuous integrands
   have hc1 : Continuous fun t : ℝ => t * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 2) / 2) := by
     simpa using continuous_pow_mul_QQ (a * x) (a ^ 2) 1 hr2
@@ -141,16 +139,19 @@ lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 
       ((hc2.add hc3).intervalIntegrable _ _) ?_
     intro u hu
     have h := beta_split hn ha ha1 hx hu.1 hu.2
-    have hu0 : (0 : ℝ) ≤ u := hu.1
-    nlinarith [h, hu0, Real.rpow_nonneg (QQ_nonneg (by nlinarith [sq_nonneg a] :
-      (a * x) ^ 2 ≤ a ^ 2) u) (((n : ℝ) - 4) / 2)]
+    -- Multiply the pointwise split by the nonnegative integration weight.
+    calc _ ≤ u * ((1 - a * x * u) ^ ((n : ℝ) - 2)
+          + ((n : ℝ) - 2) / 2 * (a ^ 2 * u ^ 2 * (1 - x ^ 2))
+            * QQ (a * x) (a ^ 2) u ^ (((n : ℝ) - 4) / 2)) :=
+          mul_le_mul_of_nonneg_left h hu.1
+      _ = _ := by ring
   refine hstep.trans ?_
   rw [intervalIntegral.integral_const_mul]
   gcongr
   -- the chord piece: enlarge to `[0, 1/(ax)]` and evaluate
   have hrest : (∫ t in (0 : ℝ)..1, t * (1 - a * x * t) ^ ((n : ℝ) - 2))
       ≤ ∫ t in (0 : ℝ)..1 / (a * x), t * (1 - a * x * t) ^ ((n : ℝ) - 2) := by
-    have hone : (1 : ℝ) ≤ 1 / (a * x) := by rw [le_div_iff₀ hax]; linarith
+    have hone : (1 : ℝ) ≤ 1 / (a * x) := (le_div_iff₀ hax).mpr (by simpa using haxle)
     have hadd : (∫ t in (0 : ℝ)..1, t * (1 - a * x * t) ^ ((n : ℝ) - 2))
         + (∫ t in (1 : ℝ)..1 / (a * x), t * (1 - a * x * t) ^ ((n : ℝ) - 2))
         = ∫ t in (0 : ℝ)..1 / (a * x), t * (1 - a * x * t) ^ ((n : ℝ) - 2) :=
@@ -162,9 +163,9 @@ lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 
       have : (0 : ℝ) ≤ 1 - a * x * u := by
         have := hu.2
         rw [le_div_iff₀ hax] at this
-        linarith
-      exact mul_nonneg (by linarith [hu.1]) (Real.rpow_nonneg this _)
-    linarith
+        linarith only [this]
+      exact mul_nonneg (zero_le_one.trans hu.1) (Real.rpow_nonneg this _)
+    exact (le_add_of_nonneg_right hnn).trans_eq hadd
   refine hrest.trans_eq ?_
   rw [integral_chord_lin hs hax]
   congr 1
@@ -190,21 +191,24 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
   set I3 : ℝ := ∫ t in (0 : ℝ)..1, t ^ 3 * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 4) / 2) with hI3def
   -- `1 - β(1) = 2ax - a²`, so `β(1) < 1` gives `ax > 0`
   have hB1eq : B1 = 1 - 2 * (a * x) + a ^ 2 := by rw [hB1def, QQ_one]
-  have hax : 0 < a * x := by nlinarith [sq_nonneg a]
-  have hxpos : 0 < x := by nlinarith [hax, ha]
+  have hax : 0 < a * x := by nlinarith only [hB1lt, hB1eq, sq_nonneg a]
+  have hxpos : 0 < x := (mul_pos_iff_of_pos_left ha).mp hax
   -- `x² ≥ 1 - β(1)`, which is `(x-a)² ≥ 0`
-  have hxsq : 1 - B1 ≤ x ^ 2 := by rw [hB1eq]; nlinarith [sq_nonneg (x - a)]
+  have hxsq : 1 - B1 ≤ x ^ 2 := by
+    rw [hB1eq]
+    nlinarith only [sq_nonneg (x - a)]
   have hx2pos : (0 : ℝ) < x ^ 2 := by positivity
   have hinv : 1 / x ^ 2 ≤ 1 / (1 - B1) := by
-    apply one_div_le_one_div_of_le (by linarith) hxsq
-  have hone_sub : 1 - x ^ 2 ≤ B1 := by linarith
+    exact one_div_le_one_div_of_le (sub_pos.mpr hB1lt) hxsq
+  have hone_sub : 1 - x ^ 2 ≤ B1 := by linarith only [hxsq]
   -- the integral bound
   have hsplit := integral_beta_split hn ha ha1 hx hax
   have hI3nn : (0 : ℝ) ≤ I3 := by
     rw [hI3def]
     refine intervalIntegral.integral_nonneg (by norm_num) ?_
     intro u hu
-    have hfe : (a * x) ^ 2 ≤ a ^ 2 := by nlinarith [sq_nonneg a]
+    have hfe : (a * x) ^ 2 ≤ a ^ 2 := by
+      simpa only [mul_pow, mul_one] using mul_le_mul_of_nonneg_left hx (sq_nonneg a)
     exact mul_nonneg (pow_nonneg hu.1 3) (Real.rpow_nonneg (QQ_nonneg hfe u) _)
   -- multiply the split by `a² n M` and simplify the Beta term to `1/x²`
   have hcoef : (0 : ℝ) ≤ a ^ 2 * n * M n := by positivity
@@ -212,8 +216,8 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
       * (1 / ((a * x) ^ 2 * (((n : ℝ) - 1) * (n : ℝ)))) = 1 / x ^ 2 := by
     have hane : (a : ℝ) ≠ 0 := ha.ne'
     have hxne : (x : ℝ) ≠ 0 := hxpos.ne'
-    have hn1 : ((n : ℝ) - 1) ≠ 0 := by linarith
-    have hn0 : (n : ℝ) ≠ 0 := by linarith
+    have hn1 : ((n : ℝ) - 1) ≠ 0 := by linarith only [hnR]
+    have hn0 : (n : ℝ) ≠ 0 := by linarith only [hnR]
     rw [hMn]
     field_simp
   have hkey : a ^ 2 * n * M n
@@ -230,38 +234,29 @@ theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 �
     have hlast : (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * (1 - x ^ 2) / 2 * I3
         ≤ (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) * B1 / 2 * I3 := by
       have hc : (0 : ℝ) ≤ (a ^ 2) ^ 2 * n * M n * ((n : ℝ) - 2) / 2 := by
-        have : (0 : ℝ) ≤ (n : ℝ) - 2 := by linarith
+        have : (0 : ℝ) ≤ (n : ℝ) - 2 := by linarith only [hnR]
         positivity
-      nlinarith [mul_nonneg (mul_nonneg hc (sub_nonneg.2 hone_sub)) hI3nn]
+      simpa only [mul_div_right_comm] using
+        mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hone_sub hc) hI3nn
     have hfirst : (1 - x ^ 2) / (2 * M n) ≤ B1 / (2 * M n) := by
       apply div_le_div_of_nonneg_right hone_sub (by positivity)
-    have hne1 : (1 : ℝ) - B1 ≠ 0 := by linarith
+    have hne1 : (1 : ℝ) - B1 ≠ 0 := (sub_pos.mpr hB1lt).ne'
     have hrec : 1 / (1 - B1) = 1 + B1 / (1 - B1) := by
       field_simp
       ring
     have hinv' : 1 / x ^ 2 ≤ 1 + B1 / (1 - B1) := by rw [← hrec]; exact hinv
     -- do NOT rewrite `hax_eq` into `horigin`: it would also rewrite the `a * x` inside the
     -- integral, and the resulting atom would no longer match `hkey`
-    linarith [horigin, hkey, hinv', hfirst, hlast, hax_eq]
+    linarith only [horigin, hkey, hinv', hfirst, hlast, hax_eq]
   -- divide by `2α`
-  have h2α : (0 : ℝ) < 2 * α := by linarith
-  have hne : (1 : ℝ) - B1 ≠ 0 := by linarith
-  have h1 : 2 * α * (B1 / (2 * α * (1 - B1))) = B1 / (1 - B1) := by
-    field_simp
-  have h2 : 2 * α * (B1 / (4 * α)) = B1 / 2 := by
-    field_simp
+  have h2α : (0 : ℝ) < 2 * α := by positivity
+  -- Divide the assembled inequality once; normalize all five terms together.
+  have hscaled := div_le_div_of_nonneg_right hmain h2α.le
+  have hne : (1 : ℝ) - B1 ≠ 0 := (sub_pos.mpr hB1lt).ne'
+  convert hscaled using 1
+  · rfl
+  · exact (div_self h2α.ne').symm
+  · field_simp
     ring
-  have h3 : 2 * α * (1 / (2 * M n)) = α / M n := by
-    field_simp
-  have h4 : 2 * α * (B1 / (4 * α * M n)) = B1 / (2 * M n) := by
-    field_simp
-    ring
-  have h5 : 2 * α * ((a ^ 2) ^ 2 * (n : ℝ) * M n * ((n : ℝ) - 2) * B1 / (4 * α) * I3)
-      = (a ^ 2) ^ 2 * (n : ℝ) * M n * ((n : ℝ) - 2) * B1 / 2 * I3 := by
-    field_simp
-    ring
-  refine le_of_mul_le_mul_left ?_ h2α
-  rw [mul_one, mul_add, mul_add, mul_add, mul_add, h1, h2, h3, h4, h5]
-  exact hmain
 
 end Sendov

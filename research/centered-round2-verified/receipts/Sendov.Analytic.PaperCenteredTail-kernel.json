@@ -1,0 +1,6 @@
+{
+  "module": "Sendov.Analytic.PaperCenteredTail",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "ade69637e3b2fbe39651fa4a15e289620de0bb4cc6960dac18b83caa2a649fbd"
+}

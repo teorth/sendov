@@ -1,0 +1,6 @@
+{
+  "module": "Sendov.Analytic.CenteredQuarterEndpoint",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "8c4e851fb405d0ea8e5b76b5595e55af06a16d9686a48671306dc068d1902a3c"
+}

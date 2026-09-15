@@ -148,7 +148,7 @@ theorem phelps_rodriguez {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegr
       rw [← C_mul, ← mul_pow, inv_mul_cancel₀ hωne, one_pow, C_1]
     have hgoal : rotate ω⁻¹ (rotate ω p) = C (c * ω⁻¹ ^ n) * (X ^ n - C (a ^ n)) := by
       rw [hext', hcomp, haω, C_mul]
-      linear_combination (C c) * h1
+      simp only [mul_sub, mul_assoc, h1, mul_one]
     exact (rotate_rotate_inv hωne p).symm.trans hgoal
 
 /-! ### Sendov's conjecture -/

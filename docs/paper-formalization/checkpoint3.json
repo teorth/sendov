@@ -1,0 +1,12 @@
+{
+  "status": "partial_kernel_verified",
+  "gates": 24,
+  "seconds": 117.01536821923219,
+  "global_polar_bounds": true,
+  "finite_ray_bounds": true,
+  "centered_majorant_C_budget": true,
+  "historical_near_margins": true,
+  "full_complex_mean_half_counterexample": true,
+  "secant_diagnostic_intervals": true,
+  "all_a_m256_D": false
+}

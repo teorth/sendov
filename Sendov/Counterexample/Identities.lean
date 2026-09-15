@@ -115,20 +115,13 @@ lemma sumEraseProd_cons (v : ℂ) (t : Multiset ℂ) :
 /-- Negating a multiset before taking the product. -/
 lemma prod_map_neg (s : Multiset ℂ) :
     (s.map (fun w => -w)).prod = (-1) ^ (Multiset.card s) * s.prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons a t ih =>
-    simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, ih]
-    ring
+  exact Multiset.prod_map_neg s
 
 /-- `∏ⱼ (X - zⱼ)` at the origin. -/
 lemma eval_prod_zero (z : Multiset ℂ) :
     ((z.map (fun w => X - C w)).prod).eval 0 = (-1) ^ (Multiset.card z) * z.prod := by
   rw [eval_multiset_prod, Multiset.map_map]
-  rw [show (z.map ((fun r : ℂ[X] => r.eval 0) ∘ (fun w => X - C w))).prod
-      = (z.map (fun w => -w)).prod from
-    congrArg Multiset.prod (Multiset.map_congr rfl fun w _ => by simp)]
-  exact prod_map_neg z
+  simpa only [Function.comp_apply, eval_sub, eval_X, eval_C, zero_sub] using prod_map_neg z
 
 /-- The derivative of `∏ⱼ (X - zⱼ)` at the origin.  Proved by induction rather than through
 `Polynomial.derivative_prod`, which would need the evaluation of a multiset sum. -/
@@ -148,16 +141,12 @@ lemma eval_deriv_prod_zero : ∀ (z : Multiset ℂ),
 /-- `∏ⱼ (1/vⱼ - a) · ∏ⱼ vⱼ = ∏ⱼ (1 - a vⱼ)`: clearing the denominators of the `q`-side. -/
 lemma prod_inv_sub_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
     (q.map (fun v => v⁻¹ - a)).prod * q.prod = (q.map (fun v => 1 - a * v)).prod := by
-  intro q
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    intro hq
-    have hv : v ≠ 0 := hq v (Multiset.mem_cons_self v t)
-    have ht : ∀ w ∈ t, w ≠ 0 := fun w hw => hq w (Multiset.mem_cons_of_mem hw)
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    rw [← ih ht]
-    field_simp
+  intro q hq
+  conv_lhs => rhs; rw [← Multiset.map_id' q]
+  rw [← Multiset.prod_map_mul]
+  refine congrArg Multiset.prod (Multiset.map_congr rfl ?_)
+  intro v hv
+  rw [sub_mul, inv_mul_cancel₀ (hq v hv)]
 
 open scoped Classical in
 /-- **The second origin identity**, division-free.  The blog post's form
@@ -296,25 +285,13 @@ theorem first_origin_identity {p : ℂ[X]} (hc0 : c ≠ 0) (ha0 : a ≠ 0)
 /-- Pulling a constant out of a product over a multiset. -/
 lemma prod_map_mul_const (b : ℂ) (s : Multiset ℂ) (f : ℂ → ℂ) :
     (s.map (fun v => b * f v)).prod = b ^ (Multiset.card s) * (s.map f).prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, ih]
-    ring
+  rw [Multiset.prod_map_mul, Multiset.map_const', Multiset.prod_replicate]
 
 /-- `∏ⱼ (1/vⱼ) · ∏ⱼ vⱼ = 1`. -/
 lemma prod_inv_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
     (q.map (fun v => v⁻¹)).prod * q.prod = 1 := by
-  intro q
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    intro hq
-    have hv : v ≠ 0 := hq v (Multiset.mem_cons_self v t)
-    have ht : ∀ w ∈ t, w ≠ 0 := fun w hw => hq w (Multiset.mem_cons_of_mem hw)
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    rw [← ih ht]
-    field_simp
+  intro q hq
+  simpa using (prod_inv_sub_mul (a := 0) q hq)
 
 /-- **`p'(a)` two ways.**  `(∏ⱼ qⱼ) ∏ⱼ (a - zⱼ) = n`.  This is what makes the polar identity
 usable without dividing: it is the denominator of the blog post's

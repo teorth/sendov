@@ -1,0 +1,46 @@
+{
+  "status": "verified",
+  "modules": [
+    "FirstMoment",
+    "BinomialMode",
+    "CoefficientBound"
+  ],
+  "theorems": [
+    "Sendov.PaperBinomialMode.ramp_sum",
+    "Sendov.PaperBinomialMode.first_moment_mass_bound",
+    "Sendov.PaperBinomialMode.probability_max_mass",
+    "Sendov.PaperBinomialMode.weight_nonneg",
+    "Sendov.PaperBinomialMode.weight_sum",
+    "Sendov.PaperBinomialMode.weight_adjacent",
+    "Sendov.PaperBinomialMode.weight_mode",
+    "Sendov.PaperBinomialMode.weight_first_moment_succ",
+    "Sendov.PaperBinomialMode.integer_mean_identity",
+    "Sendov.PaperBinomialMode.entropy_coefficient_bound",
+    "Sendov.PaperBinomialMode.C_sq_le_binomial"
+  ],
+  "theorem_count": 11,
+  "sha256": {
+    "FirstMoment.lean": "32b83428a0d676fbd114233099311ec0adc127782e13a36142a898bc2651bd94",
+    ".lake/paper/objects/FirstMoment.olean": "02ee21b588122d88871ad2f8c33307c4dadede550c10be85f7fd408a72f5c8a9",
+    "BinomialMode.lean": "60e9fcc7edc86f6fa4491800b01bbd95c50874d0538cdf054795f5f2c8ceb0d4",
+    ".lake/paper/objects/BinomialMode.olean": "a68cb49d86b7718b8cae17dd6eb98ced83e226d2f29ab8315a580cc8d1151d92",
+    "CoefficientBound.lean": "285aa2e9329db081518265cf4a8aa4d618f18db631963784d7f014b0b72bab2d",
+    ".lake/paper/objects/CoefficientBound.olean": "144f7ca2b89754d9274ac75a1d84c006ebf622847be06c0a3954cebe269ec09b"
+  },
+  "receipts": [
+    ".lake/paper/logs/verified-FirstMoment.json",
+    ".lake/paper/logs/verified-FirstMoment-kernel.json",
+    ".lake/paper/logs/verified-BinomialMode.json",
+    ".lake/paper/logs/verified-BinomialMode-kernel.json",
+    ".lake/paper/logs/verified-CoefficientBound.json",
+    ".lake/paper/logs/verified-CoefficientBound-kernel.json"
+  ],
+  "axioms_allowed": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "complete_base_stage_files": 439,
+  "missing_coefficient_assembly": [],
+  "scope": "All source and output writes confined to this directory."
+}

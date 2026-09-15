@@ -1,0 +1,75 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:49:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:34:33: warning: missing space in the source
+
+This part of the code
+  'L/(3+L))'
+should be written as
+  'L / (3'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:34:36: warning: missing space in the source
+
+This part of the code
+  'L/(3+L)) :'
+should be written as
+  '(3 + L))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:63:30: warning: missing space in the source
+
+This part of the code
+  '9/10 ≤'
+should be written as
+  '9 / 10'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:85:30: warning: missing space in the source
+
+This part of the code
+  'ℂ)+(t :'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:85:38: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:85:41: warning: missing space in the source
+
+This part of the code
+  'ℂ)*(1-(a :'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:85:49: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredMeanBudget.lean:85:52: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

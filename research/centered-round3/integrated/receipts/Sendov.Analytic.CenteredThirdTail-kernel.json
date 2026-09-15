@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredThirdTail",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "2781c2ec74e44b63a22bbf4e9b9ede0c88107f7ba5f8b61891501706312d244a",
+  "object_sha256": "ef917d24c4065e7c6b45627b81049fd034b7d11f5692778c74691e6c38bea2f8"
+}

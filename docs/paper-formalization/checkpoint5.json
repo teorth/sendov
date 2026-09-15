@@ -1,0 +1,8 @@
+{
+  "gates": 40,
+  "compile_gates": 20,
+  "kernel_gates": 20,
+  "seconds": 598.3440327788703,
+  "interruption": "Initial outer tool timed out at420 seconds; exact accepted source retained and remaining gates resumed successfully.",
+  "full_replay_pending": true
+}

@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredNearScalar",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "09279d0ed3dcbd861a2cf81ff48c47fe2e0f9f9250c5c6ef2910af0078b2f9ed",
+  "object_sha256": "0949c011d61899d22fbd1b404479b1251cc81a061e2afae257cbe4f18f8d0171"
+}

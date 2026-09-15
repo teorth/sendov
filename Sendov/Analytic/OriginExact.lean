@@ -42,25 +42,17 @@ open Complex (I)
 
 lemma sum_norm_le_card : ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →
     (q.map (fun v => ‖v‖)).sum ≤ (q.card : ℝ) := by
-  intro q
-  induction q using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons v t ih =>
-    intro hq
-    have hv := hq v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖u‖ ≤ 1 := fun u hu => hq u (Multiset.mem_cons_of_mem hu)
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    linarith [ih ht]
+  intro q hq
+  simpa using Multiset.sum_map_le_sum_map (fun v : ℂ => ‖v‖) (fun _ => (1 : ℝ)) hq
 
 /-- `|s + it| ≤ s + t²/(2s)` for `s > 0`, in cleared form.  Squaring both sides leaves
-`t⁴ ≥ 0`. -/
+`t⁴ ≥ 0`; directly, the cleared inequality is `(‖w‖ - w.re)² ≥ 0`. -/
 lemma norm_mul_two_re_le {w : ℂ} (_hs : 0 < w.re) :
     ‖w‖ * (2 * w.re) ≤ 2 * w.re ^ 2 + w.im ^ 2 := by
   have h1 : ‖w‖ ^ 2 = w.re ^ 2 + w.im ^ 2 := by
     rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply]
     ring
-  nlinarith [norm_nonneg w, h1, sq_nonneg (w.im ^ 2), sq_nonneg (w.re * w.im)]
+  nlinarith only [h1, sq_nonneg (‖w‖ - w.re)]
 
 /-! ### The quantity `W`, the growth bound `(grow)`, and the two real-arithmetic steps -/
 
@@ -77,14 +69,13 @@ lemma Worigin_eq (n : ℕ) (a x y : ℝ) :
 
 lemma Worigin_re (n : ℕ) (a x y : ℝ) :
     (Worigin n a x y).re = a ^ 2 * ((n : ℝ) - 1) + 1 - a * x := by
-  rw [Worigin_eq, Complex.add_re, Complex.ofReal_re, Complex.mul_re, Complex.ofReal_re,
-    Complex.ofReal_im, Complex.I_re, Complex.I_im]
-  ring
+  rw [Worigin_eq]
+  simp only [Complex.add_re, Complex.ofReal_re, Complex.mul_I_re, Complex.ofReal_im,
+    neg_zero, add_zero]
 
 lemma Worigin_im (n : ℕ) (a x y : ℝ) : (Worigin n a x y).im = -(a * y) := by
-  rw [Worigin_eq, Complex.add_im, Complex.ofReal_im, Complex.mul_im, Complex.ofReal_re,
-    Complex.ofReal_im, Complex.I_re, Complex.I_im]
-  ring
+  rw [Worigin_eq]
+  simp only [Complex.add_im, Complex.ofReal_im, Complex.mul_I_im, Complex.ofReal_re, zero_add]
 
 /-- **(grow).**  `‖W‖ ≥ 2an/(n-1)`.  Bounding `‖W‖` below by its real part reduces this to
 `(n-1)²a² - (3n-1)a + (n-1) > 0`; completing the square turns that into
@@ -135,7 +126,7 @@ lemma norm_Worigin_le {n : ℕ} {a x y : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
       ≤ (1 - x ^ 2) / (2 * ((n : ℝ) - 1)) := by
     rw [div_le_div_iff₀ hs hden]
     nlinarith [hy2, hslow, ha2, sq_nonneg y, hn1]
-  linarith [hmain, htail]
+  exact hmain.trans (add_le_add_right htail _)
 
 /-- `x` and `y` are determined by `q.sum`, and inherit two bounds from `‖qⱼ‖ ≤ 1`: the real
 part is what the polar and origin estimates need, and `x² + y² ≤ 1` is what eliminates `y`. -/
@@ -160,17 +151,13 @@ lemma xy_bounds {n : ℕ} (hn : 2 ≤ n) {x y : ℝ} {q : Multiset ℂ}
     simp
   · have hxynorm : ‖(x : ℂ) + (y : ℂ) * I‖ ^ 2 = x ^ 2 + y ^ 2 := by
       rw [← Complex.normSq_eq_norm_sq, Complex.normSq_add_mul_I]
-    have h2 : ‖q.sum‖ ≤ (q.map (fun v => ‖v‖)).sum := by
-      have h := norm_sum_map_le q (fun v => v)
-      simpa using h
+    have h2 : ‖q.sum‖ ≤ (q.map (fun v => ‖v‖)).sum := norm_multiset_sum_le q
     have h3 := sum_norm_le_card q hq1
     rw [hqcardR] at h3
     have h1 : ‖q.sum‖ ≤ (n : ℝ) - 1 := h2.trans h3
     rw [hxy, norm_mul, hnc] at h1
-    have h4 : ‖(x : ℂ) + (y : ℂ) * I‖ ≤ 1 := by
-      by_contra hcon
-      rw [not_le] at hcon
-      nlinarith [h1, hn1]
+    have h4 : ‖(x : ℂ) + (y : ℂ) * I‖ ≤ 1 :=
+      (mul_le_mul_iff_right₀ hn1).mp (by simpa only [mul_one] using h1)
     nlinarith [hxynorm, h4, norm_nonneg ((x : ℂ) + (y : ℂ) * I)]
 
 /-! ### The origin inequality -/
@@ -219,9 +206,7 @@ theorem origin_exact {n : ℕ} (hn : 5 ≤ n) {a x y α : ℝ} {z q : Multiset �
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (le_of_lt ha0)]
   have hPJ0 : (0 : ℝ) ≤ ‖q.prod‖ * ‖z.prod‖ := by positivity
   have hPJ1 : ‖q.prod‖ * ‖z.prod‖ ≤ 1 := by
-    have h1 : ‖q.prod‖ ≤ 1 := norm_prod_le_one q hq1
-    have h2 : ‖z.prod‖ ≤ 1 := norm_prod_le_one z hz1
-    nlinarith [norm_nonneg q.prod, norm_nonneg z.prod]
+    exact mul_le_one₀ (norm_prod_le_one q hq1) (norm_nonneg _) (norm_prod_le_one z hz1)
   have hstep1 : (n : ℝ) * ‖Fprod a q 1
         + ((n : ℂ) - 1) * (a : ℂ) * ((x : ℂ) + (y : ℂ) * I) * ∫ t in (0 : ℝ)..1, Fprod a q t‖
       ≤ ‖q.prod‖ * ‖z.prod‖ * ‖Worigin n a x y‖

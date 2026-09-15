@@ -1,0 +1,13 @@
+{
+  "scope": "reconstructed historical diagnostics; old global-status field is superseded by RESULT.json",
+  "receipt": {
+    "mode": "full-rational",
+    "exact_families": 13,
+    "two_precision_cases": 30,
+    "full_numeric_rerun": false,
+    "frozen_lean_checks": 10,
+    "seconds": 155.67859060701448,
+    "uniform_C_near": "OPEN",
+    "counterexample": "none certified"
+  }
+}

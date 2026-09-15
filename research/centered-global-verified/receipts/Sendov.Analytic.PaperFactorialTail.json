@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.PaperFactorialTail",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "2f5307297d5e0c91403842ba2ff7e0e7c298cf99f6a61687f8687c509eed2c19",
+  "object_sha256": "7b016f35a364f14566eeedca514ddbdc55485d12d88023d8c42d3805c4d47240"
+}

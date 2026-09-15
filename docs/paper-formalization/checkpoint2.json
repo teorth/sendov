@@ -1,0 +1,11 @@
+{
+  "status": "partial_kernel_verified",
+  "gates": 24,
+  "seconds": 120.83266002003802,
+  "near_endpoint_D": true,
+  "all_a_m256_D": false,
+  "secant_gate": true,
+  "centered_actual_coefficients": true,
+  "optimized_coefficient_bound": true,
+  "centered_coefficient_assembly": false
+}

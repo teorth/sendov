@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredEndpointMoment",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "d80cf57512d77b0ff13c56d403e42fe349ca4e27c4d9f4126b24b5d2ef6dda8f",
+  "object_sha256": "b7f26e41548dc3c92765d9f6f4107b3e2ed26f294482068f5881f555edc542bc"
+}

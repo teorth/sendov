@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredNearTheorem",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "7f2f8fefa4db537d463905939d1c7bc60e2b4fb0c15de3d2e49195e1edf83398",
+  "object_sha256": "6045cba1d79e12701f7d96e042de3702c472242fb78721f794ac28b266f58346"
+}

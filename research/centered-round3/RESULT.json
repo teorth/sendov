@@ -1,0 +1,27 @@
+{
+  "status": "Third-domain parent integration PASS; cutoff35 independent audit and residual extension active in round4",
+  "uniform_C_near": "OPEN",
+  "original_counterexample": false,
+  "certified_auxiliary_obstruction": "COUNTEREXAMPLE ONLY TO WHOLE-INTERVAL NORM-CHORD TAIL ENVELOPE; original C-near holds",
+  "new_kernel_export": "Sendov.CenteredMeanBudget.Gamma_le_fullpolar_degree",
+  "lean_checks": 4,
+  "axiom_entries": 7,
+  "moment_optimizations": 12,
+  "chord_optimizations": 6,
+  "mp_replayed_inputs": 12,
+  "mp_precisions": [
+    80,
+    140
+  ],
+  "observed_max_R_ratio": 0.8791438966563869,
+  "finite_chord_ratio_lower_display": 2.051731676753306,
+  "repaired_quadratic_ratio_upper_display": 0.17554298411359978,
+  "new_kernel_main": "Sendov.CenteredThird.C_near_fullpolar_third",
+  "kernel_margin": "37h/819",
+  "kernel_near_domain": "lambda<=1/3",
+  "integrated_checks": 16,
+  "integrated_audited_theorems": 27,
+  "paper_cutoff": 35,
+  "paper_cutoff_evidence": "parent-reviewed paper argument and112 exact checks; independent review pending",
+  "paper_residual": "7<=m<=34,1/3<lambda<=m/10,v>h/m\u00b2, original pointwise/FULLpolar"
+}

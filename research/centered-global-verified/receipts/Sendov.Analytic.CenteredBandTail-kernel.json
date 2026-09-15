@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBandTail",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "79f645c7d1d5765bac999eee3dc8e7f6f054895c05e0e452be1d9ee3f553ebf3",
+  "object_sha256": "d3245800f6d34cdc0609e15871022d9ed917875302cce6ae34a9fc66be60fe16"
+}

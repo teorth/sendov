@@ -1,0 +1,113 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:16:62: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X^2)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:16:68: warning: missing space in the source
+
+This part of the code
+  'X^2)
+ '
+should be written as
+  'X ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:17:41: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:31:53: warning: Variable name `hu0` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hu0
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:32:5: warning: Variable name `hu1` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hu1
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:32:42: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:51:55: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:52:18: warning: missing space in the source
+
+This part of the code
+  '(U/3)*(1-a))'
+should be written as
+  '(U / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:52:21: warning: missing space in the source
+
+This part of the code
+  '(U/3)*(1-a))'
+should be written as
+  '3) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:52:24: warning: missing space in the source
+
+This part of the code
+  '(U/3)*(1-a)) (he0'
+should be written as
+  '(1 - a))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:52:43: warning: missing space in the source
+
+This part of the code
+  '(1-a)/15)'
+should be written as
+  '(1 - a)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:52:46: warning: missing space in the source
+
+This part of the code
+  '(1-a)/15)
+'
+should be written as
+  'a) / 15)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandScalar.lean:53:63: warning: missing space in the source
+
+This part of the code
+  'tau*v) :'
+should be written as
+  'tau * v)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

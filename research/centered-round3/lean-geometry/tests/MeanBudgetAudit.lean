@@ -1,0 +1,8 @@
+import Sendov.Analytic.CenteredMeanBudget
+#print axioms Sendov.CenteredMeanBudget.norm_sq_add_b
+#print axioms Sendov.CenteredMeanBudget.norm_sq_ge_one_sub_b
+#print axioms Sendov.CenteredMeanBudget.Gamma_le_endpoint
+#print axioms Sendov.CenteredMeanBudget.Gamma_le_rational
+#print axioms Sendov.CenteredMeanBudget.Gamma_le_raw_lambda
+#print axioms Sendov.CenteredMeanBudget.Gamma_le_raw_degree
+#print axioms Sendov.CenteredMeanBudget.Gamma_le_fullpolar_degree

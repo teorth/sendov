@@ -1,0 +1,81 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:11:59: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖ ≤'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:46:48: warning: missing space in the source
+
+This part of the code
+  '9/10 ≤'
+should be written as
+  '9 / 10'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:47:29: warning: missing space in the source
+
+This part of the code
+  '19/20) :'
+should be written as
+  '19 / 20)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:53:60: warning: missing space in the source
+
+This part of the code
+  '2*p+3 ≤ m)'
+should be written as
+  '2 * p'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:54:42: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:55:27: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:55:30: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2 ≤ 2*(1-X))'
+should be written as
+  'z‖ ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:55:36: warning: missing space in the source
+
+This part of the code
+  '2*(1-X))'
+should be written as
+  '2 * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandEndpoint.lean:55:39: warning: missing space in the source
+
+This part of the code
+  '2*(1-X)) :'
+should be written as
+  '(1 - X))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

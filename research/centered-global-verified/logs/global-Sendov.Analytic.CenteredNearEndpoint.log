@@ -1,0 +1,70 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:85:18: warning: Variable name `hG0` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hG0
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:85:42: warning: missing space in the source
+
+This part of the code
+  '7*h/18)
+'
+should be written as
+  '7 * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:86:27: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖ ≤'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:86:48: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2'
+should be written as
+  '‖1 - z‖'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:86:51: warning: missing space in the source
+
+This part of the code
+  '‖1-z‖^2 ≤ (m'
+should be written as
+  'z‖ ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:86:63: warning: missing space in the source
+
+This part of the code
+  'ℝ)*h/3) :'
+should be written as
+  'ℝ) * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:120:81: warning: missing space in the source
+
+This part of the code
+  '4/39) :'
+should be written as
+  '4 / 39)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredNearEndpoint.lean:162:81: warning: missing space in the source
+
+This part of the code
+  '4/39) :'
+should be written as
+  '4 / 39)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

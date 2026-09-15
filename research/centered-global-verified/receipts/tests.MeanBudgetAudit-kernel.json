@@ -1,0 +1,7 @@
+{
+  "module": "tests.MeanBudgetAudit",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "215ffd4ace8cd7f4560b28a7dc3abb33c96627805d5fea50ba534ef0d0262420",
+  "object_sha256": "03478ddfafb84555237e3f3421c70519e6e9c1f603c7668d25f69203ae35e9aa"
+}

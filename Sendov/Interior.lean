@@ -6,6 +6,8 @@ Authors: Terence Tao
 import Sendov.Analytic.OriginExact
 import Sendov.Analytic.Polar
 import Sendov.Analytic.LowDegree
+import Sendov.Analytic.FirstOriginSmall
+import Sendov.Analytic.FirstOriginBudget
 import Sendov.Analytic.Jsum
 import Sendov.Counterexample.Factor
 import Sendov.Reduction.Main
@@ -25,11 +27,15 @@ disk, and `Sendov.exists_root_multiset` writes `p` over the other zeroes `zⱼ`.
 
 From `(⋆)` the argument branches on the degree.
 
-* For `n ≥ 5`, AM–GM relaxes `(⋆)` to the raw polar inequality `(1Q)`, the centroid identity and
-  the two origin identities give `(origin-exact)`, and `Sendov.polar_origin_incompatible` says
-  the two cannot hold together.
+* For `n = 6` or `n = 7`, the first-origin factorization bound and `(⋆)` feed
+  `Sendov.FirstOriginSmall.first_origin_polar_six_seven`, without the second-origin channel.
+* For `n ≥ 257`, raw polar and first-origin alone close the entire interval `0 < a < 1`.
+* For `8 ≤ n ≤ 256` with `(n-1)(1-a) ≤ 2/5`, the uniform near-endpoint budget
+  also closes with first-origin alone.
+* In the remaining finite-degree region, the centroid identity and the two origin identities
+  give `(origin-exact)`, and `Sendov.polar_origin_incompatible` closes the contradiction.
 * For `n ≤ 5`, `Sendov.low_degree_contradiction` shows `(⋆)` is already contradictory on its own,
-  with no recourse to the origin channel.  The two branches overlap at degree five.
+  with no recourse to the origin channel. Degree five belongs only to this low-degree branch.
 
 The zero `a = 0` is excluded above (the polar identity divides by `a`) but needs none of this
 machinery: `p'(a)` two ways already says `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`, and at `a = 0` both factors
@@ -73,10 +79,8 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     exact hpq
   -- basic numerology
   have hne : ((n : ℂ) - 1) ≠ 0 := by
-    intro h
-    have h1 : (n : ℂ) = 1 := by linear_combination h
-    have h2 : n = 1 := by exact_mod_cast h1
-    omega
+    apply sub_ne_zero.mpr
+    exact_mod_cast (show n ≠ 1 by omega)
   have hqne : q ≠ 0 := by
     intro h
     rw [h, Multiset.card_zero] at hqcard
@@ -85,28 +89,45 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
     simpa using ne_of_gt ha0
   have haC2 : ((a : ℝ) : ℂ) ^ 2 ≠ 1 := by
     intro h
-    have : (a : ℂ) ^ 2 = ((a ^ 2 : ℝ) : ℂ) := by push_cast; ring
-    rw [this] at h
     have h1 : a ^ 2 = 1 := by exact_mod_cast h
-    nlinarith [h1, ha0, ha1]
+    nlinarith only [h1, ha0, ha1]
   have hstar := one_le_integral_prod_norm hn (a := a)
-    (by rw [abs_of_nonneg (le_of_lt ha0)]; linarith) hz1
+    (by rw [abs_of_nonneg ha0.le]; linarith only [ha1]) hz1
     (polar_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n) (z := z) (q := q) (p := p)
       hc0 haC0 haC2 hzcard hqcard hq0 hpa hpz hpq')
     (prod_sub_mul_prod (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n) (z := z) (q := q)
       (p := p) hc0 hq0 hpz hpq')
   -- the branch: low degree needs nothing further
-  rcases (by omega : n < 5 ∨ 5 ≤ n) with hn5 | hn5
-  · exact low_degree_contradiction hn (by omega) ha0 ha1 hqcard hq1 hstar
-  have hnR : (5 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn5
-  have hn1 : (0 : ℝ) < (n : ℝ) - 1 := by linarith
+  rcases (by omega : n ≤ 5 ∨ 6 ≤ n) with hn5 | hn6
+  · exact low_degree_contradiction hn hn5 ha0 ha1 hqcard hq1 hstar
+  by_cases hn67 : n = 6 ∨ n = 7
+  · exact FirstOriginSmall.first_origin_polar_six_seven hn67 ha0 ha1 hqcard hq1 hstar
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
+  have hn5 : 5 ≤ n := by omega
   -- `x + iy` is the centroid of the `qⱼ`
   obtain ⟨x, y, hxy⟩ : ∃ x y : ℝ, q.sum = ((n : ℂ) - 1) * ((x : ℂ) + (y : ℂ) * I) := by
     refine ⟨(q.sum / ((n : ℂ) - 1)).re, (q.sum / ((n : ℂ) - 1)).im, ?_⟩
     rw [Complex.re_add_im, mul_div_cancel₀ _ hne]
   obtain ⟨hxre, hx2⟩ := xy_bounds hn hqcard hq1 hxy
   have hpolar := one_le_integral_Ppolar hn (a := a) (x := x) hqcard hq1 hxre hstar
-  -- the origin channel
+  -- All sufficiently large degrees use only the first-origin channel.
+  by_cases hlarge : 257 ≤ n
+  · have hxSq : x ^ 2 ≤ 1 := (le_add_of_nonneg_right (sq_nonneg y)).trans hx2
+    exact FirstOriginBudget.uniform_contradiction hlarge ha0 ha1
+      (by nlinarith [sq_nonneg (x + 1)]) (by nlinarith [sq_nonneg (x - 1)])
+      hqcard hq1 hxre hxy hpolar
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
+  -- The uniform near-endpoint region uses only the first-origin channel.
+  by_cases hnear : ((n : ℝ) - 1) * (1 - a) ≤ 2 / 5
+  · have hxSq : x ^ 2 ≤ 1 := (le_add_of_nonneg_right (sq_nonneg y)).trans hx2
+    exact FirstOriginBudget.near_contradiction (by omega) ha0 ha1
+      (by nlinarith [sq_nonneg (x + 1)]) (by nlinarith [sq_nonneg (x - 1)])
+      hqcard hq1 hxre hxy hpolar hnear
+      (FirstOriginSmall.norm_integral_Fprod_le_of_factorization (by omega) (ne_of_gt ha0)
+        hc0 hzcard hq0 hq1 hz1 hpa hpz hpq')
+  -- the remaining origin channel
   have hcent := centroid_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n)
     (z := z) (q := q) (p := p) hn hc0 hzcard hqcard hpz hpq'
   have hfirst := first_origin_identity (c := p.leadingCoeff) (a := ((a : ℝ) : ℂ)) (n := n)
@@ -116,8 +137,8 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
   have horigin := origin_exact (n := n) (α := M n * (1 - a ^ 2) / 2) hn5 ha0 ha1 hqcard hqne
     hz1 hq1 hxy hcent hfirst hsecond rfl
   -- the two are incompatible
-  exact polar_origin_incompatible hn5 ha0 ha1 (by nlinarith [hx2, sq_nonneg y]) rfl hpolar
-    horigin
+  exact polar_origin_incompatible hn6 ha0 ha1
+    ((le_add_of_nonneg_right (sq_nonneg y)).trans hx2) rfl hpolar horigin
 
 /-- **The conjecture at `a = 0`.**  `p'(a)` two ways gives `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`.  At
 `a = 0` the second factor is `∏ⱼ zⱼ` up to sign, so both factors have norm at most one and
@@ -155,8 +176,11 @@ theorem sendov_center {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree 
     simpa using hz1 w hw
   have h3 : ‖(n : ℂ)‖ = (n : ℝ) := by simp
   rw [h3] at hnorm
-  have h4 : (2 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
-  nlinarith [hnorm, h1, h2, norm_nonneg q.prod, norm_nonneg (z.map (fun w => (0 : ℂ) - w)).prod]
+  have hn1 : (n : ℝ) ≤ 1 := by
+    rw [← hnorm]
+    exact mul_le_one₀ h1 (norm_nonneg _) h2
+  have : n ≤ 1 := by exact_mod_cast hn1
+  omega
 
 /-- **The conjecture for a real zero in `[0,1)`**, every degree `n ≥ 2`. -/
 theorem sendov_interior_real {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)

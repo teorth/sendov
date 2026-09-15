@@ -1,0 +1,111 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:20:30: warning: missing space in the source
+
+This part of the code
+  '1/13) :'
+should be written as
+  '1 / 13)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:45:48: warning: missing space in the source
+
+This part of the code
+  '19/20 ≤'
+should be written as
+  '19 / 20'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:57:12: warning: missing space in the source
+
+This part of the code
+  '27/28 ≤'
+should be written as
+  '27 / 28'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:57:46: warning: missing space in the source
+
+This part of the code
+  'm*h/3) :'
+should be written as
+  'm * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:79:30: warning: missing space in the source
+
+This part of the code
+  '1/28) (hah'
+should be written as
+  '1 / 28)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:79:47: warning: missing space in the source
+
+This part of the code
+  '1-h)
+ '
+should be written as
+  '1 - h)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:80:12: warning: missing space in the source
+
+This part of the code
+  '19/20 ≤'
+should be written as
+  '19 / 20'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:80:31: warning: missing space in the source
+
+This part of the code
+  'u^2+v ≤ 1)'
+should be written as
+  'u ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:81:30: warning: missing space in the source
+
+This part of the code
+  '1/13) (hv'
+should be written as
+  '1 / 13)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:81:46: warning: missing space in the source
+
+This part of the code
+  'm*h/3)
+ '
+should be written as
+  'm * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:82:17: warning: missing space in the source
+
+This part of the code
+  '2*h^2/3) (hB'
+should be written as
+  '2 * h'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredQuarterScalar.lean:82:36: warning: missing space in the source
+
+This part of the code
+  '1/50)
+'
+should be written as
+  '1 / 50)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

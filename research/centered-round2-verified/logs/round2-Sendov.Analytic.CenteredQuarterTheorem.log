@@ -1,0 +1,18 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredQuarterTheorem.lean:36:55: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2) *'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-round2-verified/Sendov/Analytic/CenteredQuarterTheorem.lean:51:55: warning: missing space in the source
+
+This part of the code
+  'ℂ)^2) *'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

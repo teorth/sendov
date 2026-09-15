@@ -1,0 +1,20 @@
+'Sendov.CenteredEndpointMoment.integral_rpow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.moment_le_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.moment_lt_one_of_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.endpointKernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.kernel_le_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.actualKernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.real_mean_gt_of_endpoint_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Sendov.CenteredEndpointMoment.weighted_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.weighted_sum_neg_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.weighted_sum_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.bernsteinWeight_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.sum_bernsteinWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.bernstein_sum_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.lt_one_of_bernstein' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredEndpointMoment.EndpointBernsteinCertificate.upper_moment_lt_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Sendov.CenteredEndpointMoment.real_mean_gt_of_bernstein' depends on axioms: [propext, Classical.choice, Quot.sound]

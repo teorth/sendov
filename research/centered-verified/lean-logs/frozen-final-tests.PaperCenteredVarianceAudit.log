@@ -1,0 +1,16 @@
+'Sendov.PaperCenteredTail.normalized_H_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredTail.majorant_term_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredTail.majorant_term_le_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredTail.majorant_block_le_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.endpoint_power_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.norm_endpoint_half_of_rawPolar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredEndpoint.zero_variance_C_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperCenteredVarianceEndpoint.actual_variance_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Sendov.PaperCenteredVarianceEndpoint.variance_endpoint_power' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Sendov.PaperCenteredVarianceEndpoint.actual_variance_endpoint_power' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

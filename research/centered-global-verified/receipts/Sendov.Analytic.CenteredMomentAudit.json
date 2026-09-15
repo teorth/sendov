@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredMomentAudit",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "32256e5848e0539fc3560b83df3b89451407a57bc79357fbb0479213e6209598",
+  "object_sha256": "0311f72273ecb443381fc29de0a32cff6968dad886787a9edb4f5d3f37c9bdb6"
+}

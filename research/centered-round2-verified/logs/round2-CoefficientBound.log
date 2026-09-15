@@ -1,0 +1,3 @@
+'Sendov.PaperBinomialMode.integer_mean_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperBinomialMode.entropy_coefficient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.PaperBinomialMode.C_sq_le_binomial' depends on axioms: [propext, Classical.choice, Quot.sound]

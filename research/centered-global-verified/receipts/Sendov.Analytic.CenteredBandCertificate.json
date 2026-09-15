@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredBandCertificate",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "561f01e318350d34c487db3cc733c284ebfba09292a3bfd30570ca03a76fecf3",
+  "object_sha256": "a0482840a41c4ba7a7bb1c5c95f23c16d10e9a76bd23802e0c8eac1b1c51e7a7"
+}

@@ -1,0 +1,7 @@
+{
+  "module": "tests.CenteredBandAudit",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "bed12c007fb04fa09749722df0fba46b0a7437285179fe09e12d4ebfd3c4fd34",
+  "object_sha256": "461864bb85dda8b59488c125739ee80142ff0c94e718767ff9a69477f9323199"
+}

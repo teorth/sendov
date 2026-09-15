@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+    "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/Sendov/Analytic/PaperCenteredVarianceEndpoint.lean",
+    "-o",
+    "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/.lake/paper/objects/Sendov/Analytic/PaperCenteredVarianceEndpoint.olean",
+    "-i",
+    "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/.lake/paper/objects/Sendov/Analytic/PaperCenteredVarianceEndpoint.ilean",
+    "--setup",
+    "/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/.lake/paper/setups/Sendov/Analytic/PaperCenteredVarianceEndpoint.json"
+  ],
+  "exit_code": 0,
+  "seconds": 3.254625064029824,
+  "module": "Sendov.Analytic.PaperCenteredVarianceEndpoint",
+  "kernel": false,
+  "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-verified/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+  "options": {
+    "weak.linter.mathlibStandardSet": true,
+    "relaxedAutoImplicit": false,
+    "pp.unicode.fun": true,
+    "maxSynthPendingDepth": 3,
+    "autoImplicit": false
+  }
+}

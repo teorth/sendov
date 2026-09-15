@@ -1,0 +1,199 @@
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:62:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:33:100: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:13:29: warning: missing space in the source
+
+This part of the code
+  '2*p+3) (hLm'
+should be written as
+  '2 * p'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:14:12: warning: missing space in the source
+
+This part of the code
+  '9/10 ≤'
+should be written as
+  '9 / 10'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:14:58: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:16:28: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X^2)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:16:34: warning: missing space in the source
+
+This part of the code
+  'X^2) (hX1'
+should be written as
+  'X ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:16:51: warning: missing space in the source
+
+This part of the code
+  '19/20)
+'
+should be written as
+  '19 / 20)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:68:29: warning: missing space in the source
+
+This part of the code
+  '2*p+3) (hLm'
+should be written as
+  '2 * p'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:69:12: warning: missing space in the source
+
+This part of the code
+  '9/10 ≤'
+should be written as
+  '9 / 10'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:69:58: warning: missing space in the source
+
+This part of the code
+  'q.card*μ)
+ '
+should be written as
+  'q.card * μ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:71:24: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ)..1,'
+should be written as
+  '(0 : ℝ)..1,'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:25: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:28: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) + (t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:31: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(t : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:34: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) * (1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:37: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(1 - (a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:40: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '(a : ℂ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:43: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  'ℂ) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:72:46: warning: missing space in the source
+
+This part of the code
+  '(a:ℂ)+(t:ℂ)*(1-(a:ℂ)^2)*z)).prod‖)'
+should be written as
+  '2) * z)).prod‖)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:73:28: warning: missing space in the source
+
+This part of the code
+  '1/2 ≤ X^2)'
+should be written as
+  '1 / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:73:34: warning: missing space in the source
+
+This part of the code
+  'X^2) (hX1'
+should be written as
+  'X ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+/home/v-zhouziyu/work/sendov-paper-formalization-20260914-remaining-centered/research/centered-global-verified/Sendov/Analytic/CenteredBandTheorem.lean:73:51: warning: missing space in the source
+
+This part of the code
+  '19/20)
+'
+should be written as
+  '19 / 20)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

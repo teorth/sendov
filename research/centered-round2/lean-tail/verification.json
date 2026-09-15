@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "scope": "Fresh standalone mathematical module and explicit audit; no root integration",
+  "theorem_count": 19,
+  "axioms": {
+    "Sendov.PaperFactorialTail.descFactorial_mul_choose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.factorial_binomial_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.factorial_weighted_cs": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.factorial_tail_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.factorial_tail_le_sqrt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.cast_descFactorial_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight3_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight3_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight3_sum_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.cast_descFactorial_four": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight4_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight4_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.weight4_sum_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.rescale_coefficient_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.coefficient_tail_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.coefficient_tail3_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.coefficient_tail4_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.sqrt_pow_eq_rpow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Sendov.PaperFactorialTail.coefficient_tail_rpow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "sha256": {
+    "Sendov/Analytic/PaperFactorialTail.lean": "2f5307297d5e0c91403842ba2ff7e0e7c298cf99f6a61687f8687c509eed2c19",
+    "TailAudit.lean": "f820691a12b5337ae1a688c32288f5669ed1b8d2c78b374347dde84f54bcd01c",
+    ".lake/paper/objects/Sendov/Analytic/PaperFactorialTail.olean": "7b016f35a364f14566eeedca514ddbdc55485d12d88023d8c42d3805c4d47240",
+    ".lake/paper/objects/TailAudit.olean": "7e3a1dd66a1efa2097a2e7b8277cb61a59ad24b9f2cfd840727154e954c2c103"
+  },
+  "compile_and_kernel_receipts": [
+    ".lake/paper/logs/final-Sendov.Analytic.PaperFactorialTail.json",
+    ".lake/paper/logs/final-Sendov.Analytic.PaperFactorialTail-kernel.json",
+    ".lake/paper/logs/final-TailAudit.json",
+    ".lake/paper/logs/final-TailAudit-kernel.json"
+  ]
+}

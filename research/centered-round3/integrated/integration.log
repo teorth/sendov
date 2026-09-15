@@ -1,0 +1,26 @@
+Sendov.Analytic.CenteredThirdTail compile PASS
+Sendov.Analytic.CenteredThirdTail -kernel PASS
+Sendov.Analytic.CenteredThirdScalar compile PASS
+Sendov.Analytic.CenteredThirdScalar -kernel PASS
+Sendov.Analytic.CenteredThirdActual compile PASS
+Sendov.Analytic.CenteredThirdActual -kernel PASS
+Sendov.Analytic.CenteredThirdEndpoint compile PASS
+Sendov.Analytic.CenteredThirdEndpoint -kernel PASS
+Sendov.Analytic.CenteredThirdTheorem compile PASS
+Sendov.Analytic.CenteredThirdTheorem -kernel PASS
+tests.CenteredThirdAudit compile PASS
+tests.CenteredThirdAudit -kernel PASS
+Sendov.Analytic.CenteredMeanBudget compile PASS
+Sendov.Analytic.CenteredMeanBudget -kernel PASS
+tests.MeanBudgetAudit compile PASS
+tests.MeanBudgetAudit -kernel PASS
+{
+  "status": "PASS",
+  "modules": 8,
+  "checks": 16,
+  "audited_theorems": 27,
+  "kernel_domain": "m>=7,0<a<1,lambda<=1/3, original FULLpolar/pointwise, actual complex mean/variance",
+  "main": "Sendov.CenteredThird.C_near_fullpolar_third",
+  "margin": "37h/819",
+  "uniform_C_near": "OPEN"
+}

@@ -1,0 +1,7 @@
+{
+  "module": "tests.CenteredThirdAudit",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "7b294556f0f87848f62879c82119825de23209a90236b8a46a1bd46838fa5a6b",
+  "object_sha256": "5158f138e8116190680ea87e03576f887128ac846cf516f8529759e9d9a72f96"
+}

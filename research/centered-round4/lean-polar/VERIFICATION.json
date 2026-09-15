@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "checks": 4,
+  "audited_theorems": 7,
+  "main": "Sendov.CenteredActualPolar.actual_variance_moment_of_fullpolar",
+  "scope": "FULLpolar implies actual mean/centered-variance norm integral; not a global C-near conclusion",
+  "receipts": [
+    {
+      "module": "Sendov.Analytic.CenteredActualPolar",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "52788c0b7937cfbe66581d2310305be99e4f845231fa11c36f1cb757549cb983",
+      "object_sha256": "8884904d66730ee611abcba255a9872fc06db8be89306e83bc1574168b9017b2"
+    },
+    {
+      "module": "Sendov.Analytic.CenteredActualPolar",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "52788c0b7937cfbe66581d2310305be99e4f845231fa11c36f1cb757549cb983",
+      "object_sha256": "8884904d66730ee611abcba255a9872fc06db8be89306e83bc1574168b9017b2"
+    },
+    {
+      "module": "tests.ActualPolarAudit",
+      "kernel": false,
+      "exit_code": 0,
+      "source_sha256": "7648ea3e443c99a4dc3f5ada85e7f69122416b5cdc1a604d609d907b254e391b",
+      "object_sha256": "dcc875c07bfc0c6a947e8e0315fd16f1b28302d0d87d260b16d4432e1263026e"
+    },
+    {
+      "module": "tests.ActualPolarAudit",
+      "kernel": true,
+      "exit_code": 0,
+      "source_sha256": "7648ea3e443c99a4dc3f5ada85e7f69122416b5cdc1a604d609d907b254e391b",
+      "object_sha256": "dcc875c07bfc0c6a947e8e0315fd16f1b28302d0d87d260b16d4432e1263026e"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+PASS: S3 telescoping general summand polynomial
+PASS: S3 initial telescoping endpoint
+PASS: order-4 endpoint identity
+PASS: order-4 endpoint nonnegative coefficients
+PASS: sqrt falling factorial bound identity
+PASS: sqrt falling factorial bound nonnegative coefficients
+PASS: variance right-budget comparison identity
+PASS: variance right-budget comparison nonnegative coefficients
+PASS: global B2 polynomial bound identity
+PASS: global B2 polynomial bound nonnegative coefficients
+PASS: A maximum h and minimum a
+PASS: A polar/variance upper bound
+PASS: A rational radius encloses sqrt(1/13)
+PASS: A actual-mean lower bound
+PASS: A mean bound dominates 19/20
+PASS: A reciprocal u^2 bound
+PASS: A squared factorial comparison at m=7
+PASS: A tail linear coefficient
+PASS: A B2 monotonic ratios
+PASS: A uniform B2 rational base bound
+PASS: A combined variance coefficient
+PASS: A exact h margin
+PASS: B uniform inverse mean square
+PASS: B Gamma(1+B2) coefficient
+PASS: B sqrt(h/m) rational enclosure
+PASS: B exact h margin
+PASS: parent rho squared cutoff
+PASS: parent falling factorial estimate identity
+PASS: parent falling factorial estimate nonnegative coefficients
+PASS: parent squared tail constant < 9/25
+PASS: parent endpoint base constant
+PASS: parent endpoint sequence ratios
+PASS: parent total and claimed .99h
+PASS: C strong polar identity, constant coefficient in x
+PASS: C m-ratio at lower endpoint
+PASS: C log(lambda) sufficient rational lower bound
+PASS: C 10^(5/2) upper enclosure
+PASS: C beta at t=1/4
+PASS: C sqrt(1000) lower enclosure
+PASS: C first integral coefficient
+PASS: C decreasing exponential sequence ratio squared
+PASS: C single exponential sequence base bound
+PASS: C second integral coefficient
+PASS: C Gamma coefficient
+PASS: C Gamma B2 coefficient
+PASS: C combined variance coefficient
+PASS: C exact margin
+PASS: witness exact unit-circle pair
+PASS: witness positive variance and both proved domains
+PASS: witness full original complex integral is real and >1
+WITNESS: m=7, a=99/100, q=(1,1,1,1,1, 999999/1000001 +/- i* 2000/1000001 )
+WITNESS: v = 56000040/49000098000049
+WITNESS: K-1 = 192038360734699337294415723487393/560000560000000000000000000000000000
+PASS: C-only witness variance and domain
+PASS: C-only witness real-factor lower bound on [99/100,1]
+PASS: C-only witness original integral rational lower bound >1
+C-ONLY WITNESS: m=1000, a=9/10, q=(998 copies of 1, i, -i), v=999/250000
+C-ONLY WITNESS: K >= (81/10000)(27/25)^998 > 1 exactly
+A coefficient = 2125787/428415 ; A margin/h = 79/504
+B margin/h = 19/840
+C first-integral coefficient = 41000960000000000/1808651422478220039
+C margins = 14h/15 + 293v/1000
+ALL 53 EXACT CHECKS PASSED. No grid was used.

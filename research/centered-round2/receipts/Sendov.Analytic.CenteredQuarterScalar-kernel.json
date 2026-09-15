@@ -1,0 +1,6 @@
+{
+  "module": "Sendov.Analytic.CenteredQuarterScalar",
+  "kernel": true,
+  "exit_code": 0,
+  "source_sha256": "2546f0d0bd83daf865b65931d1a2242883fa90a85a1a1d64fbe273763aac69a3"
+}

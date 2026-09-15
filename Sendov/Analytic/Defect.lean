@@ -47,24 +47,14 @@ open Multiset
 /-! ### Products of norms -/
 
 lemma prod_norm_nonneg (s : Multiset ℂ) : 0 ≤ (s.map (fun z => ‖z‖)).prod := by
-  refine Multiset.prod_nonneg ?_
-  intro y hy
-  obtain ⟨z, _, rfl⟩ := Multiset.mem_map.1 hy
-  exact norm_nonneg z
+  exact Multiset.prod_map_nonneg (fun z _ => norm_nonneg z)
 
 lemma prod_norm_le_one : ∀ (s : Multiset ℂ), (∀ z ∈ s, ‖z‖ ≤ 1) →
     (s.map (fun z => ‖z‖)).prod ≤ 1 := by
-  intro s
-  induction s using Multiset.induction_on with
-  | empty => intro _; simp
-  | cons w t ih =>
-    intro hs
-    have hw : ‖w‖ ≤ 1 := hs w (mem_cons_self w t)
-    have ht : ∀ z ∈ t, ‖z‖ ≤ 1 := fun z hz => hs z (mem_cons_of_mem hz)
-    have hIH := ih ht
-    have hP0 : 0 ≤ (t.map (fun z => ‖z‖)).prod := prod_norm_nonneg t
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    nlinarith [norm_nonneg w]
+  intro s hs
+  simpa [normHom] using
+    (Multiset.prod_map_le_pow_card (f := (normHom : ℂ →*₀ ℝ))
+      (fun z _ => norm_nonneg z) hs)
 
 /-! ### The pointwise fact -/
 
@@ -74,18 +64,12 @@ lemma norm_mul_norm_inv_sub_conj_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
     ‖w‖ * ‖w⁻¹ - (starRingEnd ℂ) w‖ ≤ 1 - ‖w‖ ^ 2 := by
   rcases eq_or_ne w 0 with rfl | hne
   · simp
-  · have hkey : w * (w⁻¹ - (starRingEnd ℂ) w) = 1 - ((‖w‖ : ℝ) : ℂ) ^ 2 := by
-      rw [mul_sub, mul_inv_cancel₀ hne, Complex.mul_conj]
-      norm_cast
-      rw [Complex.normSq_eq_norm_sq]
-    have h1 : ‖w‖ * ‖w⁻¹ - (starRingEnd ℂ) w‖ = ‖(1 : ℂ) - ((‖w‖ : ℝ) : ℂ) ^ 2‖ := by
-      rw [← norm_mul, hkey]
-    rw [h1]
-    have h2 : ((1 : ℂ) - ((‖w‖ : ℝ) : ℂ) ^ 2) = ((1 - ‖w‖ ^ 2 : ℝ) : ℂ) := by
+  · have hkey : w * (w⁻¹ - (starRingEnd ℂ) w) = ((1 - ‖w‖ ^ 2 : ℝ) : ℂ) := by
+      rw [mul_sub, mul_inv_cancel₀ hne, Complex.mul_conj, Complex.normSq_eq_norm_sq]
       push_cast
-      ring
-    rw [h2, Complex.norm_real, Real.norm_eq_abs,
-      abs_of_nonneg (by nlinarith [norm_nonneg w])]
+      rfl
+    rw [← norm_mul, hkey, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonneg (sub_nonneg.2 (pow_le_one₀ (norm_nonneg w) hw))]
 
 /-! ### The lemma -/
 

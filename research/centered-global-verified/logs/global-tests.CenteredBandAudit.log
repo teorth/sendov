@@ -1,0 +1,36 @@
+'Sendov.CenteredBand.tail_expression_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.tailConstant_le_of_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.original_tail_le_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.C_near_fullpolar_band_of_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.norm_B_two_le_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.endpoint_quadratic_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.norm_B_two_le_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.mean_sqrt_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.available_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.gamma_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.scalar_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.weightSum_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.curved_quadratic_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.curved_quadratic_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.curvedIntegral_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.cubicIntegral_le_curved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.tailFactor_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.tailFactor_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.actual_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.C_near_raw_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredBand.C_near_fullpolar_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+Sendov.CenteredBand.C_near_fullpolar_band_of_certificate (q : Multiset ℂ) (L U p : ℕ) (a : ℝ) (μ : ℂ) (X I tau : ℝ)
+  (hL : 7 ≤ L) (hLp : L = 2 * p + 3) (hLm : L ≤ q.card) (hmU : q.card ≤ U) (ha0 : 9 / 10 ≤ a) (ha1 : a < 1)
+  (hmean : q.sum = ↑q.card * μ) (hq : ∀ z ∈ q, ‖z‖ ≤ 1)
+  (hp : 1 ≤ ‖∫ (t : ℝ) in 0..1, (Multiset.map (fun z ↦ ↑a + ↑t * (1 - ↑a ^ 2) * z) q).prod‖) (hX0 : 0 < X)
+  (hhalf : 1 / 2 ≤ X ^ 2) (hX1 : X ≤ 19 / 20) (hx : X ≤ μ.re) (htau0 : 0 ≤ tau)
+  (hI : Sendov.CenteredBand.curvedIntegral p X ≤ I) (hsquare : Sendov.CenteredBand.tailSquare U X I ≤ tau ^ 2)
+  (hdelta : 0 < Sendov.CenteredBand.margin (↑L) (↑U) X (Sendov.CenteredBand.BConstant p U X) tau) :
+  Sendov.CenteredActualTail.majorantTail (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) ≤
+      tau * Sendov.PaperCentered.variance (Multiset.map (fun z ↦ z - μ) q) ∧
+    Sendov.PaperCenteredBound.majorant_Efin (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) +
+          Sendov.PaperCentered.Gamma (Multiset.map (fun z ↦ z - μ) q) μ ≤
+        1 - a * ‖μ‖ - Sendov.CenteredBand.margin (↑L) (↑U) X (Sendov.CenteredBand.BConstant p U X) tau * (1 - a) ∧
+      Sendov.PaperCenteredBound.majorant_Efin (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) +
+          Sendov.PaperCentered.Gamma (Multiset.map (fun z ↦ z - μ) q) μ <
+        1 - a * ‖μ‖

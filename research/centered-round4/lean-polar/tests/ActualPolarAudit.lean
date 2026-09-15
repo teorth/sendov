@@ -1,0 +1,8 @@
+import Sendov.Analytic.CenteredActualPolar
+#print axioms Sendov.CenteredActualPolar.secondMoment_nonneg
+#print axioms Sendov.CenteredActualPolar.secondMoment_le_one
+#print axioms Sendov.CenteredActualPolar.norm_square_mean
+#print axioms Sendov.CenteredActualPolar.prod_norm_le_kernel
+#print axioms Sendov.CenteredActualPolar.actual_moment_of_fullpolar
+#print axioms Sendov.CenteredActualPolar.secondMoment_eq_variance
+#print axioms Sendov.CenteredActualPolar.actual_variance_moment_of_fullpolar

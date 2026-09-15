@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredQuarterActual",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "373d73d3c683add50006393e6512c3f407035eff750947ccc011c9d332c7181f",
+  "object_sha256": "e3df5d2e44ce873e50e81e9073e3cf5a812aeb614b3db577f9dfc598ac1f9ce2"
+}

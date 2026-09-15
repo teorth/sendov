@@ -1,0 +1,6 @@
+import Sendov.Analytic.CenteredQuarterTheorem
+#print axioms Sendov.CenteredQuarter.endpoint_quadratic
+#print axioms Sendov.CenteredQuarter.norm_B_two_le
+#print axioms Sendov.CenteredQuarter.scalar_budget
+#print axioms Sendov.CenteredQuarterTheorem.C_near_fullpolar_quarter
+#print axioms Sendov.CenteredQuarterTheorem.norm_J_gt_one_fullpolar_quarter

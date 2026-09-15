@@ -1,0 +1,35 @@
+'Sendov.CenteredThird.weightSum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.eta_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.pointwise_tail3_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.majorantTail_le_cubicIntegral_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.majorantTail_le_finiteChord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.eta_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.fourth_power_saving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.eta_fourth_saving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.mean_sqrt_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.chordTail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.gamma_B_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.coefficient_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.scalar_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.actual_third_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.BEnvelope_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.norm_B_two_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.C_near_raw_middle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.C_near_raw_third' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.C_near_fullpolar_third' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Sendov.CenteredThird.norm_J_gt_one_fullpolar_third' depends on axioms: [propext, Classical.choice, Quot.sound]
+Sendov.CenteredThird.C_near_fullpolar_third (q : Multiset ℂ) (hm : 7 ≤ q.card) (a : ℝ) (μ : ℂ) (ha0 : 0 < a)
+  (ha1 : a < 1) (hmean : q.sum = ↑q.card * μ) (hq : ∀ z ∈ q, ‖z‖ ≤ 1)
+  (hp : 1 ≤ ‖∫ (t : ℝ) in 0..1, (Multiset.map (fun z ↦ ↑a + ↑t * (1 - ↑a ^ 2) * z) q).prod‖)
+  (hl : Sendov.PaperPolar.lambda q.card a ≤ 1 / 3) :
+  Sendov.PaperCenteredBound.majorant_Efin (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) +
+        Sendov.PaperCentered.Gamma (Multiset.map (fun z ↦ z - μ) q) μ ≤
+      1 - a * ‖μ‖ - 37 * (1 - a) / 819 ∧
+    Sendov.PaperCenteredBound.majorant_Efin (Multiset.map (fun z ↦ z - μ) q) μ (↑a * μ) +
+        Sendov.PaperCentered.Gamma (Multiset.map (fun z ↦ z - μ) q) μ <
+      1 - a * ‖μ‖
+Sendov.CenteredThird.norm_J_gt_one_fullpolar_third (q : Multiset ℂ) (hm : 7 ≤ q.card) (a : ℝ) (μ : ℂ) (ha0 : 0 < a)
+  (ha1 : a < 1) (hmean : q.sum = ↑q.card * μ) (hq : ∀ z ∈ q, ‖z‖ ≤ 1)
+  (hp : 1 ≤ ‖∫ (t : ℝ) in 0..1, (Multiset.map (fun z ↦ ↑a + ↑t * (1 - ↑a ^ 2) * z) q).prod‖)
+  (hl : Sendov.PaperPolar.lambda q.card a ≤ 1 / 3) :
+  1 < ‖(↑q.card + 1) * ∫ (t : ℝ) in 0..1, (Multiset.map (fun z ↦ 1 - ↑a * ↑t * z) q).prod‖

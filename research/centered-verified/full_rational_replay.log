@@ -1,0 +1,24 @@
+reconstructed exact case 1 m 7
+reconstructed exact case 2 m 8
+reconstructed exact case 3 m 20
+reconstructed exact case 4 m 100
+reconstructed exact case 5 m 256
+reconstructed exact case 6 m 7
+reconstructed exact case 7 m 8
+reconstructed exact case 8 m 100
+reconstructed exact case 9 m 24
+reconstructed exact case 10 m 12
+reconstructed exact case 11 m 7
+reconstructed exact case 12 m 8
+reconstructed exact case 13 m 13
+structural envelope exact certificate ratio 0.31862345797936975
+{
+  "mode": "full-rational",
+  "exact_families": 13,
+  "two_precision_cases": 30,
+  "full_numeric_rerun": false,
+  "frozen_lean_checks": 10,
+  "seconds": 156.81447213998763,
+  "uniform_C_near": "OPEN",
+  "counterexample": "none certified"
+}

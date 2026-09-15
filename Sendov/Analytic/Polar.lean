@@ -59,38 +59,19 @@ lemma norm_sub_le_norm_one_sub_mul {a : ℝ} (ha : |a| ≤ 1) {z : ℂ} (hz : �
     nlinarith [this.1, this.2]
   have hz2 : Complex.normSq z ≤ 1 := by
     rw [Complex.normSq_eq_norm_sq]
-    nlinarith [norm_nonneg z]
-  have hdiff : 0 ≤ Complex.normSq (1 - (a : ℂ) * z) - Complex.normSq ((a : ℂ) - z) := by
-    rw [hkey]
-    have h1 : (0 : ℝ) ≤ 1 - a ^ 2 := by linarith
-    have h2 : (0 : ℝ) ≤ 1 - Complex.normSq z := by linarith
-    positivity
-  have hsq : ‖(a : ℂ) - z‖ ^ 2 ≤ ‖1 - (a : ℂ) * z‖ ^ 2 := by
-    rw [← Complex.normSq_eq_norm_sq, ← Complex.normSq_eq_norm_sq]
-    linarith
-  nlinarith [norm_nonneg ((a : ℂ) - z), norm_nonneg (1 - (a : ℂ) * z), hsq]
+    exact pow_le_one₀ (norm_nonneg z) hz
+  apply (sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).1
+  rw [Complex.sq_norm, Complex.sq_norm, ← sub_nonneg, hkey]
+  exact mul_nonneg (sub_nonneg.2 ha2) (sub_nonneg.2 hz2)
 
 /-! ### Products of norms over a multiset -/
 
 lemma norm_multiset_prod (s : Multiset ℂ) : ‖s.prod‖ = (s.map (fun w => ‖w‖)).prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons w t ih => simp [ih]
+  exact map_multiset_prod (normHom : ℂ →*₀ ℝ) s
 
 lemma prod_map_le_of_le {s : Multiset ℂ} {f g : ℂ → ℂ} (h : ∀ w ∈ s, ‖f w‖ ≤ ‖g w‖) :
     (s.map (fun w => ‖f w‖)).prod ≤ (s.map (fun w => ‖g w‖)).prod := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons w t ih =>
-    have hw := h w (Multiset.mem_cons_self w t)
-    have ht : ∀ u ∈ t, ‖f u‖ ≤ ‖g u‖ := fun u hu => h u (Multiset.mem_cons_of_mem hu)
-    have hnn : (0 : ℝ) ≤ (t.map (fun u => ‖f u‖)).prod :=
-      Multiset.prod_nonneg (by
-        intro y hy
-        obtain ⟨u, _, rfl⟩ := Multiset.mem_map.1 hy
-        exact norm_nonneg _)
-    simp only [Multiset.map_cons, Multiset.prod_cons]
-    exact mul_le_mul hw (ih ht) hnn (norm_nonneg _)
+  exact Multiset.prod_map_le_prod_map₀ _ _ (fun _ _ => norm_nonneg _) h
 
 /-! ### The branch point -/
 
@@ -102,10 +83,7 @@ lemma norm_prod_map (s : Multiset ℂ) (f : ℂ → ℂ) :
 
 lemma prod_map_norm_nonneg (s : Multiset ℂ) (f : ℂ → ℂ) :
     0 ≤ (s.map (fun w => ‖f w‖)).prod := by
-  refine Multiset.prod_nonneg ?_
-  intro y hy
-  obtain ⟨u, _, rfl⟩ := Multiset.mem_map.1 hy
-  exact norm_nonneg _
+  exact Multiset.prod_map_nonneg (fun _ _ => norm_nonneg _)
 
 /-- **The branch point `(⋆)`.**  `1 ≤ ∫₀¹ ∏ⱼ |a + t(1-a²)qⱼ| dt`.
 
@@ -143,7 +121,7 @@ theorem one_le_integral_prod_norm {n : ℕ} (hn : 2 ≤ n) {a : ℝ} (ha : |a| �
         (q.map (fun v => (a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v)).prod‖ := by
       rw [← h2, h1]
       exact mul_le_mul_of_nonneg_left hmob (norm_nonneg _)
-    nlinarith [hstep, hnpos]
+    exact (mul_le_mul_iff_right₀ hnpos).mp (by simpa only [mul_one] using hstep)
   -- and the triangle inequality moves the norm inside
   refine h3.trans ?_
   refine (intervalIntegral.norm_integral_le_integral_norm (by norm_num)).trans_eq ?_
@@ -164,35 +142,20 @@ lemma norm_sq_add_real_mul (a s : ℝ) (v : ℂ) :
 
 lemma prod_map_sq (s : Multiset ℂ) (f : ℂ → ℝ) :
     (s.map (fun v => f v ^ 2)).prod = ((s.map f).prod) ^ 2 := by
-  induction s using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.prod_cons, ih]
-    ring
+  exact Multiset.prod_map_pow
 
 /-- Splitting `∑ⱼ ‖a + s qⱼ‖²` into its three pieces. -/
 lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
     (q.map (fun v => ‖(a : ℂ) + (s : ℂ) * v‖ ^ 2)).sum
       = (q.card : ℝ) * a ^ 2 + 2 * a * s * ((q.map (fun v => v.re)).sum)
         + s ^ 2 * ((q.map (fun v => ‖v‖ ^ 2)).sum) := by
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    rw [ih, norm_sq_add_real_mul]
-    push_cast
-    ring
+  simp_rw [norm_sq_add_real_mul]
+  simp [Multiset.sum_map_add, Multiset.sum_map_mul_left, nsmul_eq_mul]
 
 lemma sum_norm_sq_le_card (q : Multiset ℂ) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) :
     (q.map (fun v => ‖v‖ ^ 2)).sum ≤ (q.card : ℝ) := by
-  induction q using Multiset.induction_on with
-  | empty => simp
-  | cons v t ih =>
-    have hv := hq1 v (Multiset.mem_cons_self v t)
-    have ht : ∀ u ∈ t, ‖u‖ ≤ 1 := fun u hu => hq1 u (Multiset.mem_cons_of_mem hu)
-    simp only [Multiset.map_cons, Multiset.sum_cons, Multiset.card_cons]
-    push_cast
-    nlinarith [ih ht, norm_nonneg v]
+  simpa using Multiset.sum_map_le_sum_map (fun v : ℂ => ‖v‖ ^ 2) (fun _ => (1 : ℝ))
+    (fun v hv => pow_le_one₀ (norm_nonneg v) (hq1 v hv))
 
 lemma continuous_prod_norm (a : ℝ) (q : Multiset ℂ) :
     Continuous fun t : ℝ =>
@@ -268,7 +231,7 @@ lemma prod_norm_le_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x t : ℝ}
     refine hamgm.trans ?_
     exact pow_le_pow_left₀ hM0' hMle _
   rw [← hsq] at hchain
-  nlinarith [hchain, hP0, Real.rpow_nonneg (le_trans hM0' hMle) (((n : ℝ) - 1) / 2)]
+  exact (sq_le_sq₀ hP0 (Real.rpow_nonneg hb _)).1 hchain
 
 /-- **The raw polar inequality `(1Q)`.** -/
 theorem one_le_integral_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x : ℝ}

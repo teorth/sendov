@@ -1,1 +1,9 @@
-/.lake
+# Build outputs and local dependency environments (including research stages).
+.lake/
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+*.pyo

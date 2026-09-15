@@ -1,0 +1,105 @@
+{
+  "source_commit": "8e1b056a241e6a99af2e2029569dc92a334c1a6d",
+  "baseline_commit": "0a4e966c41e1287f92d305d3bad8e70c8c295dde",
+  "baseline": {
+    "production": {
+      "files": 49,
+      "lines": 8350,
+      "bytes": 388596
+    },
+    "tests_and_audits": {
+      "files": 13,
+      "lines": 1222,
+      "bytes": 55503
+    }
+  },
+  "candidate": {
+    "production": {
+      "files": 88,
+      "lines": 16237,
+      "bytes": 815037
+    },
+    "tests_and_audits": {
+      "files": 60,
+      "lines": 10818,
+      "bytes": 697910
+    }
+  },
+  "delta": {
+    "production": {
+      "files": 39,
+      "lines": 7887,
+      "bytes": 426441
+    },
+    "tests_and_audits": {
+      "files": 47,
+      "lines": 9596,
+      "bytes": 642407
+    }
+  },
+  "cached_import_timings": {
+    "baseline": {
+      "Sendov.Interior": {
+        "seconds": [
+          3.4430825840099715,
+          3.4967094399617054,
+          3.608164331992157
+        ],
+        "median_seconds": 3.4967094399617054
+      },
+      "Sendov.Conjecture": {
+        "seconds": [
+          3.5816891019931063,
+          3.661514418956358,
+          3.740386394027155
+        ],
+        "median_seconds": 3.661514418956358
+      },
+      "Solution": {
+        "seconds": [
+          2.849442850041669,
+          2.8681032629683614,
+          2.854003844957333
+        ],
+        "median_seconds": 2.854003844957333
+      }
+    },
+    "candidate": {
+      "Sendov.Interior": {
+        "seconds": [
+          7.3726481680059806,
+          7.41232837602729,
+          7.326444656995591
+        ],
+        "median_seconds": 7.3726481680059806
+      },
+      "Sendov.Conjecture": {
+        "seconds": [
+          3.703548660967499,
+          3.695611385977827,
+          3.551374059985392
+        ],
+        "median_seconds": 3.695611385977827
+      },
+      "Solution": {
+        "seconds": [
+          2.8146336569916457,
+          2.881257256027311,
+          2.7444792250171304
+        ],
+        "median_seconds": 2.8146336569916457
+      }
+    },
+    "scope": "Three cached-import elaborations per module, sequential on shared host; not whole-DAG builds or controlled performance experiment. No speedup claim."
+  },
+  "affected_primary_olean": {
+    "files": 97,
+    "bytes": 190024872,
+    "MiB": 181.22183990478516,
+    "note": "Only primary .olean for 97 acceptance modules; excludes dependency packages and .ilean/auxiliary files."
+  },
+  "successful_gate_seconds": {
+    "elaboration": 873.4082650328637,
+    "kernel_replay": 562.3478519659839
+  }
+}

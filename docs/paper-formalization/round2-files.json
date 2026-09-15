@@ -1,0 +1,14 @@
+[
+  "Sendov/Analytic/PaperNear.lean",
+  "tests/PaperNear.lean",
+  "Sendov/Analytic/PaperTwoEnd.lean",
+  "tests/PaperTwoEndTests.lean",
+  "Sendov/Analytic/PaperLaplace.lean",
+  "tests/PaperLaplace.lean",
+  "Sendov/Analytic/PaperSecant.lean",
+  "tests/PaperSecantTests.lean",
+  "Sendov/Analytic/PaperCentered.lean",
+  "tests/PaperCentered.lean",
+  "Sendov/Analytic/PaperCoefficient.lean",
+  "tests/PaperCoefficientTests.lean"
+]

@@ -1,0 +1,1582 @@
+[
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Boundary.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Boundary.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Boundary.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Boundary.json"
+    ],
+    "exit_code": 0,
+    "seconds": 4.637327351025306,
+    "module": "Sendov.Boundary",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Boundary",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "204d914bfeec14999b4b3b86d9070af17bc0f096462e52f28ff738b7e4f81705",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Boundary.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Boundary"
+    ],
+    "exit_code": 0,
+    "seconds": 4.592854195041582,
+    "module": "Sendov.Boundary",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Boundary",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "204d914bfeec14999b4b3b86d9070af17bc0f096462e52f28ff738b7e4f81705",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Boundary-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/BoundaryProbe.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryProbe.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryProbe.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/BoundaryProbe.json"
+    ],
+    "exit_code": 0,
+    "seconds": 4.16514456900768,
+    "module": "tests.BoundaryProbe",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.BoundaryProbe",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "9c1e09608d0a7d262aef189c78a2a7df0ecd018e99b56550c653ce1fa066e833",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.BoundaryProbe.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.BoundaryProbe"
+    ],
+    "exit_code": 0,
+    "seconds": 4.423945305054076,
+    "module": "tests.BoundaryProbe",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.BoundaryProbe",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "9c1e09608d0a7d262aef189c78a2a7df0ecd018e99b56550c653ce1fa066e833",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.BoundaryProbe-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Analytic/FirstOriginAlgebra.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginAlgebra.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginAlgebra.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Analytic/FirstOriginAlgebra.json"
+    ],
+    "exit_code": 0,
+    "seconds": 6.099887011980172,
+    "module": "Sendov.Analytic.FirstOriginAlgebra",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginAlgebra",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "c18e2d5d0207cb386dca31949eef8b4240958e53a17c2819f653c40f7575d75b",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginAlgebra.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Analytic.FirstOriginAlgebra"
+    ],
+    "exit_code": 0,
+    "seconds": 5.073037578025833,
+    "module": "Sendov.Analytic.FirstOriginAlgebra",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginAlgebra",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "c18e2d5d0207cb386dca31949eef8b4240958e53a17c2819f653c40f7575d75b",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginAlgebra-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Analytic/FirstOriginBounds.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginBounds.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginBounds.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Analytic/FirstOriginBounds.json"
+    ],
+    "exit_code": 0,
+    "seconds": 4.867831470037345,
+    "module": "Sendov.Analytic.FirstOriginBounds",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginBounds",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "931ee26dd1b7458f24a337eb4177d5ff2a9211d5e67a89ffe96cde98c0baebf7",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginBounds.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Analytic.FirstOriginBounds"
+    ],
+    "exit_code": 0,
+    "seconds": 4.668646619014908,
+    "module": "Sendov.Analytic.FirstOriginBounds",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginBounds",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "931ee26dd1b7458f24a337eb4177d5ff2a9211d5e67a89ffe96cde98c0baebf7",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginBounds-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Analytic/FirstOriginSmall.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginSmall.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Analytic/FirstOriginSmall.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Analytic/FirstOriginSmall.json"
+    ],
+    "exit_code": 0,
+    "seconds": 5.272365131997503,
+    "module": "Sendov.Analytic.FirstOriginSmall",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginSmall",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "69cd012979351d0bb4b1e92acb1ea9d1d3ce5e3700250a6b05f80a6167578075",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginSmall.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Analytic.FirstOriginSmall"
+    ],
+    "exit_code": 0,
+    "seconds": 4.606699668976944,
+    "module": "Sendov.Analytic.FirstOriginSmall",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Analytic.FirstOriginSmall",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "69cd012979351d0bb4b1e92acb1ea9d1d3ce5e3700250a6b05f80a6167578075",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Analytic.FirstOriginSmall-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Interior.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Interior.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Interior.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Interior.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.60037838795688,
+    "module": "Sendov.Interior",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Interior",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "ccf36572e0dcbd817df29bf62f4245a3d274b466d958015e543ba3c6098ea345",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Interior.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Interior"
+    ],
+    "exit_code": 0,
+    "seconds": 4.495678294042591,
+    "module": "Sendov.Interior",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Interior",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "ccf36572e0dcbd817df29bf62f4245a3d274b466d958015e543ba3c6098ea345",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Interior-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Conjecture.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Conjecture.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Conjecture.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Conjecture.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.571729419985786,
+    "module": "Sendov.Conjecture",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Conjecture",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "260df47ae05aee1735d8f24451f53bf7d25f55c4ecf6eb5a583860cfde4d42c8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Conjecture.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Conjecture"
+    ],
+    "exit_code": 0,
+    "seconds": 4.385996114986483,
+    "module": "Sendov.Conjecture",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Conjecture",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "260df47ae05aee1735d8f24451f53bf7d25f55c4ecf6eb5a583860cfde4d42c8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Conjecture-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Solution.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Solution.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Solution.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Solution.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.819178839039523,
+    "module": "Solution",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Solution",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "bea235d32a6e29f078e72348671e40d7cdec39fc00667e00d5819b7cdfa30ce6",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Solution.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Solution"
+    ],
+    "exit_code": 0,
+    "seconds": 4.591696546995081,
+    "module": "Solution",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Solution",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "bea235d32a6e29f078e72348671e40d7cdec39fc00667e00d5819b7cdfa30ce6",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Solution-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Collinear/Gate.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Gate.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Gate.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Collinear/Gate.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.9448194350115955,
+    "module": "Sendov.Collinear.Gate",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Gate",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "f4e77cf2ad3b20ac4761da256a4ae2b8ecdea45fd091d212ecd3640ef364e63f",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Gate.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Collinear.Gate"
+    ],
+    "exit_code": 0,
+    "seconds": 4.238855689007323,
+    "module": "Sendov.Collinear.Gate",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Gate",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "f4e77cf2ad3b20ac4761da256a4ae2b8ecdea45fd091d212ecd3640ef364e63f",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Gate-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Collinear/Mass.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Mass.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Mass.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Collinear/Mass.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.9159342409693636,
+    "module": "Sendov.Collinear.Mass",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Mass",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "8bfc6af8f0be863382eb16b0020413ba604aa1ed7ed7bfe929cda45b154c21e8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Mass.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Collinear.Mass"
+    ],
+    "exit_code": 0,
+    "seconds": 4.127788801037241,
+    "module": "Sendov.Collinear.Mass",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Mass",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "8bfc6af8f0be863382eb16b0020413ba604aa1ed7ed7bfe929cda45b154c21e8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Mass-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Collinear/Balance.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Balance.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Balance.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Collinear/Balance.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.8124370709992945,
+    "module": "Sendov.Collinear.Balance",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Balance",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "5a552794875eedebc032168861169d2cdddc038baaaeea66745826d164211e99",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Balance.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Collinear.Balance"
+    ],
+    "exit_code": 0,
+    "seconds": 4.413372524024453,
+    "module": "Sendov.Collinear.Balance",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Balance",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "5a552794875eedebc032168861169d2cdddc038baaaeea66745826d164211e99",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Balance-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Collinear/Diameter.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Diameter.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Diameter.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Collinear/Diameter.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.646286108996719,
+    "module": "Sendov.Collinear.Diameter",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Diameter",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "aeb12605fe0b815917e96829c21d71c600c32522e10b759c32bb2065273de38f",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Diameter.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Collinear.Diameter"
+    ],
+    "exit_code": 0,
+    "seconds": 4.167032600031234,
+    "module": "Sendov.Collinear.Diameter",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Diameter",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "aeb12605fe0b815917e96829c21d71c600c32522e10b759c32bb2065273de38f",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Diameter-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov/Collinear/Moment.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Moment.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov/Collinear/Moment.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov/Collinear/Moment.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.034026184992399,
+    "module": "Sendov.Collinear.Moment",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Moment",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "0f1612f32a7a37307d71627ab865ca8f5d93ba7345dd96e11c04269dd09b81d8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Moment.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "Sendov.Collinear.Moment"
+    ],
+    "exit_code": 0,
+    "seconds": 4.233618247963022,
+    "module": "Sendov.Collinear.Moment",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov.Collinear.Moment",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "0f1612f32a7a37307d71627ab865ca8f5d93ba7345dd96e11c04269dd09b81d8",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.Collinear.Moment-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/CollinearTests.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearTests.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearTests.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/CollinearTests.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.3706941939890385,
+    "module": "tests.CollinearTests",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearTests",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "d1061c6a54d5595f17f6e9db3718a4129fa877ff99fbd684f5461ae05020bdbe",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearTests.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.CollinearTests"
+    ],
+    "exit_code": 0,
+    "seconds": 4.147964646981563,
+    "module": "tests.CollinearTests",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearTests",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "d1061c6a54d5595f17f6e9db3718a4129fa877ff99fbd684f5461ae05020bdbe",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearTests-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/CollinearRound2Tests.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearRound2Tests.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearRound2Tests.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/CollinearRound2Tests.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.408390793018043,
+    "module": "tests.CollinearRound2Tests",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearRound2Tests",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "b441c8c5bc06f2caf0862aa633edde72dc1dbe8593f7981267c5587dbfb5e0a6",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearRound2Tests.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.CollinearRound2Tests"
+    ],
+    "exit_code": 0,
+    "seconds": 4.205070880008861,
+    "module": "tests.CollinearRound2Tests",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearRound2Tests",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "b441c8c5bc06f2caf0862aa633edde72dc1dbe8593f7981267c5587dbfb5e0a6",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearRound2Tests-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/CollinearAcceptance.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearAcceptance.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/CollinearAcceptance.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/CollinearAcceptance.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.7177694919519126,
+    "module": "tests.CollinearAcceptance",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearAcceptance",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "b90596c3c8371337ac6a67330c891ec1a6aaa090b04cf8fcaa6d4fff680138e5",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearAcceptance.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.CollinearAcceptance"
+    ],
+    "exit_code": 0,
+    "seconds": 4.13122546102386,
+    "module": "tests.CollinearAcceptance",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.CollinearAcceptance",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "b90596c3c8371337ac6a67330c891ec1a6aaa090b04cf8fcaa6d4fff680138e5",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.CollinearAcceptance-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/Sendov.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/Sendov.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/Sendov.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.677756931982003,
+    "module": "Sendov",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "Sendov",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "3f52679314022a1d2540c053568830f545d298c618a45649252068f71db8d1fc",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-Sendov.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/Localanalytic.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/Localanalytic.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/Localanalytic.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/Localanalytic.json"
+    ],
+    "exit_code": 0,
+    "seconds": 5.377116655989084,
+    "module": "tests.Localanalytic",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.Localanalytic",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "7ae5a379504b056acb1e927ef16870856de5464410daf70ba5eaea85fcc8c6e2",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.Localanalytic.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.Localanalytic"
+    ],
+    "exit_code": 0,
+    "seconds": 4.367686050012708,
+    "module": "tests.Localanalytic",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.Localanalytic",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "7ae5a379504b056acb1e927ef16870856de5464410daf70ba5eaea85fcc8c6e2",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.Localanalytic-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/Localreduction.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/Localreduction.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/Localreduction.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/Localreduction.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.361300297023263,
+    "module": "tests.Localreduction",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.Localreduction",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "af193d148f7a7c00aecbf6fb58493507e5af9e16cd2adea20f625369f69e6d07",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.Localreduction.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.Localreduction"
+    ],
+    "exit_code": 0,
+    "seconds": 4.514493878989015,
+    "module": "tests.Localreduction",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.Localreduction",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "af193d148f7a7c00aecbf6fb58493507e5af9e16cd2adea20f625369f69e6d07",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.Localreduction-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/LocalMiddleAlpha.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/LocalMiddleAlpha.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/LocalMiddleAlpha.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/LocalMiddleAlpha.json"
+    ],
+    "exit_code": 0,
+    "seconds": 13.137169818975963,
+    "module": "tests.LocalMiddleAlpha",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.LocalMiddleAlpha",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "0a8902c7e29f0b9fd495e38ca404faaf718ef8a3af6d82df09b3d7a09325393d",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.LocalMiddleAlpha.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.LocalMiddleAlpha"
+    ],
+    "exit_code": 0,
+    "seconds": 4.614542532013729,
+    "module": "tests.LocalMiddleAlpha",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.LocalMiddleAlpha",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "0a8902c7e29f0b9fd495e38ca404faaf718ef8a3af6d82df09b3d7a09325393d",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.LocalMiddleAlpha-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/LocalPeakClosure.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/LocalPeakClosure.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/LocalPeakClosure.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/LocalPeakClosure.json"
+    ],
+    "exit_code": 0,
+    "seconds": 8.895943243987858,
+    "module": "tests.LocalPeakClosure",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.LocalPeakClosure",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "a8b635b06dc9d39254cc0622adbea9a882bf5eb08c7699ab68f692e9bd784545",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.LocalPeakClosure.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/leanchecker",
+      "tests.LocalPeakClosure"
+    ],
+    "exit_code": 0,
+    "seconds": 4.6097695890348405,
+    "module": "tests.LocalPeakClosure",
+    "kernel": true,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.LocalPeakClosure",
+      "--tag",
+      "parent-integrated01",
+      "--kernel"
+    ],
+    "source_sha256": "a8b635b06dc9d39254cc0622adbea9a882bf5eb08c7699ab68f692e9bd784545",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.LocalPeakClosure-kernel.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/scripts/axioms.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/scripts/axioms.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/scripts/axioms.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/scripts/axioms.json"
+    ],
+    "exit_code": 0,
+    "seconds": 3.1431618679780513,
+    "module": "scripts.axioms",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "scripts.axioms",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "e7ef1a7af7b8b729b0b13a4907ea7979961fda7e79cc6811abafcc29254da656",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-scripts.axioms.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/BoundaryWiring.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryWiring.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryWiring.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/BoundaryWiring.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.7240611810120754,
+    "module": "tests.BoundaryWiring",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.BoundaryWiring",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "53e968a6ec87036cd736ddbf676ea335a0ec901d48a70f4794f46afd262b3d8c",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.BoundaryWiring.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/BoundaryAudit.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryAudit.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryAudit.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/BoundaryAudit.json"
+    ],
+    "exit_code": 0,
+    "seconds": 15.690171732974704,
+    "module": "tests.BoundaryAudit",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.BoundaryAudit",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "12e81365f9aa32d22f0f6a51fb93297e8fd325f6bf7aad59f87ffe4ae82cf716",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.BoundaryAudit.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/BoundaryContracts.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryContracts.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/BoundaryContracts.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/BoundaryContracts.json"
+    ],
+    "exit_code": 0,
+    "seconds": 2.7515192850260064,
+    "module": "tests.BoundaryContracts",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.BoundaryContracts",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "21dc87df827c30896a43e88baf149da2aeee9f7d11d7316c976ee4bfe0a61019",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.BoundaryContracts.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/FirstOriginAudit.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/FirstOriginAudit.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/FirstOriginAudit.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/FirstOriginAudit.json"
+    ],
+    "exit_code": 0,
+    "seconds": 24.132082740950864,
+    "module": "tests.FirstOriginAudit",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.FirstOriginAudit",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "eda08ee06deff1b01ccebfdcab74c70392c50694fcb84b0c37729cb5a7bacada",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.FirstOriginAudit.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/FirstOriginWiring.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/FirstOriginWiring.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/FirstOriginWiring.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/FirstOriginWiring.json"
+    ],
+    "exit_code": 0,
+    "seconds": 10.814981314004399,
+    "module": "tests.FirstOriginWiring",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.FirstOriginWiring",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "982bb1786d15875e8d3211e836ca3d7951cc082204fd5ca6a72908340ab87f13",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.FirstOriginWiring.log",
+    "source_unchanged": true
+  },
+  {
+    "command": [
+      "/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/bin/lean",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/tests/NoFiniteRows.lean",
+      "-o",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/NoFiniteRows.olean",
+      "-i",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects/tests/NoFiniteRows.ilean",
+      "--setup",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/setups/tests/NoFiniteRows.json"
+    ],
+    "exit_code": 0,
+    "seconds": 27.442488458007574,
+    "module": "tests.NoFiniteRows",
+    "kernel": false,
+    "lean_path": "/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Cli/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/batteries/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/Qq/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/aesop/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/importGraph/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/plausible/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-research-20260914/.lake/packages/mathlib/.lake/build/lib/lean:/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/objects:/home/v-zhouziyu/.elan/toolchains/leanprover--lean4---v4.34.0-rc1/lib/lean",
+    "options": {
+      "weak.linter.mathlibStandardSet": true,
+      "relaxedAutoImplicit": false,
+      "pp.unicode.fun": true,
+      "maxSynthPendingDepth": 3,
+      "autoImplicit": false
+    },
+    "wrapper_command": [
+      "/home/v-zhouziyu/.hermes/hermes-agent/venv/bin/python3",
+      "/home/v-zhouziyu/work/sendov-research-20260914-research/paper-formalization/check.py",
+      "/home/v-zhouziyu/work/sendov-paper-formalization-20260914",
+      "tests.NoFiniteRows",
+      "--tag",
+      "parent-integrated01"
+    ],
+    "source_sha256": "355b9b39563f38d85a248b95249175893edd47a1e23ac41c9d9fb62a7599ff62",
+    "log": "/home/v-zhouziyu/work/sendov-paper-formalization-20260914/.lake/paper/logs/parent-integrated01-tests.NoFiniteRows.log",
+    "source_unchanged": true
+  }
+]

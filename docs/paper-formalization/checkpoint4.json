@@ -1,0 +1,8 @@
+{
+  "all_a_m256_D": true,
+  "n_ge_257_Solution_uses_first_origin_only_branch": true,
+  "historical_stronger_bounds": true,
+  "quantitative_J_gaps_m5_m6": true,
+  "gates": 12,
+  "all_paper_obligations_complete": false
+}

@@ -1,0 +1,7 @@
+{
+  "module": "Sendov.Analytic.CenteredThirdEndpoint",
+  "kernel": false,
+  "exit_code": 0,
+  "source_sha256": "0d2d5d658eb06ee8e784641ecc5e43add3a6f31b461519e2555e434b224dc796",
+  "object_sha256": "6c537ac66a1169540d22e9da01b938e3567768ed5bca5b133f1cfb9131bf683a"
+}
