@@ -19,6 +19,7 @@ only agreement with an independent evaluation of `1 - R` is.
 """
 from fractions import Fraction as F
 from math import comb, lcm
+from pathlib import Path
 
 def mul(p,q):
     r=[F(0)]*(len(p)+len(q)-1)
@@ -222,5 +223,7 @@ theorem finite_range_{nm} (hα : 0 ≤ α) {alphyp}(hfeas : c {n} α ^ 2 ≤ A {
 
 end Sendov
 '''
-io.open(f"Degree{n}.lean","w",encoding="utf-8").write(src)
-print(f"n={n} deg={d} bytes={len(src)} maxGammaDigits={max(len(str(g)) for g in G)}")
+out = Path(__file__).resolve().parents[1] / "Sendov" / "FiniteRange" / f"Degree{n}.lean"
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(src, encoding="utf-8")
+print(f"wrote {out} n={n} deg={d} bytes={len(src)} maxGammaDigits={max(len(str(g)) for g in G)}")

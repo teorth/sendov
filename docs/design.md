@@ -661,7 +661,8 @@ generated files; these are resource knobs, not escape hatches, and are recorded 
 deliberately.
 
 `scripts/gen_degree.py` is untrusted: Lean re-derives `P n` and checks the Bernstein identity
-with `ring`, so a corrupted coefficient fails the build. Its `--check` mode compares against
+with `ring`, so a corrupted coefficient fails the build. It writes `Degree{n}.lean` under
+`Sendov/FiniteRange/` relative to the repo root, not the shell cwd. Its `--check` mode compares against
 numerical quadrature, and that check has already caught a real bug — a dropped `2ˡ` in
 `(-2c)ˡ` produced a `P` wrong by sign and scale which nevertheless admitted a Bernstein
 representation, with every coefficient negative. **Positivity of a certificate is not
